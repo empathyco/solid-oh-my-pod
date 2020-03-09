@@ -2,12 +2,11 @@
 
 This is a work-in-progress implementation of a Solid Pod Management System.
 
-Solid is a web decentralization project led by Tim Berners Lee in collaboration with MIT.
-Learn more about the solid project here: [Solid Project](https://solidproject.org/).
+Solid is a web decentralization project led by Tim Berners Lee in collaboration with MIT. Learn more about the solid project [here](https://solidproject.org/).
 
-This application tries to improve the user experience (UX) with Pods (Personal Online Data Stores), making it more human, friendly & understandable.
+This proof-of-concept application tries to improve the user experience (UX) with Pods (Personal Online Data Stores) making it more human, friendly & understandable.
 
-The application is being developed in collaboration with the [WESO](http://www.weso.es/), the Web Semantic research group of the University of Oviedo & [empathy.co](https://www.empathy.co/).
+Application is being developed in collaboration with the [WESO](http://www.weso.es/), the Web Semantic research group of the University of Oviedo & [empathy.co](https://www.empathy.co/).
 
 ## Working features
 1. Succesful Log in and Log out
