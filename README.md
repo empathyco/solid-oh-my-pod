@@ -1,4 +1,4 @@
-# solid-pods-management
+# empathy.co PMS (Pod Management System)
 
 This is a work-in-progress implementation of a Solid Pod Management System.
 
