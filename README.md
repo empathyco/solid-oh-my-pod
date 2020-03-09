@@ -1,34 +1,32 @@
 # solid-pods-management
 
-This is an implementation of a Solid Pod Management System. This implementation is in continuous progress.
+This is a work-in-progress implementation of a Solid Pod Management System.
 
-Solid is a project lead by Tim Berners Lee in collaboration with MIT.
+Solid is a web decentralization project led by Tim Berners Lee in collaboration with MIT.
 Learn more about the solid project here: [Solid Project](https://solidproject.org/).
 
-This application tries to improve the user experience (UX) making it more human, friendly and understandable for a user to interact with its own Pods (Personal Online Data Stores). The proof-of-concept application is being developed in collaboration with the [WESO](http://www.weso.es/) research group, the Web Semantic research group of the University of Oviedo & [empathy.co](https://www.empathy.co/), a company from northern Spain, established in Gijón, that help brands provide irresistible search, pairing software with interfaces to combine function and beauty in one.
+This application tries to improve the user experience (UX) with Pods (Personal Online Data Stores), making it more human, friendly & understandable.
 
-The main objectives of this application are the following:
-
-Improve the user experience (UX), making it frictionless. The interaction with a Pod served by the actual Pod Service Providers (which is based on [Node-Solid-Server](https://github.com/solid/node-solid-server)) is complex, unfriendly and difficult even if you're familiar with the computer science world. We try to make it easier to the users to manage the data they want to store in their Pods, because the first step to gain users, is making their life easier thus improve security and privacy.
+The application is being developed in collaboration with the [WESO](http://www.weso.es/), the Web Semantic research group of the University of Oviedo & [empathy.co](https://www.empathy.co/).
 
 ## Working features
-1. Succesful log in and log out
+1. Succesful Log in and Log out
 2. You can edit your profile 
-3. Delete and add friends
+3. Delete & add friends
 4. Integrated Pod File Management
-5. Internationalization in Spanish and English
+5. Internationalization in English and Spanish
 
-## Logging In
+## Log In
 When log in you will be asked for a Pod provider, either Solid Community or Inrupt.
 
 Learn how to get a Solid Pod [here](https://solid.inrupt.com/get-a-solid-pod).
 
 This is the login screen. The sign in and resgister links will redirect you to the website of the providers you may choose.
 
- ![Loggin image](https://api.media.atlassian.com/file/a7c0cbac-4372-4095-98e7-4dc768609fc5/image?mode=full-fit&client=cc603d48-5423-4d78-9c6a-ee28cc7f28ac&token=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjYzYwM2Q0OC01NDIzLTRkNzgtOWM2YS1lZTI4Y2M3ZjI4YWMiLCJhY2Nlc3MiOnsidXJuOmZpbGVzdG9yZTpmaWxlOmE3YzBjYmFjLTQzNzItNDA5NS05OGU3LTRkYzc2ODYwOWZjNSI6WyJyZWFkIl19LCJleHAiOjE1ODM1MTkzMjMsIm5iZiI6MTU4MzUxNTk2M30.uFXZ_WX3CPDotd6ES3_5JaP9okvWJ0kcVGITtGt3mtQ)   
+ ![Login](https://api.media.atlassian.com/file/a7c0cbac-4372-4095-98e7-4dc768609fc5/image?mode=full-fit&client=cc603d48-5423-4d78-9c6a-ee28cc7f28ac&token=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjYzYwM2Q0OC01NDIzLTRkNzgtOWM2YS1lZTI4Y2M3ZjI4YWMiLCJhY2Nlc3MiOnsidXJuOmZpbGVzdG9yZTpmaWxlOmE3YzBjYmFjLTQzNzItNDA5NS05OGU3LTRkYzc2ODYwOWZjNSI6WyJyZWFkIl19LCJleHAiOjE1ODM1MTkzMjMsIm5iZiI6MTU4MzUxNTk2M30.uFXZ_WX3CPDotd6ES3_5JaP9okvWJ0kcVGITtGt3mtQ)   
  
  Once you are logged in, you will see the welcome page
-  ![Welcome page image](https://api.media.atlassian.com/file/eecfb965-7033-4652-afc9-d525524982ce/image?mode=full-fit&client=cc603d48-5423-4d78-9c6a-ee28cc7f28ac&token=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjYzYwM2Q0OC01NDIzLTRkNzgtOWM2YS1lZTI4Y2M3ZjI4YWMiLCJhY2Nlc3MiOnsidXJuOmZpbGVzdG9yZTpmaWxlOmVlY2ZiOTY1LTcwMzMtNDY1Mi1hZmM5LWQ1MjU1MjQ5ODJjZSI6WyJyZWFkIl19LCJleHAiOjE1ODM1MTk1MjAsIm5iZiI6MTU4MzUxNjE2MH0.ByBiES0i7e12Pko8HQysD6qArBFHiuc_1nvOawaFJ_8)
+  ![Welcome page](https://api.media.atlassian.com/file/eecfb965-7033-4652-afc9-d525524982ce/image?mode=full-fit&client=cc603d48-5423-4d78-9c6a-ee28cc7f28ac&token=eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjYzYwM2Q0OC01NDIzLTRkNzgtOWM2YS1lZTI4Y2M3ZjI4YWMiLCJhY2Nlc3MiOnsidXJuOmZpbGVzdG9yZTpmaWxlOmVlY2ZiOTY1LTcwMzMtNDY1Mi1hZmM5LWQ1MjU1MjQ5ODJjZSI6WyJyZWFkIl19LCJleHAiOjE1ODM1MTk1MjAsIm5iZiI6MTU4MzUxNjE2MH0.ByBiES0i7e12Pko8HQysD6qArBFHiuc_1nvOawaFJ_8)
  
  ## Profile View
  In the profile view you can edit any fields of your profile and they will be saved immedietely
