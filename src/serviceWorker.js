@@ -12,7 +12,7 @@
 // opt-in, read http://bit.ly/CRA-PWA
 
 const isLocalhost = Boolean(
-  window.location.hostname === 'empathysolidmanagement.netlify.com' ||
+  window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.
     window.location.hostname === '[::1]' ||
     // 127.0.0.1/8 is considered localhost for IPv4.

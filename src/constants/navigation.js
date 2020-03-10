@@ -17,13 +17,13 @@ export const NavigationItems = [
   {
     id: 'friendlist',
     icon: '/img/icon/friendsicon.svg',
-    label: 'Friends',
+    label: 'navBar.friends',
     to: '/friendlist'
   },
   {
     id: 'fileExplorer',
     icon: '/img/icon/fileman.svg',
-    label: 'MyFiles',
+    label: 'navBar.myfiles',
     to: '/fileexplorer'
   }
 

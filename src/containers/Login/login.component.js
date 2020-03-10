@@ -9,15 +9,7 @@ import {
   PanelBody,
   LoginTitle,
   LoginSubtitle,
-  InfoWrapper,
   AllLoginWrapper,
-  InfoHeader,
-  InfoHeaderText,
-  InfoTitle,
-  InfoTextWrapper,
-  InfoTextImageWrapper,
-  InfoText,
-  InfoImage,
   MyLink
 } from "./login.style";
 import { CenterContainer } from "@util-components";
@@ -52,53 +44,12 @@ const LoginComponent = () => {
                   linkButton: ""
                 }}
               />
-              <MyLink to="/register">Sign up</MyLink>
+              <MyLink to="/register">{t("login.signUp")}</MyLink>
             </PanelBody>
           </LoginPanel>
         </CenterContainer>
       </LoginWrapper>
-      <InfoWrapper>
-        <InfoHeader>
-          <InfoHeaderText>empathy.co</InfoHeaderText>
-          <InfoHeaderText>POD Management</InfoHeaderText>
-        </InfoHeader>
-        <InfoTextWrapper>
-          <InfoTitle>The privacy revolution has arrived!</InfoTitle>
-          <InfoTextImageWrapper>
-            <InfoText>
-              Change the way Web Applications work today, with true personal
-              data control and improved privacy for all your daily needs.
-            </InfoText>
-            <InfoImage src="img\icon\login1.png"></InfoImage>
-          </InfoTextImageWrapper>
-        </InfoTextWrapper>
-        <InfoTextWrapper>
-          <InfoTitle>Decentralized data for everyone</InfoTitle>
-          <InfoTextImageWrapper>
-            <InfoText>
-              Get full control of your data, know at any moment how and when
-              it’s used and store everything safely.{" "}
-              <b>Share only what you want with whom you want.</b>
-            </InfoText>
-            <InfoImage src="img\icon\login2.png"></InfoImage>
-          </InfoTextImageWrapper>
-        </InfoTextWrapper>
-        <InfoTextWrapper>
-          <InfoTitle>Empower your personal data</InfoTitle>
-          <InfoTextImageWrapper>
-            <InfoText>
-              Solid empowers users and organizations to separate their data from
-              the applications that use it. It allows people to look at the same
-              data with different apps at the same time.{" "}
-              <b>
-                It opens brand new avenues for creativity, problem-solving and
-                commerce.
-              </b>
-            </InfoText>
-            <InfoImage src="img\icon\login3.png"></InfoImage>
-          </InfoTextImageWrapper>
-        </InfoTextWrapper>
-      </InfoWrapper>
+
     </AllLoginWrapper>
   );
 };
