@@ -55,7 +55,7 @@ export default class LoginComponent extends Component<Props> {
   isWebIdValid = webId => {
     const regex = new RegExp(
       // eslint-disable-next-line no-useless-escape
-      /((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/,
+      /((https?:\/\/)?(?:|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/,
       'i',
       'g',
       'A'
