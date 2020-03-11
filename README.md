@@ -18,9 +18,9 @@ Application is being developed in collaboration with the [WESO](http://www.weso.
 ## Log In
 When log in you will be asked for a Pod provider, either Solid Community or Inrupt.
 
-Learn how to get a Solid Pod [here](https://solid.inrupt.com/get-a-solid-pod).
+Learn how to get a Solid Pod [here](https://solid.inrupt.com/get-a-solid-pod) or [here](https://solid.inrupt.com/get-a-solid-pod).
 
-This is the login screen. The sign in and resgister links will redirect you to the website of the providers you may choose.
+This is the Log In screen. The Sign In and resgister links will redirect you to the website of the provider you may choose.
 
  ![Login](https://github.com/empathyco/solid-pods-management/blob/master/docs/img/login.jpg)   
  
@@ -39,11 +39,11 @@ This is the login screen. The sign in and resgister links will redirect you to t
  
  ## Friends View
  
- In this view you can see all your friends with their profile photo and card URI. You can also simply delete a friend, just by pressing the button below their name. This button will ask for a confirmation before deleting the friend.
+ In this view you can see all your friends with their profile photo and card URI. You can also delete a friend, just by pressing the button below their name. This button will ask for a confirmation before deleting the friend.
  
  ![Friend View List](https://github.com/empathyco/solid-pods-management/blob/master/docs/img/friends.jpg)
  
- You can also add new friends by clicking the plus icon at the right corner bottom of the page. A dialog will appear. In this dialog you just have to choose your friends provider and then just type their username, there is no need to type the full URI.
+ You can also add new friends by clicking the plus icon at the bottom right corner of the page. A dialog will appear. In this dialog you just have to choose your friends provider and then just type their username, there is no need to type the full URI.
  
  ![Friend Add](https://github.com/empathyco/solid-pods-management/blob/master/docs/img/addfriends.jpg)
  
@@ -53,7 +53,7 @@ This is the login screen. The sign in and resgister links will redirect you to t
  
  ![File View](https://github.com/empathyco/solid-pods-management/blob/master/docs/img/filemanagement.jpg)
  
- Depending of the type of file you can have different functionalities. If it is a multimedia file you can view it on this page. If the file is editable you can edit and download this file. If it is neither one of those type files you can download it.
+ Depending of the type of file you can have different functionalities. If it is a multimedia file you can view it on this page. If the file is editable you can edit and download the file. If it is neither one of those type files you just can download it.
  
  ![editable file view](https://github.com/empathyco/solid-pods-management/blob/master/docs/img/viewfile.jpg)
  
@@ -82,6 +82,6 @@ $ npm start
 $ npm test
 ```
 
-## Deployment
+## Live Deployment
 
 https://empathysolidmanagement.netlify.com/
