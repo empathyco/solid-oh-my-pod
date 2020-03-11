@@ -23,7 +23,7 @@
     "selectp": "Select provider",
     "nameerror": "Name should not contain spaces",
     "urierror": "URI not valid",
-    "adding": "Adding friend named",
+    "adding": "Adding friend",
     "deletefriend": "Deleting friend",
     "insertid": "Enter friend ID",
     "close": "Close",
@@ -32,6 +32,7 @@
   "login": {
     "title": "Hi! Welcome to Solid.",
     "loginTitle": "Log in",
+    "signUp": "Sign up",
     "register": "Register for a solid identity",
     "solidHelp": "What is a Solid Identity?",
     "providerPlaceholder": "Select ID Provider",
@@ -58,6 +59,8 @@
     "welcome": "Welcome",
     "logOut": "Log out",
     "profile": "Profile",
+    "friends": "Friends",
+    "myfiles": "My Files",
     "changeLanguage": "Change Language",
     "languages": {
       "en": "English (English)",
@@ -136,7 +139,9 @@
     "minMxNumberExclusive": "Error: Min and max value should be ",
     "minMaxString": "Error: Min and max should be ",
     "defaultError": "Error: Field value has wrong format",
-    "deletePod": "Delete profile"
+    "deletePod": "Select a provider. You will be redirected to instructions to how to delete your profile ",
+    "select": "Select"
+
   },
   "game": {
     "title": "Tic Tac Toe",

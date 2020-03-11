@@ -18,7 +18,8 @@ export default class Provider {
         image: '/img/inrupt.svg',
         value: 'https://inrupt.net/auth',
         registerLink: 'https://inrupt.net/register',
-        card: 'inrupt.net/profile/card#me'
+        card: 'inrupt.net/profile/card#me',
+        delete: 'https://inrupt.net/account/delete'
       },
       {
         id: 'solid-community',
@@ -26,7 +27,8 @@ export default class Provider {
         image: '/img/Solid.png',
         value: 'https://solid.community',
         registerLink: 'https://solid.community/register',
-        card: 'solid.community/profile/card#me'
+        card: 'solid.community/profile/card#me',
+        delete: 'https://solid.community/account/delete'
       }
     ];
   }

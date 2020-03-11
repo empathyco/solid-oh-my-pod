@@ -25,9 +25,9 @@
     "mplatform":"La plataforma escogida es: ",
     "selectp": "Elegir proveedor",
     "nameerror": "El nombre no debería contener espacios",
-    "urierror": "URI no valida",
-    "adding": "Agregando amigo",
-    "deletefriend": "Eliminar amigo",
+    "urierror": "URI no valida ",
+    "adding": "Agregando amigo ",
+    "deletefriend": "Eliminar amigo ",
     "insertid": "Insertar el ID del amigo",
     "close": "Cerrar,",
     "deleteq": "¿Seguro que quieres eliminar de tus amigos a  "
@@ -38,6 +38,7 @@
   "login": {
     "title": "Hola! Bienvenido a Solid.",
     "loginTitle": "Iniciar sesión",
+    "signUp": "Registrarse",
     "register": "Registrarse por una identidad Solid",
     "solidHelp": "Qué es una identidad Solid?",
     "providerPlaceholder": "Proveedor de ID",
@@ -64,6 +65,8 @@
     "welcome": "Bienvenida",
     "logOut": "Cerrar Sesión",
     "profile": "Perfil",
+    "friends": "Amigos",
+    "myfiles": "Mis Archivos",
     "changeLanguage": "Cambiar Lenguaje",
     "languages": {
       "en": "English (Inglés)",
@@ -142,7 +145,8 @@
     "minMxNumberExclusive": "Error: Mínimo y máximo debería ser ",
     "minMaxString": "Error: Mínimo y máximo debería ser ",
     "defaultError": "Error: Formato incorrecto",
-    "deletePod": "Eliminar perfil"
+    "deletePod": "Elija su proveedor. Será redirigido a las intrucciones para eliminar su POD",
+    "select": "Seleccionar"
 
   },
   "game": {

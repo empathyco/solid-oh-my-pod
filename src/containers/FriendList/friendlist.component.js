@@ -101,10 +101,13 @@ export default class FriendListComponent extends React.Component {
       alert(  t('friendlist.nameerror'));
     } else {
       const exits = await ldflexService.validateURI(username);
+      console.log(exits);
 
-      if (exits === "error") {
+      if (exits === "Error") {
+        console.log("error!!!!!!!!1");
         alert(  t('friendlist.urierror'));
       } else {
+        console.log("adding confirming!!");
         if (window.confirm(  t('friendlist.adding')+ username)) {
           await ldflexService.addFriend(username);
           let friendData = await ldflexService.getFriendData(username);

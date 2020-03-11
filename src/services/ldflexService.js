@@ -84,19 +84,23 @@ export const removeFriend = async friendId => {
   cache.remove(friendId);
 };
 
-export const deleteProfile = async () => {
-  let me = data[await getWebId()];
-  console.log(me);
-  await me.delete(me);
-};
+
 
 export const validateURI = async friendId => {
-  try {
-    let friend = data[friendId];
 
-    return friend;
+   try {
+     let friend = await data[friendId];
+     console.log(friendId)
+     let friends = await friend["foaf:name"];
+     console.log("asfd")
+     console.log(friends)
+     return friends
+
+
   } catch (error) {
-    return "error";
     console.log(`Error fetching data validating uri: ${error}`);
+
+    return "Error";
   }
+
 };

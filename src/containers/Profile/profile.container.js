@@ -12,7 +12,7 @@ import {
   WebId
 } from './profile.style';
 import { Image } from './components';
-import {  ldflexService } from "@services";
+import {  ldflexService , Provider} from "@services";
 
 const defaultProfilePhoto = '/img/icon/empty-profile.svg';
 
@@ -27,7 +27,7 @@ type Props = { webId: String };
 
 const Profile = ({ webId }: Props) => {
   const { t, i18n } = useTranslation();
-
+  let state = {value: 'https://solid.community/account/delete'};
   const successCallback = () => {
     successToaster(t('profile.successCallback'), t('profile.successTitle'));
   };
@@ -41,9 +41,13 @@ const Profile = ({ webId }: Props) => {
   };
 
   function deleteProfile ( ) {
-    if (window.confirm('Are you sure you wanna delete your profile?')){
-      ldflexService.deleteProfile();
-    }
+   }
+  function  handleChangeSelector(event) {
+    state ={value: event.target.value};
+  }
+  function  handleSubmit(event) {
+     window.open(state.value, "_blank")
+    event.preventDefault();
   }
 
   return (
@@ -109,7 +113,22 @@ const Profile = ({ webId }: Props) => {
             </ShexForm>
           </Fragment>
         )}
-        <div>{t('profile.deletePod') }: <button onClick={ deleteProfile}>{t('profile.deletePod')}</button></div>
+        <div> <p>{t('profile.deletePod') }: </p>
+          <select
+
+             value={ state.value}
+             onChange={handleChangeSelector}
+             onSubmit={ handleSubmit}>
+            {Provider.getIdentityProviders().map((e, key) => {
+              return (
+                <option key={key} value={e.delete}>
+                  {e.label}
+                </option>
+              );
+            })}
+          </select>
+
+         <p> <button onClick={ handleSubmit}>{t('profile.select')}</button> </p></div>
       </ProfileContainer>
 
     </ProfileWrapper>
