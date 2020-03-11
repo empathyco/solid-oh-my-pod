@@ -18,7 +18,7 @@ Application is being developed in collaboration with the [WESO](http://www.weso.
 ## Log In
 When log in you will be asked for a Pod provider, either Solid Community or Inrupt.
 
-Learn how to get a Solid Pod [here](https://solid.inrupt.com/get-a-solid-pod) or [here](https://solid.inrupt.com/get-a-solid-pod).
+Learn how to get a Solid Pod [here](https://solid.inrupt.com/get-a-solid-pod) or [here](https://solidproject.org/use-solid/#get-a-pod-and-a-webid).
 
 This is the Log In screen. The Sign In and resgister links will redirect you to the website of the provider you may choose.
 
