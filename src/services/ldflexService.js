@@ -86,21 +86,3 @@ export const removeFriend = async friendId => {
 
 
 
-export const validateURI = async friendId => {
-
-   try {
-     let friend = await data[friendId];
-     console.log(friendId)
-     let friends = await friend["foaf:name"];
-     console.log("asfd")
-     console.log(friends)
-     return friends
-
-
-  } catch (error) {
-    console.log(`Error fetching data validating uri: ${error}`);
-
-    return "Error";
-  }
-
-};

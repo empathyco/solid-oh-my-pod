@@ -65,33 +65,7 @@ export default class FriendListComponent extends React.Component {
     event.target.reset();
     event.preventDefault();
 
-    let provider = await this.state.platformValue;
-    let name = (await "https://") + this.state.friendid + ".";
-    console.log(this.state.friendid);
-    let username = name.toString().concat(provider.toString());
-    console.log(this.state.platformValue);
-    console.log(provider.toString());
-    console.log(username);
-    if (/\s/.test(username)) {
-      alert(   "Name should not contain spaces");
-    } else {
 
-      const exits = this.validateURI(username);
-
-      if (exits === "error") {
-        alert(   "Name should not contain spaces");
-      } else {
-        // const friendsname = await rdfService.getAUserName(username);
-        if (window.confirm(  "Adding friend named" + username)) {
-          await ldflexService.addFriend(username);
-          let friendData = await ldflexService.getFriendData(username);
-          await this.setState({
-            friends: [...this.state.friends, friendData]
-          });
-          // await this.forceUpdate();
-        }
-      }
-    }
   }
   async validateURI(url)
   {
@@ -114,13 +88,14 @@ export default class FriendListComponent extends React.Component {
       console.log(exits);
 
       if (exits.toString() !== '200') {
-        console.log("error!!!!!!!!1");
+        console.log("friend uri doesnt exist");
         alert(  t('friendlist.urierror'));
       } else {
-        console.log("adding confirming!!");
-        if (window.confirm(  t('friendlist.adding')+ username)) {
+         if (window.confirm(  t('friendlist.adding')+ username)) {
           await ldflexService.addFriend(username);
-          let friendData = await ldflexService.getFriendData(username);
+           console.log("friend added succesfully");
+
+           let friendData = await ldflexService.getFriendData(username);
           await this.setState({
             friends: [...this.state.friends, friendData]
           });

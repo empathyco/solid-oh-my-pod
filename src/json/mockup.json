@@ -1,0 +1,68 @@
+{
+  "@context":{
+	"id" : "@id",
+	"instance" : "http://empathy.solid.co/v1#instance"
+	"sink" : "http://empathy.solid.co/v1#sink",
+	"schema_version" : "http://empathy.solid.co/v1#schema_version",
+	"data": "http://empathy.solid.co/v1#data",
+	"ip" : "http://empathy.solid.co/v1#ip",
+	"endpoint": "http://empathy.solid.co/v1#endpoint",
+	"service" : "http://empathy.solid.co/v1#service",
+	"productId" : "http://empathy.solid.co/v1#productId",
+	"host_referrer" : "http://empathy.solid.co/v1#host_referrer",
+	"user_agent" : "http://empathy.solid.co/v1#user_agent",
+	"timestamp" : "http://empathy.solid.co/v1#timestamp",
+	"q" : "http://empathy.solid.co/v1#q",
+	"totalHits" : "http://empathy.solid.co/v1#totalHits",
+	"session" : "http://empathy.solid.co/v1#session",
+	"page" : "http://empathy.solid.co/v1#page",
+	"user" : "http://empathy.solid.co/v1#user",
+	"filters" : "http://empathy.solid.co/v1#filters",
+	"catalog" : "http://empathy.solid.co/v1#catalog",
+	"scope" : "http://empathy.solid.co/v1#scope",
+	"lang" : "http://empathy.solid.co/v1#lang",
+	"extra_fields" : "http://empathy.solid.co/v1#extra_fields",
+	"user_type" : "http://empathy.solid.co/v1#user_type",	
+	"origin" : "http://empathy.solid.co/v1#origin",
+	"position" : "http://empathy.solid.co/v1#position",
+	"spellcheck" : "http://empathy.solid.co/v1#spellcheck",
+	"filtered" : "http://empathy.solid.co/v1#filtered",
+	"contextualize"  : "http://empathy.solid.co/v1#contextualize",
+	"contextualizeEnabled" : "http://empathy.solid.co/v1#contextualizeEnabled",
+	"contextualizeApplied" : "http://empathy.solid.co/v1#contextualizeApplied",
+	"revenue" : "http://empathy.solid.co/v1#revenue",
+	"currency" : "http://empathy.solid.co/v1#currency",
+	"transaction_id" : "http://empathy.solid.co/v1#transaction_id",
+	"categoryId" : "http://empathy.solid.co/v1#categoryId",
+	"title" : "http://empathy.solid.co/v1#title",
+	"url" : "http://empathy.solid.co/v1#url",
+	
+	
+  }
+  "id" : "d8ed4e70-75d9-4a9b-9f5b-79d7842274e4",
+  "instance" : "viking",
+  "sink" : "query",
+  "data" : {
+    "ip" : "52.213.246.122",
+    "host_referrer" : "https://de.test1.viking.europe.odcorp.net/de/search/?text=rexel-",
+    "user_agent" : "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/79.0.3945.117 Safari/537.36",
+    "timestamp" : 1583315599506,
+    "q" : "rexel-",
+    "totalHits" : 5,
+    "session" : "3db88cf04747a165970cdccc60dd8a2343b15ef384c89129c10a32d15db88cd0",
+    "page" : 1,
+    "user" : "787b2e9c319dc8b8a25dd8e0f50c44b3f8d0b3a6c9dfab772c18cb7c9c09eeb7",
+    "filters" : {
+      "catalog" : "default",
+      "scope" : "mobile",
+      "section" : "default",
+      "store" : "DE",
+      "lang" : "de"
+    },
+    "extra_fields" : {
+      "user_type" : "new",
+      "origin" : "default"
+    }
+  },
+  "schema_version" : 1
+}
