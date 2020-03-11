@@ -85,3 +85,8 @@ $ npm test
 ## Live Deployment
 
 https://empathysolidmanagement.netlify.com/
+
+## License
+
+GNU Lesser General Public License v3.0
+
