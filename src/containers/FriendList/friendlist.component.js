@@ -75,7 +75,8 @@ export default class FriendListComponent extends React.Component {
     if (/\s/.test(username)) {
       alert(   "Name should not contain spaces");
     } else {
-      const exits = await ldflexService.validateURI(username);
+
+      const exits = this.validateURI(username);
 
       if (exits === "error") {
         alert(   "Name should not contain spaces");
@@ -92,6 +93,15 @@ export default class FriendListComponent extends React.Component {
       }
     }
   }
+  async validateURI(url)
+  {
+     let num;
+    await fetch(url).then(res=>{console.log(res.status)
+    num =  res.status});
+    return num;
+
+
+  }
 
   async addFriend(t) {
     let provider = await this.state.platformValue;
@@ -100,10 +110,10 @@ export default class FriendListComponent extends React.Component {
     if (/\s/.test(username)) {
       alert(  t('friendlist.nameerror'));
     } else {
-      const exits = await ldflexService.validateURI(username);
+      let exits =  await this.validateURI(username);
       console.log(exits);
 
-      if (exits === "Error") {
+      if (exits.toString() !== '200') {
         console.log("error!!!!!!!!1");
         alert(  t('friendlist.urierror'));
       } else {
