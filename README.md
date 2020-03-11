@@ -24,6 +24,7 @@ This is the login screen. The sign in and resgister links will redirect you to t
 
  ![Login](https://github.com/empathyco/solid-pods-management/blob/master/docs/img/login.jpg)   
  
+ 
  Once you are logged in, you will see the welcome page
   ![Welcome page](https://github.com/empathyco/solid-pods-management/blob/master/docs/img/welcome.jpg)
  
@@ -80,3 +81,7 @@ $ npm start
   ```shell
 $ npm test
 ```
+
+## Deployment
+
+https://empathysolidmanagement.netlify.com/
