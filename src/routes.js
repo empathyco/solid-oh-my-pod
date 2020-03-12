@@ -10,7 +10,8 @@ import {
   RegistrationSuccess,
   Profile,
   FriendListComponent,
-  FileExplorerComponent
+  FileExplorerComponent,
+  ShopComponent
 } from './containers';
 
 const privateRoutes = [
@@ -33,6 +34,11 @@ const privateRoutes = [
     id: 'fileExplorer',
     path:'/fileexplorer',
     component: FileExplorerComponent
+  },
+  {
+    id:'shop',
+    path:'/shop',
+    component: ShopComponent
   }
 
 ];

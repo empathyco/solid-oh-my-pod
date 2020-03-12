@@ -165,7 +165,21 @@ export const uploadFiles = async (path, fileList) => {
     }
   }
 };
+export const writejsoninpod= async (jsoncontent) => {
+  try {
 
+    let rootfolder = await getRoot()+'/public/etest'+ '/jsoncontent.json'
+     console.log('created folder');
+
+    await fc.createFile( rootfolder, jsoncontent, "text/json" )
+    console.log('writen json in pod');
+
+
+  }catch (e) {
+    console.log(e, e.message)
+  }
+
+};
 export const updateFile = async (path, fileName, content, contentType) => {
   let oldContent = await fc.readFile(buildFileUrl(path, fileName));
   if (oldContent !== content) {

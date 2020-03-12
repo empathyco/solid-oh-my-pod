@@ -5,4 +5,5 @@ import Welcome from './Welcome';
 import Profile from './Profile';
 import FriendListComponent from './FriendList';
 import FileExplorerComponent from './FileExplorer';
-export { Login, Register, RegistrationSuccess, PageNotFound, Welcome, Profile, FriendListComponent, FileExplorerComponent};
+import ShopComponent from './Shop'
+export { Login,ShopComponent, Register, RegistrationSuccess, PageNotFound, Welcome, Profile, FriendListComponent, FileExplorerComponent};
