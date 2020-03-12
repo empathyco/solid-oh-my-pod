@@ -37,12 +37,12 @@ const Footer = (props: Props) => {
           <ul>
             <li>
               <a
-                href="https://github.com/ivanpl98/SolidBase"
+                href="https://github.com/empathyco/solid-pods-management"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon className="link-icon" icon={githubIconDef} />
-                react-solid-sdk
+                Our repository on github
               </a>
             </li>
           </ul>

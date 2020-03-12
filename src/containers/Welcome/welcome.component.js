@@ -80,7 +80,7 @@ export const WelcomePageContent = props => {
             <h3>
               title
               <a
-                href="https://github.com/Inrupt-inc/solid-react-sdk"
+                href="https://github.com/empathyco/solid-pods-management"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -92,20 +92,22 @@ export const WelcomePageContent = props => {
             <p>
               text
               <a
-                href="https://github.com/Inrupt-inc/solid-react-sdk"
+                href="https://empathy.co"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 link{' '}
               </a>{' '}
               text
+
+
             </p>
           </Trans>
           <Trans i18nKey="welcome.libraryList">
             <ul>
               <li>
                 <a
-                  href="https://github.com/Inrupt-inc/solid-react-components"
+                  href="https://github.com/empathyco/solid-pods-management"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -115,7 +117,7 @@ export const WelcomePageContent = props => {
               </li>
               <li>
                 <a
-                  href="https://github.com/Inrupt-inc/generator-solid-react"
+                  href="https://github.com/empathyco/solid-pods-management/blob/master/README.md"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -135,16 +137,7 @@ export const WelcomePageContent = props => {
 
           <Trans i18nKey="welcome.evolvingMessage">
             <p>
-              The SDK is continually evolving. Take a look at the
-              <a
-                href="https://github.com/Inrupt-inc/solid-react-sdk/tree/master#release-timeline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Release Timeline
-              </a>
-              for what’s been implemented as part of the previous releases, and what's currently
-              planned.
+
             </p>
           </Trans>
         </WelcomeDetail>
