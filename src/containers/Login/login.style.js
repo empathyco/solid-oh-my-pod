@@ -54,7 +54,7 @@ export const InfoTitle = styled.h2`
   color: #083575;
   justify-self: center;
   align-self: flex-end;
-  font-family: "Raleway", sans-serif;
+  font-family: "Montserrat", sans-serif;
 `;
 
 export const InfoTextImageWrapper = styled.div`
@@ -166,16 +166,16 @@ export const PanelBody = styled.div`
  
     button{
     font-size: 1em;
-    display: inline-block
+    display: inline-block ;
 
     font-family: Montserrat-SemiBold, sans-serif;
     
-    background-color: #243d48;
-    color: white; 
+    background-color: #243d48 !important;
+    color: white !important; 
     font-weight: bold;
     
-    border-radius: 2.5em;
-    height: 43px;
+    border-radius: 2.5em !important;
+    height: 43px !important;
     text-transform: uppercase;
     
     font-stretch: normal;
