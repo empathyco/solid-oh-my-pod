@@ -66,7 +66,7 @@ export default class Route extends Component {
     });
     return (
       <RouteContainer>
-        <RouteIcon icon={faFolderOpen} size="2x" />
+
         {routeParts}
       </RouteContainer>
     );

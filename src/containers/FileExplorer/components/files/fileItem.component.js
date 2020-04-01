@@ -41,13 +41,13 @@ export default class File extends Component {
     let fileIcon = null;
 
     if (this.isVideo()) {
-      fileIcon = <AwesomeIcon icon={faVideo} size="2x" />;
+      fileIcon = <img src="/img/icon/icon-files-video.svg" size="2x" className="imgfile" alt="video" />;
     } else if (this.isImage()) {
-      fileIcon = <AwesomeIcon icon={faImage} size="2x"/>;
+      fileIcon = <img src="/img/icon/icon-files-pic.svg" size="2x" className="imgfile" alt="image" />;
     } else if (this.isMedia()) {
-      fileIcon = <AwesomeIcon icon={faFileAudio} size="2x"/>;
+      fileIcon = <img src="/img/icon/icon-files-video.svg" size="2x" className="imgfile" alt="audio" />;
     } else {
-      fileIcon = <AwesomeIcon icon={faFile} size="2x"/>;
+      fileIcon = <img src="/img/icon/icon-files-folder.svg" size="2x" className="imgfile" alt="folder" />;
     }
 
     return (

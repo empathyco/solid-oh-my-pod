@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1520px" height="730px" viewBox="0 0 1920 330" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>lines/empathy@2x</title>
+    <desc>Created with Sketch.</desc>
+    <g id="SOLID" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.71">
+        <g id="solid_redisign/landing" transform="translate(0.000000, -365.000000)">
+            <g id="lines/empathy" transform="translate(-14.000000, 257.000000)">
+                <g>
+                    <path d="M8.0501053,357.080678 C337.644878,239.965427 670.581042,122.323895 1006.23501,141.204291 C1319.54479,158.828409 1642.14436,293.310119 1940.40671,117.759641" id="verde" stroke="#80C0A1" stroke-width="5" style="mix-blend-mode: multiply;" transform="translate(974.228407, 237.420159) rotate(5.000000) translate(-974.228407, -237.420159) "></path>
+                    <path d="M8.04958678,307.237013 C222.658683,428.877892 454.008875,464.405751 677.985542,410.118159 C856.680483,366.806032 1031.06437,267.322388 1211.50862,259.33886 C1334.88939,253.880312 1457.43105,291.477267 1580.66189,303.14914 C1703.89333,314.820006 1832.94216,297.993509 1939.95041,193.546452" id="naranja" stroke="#E67962" stroke-width="5" style="mix-blend-mode: multiply;"></path>
+                    <path d="M8.0509018,112.727691 C219.330278,205.610338 429.540236,316.480824 646.52551,350.220138 C808.67945,375.43431 971.896288,357.08279 1134.35092,338.720212 C1402.88469,308.368211 1671.41846,278.016209 1939.95223,247.662195" id="amarillo" stroke="#FDCB5B" stroke-width="5" style="mix-blend-mode: multiply;" transform="translate(974.001567, 237.639900) rotate(-5.000000) translate(-974.001567, -237.639900) "></path>
+                    <path d="M8.05092242,117.76515 C193.906551,132.60412 358.700631,247.831494 537.055032,306.319384 C762.806667,380.351158 1005.3073,361.76986 1238.57486,323.823478 C1471.84298,285.87647 1704.06906,229.143742 1939.95434,228.875694" id="azul-claro" stroke="#53B9C9" stroke-width="5" style="mix-blend-mode: multiply;" transform="translate(974.002632, 237.414680) rotate(-7.000000) translate(-974.002632, -237.414680) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

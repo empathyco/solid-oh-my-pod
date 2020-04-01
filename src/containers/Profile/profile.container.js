@@ -9,7 +9,10 @@ import {
   ProfileWrapper,
   ShexForm,
   AutoSaveNotification,
-  WebId
+  WebId,
+  SectionProfile,
+  Title,
+  Submitdelete
 } from './profile.style';
 import { Image } from './components';
 import {  ldflexService , Provider} from "@services";
@@ -40,8 +43,7 @@ const Profile = ({ webId }: Props) => {
     }
   };
 
-  function deleteProfile ( ) {
-   }
+
   function  handleChangeSelector(event) {
     state ={value: event.target.value};
   }
@@ -52,17 +54,25 @@ const Profile = ({ webId }: Props) => {
 
   return (
     <ProfileWrapper data-testid="profile-component">
+      {webId && (
       <ProfileContainer>
-        {webId && (
-          <Fragment>
+
+          <main>
             <Header>
+
               <Image
                 {...{
                   webId,
                   defaultProfilePhoto
                 }}
               />
+              <Title>
+              <h2>Your PROFILE</h2>
+              </Title>
             </Header>
+            <SectionProfile>
+          <Fragment  >
+
 
             <AutoSaveNotification className="banner-wrap--warning banner">
               <div className="banner-wrap__content">
@@ -78,7 +88,7 @@ const Profile = ({ webId }: Props) => {
                   {webId}
                 </a>
               </WebId>
-              <ShexFormBuilder
+               <ShexFormBuilder
                 {...{
                   documentUri: webId,
                   shexUri: 'https://shexshapes.inrupt.net/public/userprofile.shex',
@@ -110,10 +120,13 @@ const Profile = ({ webId }: Props) => {
                   autoSaveMode: true
                 }}
               />
-            </ShexForm>
+             </ShexForm>
+            <br></br>
           </Fragment>
-        )}
-        <div> <p>{t('profile.deletePod') }: </p>
+            </SectionProfile>
+          </main>
+
+        <Submitdelete> <div> <br></br><p>{t('profile.deletePod') }:</p> </div>
           <select
 
              value={ state.value}
@@ -128,9 +141,9 @@ const Profile = ({ webId }: Props) => {
             })}
           </select>
 
-         <p> <button onClick={ handleSubmit}>{t('profile.select')}</button> </p></div>
+         <p> <button onClick={ handleSubmit}>{t('profile.select')}</button> </p></Submitdelete>
       </ProfileContainer>
-
+      )}
     </ProfileWrapper>
 
   );

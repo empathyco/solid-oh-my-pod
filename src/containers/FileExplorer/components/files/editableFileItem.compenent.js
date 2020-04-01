@@ -15,6 +15,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useTranslation } from "react-i18next";
+import { FolderMenuTrigger } from "../folder/folderItem.style";
 
 export default function EditableFile(props) {
   let clas = props.highlight;
@@ -107,7 +108,8 @@ export default function EditableFile(props) {
       onDoubleClick={handleOpen}
       // onContextMenu={handleContext}
     >
-      <AwesomeIcon icon={faFile} size="2x" id={path} />
+      <img src="/img/icon/icon-files-text.svg" size="2x" className="imgfile" alt="folder" id={path}/>
+
       <FileInfo id={path}>
         <h2 id={path}>{name}</h2>
       </FileInfo>

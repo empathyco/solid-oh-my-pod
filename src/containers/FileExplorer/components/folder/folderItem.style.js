@@ -6,7 +6,7 @@ export const FolderMenuTrigger = styled.div`
   border-radius: 5%;
   display: grid;
   grid-template-columns: 30% 70%;
-  font-family: "Lato", sans-serif;
+  font-family: "Montserrat", sans-serif;
   justify-content: center;
   align-items: center;
   &:hover {
@@ -17,6 +17,10 @@ export const FolderMenuTrigger = styled.div`
   &.active {
           opacity: 0.25;
 
+  }
+  img{
+   align-self: center;
+  justify-self: center;
   }
 `;
 

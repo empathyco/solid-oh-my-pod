@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 import { ImageBackground, InfoImageBackground } from "@util-components";
 import { ProviderLogin } from "@inrupt/solid-react-components";
 
-export const LoginWrapper = styled(ImageBackground)`
-  overflow: hidden;
+export const LoginWrapper = styled.div`
+  background: url("/img/empathylines.svg");
+   background-repeat: no-repeat; 
+   overflow: hidden;
+  .podlogo{
+   padding-bottom:2em;
 `;
 
-export const InfoWrapper = styled(InfoImageBackground)`
+export const InfoWrapper = styled.div`
   width: 100%;
   height: 100%;
   overflow: scroll;
@@ -66,8 +70,7 @@ export const InfoText = styled.p`
   justify-self: right;
   text-align: left;
   color: #083575;
-  font-family: "Raleway", sans-serif;
-`;
+ `;
 
 export const InfoImage = styled.img`
   image-size: 30%;
@@ -90,54 +93,97 @@ export const LoginPanel = styled.div`
   box-shadow: none;
   display: grid;
   grid-template-rows: 20% 20% 60%;
-  height: 60%;
+  height: 99%;
   align-self: center;
 `;
 
 export const LoginTitle = styled.h1`
-  font-family: "Raleway", sans-serif;
-  font-weight: bold;
-  font-size: 55px;
-  color: #083575;
+  
+
 `;
 
 export const LoginSubtitle = styled.h2`
-  font-family: "Raleway", sans-serif;
-  font-weight: bold;
-  font-size: 30px;
-  color: #083575;
+ 
+  font-family: Montserrat, sans-serif;
+  font-size: 1em;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 0.25em;
+  text-align: center;
+  color: var(--dark-grey-blue);
 `;
 
 export const MyLink = styled(Link)`
-  font-family: "Raleway", sans-serif;
+   padding: 0.7em;
+  display: inline-block
   font-weight: bold;
-  font-size: 34px;
+  text-align: center;
+  border-radius: 2.5em;
+  height: 43px;
+  width: 181px;
+  text-transform: uppercase;
+   flex-direction: column;
+  font-stretch: normal;
+  font-style: normal;
+  font-family: Montserrat-SemiBold, sans-serif;
+  font-size: 1em;
+         
+  background-color: #243d48;
+  color: white;          
+  font-weight: 600;
+   
+  line-height: normal;
+  letter-spacing: normal;
+   
+  
+    
   &:link {
     text-decoration: none;
-    color: #083575;
+    color: white;
   }
   &:visited {
     text-decoration: none;
-    color: #083575;
+    color: white;
   }
   &:hover {
     text-decoration: none;
-    color: #083575;
+    color: white;
   }
   &:active {
     text-decoration: none;
-    color: #083575;
+    color: white;
   }
 `;
 
 export const PanelBody = styled.div`
-  display: grid;
-  flex-direction: column;
+  
 
   .provider-login-component {
-    div[role="option"] {
-      text-align: left !important;
-      padding-left: 20px;
-    }
+
+    background-color: transparent;
+ 
+    button{
+    font-size: 1em;
+    display: inline-block
+
+    font-family: Montserrat-SemiBold, sans-serif;
+    
+    background-color: #243d48;
+    color: white; 
+    font-weight: bold;
+    
+    border-radius: 2.5em;
+    height: 43px;
+    text-transform: uppercase;
+    
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+     }
+  
   }
 `;

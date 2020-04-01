@@ -19,10 +19,13 @@ const LoginComponent = () => {
   return (
     <AllLoginWrapper>
       <LoginWrapper data-testid="login-wrapper">
+
         <CenterContainer>
+          <img className="podlogo" src="/img/pod_logo.svg" alt="Empathy" />
+
           <LoginPanel className="login-panel">
-            <LoginTitle data-testid="title">empathy.co</LoginTitle>
-            <LoginSubtitle data-testid="subtitle">POD Management</LoginSubtitle>
+
+
             <PanelBody className="panel-body">
             <ProviderLogin
                 selectPlaceholder={t("login.selectPlaceholder")}

@@ -3,13 +3,15 @@ import { media } from '../../utils';
 
 export const WelcomeWrapper = styled.section`
   width: 100%;
-  background: rgb(250,182,193);
-  background: linear-gradient(30deg, rgba(250,182,193,0.92) 0%, rgba(191,255,251,0.93) 71%);
-  background-repeat: repeat;
-  padding: 50px 0;
-
+  background:  #f4f4f4;
+  padding: 0px 0;
+  a{
+    color:#53b9c9 !important;
+   }
   h3 {
-    color: #666666;
+    color: #243d48;
+   
+    
     span {
       font-weight: bold;
     }
@@ -28,7 +30,13 @@ export const WelcomeCard = styled.div`
   flex-direction: row !important;
   padding: 50px 0 !important; //temporary fix to a style guide bug
 
-  align-items: center;
+font-family: Montserrat;
+  font-size: 50px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.22;
+  letter-spacing: normal;
 
   a {
     text-decoration: none;
@@ -36,62 +44,63 @@ export const WelcomeCard = styled.div`
       text-decoration: underline;
     }
   }
-
-  button {
-    margin-left: 8px;
-  }
+  
 `;
 
-export const WelcomeLogo = styled.div`
-  width: 50%;
-  height: 100%;
+export const WelcomeCardTop = styled.div`
+  background-color: #fff;
+  margin: 0px;
+  border: none;
 
-  img {
-    width: 60%;
-    display: block;
-    margin: 0 auto;
-  }
-`;
+  //Overriding the style guide card flexbox settings
+  max-width: 100% !important;
+  flex-direction: row !important;
+  padding: 15px 0 !important; //temporary fix to a style guide bug
 
-export const WelcomeProfile = styled.div`
-  height: 100%;
-  text-align: center;
-  position: relative;
+font-family: Montserrat;
+  font-size: 50px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
 
-  img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-  }
-
-  h1,
-  img {
-    margin: 0 10px;
-    display: inline-block;
-    vertical-align: middle;
-  }
-
-  ${media.tablet`
-    width: 50%;
-    &:after {
-      display: block;
-      content: "";
-      position: absolute;
-      height: 100%;
-      width: 1px;
-      background-color:#D0D0D0;
-      top:0;
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
     }
-  `}
+  }
+  
+  img{
+  vertical-align: bottom !important;
+  align: left;
+  
+  }
+   h3{
+    width: 707px;
+    height: 61px;
+    font-family: Montserrat, sans-serif;
+    font-size: 50px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    margin-left: 10px;
+     
+   }
 `;
+
 
 export const ImageWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  button {
-    margin-left: 0px;
+  display: block;
+  justify-content: left;
+  vertical-align: bottom !important;
+  align: left;
+  align-items: left;
+   button {
+    margin-right: 20px;
   }
 `;
 

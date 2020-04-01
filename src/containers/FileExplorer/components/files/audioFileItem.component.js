@@ -10,6 +10,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Plyr from "react-plyr";
 import "plyr/dist/plyr.css";
 import { useTranslation } from "react-i18next";
+import { FolderMenuTrigger } from "../folder/folderItem.style";
 
 export default function AudioFile(props) {
   let clas = props.highlight;
@@ -39,7 +40,8 @@ export default function AudioFile(props) {
       onDoubleClick={handleOpen}
       // id={`${name.concat("_context_menu")}`}
     >
-      <AwesomeIcon icon={faFileAudio} size="2x" id={path} />
+      <img src="/img/icon/icon-files-video.svg" size="2x" className="imgfile" alt="folder" id={path}/>
+
       <FileInfo id={path}>
         <h2 id={path}>{name}</h2>
       </FileInfo>

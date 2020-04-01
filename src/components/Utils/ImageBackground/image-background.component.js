@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Image } from './image-background.style';
-import BackgroundImage from '../../../images/background-image.png'
 
 type Props = {
   children: React.Node,
@@ -9,7 +8,7 @@ type Props = {
 };
 
 const ImageBackground = ({ children, className }: Props) => (
-  <Image className={className} image = {BackgroundImage} >{children}</Image>
+  <Image className={className} image = {' '} >{children}</Image>
 );
 
 export default ImageBackground;

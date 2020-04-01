@@ -4,9 +4,8 @@ import { Trans, useTranslation } from 'react-i18next';
 import {
   WelcomeWrapper,
   WelcomeCard,
-  WelcomeLogo,
-  WelcomeProfile,
-  WelcomeDetail,
+  WelcomeCardTop,
+   WelcomeDetail,
   WelcomeName,
   ImageWrapper
 } from './welcome.style';
@@ -24,14 +23,9 @@ export const WelcomePageContent = props => {
   const limit = 2100000;
   return (
     <WelcomeWrapper data-testid="welcome-wrapper">
-      <WelcomeCard className="card">
-        <WelcomeLogo data-testid="welcome-logo">
-          <img src="/img/empathylogo.png" alt="Empathy" />
-        </WelcomeLogo>
-        <WelcomeProfile data-testid="welcome-profile">
-          <h3>
-            {t('welcome.welcome')}, <WelcomeName>{name}</WelcomeName>
-          </h3>
+      <WelcomeCardTop className="card">
+
+
           <ImageWrapper>
             <Uploader
               {...{
@@ -72,8 +66,10 @@ export const WelcomePageContent = props => {
               }}
             />
           </ImageWrapper>
-        </WelcomeProfile>
-      </WelcomeCard>
+        <h3>
+          {t('welcome.welcome')}, <WelcomeName>{name}</WelcomeName>
+        </h3>
+       </WelcomeCardTop>
       <WelcomeCard className="card">
         <WelcomeDetail data-testid="welcome-detail">
           <Trans i18nKey="welcome.title">

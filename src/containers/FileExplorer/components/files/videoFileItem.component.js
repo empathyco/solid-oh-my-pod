@@ -10,6 +10,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Plyr from "react-plyr";
 import "plyr/dist/plyr.css";
 import { useTranslation } from "react-i18next";
+import { FolderMenuTrigger } from "../folder/folderItem.style";
 
 export default function VideoFile(props) {
   let clas = props.highlight;
@@ -38,7 +39,8 @@ export default function VideoFile(props) {
       onDoubleClick={handleOpen}
       // id={`${name.concat("_context_menu")}`}
     >
-      <AwesomeIcon icon={faVideo} size="2x" id={path} />
+      <img src="/img/icon/icon-files-video.svg" size="2x" className="imgfile" alt="video" id={path}/>
+
       <FileInfo id={path}>
         <h2 id={path}>{name}</h2>
       </FileInfo>

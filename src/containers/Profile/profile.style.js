@@ -7,20 +7,46 @@ export const ProfileWrapper = styled.section`
   flex: 1 0 auto;
   align-items: center;
   justify-content: center;
-  background: rgb(121,81,209);
-  background: linear-gradient(30deg, rgba(121,81,209,0.92) 0%, rgba(146,254,251,0.73) 71%);
-  background-repeat: repeat;
-  padding: 60px 0;
+  background: #f4f4f4; 
+  margin: 0;
+  
+   .marginprofile{
+    max-width: 900px;
+
+  }
+  h2{
+  font-family: Montserrat, sans-serif;
+  font-size: 50px;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.22;
+  letter-spacing: normal;
+  color:#243d48;
+
+  }
+  h3,h4{
+   font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: 3.73px;
+  color:#243d48;
+
+
+  }
+  a{
+   color:#53b9c9 !important;
+   }
 `;
 export const ProfileContainer = styled.div`
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-  background-color: white;
-  border-radius: 0.2em;
-  padding:0.5em;
-  max-width: 900px;
-  margin: 0 20px;
+   background-color: #f4f4f4;
+   margin: 0 90px;
   width: 100%;
   flex: 1 0 auto;
+ 
 `;
 
 export const Header = styled.div`
@@ -28,11 +54,9 @@ export const Header = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
-  background-image: url('/img/concentric-hex-pattern_2x.png'),
-    linear-gradient(135deg, #7c4dff 0%, #18a9e6 50%, #01c9ea 50%);
-   background-repeat: repeat, no-repeat;
- 
-  padding: 30px 20px;
+  background-color: white;
+  
+  padding: 0;
 
   .edit-button {
     background: rgba(255, 255, 255, 0.1);
@@ -92,31 +116,33 @@ export const WebId = styled.div`
 `;
 
 export const ShexForm = styled.div`
-  border: solid #cacaca 1px;
-  background: #f9f9f9;
-  label {
+  border:none !important;
+   label {
     clear: both;
   }
+
   & .shexForm {
     border: none;
-    background: transparent;
-    box-sizing: border-box;
-    padding: 0 12px;
+     padding: 0 12px;
+    
   }
 
   & .shexPanel {
-    border: solid #cacaca 1px;
-    background: #ffffff;
-    box-sizing: border-box;
-    padding: 12px;
+     border:none
+      padding: 12px;
     position: relative;
+    
+     
   }
 
   & .shexRoot {
-    border: none;
+    border: none !important;
     background: transparent;
+    h4{
+    margin-top: 4em;
+    }
   }
-
+ 
   & .deleteButton {
     margin: 0 4px 0 12px;
     position: relative;
@@ -140,13 +166,57 @@ export const ShexForm = styled.div`
       background: rgba(145, 194, 250, 0.8);
       color: #fff;
     }
-
-    & .inputContainer {
-      padding: 12px;
+ 
     }
+     & .inputContainer {
+      float: left;
+      width: 75%;
+
+      padding: 12px;
+      input{
+      background-color: #f4f4f4 !important;
+      &:hover {
+      background-color: #ffffff !important;
+      }
+    }
+    
   }
 `;
 
 export const AutoSaveNotification = styled.section`
+   
   margin-bottom: 0px !important;
+ 
+  background-color: transparent !important;
+  max-width:  none !important;
+  color:#53b9c9 !important;
+  .banner-wrap--warning{
+  margin-top: 2em !important;
+  }
+`;
+
+
+export const SectionProfile = styled.section`
+  max-width: 60em !important;
+  position:relative;
+  align-items: center;
+  justify-content: center;
+  padding-left:15em;
+  background-color: #f4f4f4;
+   
+`;
+
+export const Title =styled.section`
+   align-items: right;
+  justify-content: right;
+     
+`;
+
+export const Submitdelete =styled.section`
+   align-items: right;
+  justify-content: right;
+  padding-left:15em;
+    max-width: 60em !important;
+
+    
 `;

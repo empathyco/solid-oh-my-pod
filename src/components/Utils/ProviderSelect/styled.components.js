@@ -25,4 +25,5 @@ export const Icon = styled.img`
 export const ItemText = styled.span`
   display: inline-block;
   vertical-align: middle;
+  
 `;

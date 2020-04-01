@@ -28,7 +28,7 @@ export default class Folder extends Component {
         onDoubleClick = {this.dblclick}
         onClick={this.click}
       >
-        <AwesomeIcon icon={faFolder} size="2x" id={this.path} />
+        <img src="/img/icon/icon-files-folder.svg" size="2x" class="imgfile" alt="folder" id={this.path} />
         <FolderInfo id={this.path}>
           <h2 id={this.path}>{this.name}</h2>
         </FolderInfo>

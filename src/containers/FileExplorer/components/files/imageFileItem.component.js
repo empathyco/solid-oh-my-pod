@@ -14,6 +14,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useTranslation } from "react-i18next";
+import { FolderMenuTrigger } from "../folder/folderItem.style";
 
 export default function ImageFile(props) {
   let clas = props.highlight;
@@ -67,7 +68,8 @@ export default function ImageFile(props) {
       // onContextMenu={handleContext}
       // id={`${name.concat("_context_menu")}`}
     >
-      <AwesomeIcon icon={faImage} size="2x" id={path} />
+      <img src="/img/icon/icon-files-pic.svg" size="2x" className="imgfile" alt="image" id={ path}/>
+
       <FileInfo id={path}>
         <h2 id={path}>{name}</h2>
       </FileInfo>

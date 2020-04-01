@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42">
+    <g fill="none" fill-rule="evenodd" stroke="#37474F" stroke-linecap="round" stroke-linejoin="round">
+        <g transform="translate(-.576) translate(.576)">
+            <ellipse cx="21.5" cy="20.488" rx="17.2" ry="16.955"/>
+            <ellipse cx="12.183" cy="4.945" fill="#53B9C9" fill-rule="nonzero" rx="2.867" ry="2.826"/>
+            <ellipse cx="30.817" cy="4.945" fill="#53B9C9" fill-rule="nonzero" rx="2.867" ry="2.826"/>
+            <ellipse cx="30.817" cy="36.03" fill="#53B9C9" fill-rule="nonzero" rx="2.867" ry="2.826"/>
+            <ellipse cx="12.183" cy="36.03" fill="#53B9C9" fill-rule="nonzero" rx="2.867" ry="2.826"/>
+            <ellipse cx="2.867" cy="20.488" fill="#53B9C9" fill-rule="nonzero" rx="2.867" ry="2.826"/>
+            <ellipse cx="40.133" cy="20.488" fill="#53B9C9" fill-rule="nonzero" rx="2.867" ry="2.826"/>
+            <g>
+                <path d="M5.733.706L2.15.706M.717.706L0 .706" transform="translate(18.633)"/>
+            </g>
+            <g>
+                <path d="M0 .706L3.583.706M5.017.706L5.733.706" transform="translate(18.633 39.563)"/>
+            </g>
+        </g>
+        <g>
+            <g transform="translate(-.576) translate(12.576 9) translate(2.833)">
+                <ellipse cx="5.667" cy="5.778" rx="5.667" ry="5.778"/>
+                <path fill="#FFB300" fill-rule="nonzero" d="M9.563 2.456l.425-.362C8.995.794 7.438 0 5.667 0 2.55 0 0 2.6 0 5.778h.567c3.258 0 6.516-1.156 8.995-3.322z"/>
+            </g>
+            <g>
+                <path d="M8.5.722C7.72.722 7.013.578 6.375.29v1.155L8.5 4.694l2.125-3.25V.29C9.988.578 9.279.722 8.5.722z" transform="translate(-.576) translate(12.576 9) translate(0 10.833)"/>
+                <path d="M6.375 1.444L6.021 4.694 10.979 4.694 10.625 1.444 8.5 4.694z" transform="translate(-.576) translate(12.576 9) translate(0 10.833)"/>
+                <path d="M6.375 1.444l-4.25 1.95C.85 3.972 0 5.272 0 6.717v3.25h17v-3.25c0-1.445-.85-2.745-2.125-3.323l-4.25-1.95" transform="translate(-.576) translate(12.576 9) translate(0 10.833)"/>
+                <path fill="#53B9C9" fill-rule="nonzero" d="M8.5 4.694L8.5 9.75" transform="translate(-.576) translate(12.576 9) translate(0 10.833)"/>
+            </g>
+            <path fill="#E67962" fill-rule="nonzero" d="M10.271 24.194L8.5 26 6.729 24.194 7.792 15.528 9.208 15.528z" transform="translate(-.576) translate(12.576 9)"/>
+        </g>
+    </g>
+</svg>

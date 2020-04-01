@@ -5,8 +5,13 @@ import {
   Friend,
   FriendInfo,
   AwesomeIcon,
-  FriendListWrapper
+  FriendListWrapper,
+  HeaderFriend,
+  FriendCardTop
 } from "./friendlist.style";
+import {  CenterContainer } from '@util-components';
+import { Uploader } from '@inrupt/solid-react-components';
+
 //import {   } from "/i18n";
 import {  useTranslation } from 'react-i18next';
 
@@ -16,6 +21,9 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { ImageWrapper  } from "../Welcome/welcome.style";
+import { Image } from '../Profile/components';
+import { FileMenuTrigger } from "../FileExplorer/components/files/fileItem.style";
 
 
 
@@ -31,7 +39,8 @@ export default class FriendListComponent extends React.Component {
       user: "",
       friendid: "",
       platformValue: Provider.getIdentityProviders()[0].card,
-      open: false
+      open: false,
+      pimage: ' '
     };
     this.myChangeHandler = this.myChangeHandler.bind(this);
     this.mySubmitHandler = this.mySubmitHandler.bind(this);
@@ -145,13 +154,19 @@ export default class FriendListComponent extends React.Component {
   }
 
   async componentDidMount() {
+    const pic = this.getprofilephoto();
+
     const frs = await this.getFriends();
     const us = await ldflexService.getWebId();
     this.setState({ friends: frs, user: us });
   }
-
+ async getprofilephoto(){
+   const pic=  await ldflexService.getProfileImage();
+   console.log(pic+'')
+   this.state.pimage = pic;
+ }
   /* jshint ignore:start */
-  render() {
+   render() {
     const { t } = this.props;
 
     const addFriendDialog = (
@@ -195,10 +210,35 @@ export default class FriendListComponent extends React.Component {
       </Dialog>
     );
 
+    const img = this.state.pimage;
+     console.log(img)
+    const webid= ldflexService.getWebId();
+    console.log(webid)
+
+    const profileCard =(
+      <FriendCardTop className="card">
+        <HeaderFriend>
+        { webid && (
+        <div>
+
+          <ImageWrapper  className="imagefriend">
+
+           <img src={img} alt='profile'/>
+          </ImageWrapper>
+
+          </div>
+
+          )}
+        </HeaderFriend>
+        <h3>
+          Your friends
+        </h3>
+      </FriendCardTop>
+    );
 
 
     const friendsList = (
-      <FriendList>
+      <FriendList class="container">
         {this.state.friends.map(friend => {
           return (
             <Friend>
@@ -225,8 +265,14 @@ export default class FriendListComponent extends React.Component {
     return (
       <FriendListWrapper>
       <div>
+        {profileCard}
+        <CenterContainer>
         {friendsList}
-         <AwesomeIcon icon={faPlusCircle} onClick={this.handleOpen}></AwesomeIcon>
+          <div  className="iconaddfriend" >
+            <img src="/img/icon/icon-add.svg" alt="add a friend" onClick={this.handleOpen}></img>
+
+          </div>
+        </CenterContainer>
       </div>
       </FriendListWrapper>
     );

@@ -60,21 +60,37 @@ const NavBar = (props: Props) => {
   };
 
   const MyLogo = styled.p`
-    background: linear-gradient(to bottom right, #7c4dff, #18a9e6, #01c9ea);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    align-self: center;
-    margin: 0;
-    font-size: 24px;
-    font-family: "Raleway", sans-serif;
+     
+    max-width: 5em;
     font-weight: bold;
     text-decoration: none;
+    background: white;
+  `;
+
+  const NavSection = styled.section`
+     
+ 
+ 
+  ul {
+  
+    li{
+      a:hover,a:active, button:hover, button:active{
+        background: rgb(196, 230, 237) !important;
+      }
+      .active{
+      background: #f4f4f4 !important;
+      }
+    }
+  
+ }
+
   `;
 
   const MyLink = styled(Link)`
-    font-family: "Raleway", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: bold;
     font-size: 34px;
+    background: white;
     &:link {
       text-decoration: none;
       color: #083575;
@@ -99,10 +115,11 @@ const NavBar = (props: Props) => {
       className="header header__desktop fixed"
       ref={componentElement}
     >
-      <section className="header-wrap">
+      <NavSection className="header-wrap">
         <div className="logo-block">
           <MyLink to="/welcome">
-            <MyLogo>empathy.co</MyLogo>
+            <MyLogo>          <img className="podlogo" src="/img/pod_logo.svg" alt="ohmypod!" />
+            </MyLogo>
           </MyLink>
         </div>
 
@@ -124,7 +141,7 @@ const NavBar = (props: Props) => {
           </Fragment>
         )}
         <HamburgerButton toggleMobileMenu={toggleMobileMenu} />
-      </section>
+      </NavSection>
     </header>
   );
 };

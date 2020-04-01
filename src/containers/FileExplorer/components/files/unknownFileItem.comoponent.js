@@ -8,6 +8,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useTranslation } from "react-i18next";
+import { FolderMenuTrigger } from "../folder/folderItem.style";
 
 export default function UnknownFile(props) {
   let clas = props.highlight;
@@ -36,7 +37,8 @@ export default function UnknownFile(props) {
       onDoubleClick={handleOpen}
       // id={`${name.concat("_context_menu")}`}
     >
-      <AwesomeIcon icon={faQuestionCircle} size="2x" id={path} />
+      <img src="/img/icon/icon-files-unknown.svg" size="2x" className="imgfile" alt="uknown file" id={ path}/>
+
       <FileInfo id={path}>
         <h2 id={path}>{name}</h2>
       </FileInfo>

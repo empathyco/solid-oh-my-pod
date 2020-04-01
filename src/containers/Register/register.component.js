@@ -71,11 +71,11 @@ class RegisterComponent extends Component<Props, State> {
     const { providers, t } = this.props;
 
     return (
-      <ImageBackground>
-        <MyCenterContainer>
+         <MyCenterContainer>
+          <img className="podlogo" src="/img/pod_logo.svg" alt="Empathy" />
+
           <RegisterWrapper data-testid="register-wrapper">
-            <h1 data-testid="title">empathy.co</h1>
-            <form onSubmit={this.onSubmit}>
+             <form onSubmit={this.onSubmit}>
               <RegisterPanel className="register-panel">
                 <PanelHeader className="panel-header" data-testid="panel-header">
                   <h2>{t('register.step1Title')}</h2>
@@ -120,8 +120,7 @@ class RegisterComponent extends Component<Props, State> {
             </form>
           </RegisterWrapper>
         </MyCenterContainer>
-      </ImageBackground>
-    );
+     );
   }
 }
 

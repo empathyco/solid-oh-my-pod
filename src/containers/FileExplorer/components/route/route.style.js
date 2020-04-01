@@ -2,16 +2,24 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const RouteContainer = styled.div`
-  border-bottom: 2px solid black;
+  border : none;
   display: flex;
   flex-direction: row;
 `;
 
 export const RoutePart = styled.span`
-  font-family: "Raleway", sans-serif;
+   font-family: "Montserrat", sans-serif;
   font-weight: bold;
-  font-size: 24px;
-  margin: 3px 0px;
+   
+   font-size: 1.5em;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.56;
+  letter-spacing: 1px;
+  color: #2c4653;
+  font-weight: bold;
+   margin: 3px 0px;
   cursor: pointer;
 `;
 

@@ -124,6 +124,7 @@ export default class FileExplorerComponent extends Component {
 
     return (
       <ExplorerContainer>
+
         <Route url={this.state.url} click={this.changeRoot} />
         <Explorer>{files}</Explorer>
       </ExplorerContainer>

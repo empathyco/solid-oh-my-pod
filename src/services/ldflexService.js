@@ -24,6 +24,15 @@ export const getWebId = async () => {
   return webId;
 };
 
+export const getProfileImage = async () => {
+  let session = await getSession();
+  let webId = session.webId;
+  let  me = await data[webId];
+  let pic = `${await me["vcard:hasPhoto"]}`;
+  let img = `${pic}`;
+   return   img;
+};
+
 export const getFriends = async webId => {
   const me = data[webId];
   let returnFriends = [];

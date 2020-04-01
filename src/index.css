@@ -40,7 +40,23 @@ ul li {
   padding: 0;
   margin: 0;
 }
+footer a {
+  font-family: "Montserrat", sans-serif;
+  color: #6cc1d1;
+  text-decoration: underline;
+}
 
+footer li{
+  height: 28px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.75;
+  letter-spacing: 0.18px;
+  color: #405273;
+}
 input[type='text'] {
   box-sizing: border-box;
   border: 1px solid hsl(0, 0%, 80%);
@@ -51,8 +67,9 @@ input[type='text'] {
 
 .link,
 .link-button {
-  color: #449df5;
-  font-family: "Lato";
+  color: #53b9c9;
+  font-family: 'Montserrat', sans-serif;
+
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.75px;
@@ -70,7 +87,7 @@ input[type='text'] {
 }
 
 * {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .form-group {
@@ -83,8 +100,8 @@ input[type='text'] {
 }
 
 .form-group > label {
-  color: #5361fd;
-  font-family: "Lato";
+  color: #53b9c9;
+  font-family: 'Montserrat';
   font-size: 11px;
   font-weight: bold;
   letter-spacing: 0.75px;
@@ -114,3 +131,38 @@ form-group .select-role {
 .solid-provider-select .option {
   padding-left: 10px !important;
 }
+button{
+
+  color: #354866;
+  border: 1px solid  transparent !important;
+  border-radius: 0px !important;
+  cursor: pointer;
+  font-size: .8em;
+  padding: 0.5em 1em;
+  -webkit-transition: 0.25s all ease-in-out;
+  transition: 0.25s all ease-in-out;
+  outline: none;
+  text-transform: uppercase;
+  background-color: transparent !important;
+
+}
+.addButton{
+  border: 1px solid  transparent !important;
+  border-radius: 0px !important;
+  background-color: transparent !important;
+}
+
+.addButton:hover {
+  background: rgba(145,194,250,0.8) !important;
+  color: #fbf8ff !important;
+}
+button:hover {
+  border: 1px solid  #DAE0E6 !important;
+  color: #25354a !important;
+}
+button:active{
+  border: 1px solid  #DAE0E6 !important;
+  background-color: #25354a !important;
+  color: white !important;
+}
+

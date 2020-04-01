@@ -18,11 +18,11 @@ const Footer = (props: Props) => {
   const githubIconDef: IconDefinition = findIconDefinition(githubIcon);
 
   return (
-    <footer className="solid-footer footer">
+    <footer className="solid-footer footer" >
       <section className="solid-footer__content">
         <div className="solid-footer__content--copyright">
           <ul>
-            <li>© empathy.co</li>
+            <li >© empathy.co</li>
             <li>
               {t("footer.version")}
               {""}{" "}
