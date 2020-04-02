@@ -81,10 +81,14 @@ $ npm start
   ```shell
 $ npm test
 ```
+  ## Build
+  ```shell
+$ npm run build
+```
 
 ## Live Deployment
 
-https://empathysolidmanagement.netlify.com/
+https://ohmypod.netlify.com/
 
 ## License
 
