@@ -1,4 +1,4 @@
-# empathy.co PMS (Pod Management System)
+# empathy.co OHMYPOD!
 
 This is a work-in-progress implementation of a Solid Pod Management System.
 
