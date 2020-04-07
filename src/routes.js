@@ -11,8 +11,9 @@ import {
   Profile,
   FriendListComponent,
   FileExplorerComponent,
-  VocabularyComponent
-} from './containers';
+   VocabularyComponent,
+   ShopComponent
+ } from './containers';
 
 const privateRoutes = [
   {
@@ -39,7 +40,12 @@ const privateRoutes = [
     id: 'vocab',
     path: '/v1',
     component: VocabularyComponent
-  }
+  },
+  {
+     id:'shop',
+    path:'/shop',
+    component: ShopComponent
+   }
 
 ];
 

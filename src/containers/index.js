@@ -5,5 +5,7 @@ import Welcome from './Welcome';
 import Profile from './Profile';
 import FriendListComponent from './FriendList';
 import FileExplorerComponent from './FileExplorer';
-import VocabularyComponent from './Vocabulary';
-export { Login, Register, VocabularyComponent, RegistrationSuccess, PageNotFound, Welcome, Profile, FriendListComponent, FileExplorerComponent};
+ import VocabularyComponent from './Vocabulary';
+import ShopComponent from './Shop';
+export { Login,ShopComponent,VocabularyComponent, Register, RegistrationSuccess, PageNotFound, Welcome, Profile, FriendListComponent, FileExplorerComponent};
+

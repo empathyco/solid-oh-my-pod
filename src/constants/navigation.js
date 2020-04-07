@@ -25,6 +25,12 @@ export const NavigationItems = [
     icon: '/img/files.svg',
     label: 'navBar.myfiles',
     to: '/fileexplorer'
+  },
+  {
+    id: 'shop',
+    icon: 'img/icon/things.svg',
+    label: 'Shop',
+    to: '/shop'
   }
 
 

@@ -1,7 +1,7 @@
 {
   "@context":{
 	"id" : "@id",
-	"instance" : "http://empathy.solid.co/v1#instance"
+	"instance" : "http://empathy.solid.co/v1#instance",
 	"sink" : "http://empathy.solid.co/v1#sink",
 	"schema_version" : "http://empathy.solid.co/v1#schema_version",
 	"data": "http://empathy.solid.co/v1#data",
@@ -36,9 +36,13 @@
 	"categoryId" : "http://empathy.solid.co/v1#categoryId",
 	"title" : "http://empathy.solid.co/v1#title",
 	"url" : "http://empathy.solid.co/v1#url",
+	"topclicked" : "http://empathy.solid.co/v1#topclicked",
+	"synonymize" : "http://empathy.solid.co/v1#synonymize",
+	"boosted" : "http://empathy.solid.co/v1#boosted",
+	"boostedId" : "http://empathy.solid.co/v1#boostedId"
 	
 	
-  }
+  },
   "id" : "d8ed4e70-75d9-4a9b-9f5b-79d7842274e4",
   "instance" : "viking",
   "sink" : "query",
