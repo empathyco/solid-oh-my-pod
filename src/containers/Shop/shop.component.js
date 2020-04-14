@@ -25,7 +25,7 @@ export default class ShopComponent extends React.Component {
       console.log('calling function');
       
       console.log(contentjson);
-       service.writejsoninpod(contentjson,data.session)
+       fileExplorerService.writejsoninpod(contentjson,data.session)
       console.log(res);
 
       console.log(data.session);
