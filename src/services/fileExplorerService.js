@@ -165,13 +165,14 @@ export const uploadFiles = async (path, fileList) => {
     }
   }
 };
-export const writejsoninpod= async (jsoncontent) => {
+export const writejsoninpod=  (jsoncontent,filename) => {
+
   try {
 
-    let rootfolder = await getRoot()+'/public/etest'+ '/jsoncontent.json'
+    let rootfolder =   getRoot()+'/public/etest/'+filename+ '.json'
      console.log('created folder');
 
-    await fc.createFile( rootfolder, jsoncontent, "text/json" )
+   // await fc.createFile( rootfolder, jsoncontent, "text/json" )
     console.log('writen json in pod');
 
 

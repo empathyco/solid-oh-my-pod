@@ -1,5 +1,4 @@
-{
-  "@context":{
+"@context":{
 	"id" : "@id",
 	"instance" : "http://empathy.solid.co/v1#instance",
 	"sink" : "http://empathy.solid.co/v1#sink",
@@ -42,31 +41,4 @@
 	"boostedId" : "http://empathy.solid.co/v1#boostedId"
 
 
-  },
-  "id" : "d8ed4e70-75d9-4a9b-9f5b-79d7842274e4",
-  "instance" : "viking",
-  "sink" : "query",
-  "data" : {
-    "ip" : "52.213.246.122",
-    "host_referrer" : "https://de.test1.viking.europe.odcorp.net/de/search/?text=rexel-",
-    "user_agent" : "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/79.0.3945.117 Safari/537.36",
-    "timestamp" : 1583315599506,
-    "q" : "rexel-",
-    "totalHits" : 5,
-    "session" : "3db88cf04747a165970cdccc60dd8a2343b15ef384c89129c10a32d15db88cd0",
-    "page" : 1,
-    "user" : "787b2e9c319dc8b8a25dd8e0f50c44b3f8d0b3a6c9dfab772c18cb7c9c09eeb7",
-    "filters" : {
-      "catalog" : "default",
-      "scope" : "mobile",
-      "section" : "default",
-      "store" : "DE",
-      "lang" : "de"
-    },
-    "extra_fields" : {
-      "user_type" : "new",
-      "origin" : "default"
-    }
-  },
-  "schema_version" : 1
-}
+  }

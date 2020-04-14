@@ -165,4 +165,6 @@ button:active{
   background-color: #25354a !important;
   color: white !important;
 }
-
+.ebx-empathy-x__header{
+  margin-top: 5em !important;
+}
