@@ -30,9 +30,18 @@ export const HeaderFriend = styled.div`
 
 
 export const FriendList = styled.div`
-  display: block;
+  
   margin: 10px;
   font-family: Montserrat;
+  .friends{
+   display: grid;
+  grid-gap: 1rem;
+   
+  }
+    @media (min-width: 800px) {
+  .friends { grid-template-columns: repeat(2, 1fr); }
+  
+}
 `;
 export const FriendCardTop = styled.div`
   background-color: #fff;

@@ -1,6 +1,7 @@
 import React from "react";
 import { fileExplorerService } from "@services";
-import * as data from 'json/mockup.json';
+import * as contextf from 'json/context.txt';
+
 import CenterContainer from "../../components/Utils/CenterContainer";
 import {ShopWrapper}  from "./shop.style";
 
@@ -10,31 +11,20 @@ export default class ShopComponent extends React.Component {
   constructor()
   {
       super();
-      this.state = {}
+      this.state = {};
+      window.shop =this;
+
   }
    componentDidMount() {
      const script = document.createElement("script");
      script.async = true;
      script.src = "https://preassets.empathybroker.com/empathyx/gocco/app.js";
      let script2 = document.createElement("script");
-     script2.textContent  = `
- 
-     function writeinPOD(data)
-      {
-       let contentjson = JSON.stringify(data);
-      console.log('calling function');
-      
-      console.log(contentjson);
-       fileExplorerService.writejsoninpod(contentjson,data.session)
-      console.log(res);
-
-      console.log(data.session);
-        return data;
-       }
+     script2.textContent  = `   
      
      
      
-     function initEmpathyX(service) {
+     function initEmpathyX() {
        EmpathyX.init({
          instance:  'gocco',
          env:       'staging',
@@ -49,7 +39,7 @@ export default class ShopComponent extends React.Component {
            },
            query: function(data) {
              console.log('[CLIENT_EVENT]', '[QUERY]', data);
-               writeinPOD(data, service)          
+               shop.writeinPOD(data)          
            },
            add2cart: function(data) {
              console.log('[CLIENT_EVENT]', '[ADD2CART]', data);
@@ -63,7 +53,7 @@ export default class ShopComponent extends React.Component {
      this.div.appendChild(script2);
 
    }
-  async writeinPOD(data)
+ /* async writeinPOD(data)
   {
     //let contentjson = JSON.stringify(data.default);
     let contentjson = JSON.stringify(data);
@@ -72,16 +62,29 @@ export default class ShopComponent extends React.Component {
     console.log(contentjson);
 
    // await fileExplorerService.writejsoninpod(contentjson);
+  }*/
+
+    logFileText = async file => {
+    let response = await fetch(file)
+    let text = await response.text()
+
+      return   text;
   }
-  async callingempathyx()
+
+  async writeinPOD(data)
   {
-    console.log('fetching');
-    let service = fileExplorerService;
-    console.log(service)
-    await window.initEmpathyX(service); // eslint-disable-line no-extend-native
-    console.log('returned');
+    let content = JSON.stringify(data).substring(1);
+    console.log('calling function');
+
+    let context = await this.logFileText(contextf);
+
+    let contentjson = context + content + '}';
+    console.log(contentjson);
+    await fileExplorerService.writejsoninpod(contentjson,data.session);
 
     }
+
+
   render(){
   return (
     <ShopWrapper>
@@ -89,7 +92,7 @@ export default class ShopComponent extends React.Component {
    <div ref={el => (this.div = el)}>
 
      <p> <button onClick={async () => await this.writeinPOD()}>Load fake json into pod</button> </p>
-     <p> <button class="mini-search form-search" onClick={async () => await this.callingempathyx()}>call empathysearch</button> </p>
+     <p> <button class="mini-search form-search"  >call empathysearch</button> </p>
 
 
    </div>

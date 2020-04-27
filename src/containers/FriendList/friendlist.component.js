@@ -238,7 +238,8 @@ export default class FriendListComponent extends React.Component {
 
 
     const friendsList = (
-      <FriendList class="container">
+      <FriendList class="container ">
+        <div class="friends">
         {this.state.friends.map(friend => {
           return (
             <Friend>
@@ -259,13 +260,16 @@ export default class FriendListComponent extends React.Component {
             </Friend>
           );
         })}
+        </div>
         {addFriendDialog}
+
       </FriendList>
     );
     return (
       <FriendListWrapper>
       <div>
         {profileCard}
+
         <CenterContainer>
         {friendsList}
           <div  className="iconaddfriend" >

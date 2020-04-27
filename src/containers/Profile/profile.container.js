@@ -70,7 +70,9 @@ const Profile = ({ webId }: Props) => {
               <h2>Your PROFILE</h2>
               </Title>
             </Header>
-            <SectionProfile>
+
+            <SectionProfile >
+
           <Fragment  >
 
 
@@ -82,13 +84,15 @@ const Profile = ({ webId }: Props) => {
             </AutoSaveNotification>
 
             <ShexForm>
-              <WebId>
+               <WebId>
                 <FontAwesomeIcon icon="id-card" />
                 <a href={webId} target="_blank" rel="noopener noreferrer">
                   {webId}
                 </a>
               </WebId>
-               <ShexFormBuilder
+
+
+              <ShexFormBuilder
                 {...{
                   documentUri: webId,
                   shexUri: 'https://shexshapes.inrupt.net/public/userprofile.shex',
@@ -122,26 +126,30 @@ const Profile = ({ webId }: Props) => {
               />
              </ShexForm>
             <br></br>
+            <Submitdelete> <div> <br></br><p>{t('profile.deletePod') }:</p> </div>
+              <select
+
+                value={ state.value}
+                onChange={handleChangeSelector}
+                onSubmit={ handleSubmit}>
+                {Provider.getIdentityProviders().map((e, key) => {
+                  return (
+                    <option key={key} value={e.delete}>
+                      {e.label}
+                    </option>
+                  );
+                })}
+              </select>
+
+              <p> <button onClick={ handleSubmit}>{t('profile.select')}</button> </p></Submitdelete>
+
           </Fragment>
+
             </SectionProfile>
+
           </main>
 
-        <Submitdelete> <div> <br></br><p>{t('profile.deletePod') }:</p> </div>
-          <select
 
-             value={ state.value}
-             onChange={handleChangeSelector}
-             onSubmit={ handleSubmit}>
-            {Provider.getIdentityProviders().map((e, key) => {
-              return (
-                <option key={key} value={e.delete}>
-                  {e.label}
-                </option>
-              );
-            })}
-          </select>
-
-         <p> <button onClick={ handleSubmit}>{t('profile.select')}</button> </p></Submitdelete>
       </ProfileContainer>
       )}
     </ProfileWrapper>

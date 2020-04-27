@@ -3,15 +3,14 @@ import styled from 'styled-components';
 import { media } from '../../utils';
 
 export const ProfileWrapper = styled.section`
-  display: flex;
-  flex: 1 0 auto;
+   width:100%;
   align-items: center;
   justify-content: center;
   background: #f4f4f4; 
   margin: 0;
   
    .marginprofile{
-    max-width: 900px;
+     
 
   }
   h2{
@@ -43,8 +42,7 @@ export const ProfileWrapper = styled.section`
 `;
 export const ProfileContainer = styled.div`
    background-color: #f4f4f4;
-   margin: 0 90px;
-  width: 100%;
+   width: 100%;
   flex: 1 0 auto;
  
 `;
@@ -55,6 +53,9 @@ export const Header = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
+  flex-wrap: wrap;
+  border-radius: 4px;
+  padding: 1em 0;
   
   padding: 0;
 
@@ -81,7 +82,7 @@ export const Form = styled.form`
 `;
 
 export const Button = styled.button`
-  max-width: 128px;
+  max-width: 120px;
   display: inline-block;
 
   &:first-child {
@@ -189,6 +190,7 @@ export const AutoSaveNotification = styled.section`
  
   background-color: transparent !important;
   max-width:  none !important;
+  width: auto !important;
   color:#53b9c9 !important;
   .banner-wrap--warning{
   margin-top: 2em !important;
@@ -197,12 +199,19 @@ export const AutoSaveNotification = styled.section`
 
 
 export const SectionProfile = styled.section`
-  max-width: 60em !important;
-  position:relative;
+   position:relative;
   align-items: center;
   justify-content: center;
-  padding-left:15em;
+   display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 1em 0;
   background-color: #f4f4f4;
+   
    
 `;
 
@@ -215,7 +224,7 @@ export const Title =styled.section`
 export const Submitdelete =styled.section`
    align-items: right;
   justify-content: right;
-  padding-left:15em;
+  padding:1em;
     max-width: 60em !important;
 
     

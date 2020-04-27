@@ -6,9 +6,16 @@ import { ProviderLogin } from "@inrupt/solid-react-components";
 export const LoginWrapper = styled.div`
   background: url("/img/empathylines.svg");
    background-repeat: no-repeat; 
+   background-size: cover;
+     background-attachment: fixed;
+
+   width: 100%;
+  height: 100%;
    overflow: hidden;
   .podlogo{
    padding-bottom:2em;
+   width: 100%
+   height: 100%
 `;
 
 export const InfoWrapper = styled.div`

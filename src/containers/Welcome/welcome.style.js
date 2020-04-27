@@ -78,8 +78,6 @@ font-family: Montserrat;
   
   }
    h3{
-    width: 707px;
-    height: 61px;
     font-family: Montserrat, sans-serif;
     font-size: 50px;
     font-weight: 300;

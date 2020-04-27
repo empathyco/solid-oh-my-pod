@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ExplorerContainer = styled.div`
-  background: #f4f4f4;
+  background: white;
   width: 100%;
    display: block;
   max-width: 100%;
@@ -21,6 +21,15 @@ export const Explorer = styled.div`
   span {
     border-right: ipx solid grey;
   }
+  
+  .fileitems{
+   display: grid;
+  grid-gap: 1rem;
+   
+  }
+    @media (min-width: 800px) {
+  .fileitems { grid-template-columns: repeat(2, 1fr); }
+  
 `;
 
 export const Route = styled.div`
