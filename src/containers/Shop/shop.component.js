@@ -81,8 +81,11 @@ export default class ShopComponent extends React.Component {
     let context = await this.logFileText(contextf);
 
     let contentjson = context + content + '}';
-    console.log(contentjson);
-    await fileExplorerService.writejsoninpod(contentjson,data.session);
+
+    let d = new Date();
+    let title = data.session +'-'+ d.getTime();
+
+    await fileExplorerService.writejsoninpod(contentjson,title);
 
     }
 

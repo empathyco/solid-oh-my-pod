@@ -35,7 +35,7 @@ export const FileInfo = styled.div`
     font-size: 24px;
     font-wieght: bold;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: initial;
     overflow: hidden;
   }
   h3 {
