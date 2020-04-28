@@ -18,7 +18,9 @@ export default class ShopComponent extends React.Component {
    componentDidMount() {
      const script = document.createElement("script");
      script.async = true;
-     script.src = "https://preassets.empathybroker.com/empathyx/gocco/app.js";
+     //script.src = "https://preassets.empathybroker.com/empathyx/gocco/app.js";
+     script.src = "https://preassets.empathybroker.com/empathyx/demosolid/app.js";
+
      let script2 = document.createElement("script");
      script2.textContent  = `   
      
@@ -91,8 +93,7 @@ export default class ShopComponent extends React.Component {
     <CenterContainer>
    <div ref={el => (this.div = el)}>
 
-     <p> <button onClick={async () => await this.writeinPOD()}>Load fake json into pod</button> </p>
-     <p> <button class="mini-search form-search"  >call empathysearch</button> </p>
+      <p> <button class="open"  >call empathysearch</button> </p>
 
 
    </div>
