@@ -16,7 +16,7 @@ type Props = {
 const Option = ({ innerProps, isDisabled, innerRef, data }): React.Component =>
   !isDisabled ? (
     <Item ref={innerRef} {...innerProps} className="option">
-      <Icon src={data.image} className="icon" alt="provider" />
+      {data.image ? <Icon src={data.image} className="icon" alt="provider" /> : null}
       <ItemText>{data.label}</ItemText>
     </Item>
   ) : null;
@@ -24,7 +24,7 @@ const Option = ({ innerProps, isDisabled, innerRef, data }): React.Component =>
 const SingleValue = ({ data, ...props }): React.Component => {
   return (
     <components.SingleValue {...props} className="selected">
-      <Icon src={data.image} className="icon" alt="single_provider" />
+          {data.image ? <Icon src={data.image} className="icon" alt="single_provider" /> : null}
       <ItemText>{data.label}</ItemText>
     </components.SingleValue>
   );

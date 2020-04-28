@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ProviderSelect from "../../../ProviderSelect";
+import CustomProviderInput from "../customProviderInput";
 
 const LoginFormWrapper = styled.div`
   button {
@@ -32,7 +33,7 @@ const ErrorMessage = styled.p`
   margin: 0;
 `;
 
-const LoginForm = props => {
+const LoginForm = (props) => {
   const {
     className,
     onSubmit,
@@ -40,10 +41,22 @@ const LoginForm = props => {
     selectPlaceholder,
     onSelectChange,
     providers,
-
+    parentCallback,
     formButtonText,
-    theme
+    theme,
   } = props;
+
+  const [customValue, setCustomValue] = useState("");
+  const [customProviderSelected, setCustomProvider] = useState(false);
+  const onProviderSelect = ($event: Event) => {
+    setCustomProvider(!!$event.custom);
+    props.onSelectChange($event);
+  };
+
+  // Change custom value on input text change
+  useEffect(() => {
+    parentCallback(customValue);
+  }, [customValue]);
   return (
     <LoginFormWrapper
       className={`solid-provider-login-component ${className} ${error &&
@@ -54,12 +67,25 @@ const LoginForm = props => {
         <ProviderSelect
           {...{
             placeholder: selectPlaceholder,
-            onChange: onSelectChange,
-            options: providers,
+            onChange: onProviderSelect,
+            options: providers.concat({
+              custom: true,
+              label: "I want to introduce another provider",
+              image: "",
+              value: "",
+              description:
+                "This is a prototype implementation of a Solid server",
+            }),
             components: true,
-            name: "provider"
+            name: "provider",
           }}
         />
+
+        {customProviderSelected ? (
+          <CustomProviderInput
+            customValueSetter={setCustomValue}
+          ></CustomProviderInput>
+        ) : null}
         <SolidButton
           type="submit"
           data-testid="provider-form-button"

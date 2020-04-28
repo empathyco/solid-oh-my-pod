@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
-import auth from 'solid-auth-client';
+import React, { Component, useEffect } from "react";
+import auth from "solid-auth-client";
 // In-house Components
-import LoginForm from './children/Form';
+import LoginForm from "./children/Form";
 // Utils
-import { SolidError } from '@utils';
+import { SolidError } from "@utils";
 // Entities
-import { Provider } from '../../../entities';
+import { Provider } from "../../../entities";
 
-import SolidImg from '../../../images/Solid.png';
-import InruptImg from '../../../images/logo.svg';
+import SolidImg from "../../../images/Solid.png";
+import InruptImg from "../../../images/logo.svg";
+import SolidwebImg from "../../../images/Solid.png";
+import SolidAuthingImg from "../../../images/Solid.png";
 
 type Props = {
   providers?: Array<Provider>,
@@ -19,7 +21,7 @@ type Props = {
   btnTxtWebId?: String,
   btnTxtProvider?: String,
   onError: (error: Error) => void,
-  theme?: Object
+  theme?: Object,
 };
 
 export default class LoginComponent extends Component<Props> {
@@ -29,7 +31,8 @@ export default class LoginComponent extends Component<Props> {
     this.state = {
       idp: null,
       withWebId: true,
-      error: null
+      error: null,
+      customValueInput:false
     };
   }
 
@@ -37,7 +40,7 @@ export default class LoginComponent extends Component<Props> {
     const { error } = state;
     if (error) {
       return {
-        error: { ...error, message: props.errorsText[state.error.name] }
+        error: { ...error, message: props.errorsText[state.error.name] },
       };
     }
     return null;
@@ -46,19 +49,19 @@ export default class LoginComponent extends Component<Props> {
   componentDidUpdate(prevProps) {
     const { idp } = this.props;
     // Reset error state after user choose provider
-    if (prevProps.idp !== '' && prevProps.idp !== idp) {
+    if (prevProps.idp !== "" && prevProps.idp !== idp) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({ error: null });
     }
   }
 
-  isWebIdValid = webId => {
+  isWebIdValid = (webId) => {
     const regex = new RegExp(
       // eslint-disable-next-line no-useless-escape
       /((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/,
-      'i',
-      'g',
-      'A'
+      "i",
+      "g",
+      "A"
     );
     return regex.test(webId);
   };
@@ -72,18 +75,19 @@ export default class LoginComponent extends Component<Props> {
       const { callbackUri, errorsText } = this.props;
 
       if (!idp) {
-        const errorMessage = withWebId ? 'emptyWebId' : 'emptyProvider';
+        const errorMessage = withWebId ? "emptyWebId" : "emptyProvider";
         // @TODO: better error handling will be here
         throw new SolidError(errorsText[errorMessage], errorMessage);
       }
 
       if (idp && withWebId && !this.isWebIdValid(idp)) {
-        throw new SolidError(errorsText.webIdNotValid, 'webIdNotValid');
+        throw new SolidError(errorsText.webIdNotValid, "webIdNotValid");
+        // TODO also IDP can be invalid
       }
 
       const session = await auth.login(idp, {
         callbackUri,
-        storage: localStorage
+        storage: localStorage,
       });
 
       /**
@@ -92,7 +96,7 @@ export default class LoginComponent extends Component<Props> {
        * undefined will be session doesn't existing and/or the request is still pending
        */
       if (!session && session === null) {
-        throw new SolidError(errorsText.unknown, 'unknown');
+        throw new SolidError(errorsText.unknown, "unknown");
       }
       return session;
       // @TODO: better error handling will be here
@@ -107,15 +111,21 @@ export default class LoginComponent extends Component<Props> {
   };
 
   onProviderSelect = ($event: Event) => {
-    const idp = $event && $event.value;
-    this.setState({ idp: idp || '', error: !idp });
+    if ($event.custom) {
+     this.setState({customValueInput:true})
+    
+    } else {
+      
+      const idp = $event && $event.value;
+      this.setState({ idp: idp || "", error: !idp,customValueInput:false });
+    }
   };
 
   optionToggle = () =>
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       withWebId: !prevState.withWebId,
-      idp: '',
-      error: null
+      idp: "",
+      error: null,
     }));
 
   onChangeInput = (e: Event) => {
@@ -125,11 +135,21 @@ export default class LoginComponent extends Component<Props> {
     }
   };
 
+  setCustomIDP=(value)=>{
+    if(this.state.customValueInput)
+    console.log(value)
+    this.setState((prevState)=>({
+      withWebId: !prevState.withWebId,
+      idp: value,
+      error: null,
+    }))
+  }
   render() {
     const { error, withWebId } = this.state;
     const { theme } = this.props;
     return (
       <LoginForm
+        ref={this.form}
         {...this.props}
         error={error}
         withWebId={withWebId}
@@ -138,42 +158,58 @@ export default class LoginComponent extends Component<Props> {
         onChangeInput={this.onChangeInput}
         onSelectChange={this.onProviderSelect}
         theme={theme}
+        parentCallback={this.setCustomIDP}
       />
     );
   }
 }
 
 LoginComponent.defaultProps = {
-  selectPlaceholder: 'Select ID Provider',
-  inputPlaceholder: 'WebID',
-  formButtonText: 'Log In',
-  btnTxtWebId: 'Log In with WebId',
-  btnTxtProvider: 'Log In with Provider',
+  selectPlaceholder: "Select ID Provider",
+  inputPlaceholder: "WebID",
+  formButtonText: "Log In",
+  btnTxtWebId: "Log In with WebId",
+  btnTxtProvider: "Log In with Provider",
   errorsText: {
-    unknown: 'Something is wrong, please try again...',
-    webIdNotValid: 'WebID is not valid',
-    emptyProvider: 'Solid Provider is required',
-    emptyWebId: 'Valid WebID is required'
+    unknown: "Something is wrong, please try again...",
+    webIdNotValid: "WebID is not valid",
+    emptyProvider: "Solid Provider is required",
+    emptyWebId: "Valid WebID is required",
   },
   providers: [
     {
-      label: 'Inrupt',
+      label: "Inrupt",
       image: InruptImg,
-      value: 'https://inrupt.net/auth',
-      registerLink: 'https://inrupt.net/register',
-      description: 'This is a prototype implementation of a Solid server'
+      value: "https://inrupt.net/auth",
+      registerLink: "https://inrupt.net/register",
+      description: "This is a prototype implementation of a Solid server",
     },
     {
-      label: 'Solid Community',
+      label: "Solid Community",
       image: SolidImg,
-      value: 'https://solid.community',
-      registerLink: 'https://solid.community/register',
-      description: 'This is a prototype implementation of a Solid server'
-    }
+      value: "https://solid.community",
+      registerLink: "https://solid.community/register",
+      description: "This is a prototype implementation of a Solid server",
+    },
+    {
+      label: "Solid Web Prototype",
+      image: SolidwebImg,
+      value: "https://solidweb.org",
+      registerLink: "https://solidweb.org/register",
+      description: "This is a prototype implementation of a Solid server",
+    },
+    {
+      label: "Solid Authing Prototype",
+      image: SolidAuthingImg,
+      value: "https://solid.authing.cn",
+      registerLink: "https://solid.authing.cn/register",
+      description: "This is a prototype implementation of a Solid server",
+    },
+    
   ],
   theme: {
-    buttonLogin: '',
-    inputLogin: '',
-    linkButton: ''
-  }
+    buttonLogin: "",
+    inputLogin: "",
+    linkButton: "",
+  },
 };
