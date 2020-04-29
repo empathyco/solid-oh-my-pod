@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import {
   FileMenuTrigger,
   FileInfo,
-  AwesomeIcon,
-  CustomContext,
-  CustomContextOption
 } from "./fileItem.style";
-import { faFile, faDownload } from "@fortawesome/free-solid-svg-icons";
 import { fileExplorerService } from "@services";
 import Button from "@material-ui/core/Button";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
@@ -15,7 +11,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { useTranslation } from "react-i18next";
-import { FolderMenuTrigger } from "../folder/folderItem.style";
 
 export default function EditableFile(props) {
   let clas = props.highlight;
@@ -23,7 +18,6 @@ export default function EditableFile(props) {
   let path = props.file.url;
   let folder = props.file.parent;
   let type = props.file.type;
-  let size = props.file.size;
   let click = props.click;
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();

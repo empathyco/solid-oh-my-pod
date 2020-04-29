@@ -2,15 +2,6 @@ import data from "@solid/query-ldflex";
 import auth from "solid-auth-client";
 import Cache from "./Cache";
 
-const VCARD = "http://www.w3.org/2006/vcard/ns#";
-const FOAF = "http://xmlns.com/foaf/0.1/";
-const RDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-const SCHEMA = "http://schema.org/";
-const LDP = "http://www.w3.org/ns/ldp#";
-const RDFN = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-const TERMS = "http://purl.org/dc/terms/";
-const STATS = "http://www.w3.org/ns/posix/stat#";
-
 const cache = new Cache();
 
 const getSession = async () => {

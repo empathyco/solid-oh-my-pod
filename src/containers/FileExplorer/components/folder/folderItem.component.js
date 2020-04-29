@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { FolderMenuTrigger, FolderInfo, AwesomeIcon } from "./folderItem.style";
-import { faFolder } from "@fortawesome/free-solid-svg-icons";
+import { FolderMenuTrigger, FolderInfo } from "./folderItem.style";
 
 export default class Folder extends Component {
   constructor(props) {

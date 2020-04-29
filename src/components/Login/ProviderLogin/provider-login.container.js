@@ -1,30 +1,19 @@
-import React, { Component, useEffect } from "react";
+import React, { Component } from "react";
 import auth from "solid-auth-client";
 // In-house Components
 import LoginForm from "./children/Form";
 // Utils
 import { SolidError } from "@utils";
-// Entities
-import { Provider } from "../../../entities";
+
 
 import SolidImg from "../../../images/Solid.png";
 import InruptImg from "../../../images/logo.svg";
 import SolidwebImg from "../../../images/Solid.png";
 import SolidAuthingImg from "../../../images/Solid.png";
 
-type Props = {
-  providers?: Array<Provider>,
-  callbackUri: String,
-  selectPlaceholder?: String,
-  inputPlaceholder?: String,
-  formButtonText?: String,
-  btnTxtWebId?: String,
-  btnTxtProvider?: String,
-  onError: (error: Error) => void,
-  theme?: Object,
-};
 
-export default class LoginComponent extends Component<Props> {
+
+export default class LoginComponent extends Component {
   constructor(props) {
     super(props);
 
@@ -67,7 +56,7 @@ export default class LoginComponent extends Component<Props> {
   };
 
   // eslint-disable-next-line consistent-return
-  goLogin = async (e: Event) => {
+  goLogin = async (e) => {
     try {
       e.preventDefault();
 
@@ -110,7 +99,7 @@ export default class LoginComponent extends Component<Props> {
     }
   };
 
-  onProviderSelect = ($event: Event) => {
+  onProviderSelect = ($event) => {
     if ($event.custom) {
      this.setState({customValueInput:true})
     
@@ -128,7 +117,7 @@ export default class LoginComponent extends Component<Props> {
       error: null,
     }));
 
-  onChangeInput = (e: Event) => {
+  onChangeInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
     if (this.isWebIdValid(e.target.value)) {
       this.setState({ error: null });

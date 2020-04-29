@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { FileMenuTrigger, FileInfo, AwesomeIcon } from "./fileItem.style";
-import { faFileAudio } from "@fortawesome/free-solid-svg-icons";
+import { FileMenuTrigger, FileInfo } from "./fileItem.style";
 import { fileExplorerService } from "@services";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -10,15 +9,12 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Plyr from "react-plyr";
 import "plyr/dist/plyr.css";
 import { useTranslation } from "react-i18next";
-import { FolderMenuTrigger } from "../folder/folderItem.style";
 
 export default function AudioFile(props) {
   let clas = props.highlight;
   let name = props.file.name;
   let path = props.file.url;
-  let folder = props.file.parent;
   let type = props.file.type;
-  let size = props.file.size;
   let click = props.click;
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();

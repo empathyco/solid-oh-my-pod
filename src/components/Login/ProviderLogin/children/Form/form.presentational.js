@@ -39,7 +39,6 @@ const LoginForm = (props) => {
     onSubmit,
     error,
     selectPlaceholder,
-    onSelectChange,
     providers,
     parentCallback,
     formButtonText,
@@ -48,7 +47,7 @@ const LoginForm = (props) => {
 
   const [customValue, setCustomValue] = useState("");
   const [customProviderSelected, setCustomProvider] = useState(false);
-  const onProviderSelect = ($event: Event) => {
+  const onProviderSelect = ($event) => {
     setCustomProvider(!!$event.custom);
     props.onSelectChange($event);
   };

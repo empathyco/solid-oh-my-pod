@@ -1,16 +1,14 @@
 import React from "react";
-import { ldflexService, Provider, rdfService } from "@services";
+import { ldflexService, Provider } from "@services";
 import {
   FriendList,
   Friend,
   FriendInfo,
-  AwesomeIcon,
   FriendListWrapper,
   HeaderFriend,
   FriendCardTop
 } from "./friendlist.style";
 import {  CenterContainer } from '@util-components';
-import { Uploader } from '@inrupt/solid-react-components';
 
 //import {   } from "/i18n";
 import {  useTranslation } from 'react-i18next';
@@ -20,10 +18,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { ImageWrapper  } from "../Welcome/welcome.style";
-import { Image } from '../Profile/components';
-import { FileMenuTrigger } from "../FileExplorer/components/files/fileItem.style";
 
 
 
@@ -154,7 +149,6 @@ export default class FriendListComponent extends React.Component {
   }
 
   async componentDidMount() {
-    const pic = this.getprofilephoto();
 
     const frs = await this.getFriends();
     const us = await ldflexService.getWebId();
@@ -243,7 +237,7 @@ export default class FriendListComponent extends React.Component {
         {this.state.friends.map(friend => {
           return (
             <Friend>
-              <img src={friend.image} />
+              <img src={friend.image} alt="friend"/>
               <FriendInfo>
                 <a href={friend.url}>
                   <h2>{friend.fn}</h2>

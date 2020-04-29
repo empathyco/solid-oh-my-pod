@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ImageBackground, InfoImageBackground } from "@util-components";
-import { ProviderLogin } from "@inrupt/solid-react-components";
+
 
 export const LoginWrapper = styled.div`
   background: url("/img/empathylines.svg");
