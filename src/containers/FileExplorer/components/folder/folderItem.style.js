@@ -32,10 +32,9 @@ export const AwesomeIcon = styled(FontAwesomeIcon)`
 export const FolderInfo = styled.div`
   h2 {
     font-size: 24px;
-    font-wieght: bold;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: initial !important;
     overflow: hidden;
+      
   }
   h3 {
     font-size: 12px;
