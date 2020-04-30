@@ -15,7 +15,7 @@ import {
   Submitdelete
 } from './profile.style';
 import { Image } from './components';
-import {  ldflexService , Provider} from "@services";
+import {  Provider} from "@services";
 
 const defaultProfilePhoto = '/img/icon/empty-profile.svg';
 
@@ -26,9 +26,8 @@ const defaultProfilePhoto = '/img/icon/empty-profile.svg';
  * this means the result will have a better format to read on Javascript.
  * for more information please go to: https://github.com/solid/query-ldflex
  */
-type Props = { webId: String };
 
-const Profile = ({ webId }: Props) => {
+const Profile = ({ webId }) => {
   const { t, i18n } = useTranslation();
   let state = {value: 'https://solid.community/account/delete'};
   const successCallback = () => {

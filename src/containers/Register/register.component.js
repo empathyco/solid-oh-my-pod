@@ -1,27 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
-import { ImageBackground, CenterContainer } from '@util-components';
 import { RegisterWrapper, RegisterPanel, PanelHeader, PanelBody, Actions, MyCenterContainer } from './register.style';
 import { ProviderItem } from './children';
 
-type Provider = {};
 
-type Register = {
-  provider: String
-};
 
-type Props = {
-  providers: Array<Provider>,
-  t: Function
-};
-
-type State = {
-  register: Register,
-  canContinue: false
-};
-
-class RegisterComponent extends Component<Props, State> {
+class RegisterComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {

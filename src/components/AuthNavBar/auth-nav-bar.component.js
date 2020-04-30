@@ -1,16 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { NavBar, Notification } from '@components';
+import { NavBar } from '@components';
 import { useTranslation } from 'react-i18next';
 import { NavBarContainer } from './children';
 import { LanguageDropdown } from '@util-components';
 import { ldflexHelper, errorToaster, storageHelper } from '@utils';
 import { NavigationItems } from '@constants';
 
-type Props = {
-  webId: string
-};
 
-const AuthNavBar = React.memo((props: Props) => {
+
+const AuthNavBar = React.memo((props) => {
   const [inboxes, setInbox] = useState([]);
   const { t, i18n } = useTranslation();
   const navigation = NavigationItems.map(item => ({ ...item, label: t(item.label) }));

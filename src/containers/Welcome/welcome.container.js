@@ -9,7 +9,7 @@ const defaultProfilePhoto = '/img/icon/empty-profile.svg';
 /**
  * Container component for the Welcome Page, containing example of how to fetch data from a POD
  */
-export class WelcomeComponent extends Component<Props> {
+export class WelcomeComponent extends Component {
   constructor(props) {
     super(props);
 
@@ -50,12 +50,15 @@ export class WelcomeComponent extends Component<Props> {
 
     const name = nameLd && nameLd.value.trim().length > 0 ? nameLd.value : webId.toString();
     const imageLd = await user.vcard_hasPhoto;
+    console.log(imageLd.value)
 
     let image;
     if (imageLd && imageLd.value) {
+      console.log("tiene foto")
       image = imageLd.value;
       hasImage = true;
     } else {
+      console.log("no tiene foto")
       hasImage = false;
       image = defaultProfilePhoto;
     }
@@ -69,7 +72,7 @@ export class WelcomeComponent extends Component<Props> {
      *
      * For more information please go to: https://github.com/solid/query-ldflex
      */
-    this.setState({ name, image, isLoading: false, hasImage });
+    this.setState({ name, image:image, isLoading: false, hasImage });
   };
 
   /**
@@ -78,7 +81,7 @@ export class WelcomeComponent extends Component<Props> {
    * will just update it, the idea is use image instead of hasPhoto
    * @params{String} uri photo url
    */
-  updatePhoto = async (uri: String, message, title = '') => {
+  updatePhoto = async (uri, message, title = '') => {
     const { hasImage } = this.state;
     try {
       const { user } = data;
@@ -93,6 +96,7 @@ export class WelcomeComponent extends Component<Props> {
   render() {
     const { name, image, isLoading } = this.state;
     const { webId } = this.props;
+    console.log(this.state)
     return (
       <WelcomePageContent {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto }} />
     );

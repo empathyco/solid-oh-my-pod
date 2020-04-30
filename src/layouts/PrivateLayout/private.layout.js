@@ -1,14 +1,13 @@
-import React, { useCallback, useEffect } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import React, { useCallback, useEffect } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import {
   withAuthorization,
   AppPermission,
-  AccessControlList
-} from '@inrupt/solid-react-components';
-import { AuthNavBar, Footer } from '@components';
-import { errorToaster, checkAppPermissions } from '@utils';
-import styled from 'styled-components';
+  AccessControlList,
+} from "@inrupt/solid-react-components";
+import { AuthNavBar, Footer } from "@components";
+import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
@@ -42,8 +41,6 @@ const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
      */
     const permissions = AccessControlList.MODES;
     const { APPEND, READ, WRITE, CONTROL } = permissions;
-
-
   }, [webId]);
 
   useEffect(() => {
@@ -59,13 +56,15 @@ const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
             <Content className="contentApp">
               <AuthNavBar {...{ location, webId, history }} />
               <Switch>
-                {routes.map(route => {
+                {routes.map((route) => {
                   const { component: RouteComponent } = route;
                   return (
                     <Route
                       key={route.id}
                       path={route.path}
-                      render={routerProps => <RouteComponent {...routerProps} webId={webId} />}
+                      render={(routerProps) => (
+                        <RouteComponent {...routerProps} webId={webId} />
+                      )}
                       webId={webId}
                       exact
                     />

@@ -8,14 +8,9 @@ import {
 } from "./children";
 import styled from "styled-components";
 
-type Props = {
-  t: Function,
-  navigation: Array<Object>,
-  toolbar: Array<React.Node>,
-  sticky?: boolean
-};
 
-const NavBar = (props: Props) => {
+
+const NavBar = (props) => {
   const { navigation, toolbar, sticky, t } = props;
   const [isOpenMobile, setOpenMobile] = useState(false);
   const [profileOptions, setProfileOption] = useState([]);
