@@ -28,7 +28,6 @@ describe.only('Welcome', () => {
 
   test('renders with styled components', () => {
     expect(getByTestId('welcome-wrapper')).toBeTruthy();
-    expect(getByTestId('welcome-logo')).toBeTruthy();
     expect(getByTestId('welcome-profile')).toBeTruthy();
     expect(getByTestId('welcome-detail')).toBeTruthy();
     expect(document.querySelector('.card')).toBeTruthy();

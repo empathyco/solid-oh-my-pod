@@ -23,7 +23,7 @@ export const WelcomePageContent = props => {
   const limit = 2100000;
   return (
     <WelcomeWrapper data-testid="welcome-wrapper">
-      <WelcomeCardTop className="card">
+      <WelcomeCardTop data-testid="welcome-profile" className="card">
 
 
           <ImageWrapper>

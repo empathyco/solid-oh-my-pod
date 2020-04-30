@@ -17,10 +17,10 @@ import { CenterContainer } from "@util-components";
 const LoginComponent = () => {
   const { t } = useTranslation();
   return (
-    <AllLoginWrapper>
+    <AllLoginWrapper data-testid="title">
       <LoginWrapper data-testid="login-wrapper">
 
-        <CenterContainer>
+        <CenterContainer data-testid="title">
           <img className="podlogo" src="/img/pod_logo.svg" alt="Empathy" />
 
           <LoginPanel className="login-panel">

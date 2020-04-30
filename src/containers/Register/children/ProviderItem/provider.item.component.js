@@ -20,7 +20,7 @@ const ProviderItem = ({ data, onSelect, radioName, id, checked }: Props) => (
       value={data.registerLink}
       checked={checked}
     />
-    <ProviderItemStyle htmlFor={id} className="provider-item">
+    <ProviderItemStyle data-testid="title" htmlFor={id} className="provider-item">
       <div className="img-group">
         <img src={data.image} alt={data.label} />
         <span className="label">{data.label}</span>
