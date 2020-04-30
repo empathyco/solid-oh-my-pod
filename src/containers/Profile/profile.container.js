@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment,useState, useEffect, } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { ShexFormBuilder } from '@inrupt/solid-react-components';
@@ -30,6 +30,9 @@ const defaultProfilePhoto = '/img/icon/empty-profile.svg';
 const Profile = ({ webId }) => {
   const { t, i18n } = useTranslation();
   let state = {value: 'https://solid.community/account/delete'};
+
+
+
   const successCallback = () => {
     successToaster(t('profile.successCallback'), t('profile.successTitle'));
   };
