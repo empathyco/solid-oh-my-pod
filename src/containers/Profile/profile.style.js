@@ -1,50 +1,45 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { media } from '../../utils';
+import { media } from "../../utils";
 
 export const ProfileWrapper = styled.section`
-   width:100%;
+  width: 100%;
   align-items: center;
   justify-content: center;
-  background: #f4f4f4; 
+  background: #f4f4f4;
   margin: 0;
-  
-   .marginprofile{
-     
 
+  .marginprofile {
   }
-  h2{
-  font-family: Montserrat, sans-serif;
-  font-size: 50px;
-  font-weight: 300;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.22;
-  letter-spacing: normal;
-  color:#243d48;
-
+  h2 {
+    font-family: Montserrat, sans-serif;
+    font-size: 50px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.22;
+    letter-spacing: normal;
+    color: #243d48;
   }
-  h3,h4{
-   font-family: Montserrat, sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: 1.56;
-  letter-spacing: 3.73px;
-  color:#243d48;
-
-
+  h3,
+  h4 {
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.56;
+    letter-spacing: 3.73px;
+    color: #243d48;
   }
-  a{
-   color:#53b9c9 !important;
-   }
+  a {
+    color: #53b9c9 !important;
+  }
 `;
 export const ProfileContainer = styled.div`
-   background-color: #f4f4f4;
-   width: 100%;
+  background-color: #f4f4f4;
+  width: 100%;
   flex: 1 0 auto;
- 
 `;
 
 export const Header = styled.div`
@@ -56,7 +51,7 @@ export const Header = styled.div`
   flex-wrap: wrap;
   border-radius: 4px;
   padding: 1em 0;
-  
+
   padding: 0;
 
   .edit-button {
@@ -104,7 +99,7 @@ export const WebId = styled.div`
   &:after {
     background-color: #d8d8d8;
     display: block;
-    content: '';
+    content: "";
     height: 1px;
     width: 100%;
     margin: 25px 0 0 0;
@@ -185,24 +180,22 @@ export const ShexForm = styled.div`
 `;
 
 export const AutoSaveNotification = styled.section`
-   
   margin-bottom: 0px !important;
- 
+
   background-color: transparent !important;
-  max-width:  none !important;
+  max-width: none !important;
   width: auto !important;
-  color:#53b9c9 !important;
-  .banner-wrap--warning{
-  margin-top: 2em !important;
+  color: #53b9c9 !important;
+  .banner-wrap--warning {
+    margin-top: 2em !important;
   }
 `;
 
-
 export const SectionProfile = styled.section`
-   position:relative;
+  position: relative;
   align-items: center;
   justify-content: center;
-   display: flex;
+  display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   flex-direction: column;
@@ -211,21 +204,20 @@ export const SectionProfile = styled.section`
   width: 100%;
   padding: 1em 0;
   background-color: #f4f4f4;
-   
-   
 `;
 
-export const Title =styled.section`
-   align-items: right;
+export const Title = styled.section`
+  align-items: right;
   justify-content: right;
-     
 `;
 
-export const Submitdelete =styled.section`
-   align-items: right;
+export const Submitdelete = styled.section`
+  align-items: right;
   justify-content: right;
-  padding:1em;
-    max-width: 60em !important;
+  padding: 1em;
+  max-width: 60em !important;
+`;
 
-    
+export const RemovePodBtn = styled.button`
+  color: #fb4a3e;
 `;

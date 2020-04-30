@@ -1,3 +1,4 @@
-import LoginForm from './form.presentational';
+import LoginForm from "./form.presentational";
+import { withTranslation } from "react-i18next";
 
-export default LoginForm;
+export default withTranslation()(LoginForm);

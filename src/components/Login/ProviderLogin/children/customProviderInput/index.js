@@ -1,3 +1,3 @@
 import CustomProviderInput from './input.component';
-
-export default CustomProviderInput;
+import { withTranslation } from "react-i18next";
+export default withTranslation()(CustomProviderInput);

@@ -45,6 +45,7 @@ const LoginForm = (props) => {
     theme,
   } = props;
 
+  const { t } = props;
   const [customValue, setCustomValue] = useState("");
   const [customProviderSelected, setCustomProvider] = useState(false);
   const onProviderSelect = ($event) => {
@@ -69,7 +70,7 @@ const LoginForm = (props) => {
             onChange: onProviderSelect,
             options: providers.concat({
               custom: true,
-              label: "I want to introduce another provider",
+              label: t("login.customProvider"),
               image: "",
               value: "",
               description:
