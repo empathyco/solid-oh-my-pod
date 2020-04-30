@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { fileExplorerService } from "@services";
-import { ThemeProvider } from "styled-components";
 import { ExplorerContainer, Explorer } from "./fileexplorer.style";
 import {
   AudioFile,

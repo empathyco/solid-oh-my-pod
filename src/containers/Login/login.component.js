@@ -1,14 +1,11 @@
 /* eslint-disable constructor-super */
 import React from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ProviderLogin, ProviderSelect } from "@components/Utils";
+import ProviderLogin from "../../components/Login";
 import {
   LoginWrapper,
   LoginPanel,
   PanelBody,
-  LoginTitle,
-  LoginSubtitle,
   AllLoginWrapper,
   MyLink
 } from "./login.style";

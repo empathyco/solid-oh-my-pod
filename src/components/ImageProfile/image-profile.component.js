@@ -7,20 +7,9 @@ import {
   ImageProfileLoader
 } from './image-profile.style';
 
-type Props = {
-  photo: String,
-  overrideEventDefaults: () => void,
-  onDragLeave: () => void,
-  onDragEnter: () => void,
-  onDrop: () => void,
-  onClickFile: () => void,
-  inProgress: boolean,
-  uploadedFiles: Array<Object>,
-  uploadingText?: String,
-  text?: String
-};
 
-export const ImageProfile = (props: Props) => {
+
+export const ImageProfile = (props) => {
   const {
     uploadedFiles,
     photo: img,
@@ -36,6 +25,7 @@ export const ImageProfile = (props: Props) => {
   const photo =
     uploadedFiles && uploadedFiles.length > 0 ? uploadedFiles[uploadedFiles.length - 1].uri : img;
 
+
   return (
     <ImageProfileWrapper
       {...{
@@ -46,7 +36,7 @@ export const ImageProfile = (props: Props) => {
         onDragLeave,
         onDragEnter,
         onDrop,
-        style: photo && photo !== '' && { backgroundImage: `url(${photo})` }
+        style: photo && photo !== '' && { backgroundImage: `url('${photo}')` }
       }}
     >
       <ButtonStyled onClick={onClickFile} className="button-upload">

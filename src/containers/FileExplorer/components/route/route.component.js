@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { faFolderOpen } from "@fortawesome/free-solid-svg-icons";
-import { RouteContainer, RoutePart, RouteIcon } from "./route.style";
+import { RouteContainer, RoutePart } from "./route.style";
 import { fileExplorerService } from "@services";
 
 export default class Route extends Component {

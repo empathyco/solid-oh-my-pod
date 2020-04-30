@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { media } from '../../utils';
 
 export const VocabularyWrapper = styled.section`
   width: 100%;
