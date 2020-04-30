@@ -4,7 +4,6 @@ export default class CustomProviderInput extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-
     this.state = { value: "" };
   }
   handleChange(event) {
