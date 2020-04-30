@@ -5,13 +5,7 @@ import LoginForm from "./children/Form";
 // Utils
 import { SolidError } from "@utils";
 
-
-import SolidImg from "../../../images/Solid.png";
-import InruptImg from "../../../images/logo.svg";
-import SolidwebImg from "../../../images/Solid.png";
-import SolidAuthingImg from "../../../images/Solid.png";
-
-
+import { Provider } from "../../../services/index";
 
 export default class LoginComponent extends Component {
   constructor(props) {
@@ -21,7 +15,7 @@ export default class LoginComponent extends Component {
       idp: null,
       withWebId: true,
       error: null,
-      customValueInput:false
+      customValueInput: false,
     };
   }
 
@@ -63,6 +57,7 @@ export default class LoginComponent extends Component {
       const { idp, withWebId } = this.state;
       const { callbackUri, errorsText } = this.props;
 
+
       if (!idp) {
         const errorMessage = withWebId ? "emptyWebId" : "emptyProvider";
         // @TODO: better error handling will be here
@@ -71,24 +66,27 @@ export default class LoginComponent extends Component {
 
       if (idp && withWebId && !this.isWebIdValid(idp)) {
         throw new SolidError(errorsText.webIdNotValid, "webIdNotValid");
-        // TODO also IDP can be invalid
       }
 
-      const session = await auth.login(idp, {
+      await auth.login(idp, {
         callbackUri,
         storage: localStorage,
       });
 
-      /**
-       * This condition checks if the session is null or undefined, we can have those 2 kind of values in return
-       * Null would be the validation for the non existing pod provider
-       * undefined will be session doesn't existing and/or the request is still pending
-       */
-      if (!session && session === null) {
-        throw new SolidError(errorsText.unknown, "unknown");
-      }
-      return session;
-      // @TODO: better error handling will be here
+      // LOGIN doesn't return a session, you need to access auth.currentSession()
+
+      // /**
+      //  * This condition checks if the session is null or undefined, we can have those 2 kind of values in return
+      //  * Null would be the validation for the non existing pod provider
+      //  * undefined will be session doesn't existing and/or the request is still pending
+      //  */
+
+      // if (!session && session === null) {
+      //   throw new SolidError(errorsText.unknown, "unknown");
+      // }
+
+      // return session;
+      // // @TODO: better error handling will be here
     } catch (error) {
       const { onError } = this.props;
       // Error callback for custom error handling
@@ -97,16 +95,15 @@ export default class LoginComponent extends Component {
       }
       this.setState({ error });
     }
+
   };
 
   onProviderSelect = ($event) => {
     if ($event.custom) {
-     this.setState({customValueInput:true})
-    
+      this.setState({ customValueInput: true });
     } else {
-      
       const idp = $event && $event.value;
-      this.setState({ idp: idp || "", error: !idp,customValueInput:false });
+      this.setState({ idp: idp || "", error: !idp, customValueInput: false });
     }
   };
 
@@ -124,15 +121,13 @@ export default class LoginComponent extends Component {
     }
   };
 
-  setCustomIDP=(value)=>{
-    if(this.state.customValueInput)
-    console.log(value)
-    this.setState((prevState)=>({
+  setCustomIDP = (value) => {
+    this.setState((prevState) => ({
       withWebId: !prevState.withWebId,
       idp: value,
       error: null,
-    }))
-  }
+    }));
+  };
   render() {
     const { error, withWebId } = this.state;
     const { theme } = this.props;
@@ -153,6 +148,8 @@ export default class LoginComponent extends Component {
   }
 }
 
+const providers = Provider.getIdentityProviders();
+
 LoginComponent.defaultProps = {
   selectPlaceholder: "Select ID Provider",
   inputPlaceholder: "WebID",
@@ -165,37 +162,7 @@ LoginComponent.defaultProps = {
     emptyProvider: "Solid Provider is required",
     emptyWebId: "Valid WebID is required",
   },
-  providers: [
-    {
-      label: "Inrupt",
-      image: InruptImg,
-      value: "https://inrupt.net/auth",
-      registerLink: "https://inrupt.net/register",
-      description: "This is a prototype implementation of a Solid server",
-    },
-    {
-      label: "Solid Community",
-      image: SolidImg,
-      value: "https://solid.community",
-      registerLink: "https://solid.community/register",
-      description: "This is a prototype implementation of a Solid server",
-    },
-    {
-      label: "Solid Web Prototype",
-      image: SolidwebImg,
-      value: "https://solidweb.org",
-      registerLink: "https://solidweb.org/register",
-      description: "This is a prototype implementation of a Solid server",
-    },
-    {
-      label: "Solid Authing Prototype",
-      image: SolidAuthingImg,
-      value: "https://solid.authing.cn",
-      registerLink: "https://solid.authing.cn/register",
-      description: "This is a prototype implementation of a Solid server",
-    },
-    
-  ],
+  providers: providers,
   theme: {
     buttonLogin: "",
     inputLogin: "",

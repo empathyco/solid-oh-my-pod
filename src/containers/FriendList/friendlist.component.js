@@ -26,8 +26,9 @@ export default class FriendListComponent extends React.Component {
 
   constructor() {
 
-
+    
     super();
+    this.defaultImage='/img/icon/empty-profile.svg'
 
     this.state = {
       friends: [],
@@ -35,7 +36,7 @@ export default class FriendListComponent extends React.Component {
       friendid: "",
       platformValue: Provider.getIdentityProviders()[0].card,
       open: false,
-      pimage: ' '
+      pimage: this.defaultImage,
     };
     this.myChangeHandler = this.myChangeHandler.bind(this);
     this.mySubmitHandler = this.mySubmitHandler.bind(this);
@@ -156,7 +157,7 @@ export default class FriendListComponent extends React.Component {
   }
  async getprofilephoto(){
    const pic=  await ldflexService.getProfileImage();
-   console.log(pic+'')
+
    this.state.pimage = pic;
  }
   /* jshint ignore:start */
@@ -204,10 +205,13 @@ export default class FriendListComponent extends React.Component {
       </Dialog>
     );
 
+    this.getprofilephoto()
     const img = this.state.pimage;
-     console.log(img)
+   
     const webid= ldflexService.getWebId();
-    console.log(webid)
+    
+   
+
 
     const profileCard =(
       <FriendCardTop className="card">
