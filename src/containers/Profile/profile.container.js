@@ -4,6 +4,7 @@ import { ShexFormBuilder } from "@inrupt/solid-react-components";
 import { successToaster, errorToaster } from "@utils";
 import Provider from "../../services/provider";
 import auth from "solid-auth-client";
+import "./style.css";
 import {
   Header,
   ProfileContainer,
@@ -11,12 +12,13 @@ import {
   ShexForm,
   AutoSaveNotification,
   WebId,
-  SectionProfile,
+  SectionProfile as ProfileFooter,
   Title,
   Submitdelete,
   RemovePodBtn,
+  HeaderContainer,
 } from "./profile.style";
-import { Image } from "./components";
+import { Image, ProfileContent } from "./components";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
@@ -61,6 +63,34 @@ export default class Profile extends React.Component {
     window.open(this.state.deleteUrl, "_blank");
     event.preventDefault();
   };
+
+  getDeletePodButton() {
+    const { t } = this.props;
+    return (
+      <Fragment>
+        {/* Show delete btn if we know the delete url */}
+        {this.state.deleteUrl ? (
+          <Submitdelete>
+            {" "}
+            <div>
+              {" "}
+              <br></br>
+              <p>{t("profile.deletePodMessage")}:</p>{" "}
+            </div>
+            <p>
+              {" "}
+              <RemovePodBtn
+                className=" ids-button-stroke "
+                onClick={this.goDeletURL}
+              >
+                {t("profile.deletePod")}
+              </RemovePodBtn>{" "}
+            </p>
+          </Submitdelete>
+        ) : null}
+      </Fragment>
+    );
+  }
   render() {
     const webId = this.props.webId;
 
@@ -75,19 +105,21 @@ export default class Profile extends React.Component {
           <ProfileContainer>
             <main>
               <Header>
-                <Image
-                  {...{
-                    webId,
-                    defaultProfilePhoto,
-                  }}
-                />
-                <Title>
-                  <h2>Your PROFILE</h2>
+                <div className="floating-header-item">
+                  <Image
+                    {...{
+                      webId,
+                      defaultProfilePhoto,
+                    }}
+                  />
+                </div>
+                <Title className="floating-header-item">
+                  <h2>{t("profile.yourProfile")}</h2>
                 </Title>
               </Header>
+              <ProfileContent>
+                  {/* 
 
-              <SectionProfile>
-                <Fragment>
                   <AutoSaveNotification className="banner-wrap--warning banner">
                     <div className="banner-wrap__content">
                       <i className="icon fa fa-exclamation-circle" />
@@ -142,30 +174,13 @@ export default class Profile extends React.Component {
                         autoSaveMode: true,
                       }}
                     />
-                  </ShexForm>
-                  <br></br>
-                  {/* Show delete btn if we know the delete url */}
-                  {this.state.deleteUrl ? (
-                    <Submitdelete>
-                      {" "}
-                      <div>
-                        {" "}
-                        <br></br>
-                        <p>{t("profile.deletePodMessage")}:</p>{" "}
-                      </div>
-                      <p>
-                        {" "}
-                        <RemovePodBtn
-                          className="deleteButton ids-button-stroke "
-                          onClick={this.goDeletURL}
-                        >
-                          {t("profile.deletePod")}
-                        </RemovePodBtn>{" "}
-                      </p>
-                    </Submitdelete>
-                  ) : null}
-                </Fragment>
-              </SectionProfile>
+                  </ShexForm> */}
+              </ProfileContent>
+              <ProfileFooter>
+              
+
+                {this.getDeletePodButton()}
+              </ProfileFooter>
             </main>
           </ProfileContainer>
         )}

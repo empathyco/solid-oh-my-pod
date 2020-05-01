@@ -1,3 +1,4 @@
-import Image from './Image';
+import Image from "./Image";
+import ProfileContent from "./profileContent";
 
-export { Image };
+export { Image, ProfileContent };

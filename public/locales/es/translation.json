@@ -117,6 +117,7 @@
     "successTitle": "Éxito",
     "errorCallback": "Ha ocurrido un error al enviar el formulario",
     "errorTitle": "Error",
+    "yourProfile": "Tu PERFIL",
     "saveBtn": "Guardar",
     "resetBtn": "Limpiar",
     "addBtn": "+ Agregar ",

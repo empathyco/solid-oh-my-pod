@@ -43,16 +43,19 @@ export const ProfileContainer = styled.div`
 `;
 
 export const Header = styled.div`
+  font-family: "Montserrat", sans-serif;
+  font-weight: lighter;
   display: flex;
   position: relative;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   background-color: white;
   flex-wrap: wrap;
   border-radius: 4px;
-  padding: 1em 0;
-
+  /* padding: 1em 0; */
+  padding-left: 8em !important;
   padding: 0;
+  top: -20px;
 
   .edit-button {
     background: rgba(255, 255, 255, 0.1);
@@ -112,33 +115,30 @@ export const WebId = styled.div`
 `;
 
 export const ShexForm = styled.div`
-  border:none !important;
-   label {
+  border: none !important;
+  label {
     clear: both;
   }
 
   & .shexForm {
     border: none;
-     padding: 0 12px;
-    
+    padding: 0 12px;
   }
 
   & .shexPanel {
-     border:none
-      padding: 12px;
+    border: none;
+    padding: 12px;
     position: relative;
-    
-     
   }
 
   & .shexRoot {
     border: none !important;
     background: transparent;
-    h4{
-    margin-top: 4em;
+    h4 {
+      margin-top: 4em;
     }
   }
- 
+
   & .deleteButton {
     margin: 0 4px 0 12px;
     position: relative;
@@ -162,20 +162,18 @@ export const ShexForm = styled.div`
       background: rgba(145, 194, 250, 0.8);
       color: #fff;
     }
- 
-    }
-     & .inputContainer {
-      float: left;
-      width: 75%;
+  }
+  & .inputContainer {
+    float: left;
+    width: 75%;
 
-      padding: 12px;
-      input{
+    padding: 12px;
+    input {
       background-color: #f4f4f4 !important;
       &:hover {
-      background-color: #ffffff !important;
+        background-color: #ffffff !important;
       }
     }
-    
   }
 `;
 
@@ -209,6 +207,8 @@ export const SectionProfile = styled.section`
 export const Title = styled.section`
   align-items: right;
   justify-content: right;
+  bottom: 50px;
+  margin-left: 45px !important;
 `;
 
 export const Submitdelete = styled.section`
@@ -220,4 +220,5 @@ export const Submitdelete = styled.section`
 
 export const RemovePodBtn = styled.button`
   color: #fb4a3e;
+  margin-bottom: 0px !important;
 `;
