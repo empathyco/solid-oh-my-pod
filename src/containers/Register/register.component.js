@@ -56,7 +56,7 @@ class RegisterComponent extends Component {
     const { providers, t } = this.props;
 
     return (
-         <MyCenterContainer>
+         <MyCenterContainer data-testid="title">
           <img className="podlogo" src="/img/pod_logo.svg" alt="Empathy" />
 
           <RegisterWrapper data-testid="register-wrapper">
@@ -65,7 +65,7 @@ class RegisterComponent extends Component {
                 <PanelHeader className="panel-header" data-testid="panel-header">
                   <h2>{t('register.step1Title')}</h2>
                 </PanelHeader>
-                <PanelBody className="panel-body">
+                <PanelBody data-testid="title"  className="panel-body">
                   <Fragment>
                     <a
                       href="https://solid.inrupt.com/how-it-works"
