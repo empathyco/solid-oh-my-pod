@@ -1,4 +1,7 @@
 import React, { Component, Fragment } from "react";
+import { ldflexService } from "@services";
+import { data } from "@solid/query-ldflex";
+import auth from "solid-auth-client";
 
 import { WithImage, ButtonWithImage } from "../../../../components/Utils";
 import {
@@ -13,61 +16,97 @@ import {
   NameSection,
   GoCard,
   ClearButton,
+  CardLink,
   SaveButtonm,
 } from "./profileContent.style";
 
 class ProfileContent extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      fn: "",
+      title: "",
+      role: "",
+      company: "",
+      emails: [],
+      phones: [],
+    };
   }
 
-  componentDidMount() {
-    const userDate = this.getData();
+  async componentDidMount() {
+    this.originalFields = await this.getData();
+
     //TODO take needed data
-    this.originalFields = { name: "Javi" };
     // Set updated to false
     this.originalFields.updated = false;
     this.setState(this.originalFields);
     console.log("original", this.originalFields);
   }
 
-  getData() {
-    //TODO get pod data
+  async getData() {
+    const data = await ldflexService.getProfileData();
+    data.title = data.fn;
+
+    console.log("data", data);
+
+    return data;
   }
 
   goCard = () => {
-    //TODO redirect to card
+    console.log("Se esta clicando");
   };
   getCardButton() {
     return (
-      <ButtonWithImage
-        icon="id-card"
-        label="Card"
-        onClick={this.goCard}
-      ></ButtonWithImage>
+      <CardLink href={this.state.url} style={{ textDecoration: "none" }}>
+        {" "}
+        <ButtonWithImage
+          icon="id-card"
+          label="Card"
+          onClick={this.goCard}
+        ></ButtonWithImage>
+      </CardLink>
     );
   }
-
+  /**
+   * Return the name in different lines
+   */
   getProfileName() {
-    const name = "Javier García Bermúdez";
+    const name = this.state.title;
     let splitted = name.split(" ");
 
     return (
       <ProfileName>
-        {splitted.map((word) => (
-          <p>{word}</p>
+        {splitted.map((word, index) => (
+          <p key={index}>{word}</p>
         ))}
       </ProfileName>
     );
   }
 
-  handleSave = (e) => {
+  handleSave = async (e) => {
     e.preventDefault();
     // TODO get values from updateValues
-    console.log("state", this.state);
+    await ldflexService.updateProfileData(this.state);
+    this.setState({ title: this.state.fn });
 
-    console.log("save");
+    alert("updated");
+  };
+
+  handlePhoneChange = (e) => {
+    const newValue = e.target.value;
+    const key = e.target.id.split("phone")[1];
+    let newState = this.state;
+    newState.phones[key] = newValue;
+    newState.updated = true;
+    this.setState(newState);
+  };
+  handleEmailChange = (e) => {
+    const newValue = e.target.value;
+    const key = e.target.id.split("email")[1];
+    let newState = this.state;
+    newState.emails[key] = newValue;
+    newState.updated = true;
+    this.setState(newState);
   };
 
   handleFieldChange = (e) => {
@@ -81,21 +120,20 @@ class ProfileContent extends Component {
   };
 
   getFields() {
-    const { name, role, company, email, phone } = this.state;
+    let { fn, role, company, emails, phones } = this.state;
+
     return (
       <Fragment>
         <Label>Name</Label>
         <InputText
           type="text"
-          name=""
-          id="name"
-          value={name}
+          id="fn"
+          value={fn}
           onChange={this.handleFieldChange}
         />
         <Label>Role</Label>
         <InputText
           type="text"
-          name=""
           id="role"
           value={role}
           onChange={this.handleFieldChange}
@@ -103,27 +141,33 @@ class ProfileContent extends Component {
         <Label>Company</Label>
         <InputText
           type="text"
-          name=""
           id="company"
           value={company}
           onChange={this.handleFieldChange}
         />
         <Label>Email address</Label>
-        <InputText
-          type="text"
-          name=""
-          id="email"
-          value={email}
-          onChange={this.handleFieldChange}
-        />
+
+        {emails.map((email, index) => (
+          <InputText
+            type="text"
+            key={index}
+            id={`email${index}`}
+            value={email}
+            onChange={this.handleEmailChange}
+          />
+        ))}
+
         <Label>Phone</Label>
-        <InputText
-          type="text"
-          name=""
-          id="phone"
-          value={phone}
-          onChange={this.handleFieldChange}
-        />
+        {phones.map((phone, index) => (
+          <InputText
+            type="text"
+            key={index}
+            id={`phone${index}`}
+            value={phone}
+            onChange={this.handlePhoneChange}
+          />
+        ))}
+
         <SaveButtonm
           type="button"
           disabled={!this.state.updated}

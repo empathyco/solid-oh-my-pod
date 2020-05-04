@@ -19,6 +19,11 @@ export const Label = styled.label`
   margin-bottom: 1em;
 `;
 
+export const CardLink = styled.a`
+  display: block;
+  margin-bottom: 50px;
+`;
+
 export const Content = styled.div`
   margin-top: 40px;
   margin-left: 8em;
