@@ -7,6 +7,10 @@ body,
   padding: 0;
 }
 
+:root{
+  --light-blue:#53b9c9;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -42,11 +46,12 @@ ul li {
 }
 footer a {
   font-family: "Montserrat", sans-serif;
+  font-weight: bold;
   color: #6cc1d1;
   text-decoration: underline;
 }
 
-footer li{
+footer li {
   height: 28px;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
@@ -57,7 +62,7 @@ footer li{
   letter-spacing: 0.18px;
   color: #405273;
 }
-input[type='text'] {
+input[type="text"] {
   box-sizing: border-box;
   border: 1px solid hsl(0, 0%, 80%);
   border-radius: 4px;
@@ -65,10 +70,19 @@ input[type='text'] {
   padding: 7px 10px;
 }
 
+textarea {
+  box-sizing: border-box;
+  border: 1px solid #dae0e6;
+  font-size: 0.8em;
+  padding: 0.5em 0;
+  text-indent: 0.75em;
+  border-radius: 4px;
+}
+
 .link,
 .link-button {
   color: #53b9c9;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 
   font-size: 12px;
   font-weight: 600;
@@ -87,7 +101,7 @@ input[type='text'] {
 }
 
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .form-group {
@@ -101,7 +115,7 @@ input[type='text'] {
 
 .form-group > label {
   color: #53b9c9;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 11px;
   font-weight: bold;
   letter-spacing: 0.75px;
@@ -131,40 +145,38 @@ form-group .select-role {
 .solid-provider-select .option {
   padding-left: 10px !important;
 }
-button{
-
+button {
   color: #354866;
-  border: 1px solid  transparent !important;
+  border: 1px solid transparent !important;
   border-radius: 0px !important;
   cursor: pointer;
-  font-size: .8em;
+  font-size: 0.8em;
   padding: 0.5em 1em;
   -webkit-transition: 0.25s all ease-in-out;
   transition: 0.25s all ease-in-out;
   outline: none;
   text-transform: uppercase;
   background-color: transparent !important;
-
 }
-.addButton{
-  border: 1px solid  transparent !important;
+.addButton {
+  border: 1px solid transparent !important;
   border-radius: 0px !important;
   background-color: transparent !important;
 }
 
 .addButton:hover {
-  background: rgba(145,194,250,0.8) !important;
+  background: rgba(145, 194, 250, 0.8) !important;
   color: #fbf8ff !important;
 }
 button:hover {
-  border: 1px solid  #DAE0E6 !important;
+  border: 1px solid #dae0e6 !important;
   color: #25354a !important;
 }
-button:active{
-  border: 1px solid  #DAE0E6 !important;
+button:active {
+  border: 1px solid #dae0e6 !important;
   background-color: #25354a !important;
   color: white !important;
 }
-.ebx-empathy-x__header{
+.ebx-empathy-x__header {
   margin-top: 5em !important;
 }

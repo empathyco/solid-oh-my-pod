@@ -13,6 +13,7 @@ import Toaster from "./ToasterNotification/toaster.component";
 import Select from "./Select";
 import ConfirmationDialog from "./ConfirmationDialog";
 import Labeled from "./Labeled";
+import ButtonWithImage from "./ButtonWithImage";
 
 export {
   ImageBackground,
@@ -30,4 +31,5 @@ export {
   Toaster,
   Select,
   Labeled,
+  ButtonWithImage,
 };

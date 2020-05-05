@@ -1,3 +1,4 @@
-import Profile from './profile.container';
+import Profile from "./profile.container";
 
-export default Profile;
+import { withTranslation } from "react-i18next";
+export default withTranslation()(Profile);

@@ -6,11 +6,8 @@ import { namedNode } from '@rdfjs/data-model';
 import { ImageProfile } from '@components';
 import { successToaster, errorToaster } from '@utils';
 
-type Props = {
-  webId: String
-};
 
-export const Image = ({ webId, defaultProfilePhoto }: Props) => {
+export const Image = ({ webId, defaultProfilePhoto }) => {
   const [image, setImage] = useState('');
 
   const latestUpdate = useLiveUpdate();
@@ -51,7 +48,7 @@ export const Image = ({ webId, defaultProfilePhoto }: Props) => {
    * will just update it, the idea is use image instead of hasPhoto
    * @params{String} uri photo url
    */
-  const updatePhoto = async (uri: String) => {
+  const updatePhoto = async (uri) => {
     try {
       const { user } = data;
       await user.vcard_hasPhoto.set(namedNode(uri));
