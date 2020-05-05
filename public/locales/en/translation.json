@@ -48,6 +48,7 @@
       "emptyWebId": "Valid WebID is required"
     }
   },
+ 
   "register": {
     "title": "Hi! Welcome to Solid.",
     "step1Title": "Select your Provider",

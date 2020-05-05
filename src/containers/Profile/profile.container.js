@@ -4,7 +4,7 @@ import { ShexFormBuilder } from "@inrupt/solid-react-components";
 import { successToaster, errorToaster } from "@utils";
 import Provider from "../../services/provider";
 import auth from "solid-auth-client";
-import "./style.css";
+
 import {
   Header,
   ProfileContainer,
@@ -18,7 +18,8 @@ import {
   RemovePodBtn,
   HeaderContainer,
 } from "./profile.style";
-import { Image, ProfileContent } from "./components";
+import ProfileContent from "./profileContent";
+import { ContainerHeader } from "../../components";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
@@ -94,9 +95,7 @@ export default class Profile extends React.Component {
   render() {
     const webId = this.props.webId;
 
-    const { t, i18n } = this.props;
-    // const errorCallback = this.errorCallback;
-    // const successCallback = this.sucessCallback;
+    const { t } = this.props;
 
     console.log("webId", webId);
     return (
@@ -104,83 +103,16 @@ export default class Profile extends React.Component {
         {webId && (
           <ProfileContainer>
             <main>
-              <Header>
-                <div className="floating-header-item">
-                  <Image
-                    {...{
-                      webId,
-                      defaultProfilePhoto,
-                    }}
-                  />
-                </div>
-                <Title className="floating-header-item">
-                  <h2>{t("profile.yourProfile")}</h2>
-                </Title>
-              </Header>
-              <ProfileContent>
-                  {/* 
+              <ContainerHeader
+                {...{
+                  webId,
+                  defaultProfilePhoto,
+                  title: t("profile.yourProfile"),
+                }}
+              ></ContainerHeader>
 
-                  <AutoSaveNotification className="banner-wrap--warning banner">
-                    <div className="banner-wrap__content">
-                      <i className="icon fa fa-exclamation-circle" />
-                      {t("profile.autosaveNotification")}
-                    </div>
-                  </AutoSaveNotification>
-
-                  <ShexForm>
-                    <WebId>
-                      <FontAwesomeIcon icon="id-card" />
-                      <a href={webId} target="_blank" rel="noopener noreferrer">
-                        {webId}
-                      </a>
-                    </WebId>
-
-                    <ShexFormBuilder
-                      {...{
-                        documentUri: webId,
-                        shexUri:
-                          "https://shexshapes.inrupt.net/public/userprofile.shex",
-                        theme: {
-                          form: "shexForm",
-                          shexPanel: "shexPanel",
-                          shexRoot: "shexRoot",
-                          deleteButton:
-                            "deleteButton ids-button-stroke ids-button-stroke--secondary",
-                          inputContainer: "inputContainer",
-                          addButtonStyle:
-                            "addButton ids-button-stroke ids-button-stroke--secondary",
-                        },
-                        languageTheme: {
-                          language: i18n.language.substring(0, 2),
-                          saveBtn: t("profile.saveBtn"),
-                          resetBtn: t("profile.resetBtn"),
-                          addButtonText: t("profile.addBtn"),
-                          deleteButton: t("profile.deleteBtn"),
-                          dropdownDefaultText: t("profile.dropdownDefaultText"),
-                          warningResolution: t("profile.warningResolution"),
-                          formValidate: {
-                            minMxNumberInclusive: t(
-                              "profile.minMxNumberInclusive"
-                            ),
-                            minMxNumberExclusive: t(
-                              "profile.minMxNumberExclusive"
-                            ),
-                            minMaxString: t("profile.minMaxString"),
-                            default: t("profile.defaultError"),
-                          },
-                        },
-                        successCallback: this.sucessCallback,
-                        errorCallback: this.errorCallback,
-                        autoSaveMode: true,
-                      }}
-                    />
-                  </ShexForm> */}
-              </ProfileContent>
-              <ProfileFooter>
-              
-
-                {this.getDeletePodButton()}
-              </ProfileFooter>
+              <ProfileContent></ProfileContent>
+              <ProfileFooter>{this.getDeletePodButton()}</ProfileFooter>
             </main>
           </ProfileContainer>
         )}

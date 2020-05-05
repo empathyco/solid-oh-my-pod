@@ -2,8 +2,8 @@ import React, { Component, Fragment } from "react";
 import { ldflexService } from "@services";
 import { data } from "@solid/query-ldflex";
 import auth from "solid-auth-client";
-
-import { WithImage, ButtonWithImage } from "../../../../components/Utils";
+import { UserInformation } from "../../../components";
+import { WithImage, ButtonWithImage } from "../../../components/Utils";
 import {
   Content,
   InputText,
@@ -13,7 +13,6 @@ import {
   TextArea,
   NotesButtons,
   TextAreaSection,
-  NameSection,
   GoCard,
   ClearButton,
   CardLink,
@@ -36,8 +35,6 @@ class ProfileContent extends Component {
 
   async componentDidMount() {
     this.originalFields = await this.getData();
-
-    //TODO take needed data
     // Set updated to false
     this.originalFields.updated = false;
     this.setState(this.originalFields);
@@ -47,9 +44,6 @@ class ProfileContent extends Component {
   async getData() {
     const data = await ldflexService.getProfileData();
     data.title = data.fn;
-
-    console.log("data", data);
-
     return data;
   }
 
@@ -210,12 +204,10 @@ class ProfileContent extends Component {
     );
   }
   render() {
+    const { title } = this.state; // Name of the person
     return (
       <Content>
-        <NameSection>
-          {this.getProfileName()}
-          {this.getCardButton()}
-        </NameSection>
+        <UserInformation {...{ title }}>{this.getCardButton()}</UserInformation>
         <FormSection>{this.getFields()}</FormSection>
         <TextAreaSection>{this.getNotesSection()}</TextAreaSection>
       </Content>

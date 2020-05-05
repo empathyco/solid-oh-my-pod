@@ -147,7 +147,7 @@
     "select": "Seleccionar",
     "name": "Nombre",
     "role": "Rol",
-    "company": "Compañia",
+    "company": "Compañía",
     "email": "Dirección de email",
     "phone": "Telélefono",
     "save": "Guardar cambios",
@@ -155,6 +155,9 @@
     "updateNote": "Guardar nota",
     "clear": "Borrar nota",
     "card": "POD"
+  },
+  "friends": {
+    "yourFriends": "Tus AMIGOS"
   },
   "game": {
     "title": "Tres en Línea",
