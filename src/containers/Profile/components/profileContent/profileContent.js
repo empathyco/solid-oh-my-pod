@@ -30,6 +30,7 @@ class ProfileContent extends Component {
       company: "",
       emails: [],
       phones: [],
+      note: "",
     };
   }
 
@@ -52,17 +53,14 @@ class ProfileContent extends Component {
     return data;
   }
 
-  goCard = () => {
-    console.log("Se esta clicando");
-  };
   getCardButton() {
+    const { t } = this.props;
     return (
-      <CardLink href={this.state.url} style={{ textDecoration: "none" }}>
+      <CardLink href={`${this.state.url}me`} style={{ textDecoration: "none" }}>
         {" "}
         <ButtonWithImage
           icon="id-card"
-          label="Card"
-          onClick={this.goCard}
+          label={t("profile.card")}
         ></ButtonWithImage>
       </CardLink>
     );
@@ -85,7 +83,6 @@ class ProfileContent extends Component {
 
   handleSave = async (e) => {
     e.preventDefault();
-    // TODO get values from updateValues
     await ldflexService.updateProfileData(this.state);
     this.setState({ title: this.state.fn });
 
@@ -108,6 +105,24 @@ class ProfileContent extends Component {
     newState.updated = true;
     this.setState(newState);
   };
+  handleNoteChange = (e) => {
+    const value = e.target.value;
+    let newState = {};
+    newState["note"] = value;
+    this.setState(newState);
+  };
+  updateNote = async (e) => {
+    const value = this.state.note;
+    console.log(value);
+    await ldflexService.saveNote(value);
+    alert("Saved");
+  };
+  clearNote = async (e) => {
+    const value = "";
+    this.setState({ note: value });
+    await ldflexService.saveNote(value);
+    alert("Saved");
+  };
 
   handleFieldChange = (e) => {
     const fieldName = e.target.id;
@@ -121,31 +136,32 @@ class ProfileContent extends Component {
 
   getFields() {
     let { fn, role, company, emails, phones } = this.state;
+    const { t } = this.props;
 
     return (
       <Fragment>
-        <Label>Name</Label>
+        <Label>{t("profile.name")}</Label>
         <InputText
           type="text"
           id="fn"
           value={fn}
           onChange={this.handleFieldChange}
         />
-        <Label>Role</Label>
+        <Label>{t("profile.role")}</Label>
         <InputText
           type="text"
           id="role"
           value={role}
           onChange={this.handleFieldChange}
         />
-        <Label>Company</Label>
+        <Label>{t("profile.company")}</Label>
         <InputText
           type="text"
           id="company"
           value={company}
           onChange={this.handleFieldChange}
         />
-        <Label>Email address</Label>
+        <Label>{t("profile.email")}</Label>
 
         {emails.map((email, index) => (
           <InputText
@@ -157,7 +173,7 @@ class ProfileContent extends Component {
           />
         ))}
 
-        <Label>Phone</Label>
+        <Label>{t("profile.phone")}</Label>
         {phones.map((phone, index) => (
           <InputText
             type="text"
@@ -173,29 +189,35 @@ class ProfileContent extends Component {
           disabled={!this.state.updated}
           onClick={this.handleSave}
         >
-          Save
+          {t("profile.save")}
         </SaveButtonm>
       </Fragment>
     );
   }
+
+  getNotesSection() {
+    const { note } = this.state;
+    const { t } = this.props;
+    return (
+      <Fragment>
+        <Label>{t("profile.notes")}</Label>
+        <TextArea value={note} onChange={this.handleNoteChange}></TextArea>
+        <NotesButtons>
+          <button onClick={this.updateNote}>{t("profile.updateNote")}</button>
+          <button onClick={this.clearNote}>{t("profile.clear")}</button>
+        </NotesButtons>
+      </Fragment>
+    );
+  }
   render() {
-    const { notes } = this.state;
     return (
       <Content>
         <NameSection>
           {this.getProfileName()}
-
           {this.getCardButton()}
         </NameSection>
         <FormSection>{this.getFields()}</FormSection>
-        <TextAreaSection>
-          <Label>General notes</Label>
-          <TextArea></TextArea>
-          <NotesButtons>
-            <button>Update note</button>
-            <button>Clear</button>
-          </NotesButtons>
-        </TextAreaSection>
+        <TextAreaSection>{this.getNotesSection()}</TextAreaSection>
       </Content>
     );
   }

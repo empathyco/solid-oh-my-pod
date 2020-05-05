@@ -1,3 +1,4 @@
 import ProfileContent from "./profileContent";
 
-export default ProfileContent;
+import { withTranslation } from "react-i18next";
+export default withTranslation()(ProfileContent);

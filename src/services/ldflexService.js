@@ -1,8 +1,8 @@
 import data from "@solid/query-ldflex";
 import auth from "solid-auth-client";
 import Cache from "./Cache";
-import { namedNode } from "@rdfjs/data-model";
-
+import { namedNode, mail } from "@rdfjs/data-model";
+import context from "@solid/context";
 const cache = new Cache();
 
 const getSession = async () => {
@@ -66,31 +66,44 @@ export const getProfileData = async () => {
   }
   userData.company = `${await me["vcard:organization-name"]}`;
   userData.role = `${await me["vcard:role"]}`;
+  userData.note = `${await me["vcard:note"]}`;
+  
   return userData;
 };
 
 export const updateProfileData = async (userData) => {
   const webId = (await getSession()).webId;
   let me = await data[webId];
-  await me.vcard_fn.set(userData.fn);
+  if (userData.fn) {
+    await me.vcard_fn.set(userData.fn);
+  }
   let emailIndex = 0;
-  for await (const email of me["vcard:hasEmail"]) {
-    console.log("guardar mail " + emailIndex);
-    let mail = data[email];
-    await mail["vcard:value"].set(namedNode(userData.emails[emailIndex]));
+
+  for await (const emailId of me["vcard:hasEmail"]) {
+    await data[`${emailId}`].vcard$value.set(
+      namedNode(`mailto:${userData.emails[emailIndex]}`)
+    );
     emailIndex++;
   }
-  // let phoneIndex = 0;
-  // for await (const phone of me["vcard:hasTelephone"]) {
-  //   console.log("guardar phone " + phoneIndex);
-  //   let pho = data[phone];
-  //   await pho["vcard:value"].set(userData.phones[phoneIndex]);
-  //   phoneIndex++;
-  // }
-  console.log("guardar org");
-  await me["vcard:organization-name"].set(userData.organization);
-  console.log("guardar role");
-  await me["vcard:role"].set(userData.role);
+
+  let phoneIndex = 0;
+  for await (const phoneId of me["vcard:hasTelephone"]) {
+    await data[`${phoneId}`].vcard$value.set(
+      namedNode(`tel:${userData.phones[phoneIndex]}`)
+    );
+    phoneIndex++;
+  }
+
+  if (userData.company)
+    await me["vcard:organization-name"].set(userData.company);
+
+  if (userData.role) await me["vcard:role"].set(userData.role);
+};
+
+export const saveNote = async (noteValue) => {
+  const webId = (await getSession()).webId;
+  let me = await data[webId];
+  await me["vcard:note"].set(noteValue);
 };
 
 export const getFriendData = async (webId) => {

@@ -144,7 +144,17 @@
     "minMaxString": "Error: Mínimo y máximo debería ser ",
     "defaultError": "Error: Formato incorrecto",
     "deletePodMessage": "Pulse el botón para ser dirigido a las instrucciones para eliminar el POD",
-    "select": "Seleccionar"
+    "select": "Seleccionar",
+    "name": "Nombre",
+    "role": "Rol",
+    "company": "Compañia",
+    "email": "Dirección de email",
+    "phone": "Telélefono",
+    "save": "Guardar cambios",
+    "notes": "Notas",
+    "updateNote": "Guardar nota",
+    "clear": "Borrar nota",
+    "card": "POD"
   },
   "game": {
     "title": "Tres en Línea",

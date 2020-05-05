@@ -9,7 +9,7 @@ class ButtonWithImage extends Component {
   }
   render() {
     return (
-      <Button onClick={this.props.onClick()}>
+      <Button onClick={this.props.onClick ? this.props.onClick() : ""}>
         {this.props.useCustomIcon ? (
           <img src={this.props.icon} alt={this.props.label.toLowerCase()} />
         ) : (
