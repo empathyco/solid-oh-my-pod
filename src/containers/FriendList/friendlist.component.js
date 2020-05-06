@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { ldflexService, Provider } from "@services";
 import {
   FriendList,
@@ -7,9 +7,13 @@ import {
   FriendListWrapper,
   HeaderFriend,
   FriendCardTop,
+  FriendCountDisplay,
+  FormattedFiendNameWrapper,
+  Content,
 } from "./friendlist.style";
 import { CenterContainer } from "@util-components";
 import { ContainerHeader } from "../../components";
+import { UserInformation } from "../../components";
 
 //import {   } from "/i18n";
 import { useTranslation } from "react-i18next";
@@ -20,6 +24,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { ImageWrapper } from "../Welcome/welcome.style";
+import ButtonWithImage from "../../components/Utils/ButtonWithImage/buttonWithImage";
+import { findByTestId } from "react-testing-library";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 export default class FriendListComponent extends React.Component {
@@ -49,7 +55,6 @@ export default class FriendListComponent extends React.Component {
   }
   async handleSubmitProvider(event) {
     let t = useTranslation();
-
     alert(t("friendlist.adding") + this.state.platformValue);
     event.preventDefault();
   }
@@ -138,21 +143,16 @@ export default class FriendListComponent extends React.Component {
   }
 
   async componentDidMount() {
-    const frs = await this.getFriends();
+    const friends = await this.getFriends();
     const webId = await ldflexService.getWebId();
-    this.setState({ friends: frs, webId: webId });
-  }
-  async getprofilephoto() {
-    const pic = await ldflexService.getProfileImage();
-
-    this.state.pimage = pic;
+    const accountName = await ldflexService.getProfileName();
+    console.log("ACCOUNT NAME", accountName);
+    this.setState({ friends: friends, webId: webId, title: accountName });
   }
 
-  /* jshint ignore:start */
-  render() {
+  getAddFriendDialog() {
     const { t } = this.props;
-
-    const addFriendDialog = (
+    return (
       <Dialog
         open={this.state.open}
         onClose={this.handleClose}
@@ -191,13 +191,11 @@ export default class FriendListComponent extends React.Component {
         </DialogActions>
       </Dialog>
     );
+  }
 
-    this.getprofilephoto();
-
-    const { webId } = this.state;
-
-    const profileCard = (
-    
+  getProfileCard(webId) {
+    const { t } = this.props;
+    return (
       <ContainerHeader
         {...{
           webId,
@@ -206,52 +204,102 @@ export default class FriendListComponent extends React.Component {
         }}
       ></ContainerHeader>
     );
+  }
 
-    const friendsList = (
+  getFormattedFriendName(name) {
+    const { t } = this.props;
+    name = `${name || ""}`;
+    if (name) {
+      return (
+        <Fragment>
+          <h2>{name.split(" ")[0] + " "}</h2>
+          <h3>
+            {name
+              .split(" ")
+              .slice(1)
+              .join(" ")}
+          </h3>
+        </Fragment>
+      );
+    }
+  return <h2>{t("friendlist.unknownName")}</h2>;
+  }
+
+  getFriendsList() {
+    const { t } = this.props;
+
+    return (
       <FriendList class="container ">
-        <div class="friends">
-          {this.state.friends.map((friend) => {
-            return (
-              <Friend>
-                <img src={friend.image} alt="friend" />
-                <FriendInfo>
-                  <a href={friend.url}>
-                    <h2>{friend.fn}</h2>
-                  </a>
-                  <a href={friend.url}>
-                    <h3>{friend.url.split("//")[1]}</h3>
-                  </a>
-                  <button
-                    onClick={async () => await this.deletefriend(friend.url, t)}
-                  >
-                    {t("friendlist.deletefriend")}
-                  </button>
-                </FriendInfo>
-              </Friend>
-            );
-          })}
-        </div>
-        {addFriendDialog}
+        {this.state.friends.map((friend) => {
+          return (
+            <Friend>
+              <img src={friend.image} alt="friend" />
+              <FriendInfo>
+                <a href={friend.url}>
+                  <FormattedFiendNameWrapper>
+                    {this.getFormattedFriendName(friend.fn)}
+                  </FormattedFiendNameWrapper>
+                </a>
+                <p>
+                  {`${friend.company || ""}${
+                    friend.company && friend.role ? " · " : ""
+                  }${friend.role || ""}`}
+                </p>
+
+                <button
+                  onClick={async () => await this.deletefriend(friend.url, t)}
+                >
+                  {t("friendlist.deletefriend")}
+                </button>
+              </FriendInfo>
+            </Friend>
+          );
+        })}
+
+        {this.getAddFriendDialog()}
       </FriendList>
     );
+  }
+
+  getFriendCountDisplay() {
+    const { t } = this.props;
+    return (
+      <FriendCountDisplay>
+        <h2>{t("friendlist.friends")}</h2>
+        <p>{this.state.friends.length}</p>
+      </FriendCountDisplay>
+    );
+  }
+  getUserInformation() {
+    const { title } = this.state;
+    const handleOpen = this.handleOpen;
+    return (
+      <UserInformation {...{ title }}>
+        {this.getFriendCountDisplay()}
+        <ButtonWithImage
+          {...{
+            onClick: handleOpen,
+            icon: "/img/icon/icon-add.svg",
+            label: "ADD friend",
+            useCustomIcon: true,
+          }}
+        ></ButtonWithImage>
+      </UserInformation>
+    );
+  }
+
+  render() {
+    const { webId } = this.state;
     return (
       <FriendListWrapper>
         <div>
-          {profileCard}
-
-          <CenterContainer>
-            {friendsList}
-            <div className="iconaddfriend">
-              <img
-                src="/img/icon/icon-add.svg"
-                alt="add a friend"
-                onClick={this.handleOpen}
-              ></img>
-            </div>
-          </CenterContainer>
+          {this.getProfileCard(webId)}
+          <Content>
+            {this.getUserInformation()}
+            {this.getFriendsList()}
+          </Content>
         </div>
       </FriendListWrapper>
     );
   }
-  /* jshint ignore:end */
 }

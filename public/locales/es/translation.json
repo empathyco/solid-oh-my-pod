@@ -26,8 +26,10 @@
     "adding": "Agregar Amigo ",
     "deletefriend": "Eliminar amigo ",
     "insertid": "Insertar el ID del amigo",
-    "close": "Cerrar,",
-    "deleteq": "¿Seguro que quieres eliminar de tus amigos a  "
+    "close": "Cerrar",
+    "deleteq": "¿Seguro que quieres eliminar de tus amigos a  ",
+    "unknownName": "Nombre desconocido",
+    "friends": "Amigos"
   },
   "login": {
     "title": "Hola! Bienvenido a Solid.",

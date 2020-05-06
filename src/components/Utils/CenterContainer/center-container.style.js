@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CenterContainerWrapper = styled.section`
   display: flex;
@@ -6,8 +6,8 @@ export const CenterContainerWrapper = styled.section`
   justify-content: center;
   align-items: center;
   text-align: center;
-  align-self:center;
-  margin: 10%;
+  align-self: center;
+
   h1 {
     padding: 0;
     text-align: center;

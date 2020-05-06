@@ -10,6 +10,11 @@ const getSession = async () => {
   return session;
 };
 
+export const getProfileName = async () => {
+  const webId = (await getSession()).webId;
+  let me = data[webId];
+  return `${await me.vcard_fn}`; // Fullname
+};
 export const getWebId = async () => {
   let session = await getSession();
   let webId = session.webId;
@@ -64,10 +69,10 @@ export const getProfileData = async () => {
       userData.phones.push(value.split(":")[1]);
     }
   }
-  userData.company = `${await me["vcard:organization-name"]}`;
-  userData.role = `${await me["vcard:role"]}`;
-  userData.note = `${await me["vcard:note"]}`;
-  
+  userData.company = await me["vcard:organization-name"];
+  userData.role = await me["vcard:role"];
+  userData.note = await me["vcard:note"];
+
   return userData;
 };
 
@@ -109,7 +114,7 @@ export const saveNote = async (noteValue) => {
 export const getFriendData = async (webId) => {
   let friendData = {};
   let friend = data[webId];
-  friendData.fn = `${await friend.vcard_fn}`;
+  friendData.fn = await friend.vcard_fn;
   friendData.url = `${await friend["solid:account"]}`.concat("profile/card#");
   friendData.image = `${await friend["vcard:hasPhoto"]}`;
   for await (const email of friend["vcard:hasEmail"]) {
@@ -130,8 +135,8 @@ export const getFriendData = async (webId) => {
       break;
     }
   }
-  friendData.company = `${await friend["vcard:organization-name"]}`;
-  friendData.role = `${await friend["vcard:role"]}`;
+  friendData.company = await friend["vcard:organization-name"];
+  friendData.role = await friend["vcard:role"];
   return friendData;
 };
 

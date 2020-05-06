@@ -30,9 +30,13 @@ export const Header = styled.div`
   flex-wrap: wrap;
   border-radius: 4px;
   /* padding: 1em 0; */
-  padding-left: 8em !important;
   padding: 0;
+  padding-left: 11em !important;
   top: -20px;
+  @media (max-width: 768px) {
+    padding-left: 0px !important;
+    justify-content: center;
+  }
 
   .edit-button {
     background: rgba(255, 255, 255, 0.1);
