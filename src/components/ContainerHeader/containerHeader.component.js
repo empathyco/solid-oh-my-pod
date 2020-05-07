@@ -15,7 +15,7 @@ class ContainerHeader extends Component {
     return (
       <Header>
         <div className="floating-header-item">
-          <Image
+          <Image 
             {...{
               webId,
               defaultProfilePhoto,

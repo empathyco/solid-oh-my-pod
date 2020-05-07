@@ -1,9 +1,10 @@
-import React from 'react';
+import React from "react";
+import { Item } from "./toolbar.style";
 
 type Props = {
   toolbar: Array<Object>,
   open: Boolean,
-  customClass: String
+  customClass: String,
 };
 
 /**
@@ -13,9 +14,13 @@ type Props = {
  */
 const areEqual = (prevProps, nextProps) => {
   const prevInbox =
-    prevProps && prevProps.toolbar.length > 1 && prevProps.toolbar[1].component().props.inbox;
+    prevProps &&
+    prevProps.toolbar.length > 1 &&
+    prevProps.toolbar[1].component().props.inbox;
   const nextInbox =
-    nextProps && nextProps.toolbar.length > 1 && nextProps.toolbar[1].component().props.inbox;
+    nextProps &&
+    nextProps.toolbar.length > 1 &&
+    nextProps.toolbar[1].component().props.inbox;
 
   if (prevInbox && prevInbox.length !== nextInbox && nextInbox.length) {
     return false;
@@ -35,9 +40,9 @@ const Toolbar = React.memo(
         {toolbar &&
           toolbar.map(({ component: Component, props }, i) => (
             // eslint-disable-next-line react/no-array-index-key
-            <li key={i} data-testid="item">
+            <Item key={i} data-testid="item">
               <Component {...props} open={open} customClass={customClass} />
-            </li>
+            </Item>
           ))}
       </ul>
     </nav>

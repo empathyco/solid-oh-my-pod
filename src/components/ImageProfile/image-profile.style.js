@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ImageProfileWrapper = styled.div`
   width: 128px;
@@ -6,7 +6,8 @@ export const ImageProfileWrapper = styled.div`
   padding-bottom: 100%;
   background-size: cover;
   overflow: hidden;
-  border-radius: 360px;
+  border-radius: 360px !important;
+  border: solid 1px #f4f4f4;
   img {
     border-radius: 360px;
     border: 3px solid white;
@@ -28,6 +29,7 @@ export const ImageProfileWrapper = styled.div`
 `;
 
 export const ButtonStyled = styled.button`
+  padding: 0 1em !important;
   border: none;
   background: rgba(23, 20, 34, 0.73);
   border-radius: 360px;
@@ -43,6 +45,7 @@ export const ButtonStyled = styled.button`
   &:hover {
     border: 3px solid white;
     color: white;
+    transform: none !important;
   }
 `;
 

@@ -141,22 +141,8 @@ class ProfileContent extends Component {
           value={fn}
           onChange={this.handleFieldChange}
         />
-        <Label>{t("profile.role")}</Label>
-        <InputText
-          type="text"
-          id="role"
-          value={role}
-          onChange={this.handleFieldChange}
-        />
-        <Label>{t("profile.company")}</Label>
-        <InputText
-          type="text"
-          id="company"
-          value={company}
-          onChange={this.handleFieldChange}
-        />
-        <Label>{t("profile.email")}</Label>
 
+        <Label>{t("profile.email")}</Label>
         {emails.map((email, index) => (
           <InputText
             type="text"
@@ -177,6 +163,20 @@ class ProfileContent extends Component {
             onChange={this.handlePhoneChange}
           />
         ))}
+        <Label>{t("profile.role")}</Label>
+        <InputText
+          type="text"
+          id="role"
+          value={role}
+          onChange={this.handleFieldChange}
+        />
+        <Label>{t("profile.company")}</Label>
+        <InputText
+          type="text"
+          id="company"
+          value={company}
+          onChange={this.handleFieldChange}
+        />
 
         <SaveButtonm
           type="button"
@@ -198,7 +198,9 @@ class ProfileContent extends Component {
         <TextArea value={note} onChange={this.handleNoteChange}></TextArea>
         <NotesButtons>
           <button onClick={this.updateNote}>{t("profile.updateNote")}</button>
-          <button onClick={this.clearNote}>{t("profile.clear")}</button>
+          <button onClick={this.clearNote} style={{ paddingRight: "0px" }}>
+            {t("profile.clear")}
+          </button>
         </NotesButtons>
       </Fragment>
     );

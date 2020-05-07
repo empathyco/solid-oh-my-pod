@@ -76,7 +76,7 @@ textarea {
   border: 1px solid #dae0e6;
   border-radius: 0 !important;
   font-size: 0.8em;
-  padding: 0.5em 0;
+  padding: 1em;
   text-indent: 0.75em;
 }
 
@@ -148,7 +148,8 @@ form-group .select-role {
 }
 button {
   color: #354866;
-  border: 1px solid transparent !important;
+  border: none !important;
+
   border-radius: 0px !important;
   cursor: pointer;
   font-size: 0.8em;
@@ -169,14 +170,17 @@ button {
   background: rgba(145, 194, 250, 0.8) !important;
   color: #fbf8ff !important;
 }
-button:hover {
-  border: 1px solid #dae0e6 !important;
+button:hover:enabled {
+  border: none !important;
+  /* font-weight: bolder; */
+  transform: scale(1.1);
   color: #25354a !important;
 }
-button:active {
-  border: 1px solid #dae0e6 !important;
-  background-color: #25354a !important;
-  color: white !important;
+button:active:enabled {
+  /* border: 1px solid #dae0e6 !important; */
+  /* background-color: #25354a !important; */
+  transform: scale(0.95);
+  /* color: white !important; */
 }
 .ebx-empathy-x__header {
   margin-top: 5em !important;

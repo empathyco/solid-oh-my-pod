@@ -51,5 +51,6 @@ export const Header = styled.div`
   .floating-header-item {
     transform: translateY(40px);
     z-index: 100;
+    
   }
 `;
