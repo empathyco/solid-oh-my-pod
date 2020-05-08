@@ -200,7 +200,7 @@ export default class FriendListComponent extends React.Component {
         {...{
           webId,
           defaultProfilePhoto,
-          title: t("friends.yourFriends"),
+          title: t("friendlist.yourFriends"),
         }}
       ></ContainerHeader>
     );
@@ -222,18 +222,18 @@ export default class FriendListComponent extends React.Component {
         </Fragment>
       );
     }
-  return <h2>{t("friendlist.unknownName")}</h2>;
+    return <h2>{t("friendlist.unknownName")}</h2>;
   }
 
   getFriendsList() {
     const { t } = this.props;
 
     return (
-      <FriendList class="container ">
+      <FriendList>
         {this.state.friends.map((friend) => {
           return (
-            <Friend>
-              <img src={friend.image} alt="friend" />
+            <Friend key={friend.url}>
+              <img src={friend.image || this.defaultImage} alt="friend" />
               <FriendInfo>
                 <a href={friend.url}>
                   <FormattedFiendNameWrapper>
@@ -272,6 +272,7 @@ export default class FriendListComponent extends React.Component {
   }
   getUserInformation() {
     const { title } = this.state;
+    const { t } = this.props;
     const handleOpen = this.handleOpen;
     return (
       <UserInformation {...{ title }}>
@@ -280,7 +281,7 @@ export default class FriendListComponent extends React.Component {
           {...{
             onClick: handleOpen,
             icon: "/img/icon/icon-add.svg",
-            label: "ADD friend",
+            label: t("friendlist.addFriend"),
             useCustomIcon: true,
           }}
         ></ButtonWithImage>

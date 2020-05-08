@@ -19,12 +19,16 @@
     "close": "Close"
   },
   "friendlist": {
-    "mplatform":"The platform chosen is: ",
+    "yourFriends": "Your FRIENDS",
+    "friends": "Friends",
+    "addFriend": "Add friend",
+    "unknownName": "Unknown name",
+    "mplatform": "The platform chosen is: ",
     "selectp": "Select provider",
     "nameerror": "Name should not contain spaces",
     "urierror": "URI not valid",
     "adding": "Add Friend ",
-    "deletefriend": "Deleting friend",
+    "deletefriend": "Delete friend",
     "insertid": "Enter friend ID",
     "close": "Close",
     "deleteq": "Are you sure you wanna delete friend "
@@ -48,7 +52,6 @@
       "emptyWebId": "Valid WebID is required"
     }
   },
- 
   "register": {
     "title": "Hi! Welcome to Solid.",
     "step1Title": "Select your Provider",
@@ -112,6 +115,18 @@
     }
   },
   "profile": {
+    "card": "POD",
+    "yourProfile": "Your PROFILE",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "role": "Role",
+    "company": "Company",
+    "save": "Save changes",
+    "deletePodMessage": "Click the button to delete your POD",
+    "notes": "More information",
+    "updateNote": "Update note",
+    "clear": "Clear note",
     "successCallback": "Pod updated successfully",
     "successTitle": "Success",
     "errorCallback": "Error submitting form",
@@ -140,9 +155,8 @@
     "minMxNumberExclusive": "Error: Min and max value should be ",
     "minMaxString": "Error: Min and max should be ",
     "defaultError": "Error: Field value has wrong format",
-    "deletePod": "Select a provider. You will be redirected to instructions to how to delete your profile ",
+    "deletePod": "Delete this POD",
     "select": "Select"
-
   },
   "game": {
     "title": "Tic Tac Toe",

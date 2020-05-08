@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Fragment } from "react";
 import Image from "./Image";
 
-import { ProfileName, Section } from "./userInformation.style";
+import { ProfileName, Section, ImageContainer } from "./userInformation.style";
 import { ldflexService } from "../../services";
 class UserInformation extends Component {
   /**
@@ -47,11 +47,13 @@ class UserInformation extends Component {
     const { webId } = this.state;
     return (
       <Section>
-        <Image
-          {...{
-            webId,
-          }}
-        />
+        <ImageContainer>
+          <Image
+            {...{
+              webId,
+            }}
+          />
+        </ImageContainer>
 
         {this.getProfileName()}
         {this.state.children}

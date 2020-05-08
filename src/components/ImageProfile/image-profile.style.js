@@ -1,20 +1,19 @@
 import styled from "styled-components";
 
 export const ImageProfileWrapper = styled.div`
-  width: 128px;
-  height: 128px;
+  margin: auto;
   position: relative;
-  padding-bottom: 100%;
+  height: 128px;
+  width: 128px;
   background-size: cover;
   overflow: hidden;
   border-radius: 360px !important;
-  border: solid 1px #f4f4f4;
+  border: solid 3px #f4f4f4;
   img {
-    border-radius: 360px;
-    border: 3px solid white;
+    width: 100%;
+    height: 100%;
+    border-radius: 8000px;
     box-sizing: border-box;
-    width: 128px;
-    height: 128px;
   }
   &:hover {
     button {

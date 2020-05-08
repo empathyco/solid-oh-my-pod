@@ -87,13 +87,20 @@ export const FriendList = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  align-content: flex-start;
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
 `;
 export const Friend = styled.div`
   border: none;
   display: grid;
   grid-template-columns: 86px auto;
   width: 500px;
+  @media (max-width: 768px) {
+    width: 400px;
+  }
   height: 70px;
   text-align: left;
   align-items: center;

@@ -40,7 +40,6 @@ export const Image = ({ webId }) => {
 
   useEffect(() => {
     fetchPhoto();
-    console.log("WEBID RECEIVED", webId);
   }, [webId, latestUpdate]);
 
   /**

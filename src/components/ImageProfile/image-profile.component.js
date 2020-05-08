@@ -36,13 +36,17 @@ export const ImageProfile = (props) => {
         onDragLeave,
         onDragEnter,
         onDrop,
-        style: photo && photo !== "" && { backgroundImage: `url('${photo}')` },
+        style: photo &&
+          photo !== "" && {
+            backgroundImage: `url('${photo}')`,
+          },
       }}
     >
       <ButtonStyled onClick={onClickFile} className="button-upload">
         <FontAwesomeIcon icon="upload" className="upload-icon" />
         {text}
       </ButtonStyled>
+
       {inProgress && (
         <ImageProfileLoader className="image-profile-loader">
           <FontAwesomeIcon icon="spinner" spin size="2x" />
