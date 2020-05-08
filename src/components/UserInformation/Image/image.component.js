@@ -6,7 +6,8 @@ import { namedNode } from "@rdfjs/data-model";
 import { ImageProfile } from "@components";
 import { successToaster, errorToaster } from "@utils";
 
-export const Image = ({ webId, defaultProfilePhoto }) => {
+const defaultProfilePhoto = "/img/icon/empty-profile.svg";
+export const Image = ({ webId }) => {
   const [image, setImage] = useState("");
 
   const latestUpdate = useLiveUpdate();
@@ -39,6 +40,7 @@ export const Image = ({ webId, defaultProfilePhoto }) => {
 
   useEffect(() => {
     fetchPhoto();
+    console.log("WEBID RECEIVED", webId);
   }, [webId, latestUpdate]);
 
   /**

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const ImageProfileWrapper = styled.div`
   width: 128px;
+  height: 128px;
   position: relative;
   padding-bottom: 100%;
   background-size: cover;
@@ -12,7 +13,7 @@ export const ImageProfileWrapper = styled.div`
     border-radius: 360px;
     border: 3px solid white;
     box-sizing: border-box;
-    width: 100%;
+    width: 128px;
     height: 128px;
   }
   &:hover {
