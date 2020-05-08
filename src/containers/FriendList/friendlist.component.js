@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { ldflexService, Provider } from "@services";
 import {
   FriendList,
@@ -6,33 +6,36 @@ import {
   FriendInfo,
   FriendListWrapper,
   HeaderFriend,
-  FriendCardTop
+  FriendCardTop,
+  FriendCountDisplay,
+  FormattedFiendNameWrapper,
+  Content,
 } from "./friendlist.style";
-import {  CenterContainer } from '@util-components';
+import { CenterContainer } from "@util-components";
+import { ContainerHeader } from "../../components";
+import { UserInformation } from "../../components";
 
 //import {   } from "/i18n";
-import {  useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { ImageWrapper  } from "../Welcome/welcome.style";
+import { ImageWrapper } from "../Welcome/welcome.style";
+import ButtonWithImage from "../../components/Utils/ButtonWithImage/buttonWithImage";
+import { findByTestId } from "react-testing-library";
 
-
-
+const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 export default class FriendListComponent extends React.Component {
-
   constructor() {
-
-    
     super();
-    this.defaultImage='/img/icon/empty-profile.svg'
+    this.defaultImage = "/img/icon/empty-profile.svg";
 
     this.state = {
       friends: [],
-      user: "",
+      webId: "",
       friendid: "",
       platformValue: Provider.getIdentityProviders()[0].card,
       open: false,
@@ -45,21 +48,19 @@ export default class FriendListComponent extends React.Component {
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.addFriend = this.addFriend.bind(this);
-
   }
-  async handleChangeSelector(event) {
 
+  async handleChangeSelector(event) {
     this.setState({ platformValue: event.target.value });
   }
   async handleSubmitProvider(event) {
     let t = useTranslation();
-
-    alert(  t('friendlist.adding')+ this.state.platformValue);
+    alert(t("friendlist.adding") + this.state.platformValue);
     event.preventDefault();
   }
 
   async handleOpen() {
-     this.setState({ open: true });
+    this.setState({ open: true });
   }
 
   async handleClose() {
@@ -69,17 +70,14 @@ export default class FriendListComponent extends React.Component {
   async mySubmitHandler(event) {
     event.target.reset();
     event.preventDefault();
-
-
   }
-  async validateURI(url)
-  {
-     let num;
-    await fetch(url).then(res=>{console.log(res.status)
-    num =  res.status});
+  async validateURI(url) {
+    let num;
+    await fetch(url).then((res) => {
+      console.log(res.status);
+      num = res.status;
+    });
     return num;
-
-
   }
 
   async addFriend(t) {
@@ -87,22 +85,22 @@ export default class FriendListComponent extends React.Component {
     let name = (await "https://") + this.state.friendid + ".";
     let username = name.toString().concat(provider.toString());
     if (/\s/.test(username)) {
-      alert(  t('friendlist.nameerror'));
+      alert(t("friendlist.nameerror"));
     } else {
-      let exits =  await this.validateURI(username);
+      let exits = await this.validateURI(username);
       console.log(exits);
 
-      if (exits.toString() !== '200') {
+      if (exits.toString() !== "200") {
         console.log("friend uri doesnt exist");
-        alert(  t('friendlist.urierror'));
+        alert(t("friendlist.urierror"));
       } else {
-         if (window.confirm(  t('friendlist.adding')+ username)) {
+        if (window.confirm(t("friendlist.adding") + username)) {
           await ldflexService.addFriend(username);
-           console.log("friend added succesfully");
+          console.log("friend added succesfully");
 
-           let friendData = await ldflexService.getFriendData(username);
+          let friendData = await ldflexService.getFriendData(username);
           await this.setState({
-            friends: [...this.state.friends, friendData]
+            friends: [...this.state.friends, friendData],
           });
         }
       }
@@ -120,12 +118,7 @@ export default class FriendListComponent extends React.Component {
   }
 
   async deletefriend(profile, t) {
-
-    if (
-      window.confirm(
-        t('friendlist.deleteq') + profile + " ?"
-      )
-    ) {
+    if (window.confirm(t("friendlist.deleteq") + profile + " ?")) {
       let index = 0;
       console.log(this.state.friends);
       for (var i = 0; i < this.state.friends.length; i++) {
@@ -143,28 +136,23 @@ export default class FriendListComponent extends React.Component {
       newFriends.splice(index, 1);
       console.log(newFriends);
       await this.setState({
-        friends: newFriends
+        friends: newFriends,
       });
       // await this.forceUpdate();
     }
   }
 
   async componentDidMount() {
-
-    const frs = await this.getFriends();
-    const us = await ldflexService.getWebId();
-    this.setState({ friends: frs, user: us });
+    const friends = await this.getFriends();
+    const webId = await ldflexService.getWebId();
+    const accountName = await ldflexService.getProfileName();
+    console.log("ACCOUNT NAME", accountName);
+    this.setState({ friends: friends, webId: webId, title: accountName });
   }
- async getprofilephoto(){
-   const pic=  await ldflexService.getProfileImage();
 
-   this.state.pimage = pic;
- }
-  /* jshint ignore:start */
-   render() {
+  getAddFriendDialog() {
     const { t } = this.props;
-
-    const addFriendDialog = (
+    return (
       <Dialog
         open={this.state.open}
         onClose={this.handleClose}
@@ -172,10 +160,12 @@ export default class FriendListComponent extends React.Component {
         // fullWidth={true}
         // maxWidth={"lg"}
       >
-        <DialogTitle id="form-dialog-display-media">  {t('friendlist.adding')}
+        <DialogTitle id="form-dialog-display-media">
+          {" "}
+          {t("friendlist.adding")}
         </DialogTitle>
         <DialogContent>
-          <h2> {t('friendlist.selectp')}</h2>
+          <h2> {t("friendlist.selectp")}</h2>
           <select
             value={this.state.platformValue}
             onChange={this.handleChangeSelector}
@@ -188,96 +178,128 @@ export default class FriendListComponent extends React.Component {
               );
             })}
           </select>
-          <h2>{t('friendlist.insertid')}</h2>
+          <h2>{t("friendlist.insertid")}</h2>
           <input type="text" onChange={this.myChangeHandler} />
         </DialogContent>
         <DialogActions>
-          <Button
-            onClick={async () => await this.addFriend(t)}
-            color="primary"
-          >
-            {t('friendlist.adding')}
+          <Button onClick={async () => await this.addFriend(t)} color="primary">
+            {t("friendlist.adding")}
           </Button>
           <Button onClick={this.handleClose} color="primary" type="button">
-            {t('friendlist.close')}
+            {t("friendlist.close")}
           </Button>
         </DialogActions>
       </Dialog>
     );
+  }
 
-    this.getprofilephoto()
-    const img = this.state.pimage;
-   
-    const webid= ldflexService.getWebId();
-    
-   
-
-
-    const profileCard =(
-      <FriendCardTop className="card">
-        <HeaderFriend>
-        { webid && (
-        <div>
-
-          <ImageWrapper  className="imagefriend">
-
-           <img src={img} alt='profile'/>
-          </ImageWrapper>
-
-          </div>
-
-          )}
-        </HeaderFriend>
-        <h3>
-          Your friends
-        </h3>
-      </FriendCardTop>
+  getProfileCard(webId) {
+    const { t } = this.props;
+    return (
+      <ContainerHeader
+        {...{
+          webId,
+          defaultProfilePhoto,
+          title: t("friends.yourFriends"),
+        }}
+      ></ContainerHeader>
     );
+  }
 
+  getFormattedFriendName(name) {
+    const { t } = this.props;
+    name = `${name || ""}`;
+    if (name) {
+      return (
+        <Fragment>
+          <h2>{name.split(" ")[0] + " "}</h2>
+          <h3>
+            {name
+              .split(" ")
+              .slice(1)
+              .join(" ")}
+          </h3>
+        </Fragment>
+      );
+    }
+  return <h2>{t("friendlist.unknownName")}</h2>;
+  }
 
-    const friendsList = (
+  getFriendsList() {
+    const { t } = this.props;
+
+    return (
       <FriendList class="container ">
-        <div class="friends">
-        {this.state.friends.map(friend => {
+        {this.state.friends.map((friend) => {
           return (
             <Friend>
-              <img src={friend.image} alt="friend"/>
+              <img src={friend.image} alt="friend" />
               <FriendInfo>
                 <a href={friend.url}>
-                  <h2>{friend.fn}</h2>
+                  <FormattedFiendNameWrapper>
+                    {this.getFormattedFriendName(friend.fn)}
+                  </FormattedFiendNameWrapper>
                 </a>
-                <a href={friend.url}>
-                  <h3>{friend.url.split("//")[1]}</h3>
-                </a>
+                <p>
+                  {`${friend.company || ""}${
+                    friend.company && friend.role ? " · " : ""
+                  }${friend.role || ""}`}
+                </p>
+
                 <button
                   onClick={async () => await this.deletefriend(friend.url, t)}
                 >
-                  {t('friendlist.deletefriend')}
+                  {t("friendlist.deletefriend")}
                 </button>
               </FriendInfo>
             </Friend>
           );
         })}
-        </div>
-        {addFriendDialog}
 
+        {this.getAddFriendDialog()}
       </FriendList>
     );
+  }
+
+  getFriendCountDisplay() {
+    const { t } = this.props;
+    return (
+      <FriendCountDisplay>
+        <h2>{t("friendlist.friends")}</h2>
+        <p>{this.state.friends.length}</p>
+      </FriendCountDisplay>
+    );
+  }
+  getUserInformation() {
+    const { title } = this.state;
+    const handleOpen = this.handleOpen;
+    return (
+      <UserInformation {...{ title }}>
+        {this.getFriendCountDisplay()}
+        <ButtonWithImage
+          {...{
+            onClick: handleOpen,
+            icon: "/img/icon/icon-add.svg",
+            label: "ADD friend",
+            useCustomIcon: true,
+          }}
+        ></ButtonWithImage>
+      </UserInformation>
+    );
+  }
+
+  render() {
+    const { webId } = this.state;
     return (
       <FriendListWrapper>
-      <div>
-        {profileCard}
-
-        <CenterContainer>
-        {friendsList}
-          <div  className="iconaddfriend" >
-            <img src="/img/icon/icon-add.svg" alt="add a friend" onClick={this.handleOpen}></img>
-
-          </div>
-        </CenterContainer>
-      </div>
+        <div>
+          {this.getProfileCard(webId)}
+          <Content>
+            {this.getUserInformation()}
+            {this.getFriendsList()}
+          </Content>
+        </div>
       </FriendListWrapper>
     );
   }
-  /* jshint ignore:end */
 }

@@ -26,8 +26,10 @@
     "adding": "Agregar Amigo ",
     "deletefriend": "Eliminar amigo ",
     "insertid": "Insertar el ID del amigo",
-    "close": "Cerrar,",
-    "deleteq": "¿Seguro que quieres eliminar de tus amigos a  "
+    "close": "Cerrar",
+    "deleteq": "¿Seguro que quieres eliminar de tus amigos a  ",
+    "unknownName": "Nombre desconocido",
+    "friends": "Amigos"
   },
   "login": {
     "title": "Hola! Bienvenido a Solid.",
@@ -147,14 +149,17 @@
     "select": "Seleccionar",
     "name": "Nombre",
     "role": "Rol",
-    "company": "Compañia",
+    "company": "Compañía",
     "email": "Dirección de email",
     "phone": "Telélefono",
     "save": "Guardar cambios",
-    "notes": "Notas",
+    "notes": "Más información",
     "updateNote": "Guardar nota",
     "clear": "Borrar nota",
     "card": "POD"
+  },
+  "friends": {
+    "yourFriends": "Tus AMIGOS"
   },
   "game": {
     "title": "Tres en Línea",

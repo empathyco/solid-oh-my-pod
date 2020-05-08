@@ -42,32 +42,6 @@ export const ProfileContainer = styled.div`
   flex: 1 0 auto;
 `;
 
-export const Header = styled.div`
-  font-family: "Montserrat", sans-serif;
-  font-weight: lighter;
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: left;
-  background-color: white;
-  flex-wrap: wrap;
-  border-radius: 4px;
-  /* padding: 1em 0; */
-  padding-left: 8em !important;
-  padding: 0;
-  top: -20px;
-
-  .edit-button {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid white;
-    color: white;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    font-size: 1rem;
-  }
-`;
-
 export const Form = styled.form`
   padding: 20px 40px;
   align-items: center;
@@ -202,13 +176,6 @@ export const SectionProfile = styled.section`
   width: 100%;
   padding: 1em 0;
   background-color: #f4f4f4;
-`;
-
-export const Title = styled.section`
-  align-items: right;
-  justify-content: right;
-  bottom: 50px;
-  margin-left: 45px !important;
 `;
 
 export const Submitdelete = styled.section`

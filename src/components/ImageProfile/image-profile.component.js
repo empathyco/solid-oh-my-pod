@@ -1,13 +1,11 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   ImageProfileWrapper,
   ButtonStyled,
   LoaderText,
-  ImageProfileLoader
-} from './image-profile.style';
-
-
+  ImageProfileLoader,
+} from "./image-profile.style";
 
 export const ImageProfile = (props) => {
   const {
@@ -20,14 +18,16 @@ export const ImageProfile = (props) => {
     onClickFile,
     text,
     inProgress,
-    uploadingText
+    uploadingText,
   } = props;
   const photo =
-    uploadedFiles && uploadedFiles.length > 0 ? uploadedFiles[uploadedFiles.length - 1].uri : img;
-
+    uploadedFiles && uploadedFiles.length > 0
+      ? uploadedFiles[uploadedFiles.length - 1].uri
+      : img;
 
   return (
     <ImageProfileWrapper
+      className="image-wrapper"
       {...{
         onDragStart: overrideEventDefaults,
         onDragOver: overrideEventDefaults,
@@ -36,7 +36,7 @@ export const ImageProfile = (props) => {
         onDragLeave,
         onDragEnter,
         onDrop,
-        style: photo && photo !== '' && { backgroundImage: `url('${photo}')` }
+        style: photo && photo !== "" && { backgroundImage: `url('${photo}')` },
       }}
     >
       <ButtonStyled onClick={onClickFile} className="button-upload">
@@ -54,6 +54,6 @@ export const ImageProfile = (props) => {
 };
 
 ImageProfile.defaultProps = {
-  text: 'Upload New Photo',
-  uploadingText: 'Uploading'
+  text: "Upload New Photo",
+  uploadingText: "Uploading",
 };

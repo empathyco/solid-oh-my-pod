@@ -1,10 +1,10 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { media } from '../../../utils';
+import { media } from "../../../utils";
 
 export const DropdownContainer = styled.div`
   position: relative;
-  height: auto;
+  height: 100%;
   width: 100%;
   padding: 0 !important;
 
@@ -17,18 +17,24 @@ export const DropdownContainer = styled.div`
 `;
 
 export const DropdownMain = styled.button`
+  padding: 0 1em !important;
   position: relative;
   border: none;
   background: none;
+  height: 100%;
   width: 100%;
   padding: 0 16px;
-  margin: 5px 0;
+  margin: 0;
   display: flex;
   align-items: center;
 
   &:focus {
     outline: none;
   }
+  &:hover {
+    transform: none !important;
+  }
+
   ${media.desktop`height: 100%;`}
 `;
 
@@ -71,6 +77,7 @@ export const Item = styled.li`
     border: none;
     border-radius: 0px;
     &:hover {
+      transform: none !important;
       background: linear-gradient(
         to right,
         rgba(124, 77, 255, 0.2) 0%,

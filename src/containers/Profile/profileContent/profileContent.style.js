@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { media } from "../../../../utils";
+import { media } from "../../../utils";
 
 export const InputText = styled.input`
   min-width: 500px;
@@ -33,7 +33,6 @@ export const Content = styled.div`
   justify-content: left !important;
 `;
 
-export const NameSection = styled.section``;
 export const ProfileName = styled.h3`
   margin-top: auto;
   justify-items: center;

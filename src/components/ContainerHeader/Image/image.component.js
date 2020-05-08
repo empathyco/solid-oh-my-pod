@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import data from '@solid/query-ldflex';
-import { Uploader, useLiveUpdate } from '@inrupt/solid-react-components';
-import { useTranslation } from 'react-i18next';
-import { namedNode } from '@rdfjs/data-model';
-import { ImageProfile } from '@components';
-import { successToaster, errorToaster } from '@utils';
-
+import React, { useState, useEffect } from "react";
+import data from "@solid/query-ldflex";
+import { Uploader, useLiveUpdate } from "@inrupt/solid-react-components";
+import { useTranslation } from "react-i18next";
+import { namedNode } from "@rdfjs/data-model";
+import { ImageProfile } from "@components";
+import { successToaster, errorToaster } from "@utils";
 
 export const Image = ({ webId, defaultProfilePhoto }) => {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
 
   const latestUpdate = useLiveUpdate();
 
@@ -34,7 +33,7 @@ export const Image = ({ webId, defaultProfilePhoto }) => {
         setImage(image && image.value);
       }
     } catch (error) {
-      errorToaster(error.message, 'Error 500');
+      errorToaster(error.message, "Error 500");
     }
   };
 
@@ -52,45 +51,46 @@ export const Image = ({ webId, defaultProfilePhoto }) => {
     try {
       const { user } = data;
       await user.vcard_hasPhoto.set(namedNode(uri));
-      successToaster(t('profile.uploadSuccess'), t('profile.successTitle'));
+      successToaster(t("profile.uploadSuccess"), t("profile.successTitle"));
     } catch (error) {
-      errorToaster(error.message, t('profile.errorTitle'));
+      errorToaster(error.message, t("profile.errorTitle"));
     }
   };
   const limit = 2100000;
+
   return (
     <Uploader
       {...{
-        fileBase: webId && webId.split('/card')[0],
+        fileBase: webId && webId.split("/card")[0],
         limitFiles: 1,
         limitSize: limit,
-        accept: 'png,jpeg,jpg',
+        accept: "png,jpeg,jpg",
         errorsText: {
-          sizeLimit: t('profile.errors.sizeLimit', {
-            limit: `${limit / 1000000}Mbs`
+          sizeLimit: t("profile.errors.sizeLimit", {
+            limit: `${limit / 1000000}Mbs`,
           }),
-          unsupported: t('profile.errors.unsupported'),
-          maximumFiles: t('profile.errors.maximumFiles')
+          unsupported: t("profile.errors.unsupported"),
+          maximumFiles: t("profile.errors.maximumFiles"),
         },
-        onError: error => {
+        onError: (error) => {
           if (error && error.statusText) {
-            errorToaster(error.statusText, 'Error');
+            errorToaster(error.statusText, "Error");
           }
         },
-        onComplete: uploadedFiles => {
+        onComplete: (uploadedFiles) => {
           updatePhoto(uploadedFiles[uploadedFiles.length - 1].uri);
         },
-        render: props => (
+        render: (props) => (
           <ImageProfile
             {...{
               ...props,
               webId,
               photo: image || defaultProfilePhoto,
-              text: t('profile.upload'),
-              uploadingText: t('profile.uploadingText')
+              text: t("profile.upload"),
+              uploadingText: t("profile.uploadingText"),
             }}
           />
-        )
+        ),
       }}
     />
   );

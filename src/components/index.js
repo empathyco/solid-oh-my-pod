@@ -1,9 +1,21 @@
-import ErrorBoundary from './ErrorBoundary';
-import GlobalError from './GlobalError';
-import NavBar from './NavBar';
-import AuthNavBar from './AuthNavBar';
-import ImageProfile from './ImageProfile';
-import Footer from './Footer';
+import ErrorBoundary from "./ErrorBoundary";
+import GlobalError from "./GlobalError";
+import NavBar from "./NavBar";
+import AuthNavBar from "./AuthNavBar";
+import ImageProfile from "./ImageProfile";
+import Footer from "./Footer";
 import ProviderLogin from "./Login";
+import ContainerHeader from "./ContainerHeader";
+import UserInformation from "./UserInformation";
 
-export {ProviderLogin, ErrorBoundary, GlobalError, NavBar, AuthNavBar, ImageProfile, Footer };
+export {
+  ContainerHeader,
+  ProviderLogin,
+  ErrorBoundary,
+  GlobalError,
+  NavBar,
+  AuthNavBar,
+  ImageProfile,
+  Footer,
+  UserInformation,
+};
