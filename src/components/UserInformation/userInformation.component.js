@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Fragment } from "react";
+import Image from "./Image";
 
-import { ProfileName, Section } from "./userInformation.style";
+import { ProfileName, Section, ImageContainer } from "./userInformation.style";
+import { ldflexService } from "../../services";
 class UserInformation extends Component {
   /**
    *
-   * @param {title} props
+   * @param {title,webId} props
    */
   constructor(props) {
     super(props);
@@ -15,6 +17,11 @@ class UserInformation extends Component {
     };
   }
 
+  async componentDidMount() {
+    const webId = await ldflexService.getWebId();
+    console.log("WEBID RECIVIDO", webId);
+    this.setState({ webId: webId });
+  }
   componentWillReceiveProps({ title, children }) {
     this.setState({ ...this.state, title, children });
   }
@@ -37,8 +44,17 @@ class UserInformation extends Component {
     }
   }
   render() {
+    const { webId } = this.state;
     return (
       <Section>
+        <ImageContainer>
+          <Image
+            {...{
+              webId,
+            }}
+          />
+        </ImageContainer>
+
         {this.getProfileName()}
         {this.state.children}
       </Section>

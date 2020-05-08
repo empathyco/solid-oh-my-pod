@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Image from "./Image";
+
 import { Title, Header } from "./containerHeader.style";
 class ContainerHeader extends Component {
   /**
@@ -11,17 +11,8 @@ class ContainerHeader extends Component {
     this.state = {};
   }
   render() {
-    const { webId, defaultProfilePhoto } = this.props;
     return (
       <Header>
-        <div className="floating-header-item">
-          <Image 
-            {...{
-              webId,
-              defaultProfilePhoto,
-            }}
-          />
-        </div>
         <Title className="floating-header-item">
           <h2>{this.props.title}</h2>
         </Title>

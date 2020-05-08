@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { media } from "../../../utils";
 
 export const InputText = styled.input`
-  min-width: 500px;
   background-color: transparent;
   margin-bottom: 2em;
 `;
@@ -11,7 +10,11 @@ export const InputText = styled.input`
 export const FormSection = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 0 50px;
+  margin-bottom: 50px;
+  width: 500px;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const Label = styled.label`
@@ -30,7 +33,13 @@ export const Content = styled.div`
 
   display: flex;
   flex-wrap: wrap;
-  justify-content: left !important;
+
+  justify-content: flex-start;
+  @media (max-width: 900px) {
+    justify-content: center;
+    margin-left: 0;
+    justify-content: center;
+  }
 `;
 
 export const ProfileName = styled.h3`
@@ -60,6 +69,12 @@ export const NotesButtons = styled.div`
 export const TextAreaSection = styled.section`
   display: flex;
   flex-direction: column;
+  margin: 0 auto;
+  margin-left: 50px !important;
+  justify-self: center;
+  @media (max-width: 1200px) {
+    margin-left: auto !important;
+  }
 `;
 
 export const SaveButtonm = styled.button`

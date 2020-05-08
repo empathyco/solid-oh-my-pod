@@ -19,6 +19,7 @@
     "close": "Cerrar"
   },
   "friendlist": {
+    "yourFriends": "Tus AMIGOS",
     "mplatform": "La plataforma escogida es: ",
     "selectp": "Elegir proveedor",
     "nameerror": "El nombre no debería contener espacios",
@@ -29,7 +30,8 @@
     "close": "Cerrar",
     "deleteq": "¿Seguro que quieres eliminar de tus amigos a  ",
     "unknownName": "Nombre desconocido",
-    "friends": "Amigos"
+    "friends": "Amigos",
+    "addFriend": "Añadir amigo"
   },
   "login": {
     "title": "Hola! Bienvenido a Solid.",
@@ -157,9 +159,6 @@
     "updateNote": "Guardar nota",
     "clear": "Borrar nota",
     "card": "POD"
-  },
-  "friends": {
-    "yourFriends": "Tus AMIGOS"
   },
   "game": {
     "title": "Tres en Línea",

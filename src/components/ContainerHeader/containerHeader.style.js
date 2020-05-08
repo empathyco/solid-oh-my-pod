@@ -5,7 +5,6 @@ export const Title = styled.section`
   align-items: right;
   justify-content: right;
   bottom: 50px;
-  margin-left: 45px !important;
 
   h2 {
     font-family: Montserrat, sans-serif;
@@ -31,9 +30,9 @@ export const Header = styled.div`
   border-radius: 4px;
   /* padding: 1em 0; */
   padding: 0;
-  padding-left: 11em !important;
+  padding-left: 400px !important;
   top: -20px;
-  @media (max-width: 768px) {
+  @media (max-width: 900px) {
     padding-left: 0px !important;
     justify-content: center;
   }
@@ -51,6 +50,5 @@ export const Header = styled.div`
   .floating-header-item {
     transform: translateY(40px);
     z-index: 100;
-    
   }
 `;
