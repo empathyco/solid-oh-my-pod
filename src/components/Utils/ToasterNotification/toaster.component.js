@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-type Props = {
-  title: String,
-  content: String,
-  link: { href: string, label: string }
-};
+
 
 const Toastr = styled.div`
   display: flex;
@@ -31,7 +27,7 @@ const Toastr = styled.div`
   }
 `;
 
-const Toaster = (props: Props) => {
+const Toaster = (props) => {
   const { title, content, link } = props;
   return (
     <Toastr>

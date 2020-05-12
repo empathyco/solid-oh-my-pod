@@ -8,14 +8,12 @@ import {
   ErrorDetail
 } from './global-error.style';
 
-type Props = {
-  info: Object
-};
+
 /**
  * Global Component to show error on app
  * has basic markup and will render into ErrorBoundary component
  */
-export const GlobalError = ({ info }: Props) => (
+export const GlobalError = ({ info }) => (
   <GlobalErrorWrapper>
     <ImageWrapper>
       <img src="/img/error-ufo.svg" alt="Error" />

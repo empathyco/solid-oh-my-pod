@@ -1,15 +1,8 @@
 import React from 'react';
 
-type Props = {
-  label: String,
-  checked: Boolean,
-  name: String,
-  id: String,
-  onChange: Function,
-  value: String
-};
 
-const RadioButton = (props: Props) => {
+
+const RadioButton = (props) => {
   const { label, onChange, name, id, checked, value } = props;
   return (
     <label className="radio" htmlFor={id}>

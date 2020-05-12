@@ -3,15 +3,7 @@ import { NotificationList, Tabs } from './children';
 import { Panel, Title } from './notifications-panel.style';
 import { Loader } from '@util-components';
 
-type Props = {
-  notifications: Array,
-  markAsRead: Function,
-  deleteNotification: () => void,
-  fetchNewNotifications: () => void,
-  filterNotification: () => void,
-  tabs: Array<Object>,
-  isLoading: boolean
-};
+
 
 const NotificationsPanel = ({
   notifications,
@@ -20,7 +12,7 @@ const NotificationsPanel = ({
   filterNotification,
   tabs,
   isLoading
-}: Props) => (
+}) => (
   <Panel>
     <Title>Notifications</Title>
     {isLoading ? (
