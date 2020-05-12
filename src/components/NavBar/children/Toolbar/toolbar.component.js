@@ -1,11 +1,7 @@
 import React from "react";
 import { Item } from "./toolbar.style";
 
-type Props = {
-  toolbar: Array<Object>,
-  open: Boolean,
-  customClass: String,
-};
+
 
 /**
  * Checks if the components needs to rerender or not based on inbox changes
@@ -34,7 +30,7 @@ const areEqual = (prevProps, nextProps) => {
 };
 
 const Toolbar = React.memo(
-  ({ toolbar, open, customClass }: Props) => (
+  ({ toolbar, open, customClass }) => (
     <nav className="nav nav__toolbar">
       <ul>
         {toolbar &&

@@ -2,11 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Item, Label } from "./navigation.style";
 
-type Props = {
-  navigation: Object,
-};
 
-const Navigation = ({ navigation }: Props) => (
+
+const Navigation = ({ navigation }) => (
   <nav role="navigation" className="nav nav__primary">
     <ul>
       {navigation &&

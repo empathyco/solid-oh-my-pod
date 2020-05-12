@@ -38,17 +38,11 @@ export const UserName = styled.span`
   margin-left: 10px;
 `;
 
-type Props = {
-  history: Object,
-  t: Function,
-  open: Boolean,
-  customClass: String,
-  webId: String,
-};
+
 
 let beforeContext;
 
-class NavBarProfile extends Component<Props> {
+class NavBarProfile extends Component {
   constructor(props) {
     super(props);
     this.state = { image: "/img/icon/empty-profile.svg" };

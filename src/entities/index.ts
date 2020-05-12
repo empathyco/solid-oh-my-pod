@@ -30,8 +30,8 @@ export type Annotation = {
 export type FormFocus = {
   value: String,
   name: String,
-  parentSubject: ?String,
-  parentPredicate: ?String
+  parentSubject: String | undefined,
+  parentPredicate: String | undefined,
 };
 
 export type FormValue = {
@@ -39,21 +39,21 @@ export type FormValue = {
 };
 
 export type Expressions = {
-  annotations: ?Array<Annotation>,
+  annotations: Array<Annotation> | undefined,
   predicate: String,
   type: String,
   valueExpr: any,
-  _formValues: ?Array<FormValue>
+  _formValues: Array<FormValue | undefined>
 };
 
 export type Expression = {
   expressions: Array<Expressions>,
   type: String,
-  _formFocus: ?FormFocus
+  _formFocus: FormFocus | undefined
 };
 
 export type Shape = {
-  expression: ?Expression,
+  expression: Expression | undefined,
   id: String,
   type: String
 };
@@ -61,7 +61,7 @@ export type Shape = {
 export type ShexJ = {
   '@context': String,
   shapes: Array<Shape>,
-  start: ?String,
+  start: String | undefined,
   type: String,
-  expression: ?Expression
+  expression: Expression | undefined
 };
