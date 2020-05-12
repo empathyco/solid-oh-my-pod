@@ -1,11 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { TabsContainer, Tab } from './tabs.styles';
 
-type Props = {
-  activeName: string,
-  list: Array<Object>,
-  click: () => void
-};
+
 /**
  * Filter notificatons by inbox name (Global, Game)
  * @param list
@@ -14,7 +10,7 @@ type Props = {
  * @returns {*}
  * @constructor
  */
-export const Tabs = ({ list, click, activeName }: Props) => {
+export const Tabs = ({ list, click, activeName }) => {
   const [active, setActive] = useState(null);
 
   /**

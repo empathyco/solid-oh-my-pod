@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import RegisterComponent from './register.component';
 import { Provider } from '@services';
 
-type Props = {};
 
-type State = {
-  providers: Array<Object>
-};
 
-class RegisterContainer extends Component<Props, State> {
+class RegisterContainer extends Component {
   constructor(props) {
     super(props);
     this.state = { providers: [] };

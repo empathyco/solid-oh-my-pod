@@ -8,14 +8,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withTranslation } from "react-i18next";
 
 
-type Props = {
-  t: Function
-};
 
-const Footer = (props: Props) => {
+
+const Footer = (props) => {
   const { t } = props;
-  const githubIcon: IconLookup = { prefix: "fab", iconName: "github" };
-  const githubIconDef: IconDefinition = findIconDefinition(githubIcon);
+  const githubIcon = { prefix: "fab", iconName: "github" };
+  const githubIconDef = findIconDefinition(githubIcon);
 
   return (
     <footer className="solid-footer footer" >

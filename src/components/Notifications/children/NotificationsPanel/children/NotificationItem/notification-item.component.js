@@ -3,17 +3,12 @@ import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Item, Body, Message, Meta, MarkAsRead, Delete, Img } from './notification-item.style';
 
-type Props = {
-  notification: Object,
-  markAsRead: Function,
-  children: React.ReactNode,
-  deleteNotification: (fileName: string) => void
-};
+
 
 /**
  * Notification item to be shown for each notification in the notification list
  */
-const NotificationItem = ({ notification, markAsRead, children, deleteNotification }: Props) => {
+const NotificationItem = ({ notification, markAsRead, children, deleteNotification }) => {
   const { read } = notification;
   const currentRead = read ? JSON.parse(read) : false;
   const { actor } = notification;

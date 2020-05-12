@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import Routes from './routes';
+import Routes from './routes.jsx';
 import theme from './utils/theme';
 import 'react-toastify/dist/ReactToastify.css';
 import 'flag-icon-css/css/flag-icon.min.css';

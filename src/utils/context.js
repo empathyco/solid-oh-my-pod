@@ -1,5 +1,5 @@
-export const expandedProperty = (context: Object, property: String) => {
-  const suffix = property.split(':').pop();
+export const expandedProperty = (context, property) => {
+  const suffix = property.split(":").pop();
 
   return `${context}:${suffix}`;
 };

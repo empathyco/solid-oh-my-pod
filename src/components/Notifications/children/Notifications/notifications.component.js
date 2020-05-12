@@ -7,15 +7,12 @@ import { useOnClickOutside } from '@hooks';
 
 let oldTimestamp;
 
-type Props = {
-  webId: String,
-  inbox: String
-};
+
 
 /**
  * Notification wrapper for the Bell Icon and the Notifications Panel
  */
-const Notifications = ({ webId, inbox }: Props) => {
+const Notifications = ({ webId, inbox }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const ref = useRef();

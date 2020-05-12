@@ -2,12 +2,9 @@ import React from 'react';
 
 import { Image } from './image-background.style';
 
-type Props = {
-  children: React.Node,
-  className: String
-};
 
-const ImageBackground = ({ children, className }: Props) => (
+
+const ImageBackground = ({ children, className }) => (
   <Image className={className} image = {' '} >{children}</Image>
 );
 

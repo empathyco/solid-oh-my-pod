@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { LoaderWrapper, CubeGrid, Cube } from './loader.style';
 
-type Props = {
-  delay?: Number,
-  absolute?: Boolean
-};
 
-class Loader extends Component<Props> {
+
+class Loader extends Component {
   state = { show: false };
 
   componentDidMount() {
