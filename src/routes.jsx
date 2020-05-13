@@ -12,8 +12,10 @@ import {
   FriendListComponent,
   FileExplorerComponent,
   VocabularyComponent,
-  ShopComponent,
+  ShopComponent,ChatComponent
 } from "./containers";
+
+
 
 const privateRoutes = [
   {
@@ -46,6 +48,11 @@ const privateRoutes = [
     path: "/shop",
     component: ShopComponent,
   },
+  {
+    id:"chat",
+    path:"/chat",
+    component:ChatComponent,
+  }
 ];
 
 const Routes = () => (

@@ -1,10 +1,10 @@
 export class ChatUser {
-    webdId: String
-    name: String
-    photo: String
-    constructor(webId: String, name: String, photo: String) {
-        this.webdId = webId;
-        this.name = name;
-        this.photo = photo
-    }
+  webdId: string;
+  name: string;
+  photo: string | undefined;
+  constructor(webId: string, name: string, photo: string) {
+    this.webdId = webId;
+    this.name = name;
+    this.photo = photo;
+  }
 }

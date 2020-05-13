@@ -7,6 +7,7 @@ import FriendListComponent from "./FriendList";
 import FileExplorerComponent from "./FileExplorer";
 import VocabularyComponent from "./Vocabulary";
 import ShopComponent from "./Shop";
+import ChatComponent from "./Chat"
 export {
   Login,
   ShopComponent,
@@ -18,4 +19,5 @@ export {
   Profile,
   FriendListComponent,
   FileExplorerComponent,
+  ChatComponent
 };

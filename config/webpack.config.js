@@ -589,7 +589,7 @@ module.exports = function(webpackEnv) {
           typescript: resolve.sync("typescript", {
             basedir: paths.appNodeModules,
           }),
-          async: false,
+          async: true,
           checkSyntacticErrors: true,
           tsconfig: paths.appTsConfig,
           compilerOptions: {

@@ -31,6 +31,11 @@ export const NavigationItems = [
     icon: 'img/icon/things.svg',
     label: 'Shop',
     to: '/shop'
+  },{
+    id:'chat',
+    icon:'img/icon/things.svg',
+    label:'Chat',
+    to:'/chat'
   }
 
 
