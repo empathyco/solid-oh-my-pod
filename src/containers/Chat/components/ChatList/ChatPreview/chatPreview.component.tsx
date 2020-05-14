@@ -18,7 +18,7 @@ type State = {
 export default class ChatPreviewComponent extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { chat: mockChat, isSelected: props.isSelected };
+    this.state = { chat: props.chat, isSelected: props.isSelected };
   }
 
   componentWillReceiveProps(props: Props) {
@@ -28,6 +28,8 @@ export default class ChatPreviewComponent extends Component<Props, State> {
   render() {
     const { chat, isSelected } = this.state;
     const chatName = chat.getChatName();
+    const chatImage = chat.getImage();
+
     const lastMessage = chat.messages[chat.messages.length - 1];
     return (
       <ChatPreview
@@ -35,7 +37,7 @@ export default class ChatPreviewComponent extends Component<Props, State> {
         onClick={() => this.handleClick()}
       >
         <ChatImage>
-          <img src={defaultProfilePhoto} alt="friend-photo" />
+          <img src={chatImage} alt="friend-photo" />
         </ChatImage>
         <ChatPreviewInfo>
           <h3>
@@ -61,24 +63,4 @@ export default class ChatPreviewComponent extends Component<Props, State> {
   };
 }
 
-const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
-let me = {
-  webdId: "https://javifake3.solid.community/profile/card#me",
-  name: "Javier García",
-  photo: undefined,
-};
-let mockChat = new Chat();
-mockChat.chatMode = {
-  type: "private",
-  chatName: undefined,
-};
-mockChat.participants = [me];
-
-let message = new Message();
-message.timestamp = Date.now();
-message.contentType = "text";
-message.sender = me;
-message.content = "Esto es un mensaje largo de ejemplo";
-message.reads = [];
-mockChat.messages = [message, message];

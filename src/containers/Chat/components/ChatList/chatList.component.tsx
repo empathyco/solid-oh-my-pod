@@ -4,61 +4,36 @@ import { ChatList, ChatsWrapper, ChatsWrapperScroll } from "./chatList.style";
 import ChatListToolbar from "./ChatListToolbar";
 import { Chat } from "../../models/chatModel";
 import ChatPreviewComponent from "./ChatPreview";
-type Props = { chats: Chat[] };
+
+type Props = {
+  chats: Chat[];
+  chatSelectedHandler: (id) => void;
+  selectedChat: Chat | undefined;
+  newChatClickHandler: () => void;
+};
 type State = { chats: Chat[]; selectedId: string | undefined };
+
 export default class ChatListComponent extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      chats: [
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-        new Chat(),
-      ],
-      selectedId: undefined,
+      chats: props.chats,
+      selectedId: props.selectedChat ? props.selectedChat._id : undefined,
     };
+  }
+
+  componentWillReceiveProps(newProps: Props) {
+    this.setState({
+      chats: newProps.chats,
+      selectedId: newProps.selectedChat ? newProps.selectedChat._id : undefined,
+    });
   }
   render() {
     return (
       <ChatList>
-        <ChatListToolbar></ChatListToolbar>
+        <ChatListToolbar
+          newChatClickHandler={this.props.newChatClickHandler}
+        ></ChatListToolbar>
         <ChatsWrapperScroll>
           <ChatsWrapper>{this.getChats()}</ChatsWrapper>
         </ChatsWrapperScroll>
@@ -67,8 +42,7 @@ export default class ChatListComponent extends Component<Props, State> {
   }
 
   handleChatClick = (id: string) => {
-    console.log(`Se ha pulsado ${id}`);
-    this.setState({ selectedId: id });
+    this.props.chatSelectedHandler(id);
 
     //
   };
@@ -79,6 +53,7 @@ export default class ChatListComponent extends Component<Props, State> {
         {chats.map((chat) => (
           <ChatPreviewComponent
             isSelected={chat._id === selectedId}
+            key={chat._id}
             handleChatClick={this.handleChatClick}
             chat={chat}
           ></ChatPreviewComponent>

@@ -7,4 +7,13 @@ export class ChatUser {
     this.name = name;
     this.photo = photo;
   }
+
+  static mock() {
+    let user = new ChatUser(
+      "https://astrid.solid.community/profile/card#me",
+      "Astrid Gamoneda" + Math.trunc(Math.random() * 20),
+      "https://astrid.solid.community/profile/icons8-romance-64.png"
+    );
+    return user;
+  }
 }

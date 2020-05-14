@@ -2,12 +2,18 @@ import * as React from "react";
 import { Component } from "react";
 import { Toolbar, SearchInput, NewChatButton } from "./chatListToolbar.style";
 
-export default class ChatListToolbar extends Component {
+type Props = {
+  newChatClickHandler: () => void;
+};
+export default class ChatListToolbar extends Component<Props> {
+  constructor(props: Props) {
+    super(props);
+  }
   render() {
     return (
       <Toolbar>
         <SearchInput></SearchInput>
-        <NewChatButton></NewChatButton>
+        <NewChatButton onClick={this.props.newChatClickHandler}></NewChatButton>
       </Toolbar>
     );
   }

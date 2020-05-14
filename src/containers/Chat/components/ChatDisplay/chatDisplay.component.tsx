@@ -3,24 +3,47 @@ import { Component } from "react";
 
 import { ChatDisplayWrapper, ChatDisplay } from "./chatDisplay.style";
 import { Chat } from "../../models/chatModel";
+import ChatToolbarComponent from "./ChatToolbar";
+import MessageDisplayComponent from "./MessageDisplay";
+import MessageInputComponent from "./MessageInput";
 
-type Props = {};
+type Props = {
+  selectedChat: Chat | undefined;
+  messageSubmitHandler: (text: string) => void;
+};
 type State = {
   selectedChat: Chat | undefined;
 };
 export default class ChatDisplayComponent extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { selectedChat: undefined };
+    this.state = { selectedChat: props.selectedChat };
   }
+
+  componentWillReceiveProps(newProps: Props) {
+    this.setState({ selectedChat: newProps.selectedChat });
+  }
+
+  handleMessageSubmit = (text: string) => {
+    this.props.messageSubmitHandler(text);
+  };
   render() {
+    const { selectedChat } = this.state;
+
     return (
       <ChatDisplayWrapper>
-        {this.state.selectedChat ? (
+        {selectedChat ? (
           <ChatDisplay>
-            {/* <ChatToolbar></ChatToolbar>
-            <MessageDisplay></MessageDisplay>
-            <MessageInputbar></MessageInputbar> */}
+            <ChatToolbarComponent
+              selectedChat={selectedChat}
+            ></ChatToolbarComponent>
+            <MessageDisplayComponent   messages={selectedChat.messages}>
+            
+            </MessageDisplayComponent>
+
+            <MessageInputComponent
+              messageSubmitHandler={this.handleMessageSubmit}
+            ></MessageInputComponent>
           </ChatDisplay>
         ) : (
           undefined

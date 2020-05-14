@@ -12,7 +12,7 @@ export const ChatsWrapperScroll = styled.div`
   overflow-y: auto;
   height: 400px;
   max-height: 90%;
-  min-height: 90%;
+  min-height: 85%;
 `;
 
 export const ChatsWrapper = styled.div`
