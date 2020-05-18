@@ -11,7 +11,11 @@ type Props = {
   selectedChat: Chat | undefined;
   newChatClickHandler: () => void;
 };
-type State = { chats: Chat[]; selectedId: string | undefined };
+type State = {
+  chats: Chat[];
+  selectedId: string | undefined;
+  searchInputValue: string;
+};
 
 export default class ChatListComponent extends Component<Props, State> {
   constructor(props: Props) {
@@ -19,6 +23,7 @@ export default class ChatListComponent extends Component<Props, State> {
     this.state = {
       chats: props.chats,
       selectedId: props.selectedChat ? props.selectedChat._id : undefined,
+      searchInputValue: "",
     };
   }
 
@@ -28,10 +33,15 @@ export default class ChatListComponent extends Component<Props, State> {
       selectedId: newProps.selectedChat ? newProps.selectedChat._id : undefined,
     });
   }
+
+  handleSearchInputUpdate = (value: string) => {
+    this.setState({ searchInputValue: value });
+  };
   render() {
     return (
       <ChatList>
         <ChatListToolbar
+          searchInputUpdateHandler={this.handleSearchInputUpdate}
           newChatClickHandler={this.props.newChatClickHandler}
         ></ChatListToolbar>
         <ChatsWrapperScroll>
@@ -50,14 +60,18 @@ export default class ChatListComponent extends Component<Props, State> {
     const { chats, selectedId } = this.state;
     return (
       <React.Fragment>
-        {chats.map((chat) => (
-          <ChatPreviewComponent
-            isSelected={chat._id === selectedId}
-            key={chat._id}
-            handleChatClick={this.handleChatClick}
-            chat={chat}
-          ></ChatPreviewComponent>
-        ))}
+        {chats
+          .filter((chat) =>
+            chat.getChatName().includes(this.state.searchInputValue)
+          )
+          .map((chat) => (
+            <ChatPreviewComponent
+              isSelected={chat._id === selectedId}
+              key={chat._id}
+              handleChatClick={this.handleChatClick}
+              chat={chat}
+            ></ChatPreviewComponent>
+          ))}
       </React.Fragment>
     );
   }

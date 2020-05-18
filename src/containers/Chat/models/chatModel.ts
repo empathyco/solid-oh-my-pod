@@ -16,7 +16,7 @@ export class Chat {
     }
     return defaultProfilePhoto;
   }
-  getChatName() {
+  getChatName(): string {
     if (this.chatMode.type === "private") {
       return this.participants[1].name; //Cero is me
     } else {
@@ -26,7 +26,7 @@ export class Chat {
   _id: string;
   chatMode: {
     type: "group" | "private";
-    chatName: string | undefined;
+    chatName: string;
   };
   participants: ChatUser[];
   creator: ChatUser;
@@ -58,7 +58,7 @@ export class Chat {
     let chat = new Chat();
     chat.chatMode = {
       type: "private",
-      chatName: undefined,
+      chatName: "",
     };
     chat.participants = [me, ChatUser.mock()];
     chat.messages = [];
