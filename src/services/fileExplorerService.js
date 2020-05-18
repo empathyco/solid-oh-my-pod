@@ -222,3 +222,27 @@ const buildFolderUrl = (path, folderName) => {
 const buildFileUrl = (path, fileName) => {
   return `${path.concat(fileName)}`;
 };
+
+/**
+ * Creates a file in the path location
+ * @param {string} path path of the folder where the file will be created
+ * @param {string} filename name of the file, must have extension
+ * @param {string} content content of the file
+ * @param {string} type type of the file, must be something like "text/turtle" or "image/png"
+ * @param {boolean} keepContent if true existing+newContent, else replaced
+ */
+export const createFile=async (path,filename,content,type,keepContent)=>{
+  let options={merge:keepContent?"keep_target":"default"}
+  let completePath=`${path}/${filename}`
+  console.log("Creating file",completePath)
+  return await fc.createFile(completePath,content,type,options)
+
+}
+
+/**
+ * Returns true if the path exists,false otherwise
+ * @param {string} path path for the file or folder to check
+ */
+export const doesItemExist=async(path)=>{
+  return fc.itemExists(path)
+}

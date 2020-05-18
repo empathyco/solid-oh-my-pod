@@ -5,20 +5,31 @@ import { ChatWrapper } from "./chat.style";
 import { Chat } from "../models/chatModel";
 import { Message } from "../models/message";
 import { ChatUser } from "../models/chatUser";
+import { ChatService } from "../services/chatService";
+import NewChatWindowComponent from "./newChatWindow/";
 
 type Props = {};
 type State = {
   chats: Chat[];
   selectedChat: Chat | undefined;
+  createChatWindowIsOpen: boolean;
 };
 
 export default class ChatComponent extends Component<Props, State> {
+  chatService: ChatService;
   constructor(props: Props) {
     super(props);
-    this.state = { chats: [], selectedChat: undefined };
+    this.state = {
+      chats: [],
+      selectedChat: undefined,
+      createChatWindowIsOpen: false,
+    };
+    this.chatService = new ChatService();
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    this.chatService.initOhMyPodChat();
+
     let conversations: Chat[] = [];
     for (let i = 0; i < 30; i++) {
       conversations.push(Chat.mock());
@@ -43,8 +54,17 @@ export default class ChatComponent extends Component<Props, State> {
       this.setState({ chats: currentChats });
     }
   };
-  handleCreateNewChat = () => {
-    console.log("Crear chat nuevo");
+  handleCreateNewChatButtonClick = () => {
+    this.setState({ createChatWindowIsOpen: true });
+  };
+
+  handleCreateChat = (users: ChatUser[]) => {
+    this.setState({ createChatWindowIsOpen: false });
+    this.chatService.createChat(users);
+  };
+
+  closeNewChatWindow = () => {
+    this.setState({ createChatWindowIsOpen: false });
   };
 
   render() {
@@ -52,7 +72,7 @@ export default class ChatComponent extends Component<Props, State> {
       <Fragment>
         <ChatWrapper>
           <ChatListComponent
-            newChatClickHandler={this.handleCreateNewChat}
+            newChatClickHandler={this.handleCreateNewChatButtonClick}
             chatSelectedHandler={this.handleChatSelect}
             selectedChat={this.state.selectedChat}
             chats={this.state.chats}
@@ -62,6 +82,24 @@ export default class ChatComponent extends Component<Props, State> {
             selectedChat={this.state.selectedChat}
           ></ChatDisplayComponent>
         </ChatWrapper>
+        {this.renderNewChatWindow()}
+      </Fragment>
+    );
+  }
+  renderNewChatWindow() {
+    const { createChatWindowIsOpen: openCreateChatWindow } = this.state;
+
+    return (
+      <Fragment>
+        {openCreateChatWindow ? (
+          <NewChatWindowComponent
+            closeWindowHandler={this.closeNewChatWindow}
+            createChatHandler={this.handleCreateChat}
+            chatService={this.chatService}
+          ></NewChatWindowComponent>
+        ) : (
+          undefined
+        )}
       </Fragment>
     );
   }

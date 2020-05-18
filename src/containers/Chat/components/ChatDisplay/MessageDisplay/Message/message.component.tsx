@@ -19,7 +19,7 @@ export default class MessageComponent extends Component<Props> {
     const { content, sender, timestamp } = this.props.message;
     const webId = this.props.myWebId;
     return (
-      <MessageWrapper className={sender.webdId === webId ? "right" : undefined}>
+      <MessageWrapper className={sender.webId === webId ? "right" : undefined}>
         <p className="content">{content}</p>
         <p className="sendTime">{DateUtils.formatHH_MM(new Date(timestamp))}</p>
       </MessageWrapper>
