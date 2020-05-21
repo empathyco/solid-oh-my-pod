@@ -4,7 +4,18 @@ import { ChatUser } from "../models/chatUser";
 import { fileExplorerService } from "services";
 import { Chat } from "../models/chatModel";
 import * as rdf from "rdflib";
+import { Message } from "../models/message";
 const FLOW = rdf.Namespace("http://www.w3.org/2005/01/wf/flow#"); // flow
+const SCHEMA = rdf.Namespace("http://schema.org/");
+const VCARD = rdf.Namespace("http://www.w3.org/2006/vcard/ns#");
+const FOAF = rdf.Namespace("http://xmlns.com/foaf/0.1/"); // n0
+const CONT = rdf.Namespace("http://rdfs.org/sioc/ns#"); // n
+const TERMS = rdf.Namespace("http://purl.org/dc/terms/"); // terms
+const MEE = rdf.Namespace("http://www.w3.org/ns/pim/meeting#"); // mee
+const N1 = rdf.Namespace("http://purl.org/dc/elements/1.1/"); // n1
+const XML = rdf.Namespace("http://www.w3.org/2001/XMLSchema#");
+const PROV = rdf.Namespace("https://www.w3.org/ns/prov#");
+const ACL = rdf.Namespace("http://www.w3.org/ns/auth/acl#");
 
 export class ChatService {
   BASE_ADDRESS = "/public/test/ohmypod_chat";
@@ -16,6 +27,7 @@ export class ChatService {
   fetcher: any;
   store: any;
   TIMEOUT = 5000;
+  MESSAGE_INDEX_NAME = "messages_index.ttl";
 
   constructor() {
     this.initOhMyPodChat();
@@ -49,6 +61,17 @@ export class ChatService {
     );
   }
 
+  /**
+   * Returns the webId of the current logged user
+   */
+  private async getMyWebId() {
+    return (await auth.currentSession()).webId;
+  }
+
+  /**
+   * Returns the base directory for the given webID
+   * @param webId WebId of the user
+   */
   private getRootDirection(webId: string) {
     return webId.split("/profile")[0];
   }
@@ -107,8 +130,7 @@ export class ChatService {
   public async createChat(users: ChatUser[], chatName?: string) {
     if (users === undefined || users.length === 0) return;
     if (users.length == 1) {
-      if (this.checkPrivateChatAlreadyExists(users[0])) {
-        console.log("CANNOT CREATE A CHAT,ALREADY EXISTS");
+      if (await this.checkPrivateChatAlreadyExists(users[0])) {
         return; //Cannot create another chat, chat already exists
       }
     }
@@ -116,19 +138,41 @@ export class ChatService {
       (await auth.currentSession()).webId
     );
     let chat = Chat.buildNewChatFromUsersAndName(creator, users, chatName);
-    console.log("CHAT TO BE CREATED", chat);
+
     await this.createChatFolder(chat);
     await this.createACLForChatFolder(chat);
-    await this.createFileForChat(chat);
+    await this.createMetadataFileForChat(chat);
+    await this.createMessageIndexForChat(chat);
     await this.addChatToOwnIndexFile(chat);
+
     await this.addChatToFriendsIndexFile(chat);
+  }
+
+  /**
+   *  Creates the base message index file for a chat
+   * @param chat Chat to create the message index for
+   */
+  private async createMessageIndexForChat(chat: Chat) {
+    var baseContent = "@prefix : <#>.\n";
+
+    await fileExplorerService.createFile(
+      this.resolveChatDirection(chat),
+      this.MESSAGE_INDEX_NAME,
+      baseContent,
+      "text/turtle",
+      false
+    );
   }
 
   private async createACLForChatFolder(chat: Chat) {
     //TODO
   }
-  private async createFileForChat(chat: Chat) {
-    console.log("RESOLVED CHAT DIRECTION", this.resolveChatDirection(chat));
+
+  /**
+   * Creates the necessary file with the metadata for the chat to work
+   * @param chat chat to creato file for
+   */
+  private async createMetadataFileForChat(chat: Chat) {
     await fileExplorerService.createFile(
       this.resolveChatDirection(chat),
       this.CHAT_METADATA_NAME,
@@ -142,20 +186,22 @@ export class ChatService {
    * @param user user to test if exists chat with
    */
   private async checkPrivateChatAlreadyExists(user: ChatUser) {
-    let toCheckChats: Chat[] = [];
-    await this.loadChats((chats) => (toCheckChats = chats)); //TODO ESTO NO SIRVE
+    let toCheckChats: Chat[] = await this.loadChats();
 
-    console.log("CHATS TO CHECK", toCheckChats);
-    return toCheckChats
-      .filter((chat) => chat.participants.length <= 2)
-      .filter(
-        (chat) =>
-          chat.participants.find(
-            (participant) => participant.webId === user.webId
-          ) !== undefined
-      );
+    return (
+      toCheckChats
+        .filter((chat) => chat.participants.length <= 2)
+        .filter(
+          (chat) =>
+            chat.participants.find(
+              (participant) => participant.webId === user.webId
+            ) !== undefined
+        ).length > 0
+    );
   }
-  private addChatToFriendsIndexFile(chat: Chat) {}
+  private addChatToFriendsIndexFile(chat: Chat) {
+    //TODO
+  }
 
   /**
    * Adds a rdf predicate "fileIndex---participats---->folderAddress" to the file index
@@ -182,17 +228,21 @@ export class ChatService {
 
     insertions.push(statement);
 
-    await this.updateManager.update(
-      deletions,
-      insertions,
-      (uri, ok, message) => {
+    return new Promise((resolve, reject) => {
+      this.updateManager.update(deletions, insertions, (uri, ok, message) => {
         if (!ok) {
-          console.log("Error: " + message);
+          reject(message);
+        } else {
+          resolve();
         }
-      }
-    );
+      });
+    });
   }
 
+  /**
+   * Returns the chat direction for a given chat object
+   * @param chat chat to get the direction
+   */
   private resolveChatDirection(chat: Chat) {
     return (
       this.getRootDirection(chat.creator.webId) +
@@ -202,61 +252,193 @@ export class ChatService {
       chat._id
     );
   }
+
+  /**
+   * Creates the folder for a given chat object
+   * @param chat chat to create folder
+   */
   private async createChatFolder(chat: Chat) {
     let fullAddress =
       this.getRootDirection(chat.creator.webId) + this.BASE_ADDRESS + "/";
     let dirName = this.BASE_CHAT_NAME + chat._id;
-    console.log("DIRECTORY", fullAddress, dirName);
+
     await fileExplorerService.createFolder(fullAddress, dirName);
   }
 
-  public async loadChats(callback: (chats: Chat[]) => void) {
+  /**
+   * Loads the chats for the current logged user
+   */
+  public async loadChats() {
     let chatList: Chat[] = [];
     let myWebId = (await auth.currentSession()).webId;
     let indexTTL = this.getRootDirection(myWebId) + this.INDEX_TTL_ADDRESS;
-    this.fetcher.nowOrWhenFetched(indexTTL, async (ok) => {
-      if (!ok) {
-        console.log("Oops, something happened and couldn't fetch data");
-        return [];
-      } else {
-        const subject = rdf.sym(indexTTL + "#this");
+    return new Promise<Chat[]>((resolve, reject) => {
+      this.fetcher.nowOrWhenFetched(indexTTL, async (ok, message) => {
+        if (!ok) {
+          reject(message);
+        } else {
+          const subject = rdf.sym(indexTTL + "#this");
 
-        //Query de nodes that contain the indexfile as subject, and praticipation as predicate
-        const chatsNodes = await this.store.each(
-          subject,
-          FLOW("participation")
-        );
+          //Query de nodes that contain the indexfile as subject, and praticipation as predicate
+          const chatsNodes = await this.store.each(
+            subject,
+            FLOW("participation")
+          );
 
-        chatList = await Promise.all(
-          chatsNodes.map(async (chat) => {
-            const chatDirection = chat.value;
-            return await this.getConversationFromURI(chatDirection);
-          })
-        );
+          chatList = await Promise.all(
+            chatsNodes.map((chat) => {
+              const chatDirection = chat.value;
+              return this.getConversationFromURI(chatDirection);
+            })
+          );
 
-        console.log("CHATLIST", chatList);
-
-        callback(chatList);
-        // return chatList;
-      }
+          resolve(chatList);
+        }
+      });
     });
   }
 
-  private async getConversationFromURI(chatFolderDirection: string) {
+  /**
+   * Returns a Chat object from a URI
+   * @param chatFolderDirection URI of the chat
+   */
+  private async getConversationFromURI(
+    chatFolderDirection: string
+  ): Promise<Chat> {
     let chat: Chat = await Chat.parseFromMetadata(
       await fileExplorerService.readFile(
         `${chatFolderDirection}/${this.CHAT_METADATA_NAME}`
       )
     );
-    console.log("CHAT ITEM", chat);
-
-    return chat;
+    return await this.withMessages(chat);
   }
 
-  public sendMessage() {
-    //TODO
+  /**
+   * Returns a chat with the messages attached
+   * @param chat Chat to fill with messages
+   */
+  private async withMessages(chat: Chat): Promise<Chat> {
+    let chatURI =
+      this.resolveChatDirection(chat) + "/" + this.MESSAGE_INDEX_NAME;
+
+    return new Promise<Chat>((resolve, reject) => {
+      this.fetcher.nowOrWhenFetched(chatURI, async (ok) => {
+        if (!ok) {
+          reject("Oops, something happened and couldn't fetch data");
+        } else {
+          const subject = rdf.sym(chatURI + "#this");
+          const nameMessage = FLOW("message");
+          const messagesNodes = await this.store.each(subject, nameMessage);
+
+          //Get all messages asyncronously
+          let messages: Message[] = await Promise.all(
+            messagesNodes.map((data) => this.parseMessage(data))
+          );
+
+          chat.messages = messages;
+          resolve(chat);
+        }
+      });
+    });
   }
 
+  /**
+   * Returns  a Message object representing the message after parsing it from a solid node
+   * @param node Solid node representing the message
+   */
+  private async parseMessage(node: any): Promise<Message> {
+    let id = node.value.split("#")[1];
+    let content = this.store.any(node, CONT("content")).value;
+    let timestamp = this.store.any(node, TERMS("created")).value;
+    let sender = this.store.any(node, FOAF("maker")).value;
+    let contentType = this.store.any(node, SCHEMA("encodingFormat")).value;
+
+    return Message.buildFromSolidData(
+      id,
+      content,
+      timestamp,
+      sender,
+      contentType
+    );
+  }
+  /**
+   * Sends a message and returns the object of the sent message
+   * @param chat Chat to send the message
+   * @param messageContent Content of the message
+   */
+  public async sendMessage(
+    chat: Chat,
+    messageContent: string
+  ): Promise<Message> {
+    let sender = await ChatService.getChatUser(await this.getMyWebId());
+    let message = Message.buildOwnMessage(messageContent, "text", sender);
+    let direction =
+      this.resolveChatDirection(chat) + "/" + this.MESSAGE_INDEX_NAME;
+
+    //Send message to solid------------------
+    let insertions: any[] = [];
+    let deletions = [];
+
+    const doc = rdf.sym(direction);
+    let subject = rdf.sym(direction + "#" + message._id);
+
+    // Generate statement for the date of creation
+    let predicateDate = rdf.sym(TERMS("created"));
+
+    let messageDate = rdf.literal(
+      message.timestamp,
+      undefined,
+      XML("dateTime")
+    );
+    let dateSt = rdf.st(subject, predicateDate, messageDate, doc);
+    insertions.push(dateSt);
+
+    // Generate statement for the content of the message
+    let predicateMessage = rdf.sym(CONT("content"));
+    let msgSt = rdf.st(subject, predicateMessage, message.content, doc);
+    insertions.push(msgSt);
+
+    //Generate statement for the content type of the message
+    let predicateContentType = rdf.sym(SCHEMA("encodingFormat"));
+    let messageTypeSt = rdf.st(
+      subject,
+      predicateContentType,
+      message.contentType,
+      doc
+    );
+    insertions.push(messageTypeSt);
+
+    // Generate statement for the maker of the message
+    let predicateMaker = rdf.sym(FOAF("maker"));
+    let makerSt = rdf.sym(message.sender.webId); //Web id of the maker
+    let makerStatement = rdf.st(subject, predicateMaker, makerSt, doc);
+    insertions.push(makerStatement);
+
+    // Add to flow
+    subject = rdf.sym(direction + "#this");
+    let predicate = rdf.sym(FLOW("message"));
+    let object = rdf.sym(direction + "#" + message._id);
+    let statement = rdf.st(subject, predicate, object, doc);
+    insertions.push(statement);
+
+    return new Promise<Message>((resolve, reject) => {
+      this.updateManager.update(deletions, insertions, (uri, ok, error) => {
+        if (!ok) {
+          reject(error);
+        } else {
+          resolve(message);
+        }
+      });
+    });
+  }
+
+  /**
+   * Updates a conversation, returning the update conversation
+   * @param chat Chat to uptade
+   */
+  public async updateChatMessages(chat: Chat) {
+    return await this.getConversationFromURI(this.resolveChatDirection(chat));
+  }
   public loadLastMessage(chat: Chat) {
     //TODO
   }

@@ -28,17 +28,29 @@ export default class ChatComponent extends Component<Props, State> {
   }
 
   async componentDidMount() {
-    let setChats = (chats: Chat[]) => {
-      this.setState({ chats: chats });
-      console.log("ESTADO", this.state);
-    };
-    this.chatService.loadChats(setChats);
-    // let conversations: Chat[] = [];
-    // for (let i = 0; i < 30; i++) {
-    //   conversations.push(Chat.mock());
-    // }
+    this.loadChats();
+  }
 
-    // this.setState({ chats: conversations });
+  private async loadChats() {
+    let chats = await this.chatService.loadChats();
+    this.setState({ chats: chats });
+
+    //TODO with web sockets
+    this.setConversationsListeners(chats); //Listen to each of the messages_index.ttl
+    this.setChatIndexLister(); //Listen to chat_index.ttl
+    //TODO clean notifications.ttl
+  }
+
+  private setConversationsListeners(chats: Chat[]) {
+    //TODO
+    //Get las message
+    //Add to conversation
+    //Set estate
+    //Clean notifications.ttl
+  }
+  private setChatIndexLister() {
+    //TODO
+    //Load conversations 
   }
 
   handleChatSelect = (id: string) => {
@@ -47,14 +59,16 @@ export default class ChatComponent extends Component<Props, State> {
     });
   };
 
-  handleMessageSubmit = (text: string) => {
-    //TODO send to solid
+  handleMessageSubmit = async (text: string) => {
     let currentChats = this.state.chats;
     let currentSelectedChat = this.state.selectedChat;
     if (currentSelectedChat) {
-      currentSelectedChat.messages.push(
-        Message.buildOwnMessage(text, "text", me)
+      //TODO when sockets available, this wont be neccesary
+      let sentMessage = await this.chatService.sendMessage(
+        currentSelectedChat,
+        text
       );
+      currentSelectedChat.messages.push(sentMessage);
       this.setState({ chats: currentChats });
     }
   };
@@ -62,9 +76,10 @@ export default class ChatComponent extends Component<Props, State> {
     this.setState({ createChatWindowIsOpen: true });
   };
 
-  handleCreateChat = (users: ChatUser[]) => {
+  handleCreateChat = async (users: ChatUser[]) => {
     this.setState({ createChatWindowIsOpen: false });
-    this.chatService.createChat(users);
+    await this.chatService.createChat(users);
+    this.loadChats();
   };
 
   closeNewChatWindow = () => {

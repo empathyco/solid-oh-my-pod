@@ -1,6 +1,29 @@
 import { ChatUser } from "./chatUser";
+import { ChatService } from "../services/chatService";
 export type ContentType = "text" | "video" | "photo" | "document" | "buzz";
 export class Message {
+  _id: string;
+  timestamp: number;
+  contentType: ContentType;
+  sender: ChatUser;
+  logicDelete: boolean = false;
+  content: string;
+  reads: ChatUser[];
+
+  constructor() {
+    this.setRandomId();
+  }
+
+  setRandomId() {
+    this._id =
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15);
+  }
+
   static buildOwnMessage(
     text: string,
     contentType: ContentType,
@@ -23,25 +46,21 @@ export class Message {
     message.reads = [];
     return message;
   }
-  _id: string;
-  timestamp: number;
-  contentType: ContentType;
-  sender: ChatUser;
-  logicDelete: boolean = false;
-  content: string;
-  reads: ChatUser[];
 
-  constructor() {
-    this.setRandomId();
-  }
+  static async buildFromSolidData(
+    id: string,
+    content: string,
+    timestamp: string,
+    senderWebId: string,
+    contentType: ContentType
+  ): Promise<Message> {
+    let message = new Message();
+    message._id = id;
+    message.content = content;
+    message.timestamp = parseInt(timestamp);
+    message.sender = await ChatService.getChatUser(senderWebId);
+    message.contentType = contentType;
 
-  setRandomId() {
-    this._id =
-      Math.random()
-        .toString(36)
-        .substring(2, 15) +
-      Math.random()
-        .toString(36)
-        .substring(2, 15);
+    return message;
   }
 }

@@ -21,7 +21,7 @@ export default class MessageDisplayComponent extends Component<Props, State> {
     let webId = await ldflexService.getWebId();
     this.setState({ myWebId: webId });
     this.scrollToBottom();
-    console.log("My web id", webId);
+
   }
   componentDidUpdate() {
     this.scrollToBottom();
