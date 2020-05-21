@@ -43,13 +43,17 @@ export default class ChatPreviewComponent extends Component<Props, State> {
           <h3>
             <p>{chatName}</p>
           </h3>
-          <div className="last-message">
-            <span className="tick">✔️</span>
-            <p className="content">{lastMessage.content}</p>
-            <p className="timestamp">
-              {this.formatMessageTime(lastMessage.timestamp)}
-            </p>
-          </div>
+          {lastMessage ? (
+            <div className="last-message">
+              <span className="tick">✔️</span>
+              <p className="content">{lastMessage.content}</p>
+              <p className="timestamp">
+                {this.formatMessageTime(lastMessage.timestamp)}
+              </p>
+            </div>
+          ) : (
+            undefined
+          )}
         </ChatPreviewInfo>
       </ChatPreview>
     );
@@ -62,5 +66,3 @@ export default class ChatPreviewComponent extends Component<Props, State> {
     this.props.handleChatClick(this.props.chat._id);
   };
 }
-
-

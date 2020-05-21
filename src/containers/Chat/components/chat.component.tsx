@@ -28,13 +28,17 @@ export default class ChatComponent extends Component<Props, State> {
   }
 
   async componentDidMount() {
-    this.chatService.initOhMyPodChat();
+    let setChats = (chats: Chat[]) => {
+      this.setState({ chats: chats });
+      console.log("ESTADO", this.state);
+    };
+    this.chatService.loadChats(setChats);
+    // let conversations: Chat[] = [];
+    // for (let i = 0; i < 30; i++) {
+    //   conversations.push(Chat.mock());
+    // }
 
-    let conversations: Chat[] = [];
-    for (let i = 0; i < 30; i++) {
-      conversations.push(Chat.mock());
-    }
-    this.setState({ chats: conversations });
+    // this.setState({ chats: conversations });
   }
 
   handleChatSelect = (id: string) => {

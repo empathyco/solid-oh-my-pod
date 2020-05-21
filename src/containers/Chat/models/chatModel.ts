@@ -1,9 +1,38 @@
 import { ChatUser } from "./chatUser";
 import { Message } from "./message";
+import { ChatService } from "../services/chatService";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 const defaultGroupPhoto = "/img/icon/empty-profile.svg";
 export class Chat {
+  _id: string;
+  chatMode: {
+    type: "group" | "private";
+    chatName: string;
+  };
+  participants: ChatUser[] = [];
+  creator: ChatUser;
+  admins: ChatUser[] = [];
+  messages: Message[] = [];
+  image: string | undefined;
+  createdTimestamp: number;
+
+  /**
+   * Creates a new instance of chat
+   * @param id Sets the id of the chat if it already exist, if not a new random id will be generated
+   * @param createdTimestamp Sets the created timestamp if it already exist, else takes the current time
+   */
+  constructor(id?: string, createdTimestamp?: number) {
+    if (id) this._id = id;
+    else this.setRandomId();
+
+    if (createdTimestamp) this.createdTimestamp = createdTimestamp;
+    else this.setCurrentTimestamp();
+  }
+
+  private setCurrentTimestamp() {
+    this.createdTimestamp = Date.now();
+  }
   getImage(): string {
     //TODO Refactor this, should be inherit class o something
     if (this.chatMode.type === "private") {
@@ -23,21 +52,6 @@ export class Chat {
       return this.chatMode.chatName;
     }
   }
-  _id: string;
-  chatMode: {
-    type: "group" | "private";
-    chatName: string;
-  };
-  participants: ChatUser[];
-  creator: ChatUser;
-  admins: ChatUser[];
-  messages: Message[];
-  image: string | undefined;
-  createdTimestamp: number;
-
-  constructor() {
-    this.setRandomId();
-  }
 
   private setRandomId() {
     this._id =
@@ -51,7 +65,7 @@ export class Chat {
 
   static mock() {
     let me = {
-      webdId: "https://javifake3.solid.community/profile/card#me",
+      webId: "https://javifake3.solid.community/profile/card#me",
       name: "Javier García El de verda",
       photo: "https://javifake3.solid.community/profile/descarga%20(3).jpg",
     };
@@ -69,6 +83,64 @@ export class Chat {
         chat.messages.push(message);
       }
     }
+
+    return chat;
+  }
+
+  static buildNewChatFromUsersAndName(
+    creator: ChatUser,
+    users: ChatUser[],
+    chatName?: string
+  ) {
+    let chat = new Chat();
+    chat.creator = creator;
+    if (users.length == 1) {
+      chat.chatMode = { type: "private", chatName: "" };
+    } else {
+      chat.chatMode = {
+        type: "group",
+        chatName: chatName ? chatName : "",
+      };
+    }
+    users.unshift(chat.creator);
+    chat.participants = users;
+    chat.messages = [];
+    return chat;
+  }
+
+  public getMetadataForPod() {
+    let metadata = {
+      id: this._id,
+      chatMode: {
+        type: this.chatMode.type,
+        chatName: this.chatMode.chatName,
+      },
+      participants: this.participants.map((parti) => parti.webId),
+      creator: this.creator.webId,
+      admins: this.admins.map((part) => part.webId),
+
+      image: this.image,
+      createdTimestamp: this.createdTimestamp,
+    };
+    return JSON.stringify(metadata);
+  }
+
+  static async parseFromMetadata(response: any) {
+    let data = JSON.parse(response);
+    let chat = new Chat();
+    chat._id = data.id;
+    chat.chatMode = data.chatMode;
+    chat.participants = await Promise.all(
+      data.participants.map(
+        async (webId) => await ChatService.getChatUser(webId)
+      )
+    );
+    chat.creator = await ChatService.getChatUser(data.creator);
+    chat.admins = await Promise.all(
+      data.admins.map(async (webId) => await ChatService.getChatUser(webId))
+    );
+    chat.image = data.image;
+    chat.createdTimestamp = data.createdTimestamp;
 
     return chat;
   }
