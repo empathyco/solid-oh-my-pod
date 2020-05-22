@@ -246,3 +246,18 @@ export const createFile=async (path,filename,content,type,keepContent)=>{
 export const doesItemExist=async(path)=>{
   return fc.itemExists(path)
 }
+
+
+/**
+ * Updates the file content
+ * @param {*} path 
+ * @param {*} fileName 
+ * @param {*} content 
+ * @param {*} contentType 
+ */
+export const updateFileContent = async (path, fileName, content) => {
+
+
+    return await fc.putFile(buildFileUrl(path, "/"+fileName), content);
+  
+};

@@ -16,11 +16,12 @@ export default class MessageComponent extends Component<Props> {
   }
 
   render() {
-    const { content, sender, timestamp } = this.props.message;
+    const { content, sender, timestamp, temporary } = this.props.message;
     const webId = this.props.myWebId;
     return (
       <MessageWrapper className={sender.webId === webId ? "right" : undefined}>
         <p className="content">{content}</p>
+        {temporary ? <p className="sendingIcon">...</p> : undefined}
         <p className="sendTime">{DateUtils.formatHH_MM(new Date(timestamp))}</p>
       </MessageWrapper>
     );

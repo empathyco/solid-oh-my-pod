@@ -5,6 +5,7 @@ import { fileExplorerService } from "services";
 import { Chat } from "../models/chatModel";
 import * as rdf from "rdflib";
 import { Message } from "../models/message";
+import { sendNotification } from "utils/notification";
 const FLOW = rdf.Namespace("http://www.w3.org/2005/01/wf/flow#"); // flow
 const SCHEMA = rdf.Namespace("http://schema.org/");
 const VCARD = rdf.Namespace("http://www.w3.org/2006/vcard/ns#");
@@ -80,7 +81,7 @@ export class ChatService {
    * @param webId webId of the profile
    */
   private async createNotificationsFile(webId: string) {
-    let fileName = "notifications.ttl";
+    let fileName = "notifications.json";
     if (
       await fileExplorerService.doesItemExist(
         this.getRootDirection(webId) + this.BASE_ADDRESS + "/" + fileName
@@ -91,8 +92,8 @@ export class ChatService {
       await fileExplorerService.createFile(
         this.getRootDirection(webId) + this.BASE_ADDRESS,
         fileName,
-        "@prefix : <#>.\n",
-        "text/turtle",
+        "",
+        "application/json",
         false
       );
     }
@@ -145,7 +146,8 @@ export class ChatService {
     await this.createMessageIndexForChat(chat);
     await this.addChatToOwnIndexFile(chat);
 
-    await this.addChatToFriendsIndexFile(chat);
+    //TODO uncomment this and test it
+    // await this.addChatToFriendsIndexFile(chat);
   }
 
   /**
@@ -199,8 +201,55 @@ export class ChatService {
         ).length > 0
     );
   }
-  private addChatToFriendsIndexFile(chat: Chat) {
-    //TODO
+
+  /**
+   * Adds the chat to each of the index files of the friends
+   */
+  private async addChatToFriendsIndexFile(chat: Chat) {
+    const insertions: any[] = [];
+    const deletions = [];
+    let addresses: string[] = chat.participants
+      .filter((user) => user.webId !== chat.creator.webId)
+      .map((user) => {
+        return this.getRootDirection(user.webId) + this.INDEX_TTL_ADDRESS;
+      });
+
+    const chatFolderAddress = this.resolveChatDirection(chat);
+
+    await Promise.all(
+      addresses.map(async (userChatIndexDirection) => {
+        const doc = rdf.sym(userChatIndexDirection);
+
+        const chatIndexSubject = rdf.sym(userChatIndexDirection + "#this");
+        const predicateParticipates = rdf.sym(FLOW("participation"));
+        const chatFolderObject = rdf.sym(chatFolderAddress);
+
+        const statement = rdf.st(
+          chatIndexSubject,
+          predicateParticipates,
+          chatFolderObject,
+          doc
+        );
+
+        insertions.push(statement);
+
+        return new Promise<void>((resolve, reject) => {
+          this.updateManager.update(
+            deletions,
+            insertions,
+            (uri, ok, message) => {
+              if (!ok) {
+                reject(
+                  "Error while updating friend index " + userChatIndexDirection
+                );
+              } else {
+                resolve();
+              }
+            }
+          );
+        });
+      })
+    );
   }
 
   /**
@@ -335,7 +384,7 @@ export class ChatService {
             messagesNodes.map((data) => this.parseMessage(data))
           );
 
-          chat.messages = messages;
+          chat.assignMessages(messages);
           resolve(chat);
         }
       });
@@ -352,7 +401,6 @@ export class ChatService {
     let timestamp = this.store.any(node, TERMS("created")).value;
     let sender = this.store.any(node, FOAF("maker")).value;
     let contentType = this.store.any(node, SCHEMA("encodingFormat")).value;
-
     return Message.buildFromSolidData(
       id,
       content,
@@ -372,6 +420,7 @@ export class ChatService {
   ): Promise<Message> {
     let sender = await ChatService.getChatUser(await this.getMyWebId());
     let message = Message.buildOwnMessage(messageContent, "text", sender);
+
     let direction =
       this.resolveChatDirection(chat) + "/" + this.MESSAGE_INDEX_NAME;
 
@@ -421,26 +470,52 @@ export class ChatService {
     let statement = rdf.st(subject, predicate, object, doc);
     insertions.push(statement);
 
-    return new Promise<Message>((resolve, reject) => {
-      this.updateManager.update(deletions, insertions, (uri, ok, error) => {
-        if (!ok) {
-          reject(error);
-        } else {
-          resolve(message);
-        }
-      });
+    this.updateManager.update(deletions, insertions, (uri, ok, error) => {
+      if (!ok) {
+        console.error("error sending message");
+      } else {
+        this.sendNotification(chat);
+      }
     });
+
+    return message.toTemporary();
   }
 
+  private sendNotification(chat: Chat) {
+    fileExplorerService.updateFileContent(
+      this.resolveChatDirection(chat),
+      this.CHAT_METADATA_NAME,
+      ""
+    );
+  }
   /**
-   * Updates a conversation, returning the update conversation
+   * Updates a conversation, returning the updated conversation
    * @param chat Chat to uptade
    */
   public async updateChatMessages(chat: Chat) {
     return await this.getConversationFromURI(this.resolveChatDirection(chat));
   }
-  public loadLastMessage(chat: Chat) {
-    //TODO
+  public async loadLastMessage(chat: Chat): Promise<Message> {
+    let chatURI =
+      this.resolveChatDirection(chat) + "/" + this.MESSAGE_INDEX_NAME;
+
+    return new Promise<Message>((resolve, reject) => {
+      this.fetcher.nowOrWhenFetched(chatURI, async (ok) => {
+        if (!ok) {
+          reject("Oops, something happened and couldn't fetch data");
+        } else {
+          const subject = rdf.sym(chatURI + "#this");
+          const nameMessage = FLOW("message");
+          const messagesNodes = await this.store.each(subject, nameMessage);
+
+          if (messagesNodes)
+            resolve(
+              await this.parseMessage(messagesNodes[messagesNodes.length - 1])
+            );
+          else resolve(undefined);
+        }
+      });
+    });
   }
 
   /**
@@ -465,5 +540,13 @@ export class ChatService {
     let image = `${await friend["vcard:hasPhoto"]}`;
     let chatUser = new ChatUser(`${webId}`, name, image);
     return chatUser;
+  }
+
+  public resolveChatMessageIndex(chat: Chat) {
+    return this.resolveChatDirection(chat) + "/" + this.MESSAGE_INDEX_NAME;
+  }
+
+  public resolveChatMetadataFile(chat: Chat) {
+    return this.resolveChatDirection(chat) + "/" + this.CHAT_METADATA_NAME;
   }
 }

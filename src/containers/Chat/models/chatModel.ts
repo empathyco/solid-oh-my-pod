@@ -5,6 +5,14 @@ import { ChatService } from "../services/chatService";
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 const defaultGroupPhoto = "/img/icon/empty-profile.svg";
 export class Chat {
+  assignMessages(messages: Message[]) {
+    messages = messages.sort((m1, m2) => {
+      if (m1.timestamp < m2.timestamp) return -1;
+      if (m1.timestamp > m2.timestamp) return 1;
+      else return 0;
+    });
+    this.messages = messages;
+  }
   _id: string;
   chatMode: {
     type: "group" | "private";
@@ -143,5 +151,18 @@ export class Chat {
     chat.createdTimestamp = data.createdTimestamp;
 
     return chat;
+  }
+
+  updateMessage(message: Message): Chat {
+    for (var i = this.messages.length - 1; i >= 0; i--) {
+      //In case we have a temporal message
+      if (this.messages[i]._id === message._id) {
+        this.messages[i] = message;
+        console.log("message updated");
+        return this;
+      }
+    }
+    this.messages.push(message);
+    return this;
   }
 }

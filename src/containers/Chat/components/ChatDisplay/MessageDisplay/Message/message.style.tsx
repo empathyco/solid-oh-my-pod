@@ -18,8 +18,14 @@ export const MessageWrapper = styled.div`
   }
   .sendTime {
     margin-bottom: 0;
-    text-align: right;
+    display: block;
+    float: right;
     color: grey;
+    font-size: 0.8em;
+  }
+  .sendingIcon {
+    margin-bottom: 0;
+    display: inline-block;
     font-size: 0.8em;
   }
 `;

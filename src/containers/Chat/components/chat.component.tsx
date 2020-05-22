@@ -17,6 +17,7 @@ type State = {
 
 export default class ChatComponent extends Component<Props, State> {
   chatService: ChatService;
+  webSockets: WebSocket[];
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -35,22 +36,40 @@ export default class ChatComponent extends Component<Props, State> {
     let chats = await this.chatService.loadChats();
     this.setState({ chats: chats });
 
-    //TODO with web sockets
     this.setConversationsListeners(chats); //Listen to each of the messages_index.ttl
-    this.setChatIndexLister(); //Listen to chat_index.ttl
-    //TODO clean notifications.ttl
+    this.setChatIndexListener(); //Listen to chat_index.ttl
   }
 
-  private setConversationsListeners(chats: Chat[]) {
-    //TODO
-    //Get las message
-    //Add to conversation
-    //Set estate
-    //Clean notifications.ttl
+  private async updateChat(chat: Chat) {
+    let index = this.state.chats.indexOf(chat);
+    let lastMessage = await this.chatService.loadLastMessage(chat);
+    let chats = this.state.chats;
+    chats[index] = chat.updateMessage(lastMessage);
+
+    this.setState({ chats: chats });
   }
-  private setChatIndexLister() {
+  private setConversationsListeners(chats: Chat[]) {
+    for (let chat of chats) {
+      let direction = this.chatService.resolveChatMetadataFile(chat);
+      let directionForSocket = "wss" + direction.split("https")[1];
+
+      let socket = new WebSocket(directionForSocket);
+
+      socket.onopen = function() {
+        this.send("sub " + direction);
+      };
+      let updateChat = (chat: Chat) => this.updateChat(chat);
+
+      socket.onmessage = async function(msg) {
+        if (msg.data && msg.data.slice(0, 3) === "pub") {
+          updateChat(chat);
+        }
+      };
+    }
+  }
+  private setChatIndexListener() {
     //TODO
-    //Load conversations 
+    //Load conversations
   }
 
   handleChatSelect = (id: string) => {
@@ -60,18 +79,23 @@ export default class ChatComponent extends Component<Props, State> {
   };
 
   handleMessageSubmit = async (text: string) => {
-    let currentChats = this.state.chats;
     let currentSelectedChat = this.state.selectedChat;
     if (currentSelectedChat) {
-      //TODO when sockets available, this wont be neccesary
+      //sends the message to solid, returns a "temporary message" to be added to the array
+      //Sockets will retrieve the real message and subtitude the temporary with the final one
       let sentMessage = await this.chatService.sendMessage(
         currentSelectedChat,
         text
       );
-      currentSelectedChat.messages.push(sentMessage);
-      this.setState({ chats: currentChats });
+
+      this.sendTemporaryMessage(sentMessage, currentSelectedChat);
     }
   };
+
+  private sendTemporaryMessage(message: Message, currentChat: Chat) {
+    currentChat.messages.push(message);
+    this.setState({ selectedChat: currentChat });
+  }
   handleCreateNewChatButtonClick = () => {
     this.setState({ createChatWindowIsOpen: true });
   };

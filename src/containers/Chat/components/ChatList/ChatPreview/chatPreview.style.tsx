@@ -56,6 +56,9 @@ export const ChatPreviewInfo = styled.div`
       text-overflow: ellipsis;
       max-width: 60%;
     }
+    .content {
+      margin-left: 5px;
+    }
 
     .timestamp {
       margin-left: auto;

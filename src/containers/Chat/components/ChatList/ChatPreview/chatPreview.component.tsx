@@ -45,7 +45,12 @@ export default class ChatPreviewComponent extends Component<Props, State> {
           </h3>
           {lastMessage ? (
             <div className="last-message">
-              <span className="tick">✔️</span>
+              {lastMessage.temporary ? (
+                <span className="sending">[...]</span>
+              ) : (
+                <span className="tick">✔️</span>
+              )}
+
               <p className="content">{lastMessage.content}</p>
               <p className="timestamp">
                 {this.formatMessageTime(lastMessage.timestamp)}

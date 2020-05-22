@@ -9,6 +9,7 @@ export class Message {
   logicDelete: boolean = false;
   content: string;
   reads: ChatUser[];
+  temporary = false;
 
   constructor() {
     this.setRandomId();
@@ -62,5 +63,10 @@ export class Message {
     message.contentType = contentType;
 
     return message;
+  }
+
+  toTemporary(): Message {
+    this.temporary = true;
+    return this;
   }
 }
