@@ -3,7 +3,7 @@ import { fileExplorerService } from "@services";
 import * as contextf from 'json/context.txt';
 
 import CenterContainer from "../../components/Utils/CenterContainer";
-import {ShopWrapper}  from "./shop.style";
+import {ShopWrapper, BoySearch, GirlSearch}  from "./shop.style";
 
 
 export default class ShopComponent extends React.Component {
@@ -93,13 +93,25 @@ export default class ShopComponent extends React.Component {
   render(){
   return (
     <ShopWrapper>
+
     <CenterContainer>
-   <div ref={el => (this.div = el)}>
+      <div class="logos">
+        <div>
+      <GirlSearch>
+        <img src="/img/girlsearch.svg" alt="Girl search"></img>
+      </GirlSearch>
+      </div>
+       <div ref={el => (this.div = el)}>
+         <p> <button class="open"   ><img src="/img/icon/search.svg"></img></button> </p>
+         <p>Your search information will be saved in your pod</p>
+       </div>
 
-      <p> <button class="open"  >call empathysearch</button> </p>
-
-
-   </div>
+        <div>
+      <BoySearch>
+        <img src="/img/boysearch.svg" alt="Boy search"></img>
+      </BoySearch>
+        </div>
+      </div>
     </CenterContainer>
     </ShopWrapper>
   );

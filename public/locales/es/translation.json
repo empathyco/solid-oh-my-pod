@@ -86,7 +86,7 @@
   "notFound": {
     "title": "Página no encontrada",
     "content": "Puede existir un problema con la dirección buscada. Por favor verifiquela e intente de nuevo. O la página que buscaste ha sido movida o eliminada",
-    "redirectButton": "Llevarme a la página principal"
+    "redirectButton": "Llevame a casa"
   },
   "welcome": {
     "welcome": "Bienvenido",
