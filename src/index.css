@@ -9,6 +9,10 @@ body,
 
 :root {
   --light-blue: #53b9c9;
+  --main: rgb(36, 61, 72);
+  --error: rgb(212, 74, 111);
+  --success: rgb(128, 192, 161);
+  --info: rgb(83, 185, 201);
 }
 
 * {
@@ -158,7 +162,7 @@ button {
   transition: 0.25s all ease-in-out;
   outline: none;
   text-transform: uppercase;
-  background-color: transparent !important;
+  background-color: transparent;
 }
 .addButton {
   border: 1px solid transparent !important;
@@ -173,13 +177,11 @@ button {
 button:hover:enabled {
   border: none !important;
   /* font-weight: bolder; */
-  transform: scale(1.1);
-  color: #25354a !important;
 }
 button:active:enabled {
   /* border: 1px solid #dae0e6 !important; */
   /* background-color: #25354a !important; */
-  transform: scale(0.95);
+
   /* color: white !important; */
 }
 .ebx-empathy-x__header {

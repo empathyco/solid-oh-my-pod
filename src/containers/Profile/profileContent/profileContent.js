@@ -55,6 +55,7 @@ class ProfileContent extends Component {
         <ButtonWithImage
           icon="id-card"
           label={t("profile.card")}
+          
         ></ButtonWithImage>
       </CardLink>
     );

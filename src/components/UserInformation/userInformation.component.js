@@ -4,6 +4,8 @@ import Image from "./Image";
 
 import { ProfileName, Section, ImageContainer } from "./userInformation.style";
 import { ldflexService } from "../../services";
+import {OMPButton} from "components/Utils"
+import { faHourglass } from "@fortawesome/free-solid-svg-icons";
 class UserInformation extends Component {
   /**
    *
@@ -56,6 +58,7 @@ class UserInformation extends Component {
         </ImageContainer>
 
         {this.getProfileName()}
+
         {this.state.children}
       </Section>
     );

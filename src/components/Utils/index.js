@@ -14,6 +14,7 @@ import Select from "./Select";
 import ConfirmationDialog from "./ConfirmationDialog";
 import Labeled from "./Labeled";
 import ButtonWithImage from "./ButtonWithImage";
+import OMPButton from "./buttons"
 
 export {
   ImageBackground,
@@ -32,4 +33,5 @@ export {
   Select,
   Labeled,
   ButtonWithImage,
+  OMPButton
 };
