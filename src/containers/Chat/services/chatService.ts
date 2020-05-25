@@ -1,11 +1,13 @@
 import data from "@solid/query-ldflex";
 import auth from "solid-auth-client";
+import SolidFileClient from "solid-file-client";
 import { ChatUser } from "../models/chatUser";
 import { fileExplorerService } from "services";
 import { Chat } from "../models/chatModel";
 import * as rdf from "rdflib";
 import { Message } from "../models/message";
 import { sendNotification } from "utils/notification";
+import NotUserError from "../models/NotUserError";
 const FLOW = rdf.Namespace("http://www.w3.org/2005/01/wf/flow#"); // flow
 const SCHEMA = rdf.Namespace("http://schema.org/");
 const VCARD = rdf.Namespace("http://www.w3.org/2006/vcard/ns#");
@@ -18,8 +20,9 @@ const XML = rdf.Namespace("http://www.w3.org/2001/XMLSchema#");
 const PROV = rdf.Namespace("https://www.w3.org/ns/prov#");
 const ACL = rdf.Namespace("http://www.w3.org/ns/auth/acl#");
 
+const fc = new SolidFileClient(auth, { enableLogging: true });
 export class ChatService {
-  BASE_ADDRESS = "/public/test/ohmypod_chat";
+  BASE_ADDRESS = "/public/test3/ohmypod_chat";
   BASE_CHAT_NAME = "chat_";
   INDEX_NAME = "chat_index.ttl";
   INDEX_TTL_ADDRESS = this.BASE_ADDRESS + "/" + this.INDEX_NAME;
@@ -31,26 +34,74 @@ export class ChatService {
   MESSAGE_INDEX_NAME = "messages_index.ttl";
 
   constructor() {
-    this.initOhMyPodChat();
+    this.initService();
     this.updateManager = rdf.UpdateManager;
     this.store = rdf.graph();
-
     this.fetcher = new rdf.Fetcher(this.store, this.TIMEOUT);
     this.updateManager = new rdf.UpdateManager(this.store);
+  }
+
+  private async initService() {
+    let webId = await this.getMyWebId();
+    this.initOhMyPodChat(webId);
   }
 
   /**
    * Ensures that there exist the necesary files and folders for the chat to work
    * if everything is okay, it will just do nothing but check the correctness
    */
-  private async initOhMyPodChat() {
-    const webId = (await auth.currentSession(localStorage)).webId;
+  private async initOhMyPodChat(webId: string) {
     this.getRootDirection(webId);
     await this.createRooFolder(webId); //Initialize root folder
     await this.createNotificationsFile(webId); //Initialize notifications.ttl
     await this.createChatIndexFile(webId); //Initialize chat_index.ttl
+    await this.createOhMyPodChatACL(webId);
   }
 
+  private async createOhMyPodChatACL(webId: string) {
+    //TODO should ask for "control" permision for the app if it is not allowed
+    let direction = this.getRootDirection(webId) + this.BASE_ADDRESS;
+    let content = `
+    @prefix : <#>.
+    @prefix acl: <http://www.w3.org/ns/auth/acl#>.
+    @prefix chat: <./>.
+    @prefix foaf: <http://xmlns.com/foaf/0.1/>.
+    :myAuthorization
+     a                  acl:Authorization;
+     acl:agentClass        foaf:Agent;
+     acl:agent          <${webId}>;
+     acl:default        chat:;
+     acl:accessTo       chat:;
+     acl:mode           acl:Append,
+                        acl:Read, 
+                        acl:Write, 
+                        acl:Control.
+      :publicAuthorization
+      a                  acl:Authorization;
+      acl:agentClass  acl:AuthenticatedAgent;   
+      acl:default        chat:;
+      acl:accessTo       chat:;
+      acl:mode           acl:Append.
+
+      `;
+    
+    await auth
+      .fetch(direction + "/.acl", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "text/turtle",
+          "Content-Length": content.length,
+          Slug: ".acl",
+        },
+        body: content,
+      })
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
   /**
    * Creates the necessary folder for the chat to work
    * @param webId WebId of the chatUser
@@ -122,6 +173,10 @@ export class ChatService {
     }
   }
 
+  private checkIsOhMyPodChatUser(user: ChatUser): boolean {
+    //TODO check if it exists the folder or something
+    return false;
+  }
   /**
    * Creates a chat for the given users, if there is only one, a private chat will be created, and only if it doesn't
    * already exist
@@ -135,6 +190,16 @@ export class ChatService {
         return; //Cannot create another chat, chat already exists
       }
     }
+
+    let notUsers: ChatUser[] = [];
+    users.filter((user) => {
+      if (!this.checkIsOhMyPodChatUser(user)) {
+        notUsers.push(user);
+      }
+    });
+    if (notUsers.length > 0) {
+      throw new NotUserError(notUsers);
+    }
     const creator = await ChatService.getChatUser(
       (await auth.currentSession()).webId
     );
@@ -146,8 +211,7 @@ export class ChatService {
     await this.createMessageIndexForChat(chat);
     await this.addChatToOwnIndexFile(chat);
 
-    //TODO uncomment this and test it
-    // await this.addChatToFriendsIndexFile(chat);
+    await this.addChatToFriendsIndexFile(chat);
   }
 
   /**
@@ -208,11 +272,16 @@ export class ChatService {
   private async addChatToFriendsIndexFile(chat: Chat) {
     const insertions: any[] = [];
     const deletions = [];
-    let addresses: string[] = chat.participants
-      .filter((user) => user.webId !== chat.creator.webId)
-      .map((user) => {
-        return this.getRootDirection(user.webId) + this.INDEX_TTL_ADDRESS;
-      });
+
+    let friends = chat.participants.filter(
+      (user) => user.webId !== chat.creator.webId
+    );
+
+    let addresses: string[] = friends.map((user) => {
+      return this.getRootDirection(user.webId) + this.INDEX_TTL_ADDRESS;
+    });
+
+    console.log("ADRESS", addresses);
 
     const chatFolderAddress = this.resolveChatDirection(chat);
 
@@ -495,11 +564,11 @@ export class ChatService {
   public async updateChatMessages(chat: Chat) {
     return await this.getConversationFromURI(this.resolveChatDirection(chat));
   }
-  public async loadLastMessage(chat: Chat): Promise<Message> {
+  public async loadLastMessage(chat: Chat): Promise<Message[]> {
     let chatURI =
       this.resolveChatDirection(chat) + "/" + this.MESSAGE_INDEX_NAME;
 
-    return new Promise<Message>((resolve, reject) => {
+    return new Promise<Message[]>((resolve, reject) => {
       this.fetcher.nowOrWhenFetched(chatURI, async (ok) => {
         if (!ok) {
           reject("Oops, something happened and couldn't fetch data");
@@ -508,11 +577,12 @@ export class ChatService {
           const nameMessage = FLOW("message");
           const messagesNodes = await this.store.each(subject, nameMessage);
 
-          if (messagesNodes)
-            resolve(
-              await this.parseMessage(messagesNodes[messagesNodes.length - 1])
+          if (messagesNodes) {
+            let messages: Message[] = await Promise.all(
+              messagesNodes.map((data) => this.parseMessage(data))
             );
-          else resolve(undefined);
+            resolve(messages);
+          } else resolve(undefined);
         }
       });
     });

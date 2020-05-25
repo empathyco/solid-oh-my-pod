@@ -153,16 +153,19 @@ export class Chat {
     return chat;
   }
 
-  updateMessage(message: Message): Chat {
-    for (var i = this.messages.length - 1; i >= 0; i--) {
-      //In case we have a temporal message
-      if (this.messages[i]._id === message._id) {
-        this.messages[i] = message;
-        console.log("message updated");
-        return this;
-      }
-    }
-    this.messages.push(message);
+  updateMessages(messages: Message[]): Chat {
+    //get all new ids
+    let allId = messages.map((m) => m._id);
+
+    //filter termporal messages that have not been received
+    let temporalMessages = this.messages.filter(
+      (message) => message.temporary && !allId.some((id) => id === message._id)
+    );
+
+    //Assign the new messages
+    let updatedMessages = [...messages, ...temporalMessages];
+    this.assignMessages(updatedMessages);
+
     return this;
   }
 }

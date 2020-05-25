@@ -7,6 +7,7 @@ import { Message } from "../models/message";
 import { ChatUser } from "../models/chatUser";
 import { ChatService } from "../services/chatService";
 import NewChatWindowComponent from "./newChatWindow/";
+import NotUserError from "../models/NotUserError";
 
 type Props = {};
 type State = {
@@ -42,9 +43,9 @@ export default class ChatComponent extends Component<Props, State> {
 
   private async updateChat(chat: Chat) {
     let index = this.state.chats.indexOf(chat);
-    let lastMessage = await this.chatService.loadLastMessage(chat);
+    let lastMessages = await this.chatService.loadLastMessage(chat);
     let chats = this.state.chats;
-    chats[index] = chat.updateMessage(lastMessage);
+    chats[index] = chat.updateMessages(lastMessages);
 
     this.setState({ chats: chats });
   }
@@ -102,8 +103,19 @@ export default class ChatComponent extends Component<Props, State> {
 
   handleCreateChat = async (users: ChatUser[]) => {
     this.setState({ createChatWindowIsOpen: false });
-    await this.chatService.createChat(users);
-    this.loadChats();
+    try {
+      await this.chatService.createChat(users);
+      this.loadChats();
+    } catch (error) {
+      if (error instanceof NotUserError) {
+        console.log("No son usuarios", error.nonUsers);
+        alert(
+          "The following friends are not OhMyPodChat users\n" +
+            error.nonUsers.map((user) => user.webId).join("\n") +
+            "\nwe cannot create the chat, ask them to join OhMyPodChat!"
+        );
+      }
+    }
   };
 
   closeNewChatWindow = () => {
@@ -147,9 +159,3 @@ export default class ChatComponent extends Component<Props, State> {
     );
   }
 }
-
-const me = new ChatUser(
-  "https://javifake3.solid.community/profile/card#me",
-  "Javier García" + Math.trunc(Math.random() * 20),
-  "https://javifake3.solid.community/profile/descarga%20(3).jpg"
-);
