@@ -6,7 +6,8 @@ import { ProfileName, Section, ImageContainer } from "./userInformation.style";
 import { ldflexService } from "../../services";
 import {OMPButton} from "components/Utils"
 import { faHourglass } from "@fortawesome/free-solid-svg-icons";
-import {ToasterService} from "../toaster";
+import {LoaderService} from "../loader";
+
 class UserInformation extends Component {
   /**
    *
@@ -47,10 +48,11 @@ class UserInformation extends Component {
       return;
     }
   }
+
+
+ 
   render() {
     const { webId } = this.state;
-    
-    
     
     return (
       <Section>
@@ -63,7 +65,7 @@ class UserInformation extends Component {
         </ImageContainer>
 
         {this.getProfileName()}
-          
+
         {this.state.children}
       </Section>
     );

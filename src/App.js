@@ -14,6 +14,7 @@ import './index.css';
 import '@inrupt/solid-style-guide';
 import { Toaster } from './App.styled';
 import { ToasterComponent } from './components/toaster';
+import {LoaderComponent} from "./components/loader"
 
 library.add(fas);
 library.add(faGithub);
@@ -23,6 +24,7 @@ const App = () => (
       <Fragment>
         <Routes />
         <ToasterComponent ></ToasterComponent>
+        <LoaderComponent></LoaderComponent>
         <Toaster
           {...{
             autoClose: 3000,
