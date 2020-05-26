@@ -6,6 +6,7 @@ import { ProfileName, Section, ImageContainer } from "./userInformation.style";
 import { ldflexService } from "../../services";
 import {OMPButton} from "components/Utils"
 import { faHourglass } from "@fortawesome/free-solid-svg-icons";
+import {ToasterService} from "../toaster";
 class UserInformation extends Component {
   /**
    *
@@ -17,6 +18,7 @@ class UserInformation extends Component {
       title: props.title,
       chindren: props.chindren,
     };
+    this.counter=0
   }
 
   async componentDidMount() {
@@ -47,6 +49,9 @@ class UserInformation extends Component {
   }
   render() {
     const { webId } = this.state;
+    
+    
+    
     return (
       <Section>
         <ImageContainer>
@@ -58,7 +63,7 @@ class UserInformation extends Component {
         </ImageContainer>
 
         {this.getProfileName()}
-
+          
         {this.state.children}
       </Section>
     );

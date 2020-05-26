@@ -13,6 +13,8 @@ body,
   --error: rgb(212, 74, 111);
   --success: rgb(128, 192, 161);
   --info: rgb(83, 185, 201);
+  --battleship-grey: #667981;
+  --pale-blue: #e2e6e7;
 }
 
 * {

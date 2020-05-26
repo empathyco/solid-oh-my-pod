@@ -5,9 +5,10 @@ import { GeneralButton } from "./buttons.style";
 type Props = {
   label: string;
   color: "main" | "error" | "success" | "info";
-  style: any;
+  style?: any;
   action: () => void;
-  disabled: boolean;
+  disabled?: boolean;
+  className?: string;
 };
 const OMPButton = (props: Props) => {
   const { label, color, style, action, disabled } = props;
@@ -15,7 +16,7 @@ const OMPButton = (props: Props) => {
   return (
     <GeneralButton
       style={style}
-      className={color ? color : "main"}
+      className={color ? color + " omp-button" : "main omp-button"}
       onClick={action}
       disabled={disabled ? disabled : false}
     >

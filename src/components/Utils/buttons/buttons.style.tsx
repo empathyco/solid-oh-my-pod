@@ -4,7 +4,7 @@ export const GeneralButton = styled.button`
   color: white !important ;
   background-color: var(--main);
   border-radius: 100px !important;
-  padding: 10px 20px;
+  padding: 15px 25px;
   display: inline-block;
   text-align: center;
   font-weight: bolder;

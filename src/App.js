@@ -13,6 +13,7 @@ import 'normalize.css';
 import './index.css';
 import '@inrupt/solid-style-guide';
 import { Toaster } from './App.styled';
+import { ToasterComponent } from './components/toaster';
 
 library.add(fas);
 library.add(faGithub);
@@ -21,6 +22,7 @@ const App = () => (
     <ThemeProvider theme={theme}>
       <Fragment>
         <Routes />
+        <ToasterComponent className="heeey"></ToasterComponent>
         <Toaster
           {...{
             autoClose: 3000,
