@@ -22,7 +22,7 @@ const App = () => (
     <ThemeProvider theme={theme}>
       <Fragment>
         <Routes />
-        <ToasterComponent className="heeey"></ToasterComponent>
+        <ToasterComponent ></ToasterComponent>
         <Toaster
           {...{
             autoClose: 3000,
