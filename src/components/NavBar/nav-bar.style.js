@@ -16,14 +16,41 @@ export const MyLogo = styled.div`
 export const NavSection = styled.section`
   ul {
     li {
+      position: relative;
+
       a:hover,
       a:active,
       button:hover,
       button:active {
-        background: rgb(196, 230, 237) !important;
+        background: transparent !important;
       }
+
+     
       .active {
-        background: #f4f4f4 !important;
+        background: white !important;
+        &:before {
+          content: "";
+          position: absolute;
+
+          left: calc(1em - 2px);
+          bottom: 0;
+          height: 1px;
+          width: calc(100% - 2em);
+          border-bottom: 2px solid var(--greyblue);
+
+        }
+
+        &.mobile-link::before {
+          content: "";
+          position: absolute;
+
+          left: 0;
+          top: 0;
+          width: 1px;
+          height: 100%;
+          border-bottom: none;
+          border-left: 4px solid var(--greyblue);
+        }
       }
     }
   }

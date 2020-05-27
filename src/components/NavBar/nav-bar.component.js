@@ -78,7 +78,7 @@ const NavBar = (props) => {
             toggleMobileMenu={toggleMobileMenu}
             t={t}
           >
-            <Navigation navigation={navigation} />
+            <Navigation navigation={navigation} isMobile />
             <Toolbar toolbar={profileOptions} open customClass="profile-list" />
           </MobileNavigation>
         ) : (
