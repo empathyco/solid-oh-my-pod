@@ -4,9 +4,9 @@ import Image from "./Image";
 
 import { ProfileName, Section, ImageContainer } from "./userInformation.style";
 import { ldflexService } from "../../services";
-import {OMPButton} from "components/Utils"
+import { OMPButton } from "components/Utils";
 import { faHourglass } from "@fortawesome/free-solid-svg-icons";
-import {LoaderService} from "../loader";
+import { LoaderService } from "../loader";
 
 class UserInformation extends Component {
   /**
@@ -19,7 +19,7 @@ class UserInformation extends Component {
       title: props.title,
       chindren: props.chindren,
     };
-    this.counter=0
+    this.counter = 0;
   }
 
   async componentDidMount() {
@@ -49,11 +49,9 @@ class UserInformation extends Component {
     }
   }
 
-
- 
   render() {
     const { webId } = this.state;
-    
+
     return (
       <Section>
         <ImageContainer>

@@ -7,6 +7,7 @@ import Footer from "./Footer";
 import ProviderLogin from "./Login";
 import ContainerHeader from "./ContainerHeader";
 import UserInformation from "./UserInformation";
+import { LoaderComponent, LoaderService } from "./loader";
 
 export {
   ContainerHeader,
@@ -18,4 +19,6 @@ export {
   ImageProfile,
   Footer,
   UserInformation,
+  LoaderService,
+  LoaderComponent,
 };

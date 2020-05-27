@@ -9,6 +9,7 @@ body,
 
 :root {
   --light-blue: #53b9c9;
+  --light-blue-grey: #cfd4d7;
   --main: rgb(36, 61, 72);
   --error: rgb(212, 74, 111);
   --success: rgb(128, 192, 161);
@@ -16,6 +17,7 @@ body,
   --battleship-grey: #667981;
   --pale-blue: #e2e6e7;
   --greyblue: #53b9c9;
+  --white: #f4f4f4;
 }
 
 * {

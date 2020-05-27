@@ -1,15 +1,16 @@
-import React, { Component } from "react";
 import { fileExplorerService } from "@services";
-import { ExplorerContainer, Explorer } from "./fileexplorer.style";
+import { LoaderService } from "components";
+import React, { Component } from "react";
 import {
   AudioFile,
-  ImageFile,
   EditableFile,
+  ImageFile,
+  UnknownFile,
   VideoFile,
-  UnknownFile
 } from "./components/files";
 import Folder from "./components/folder/folderItem.component";
 import Route from "./components/route/route.component";
+import { Explorer, ExplorerContainer } from "./fileexplorer.style";
 
 export default class FileExplorerComponent extends Component {
   constructor() {
@@ -19,19 +20,22 @@ export default class FileExplorerComponent extends Component {
       folder: [],
       // route: [],
       previousRoute: "",
-      selectedResource: null
+      selectedResource: null,
     };
     this.changeRoot = this.changeRoot.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
   async componentDidMount() {
+    LoaderService.nowLoading();
     let publicRoot = await fileExplorerService.getRoot();
     await this.setState({
       url: publicRoot,
-      folder: await fileExplorerService.getFolderContent(publicRoot)
+      folder: await fileExplorerService.getFolderContent(publicRoot),
       // route: await this.getRoute(publicRoot)
     });
+
+    LoaderService.completeLoad();
   }
 
   // shouldComponentUpdate(nextProps, nextState){
@@ -48,7 +52,7 @@ export default class FileExplorerComponent extends Component {
     await this.setState({
       url: id,
       folder: await fileExplorerService.getFolderContent(id),
-      previousRoute: prev
+      previousRoute: prev,
     });
     this.forceUpdate();
   }
@@ -56,7 +60,7 @@ export default class FileExplorerComponent extends Component {
   async handleClick(event) {
     const { id } = event.target;
     await this.setState({
-      selectedResource: id
+      selectedResource: id,
     });
     this.forceUpdate();
   }
@@ -66,7 +70,7 @@ export default class FileExplorerComponent extends Component {
     let folders = null;
 
     if (this.state.folder.folders !== undefined) {
-      folders = this.state.folder.folders.map(file => {
+      folders = this.state.folder.folders.map((file) => {
         return (
           <Folder
             folder={file}
@@ -81,7 +85,7 @@ export default class FileExplorerComponent extends Component {
     let archives = null;
 
     if (this.state.folder.files !== undefined) {
-      archives = this.state.folder.files.map(file => {
+      archives = this.state.folder.files.map((file) => {
         return file.ctype === "editable" ? (
           <EditableFile
             file={file}
@@ -123,9 +127,11 @@ export default class FileExplorerComponent extends Component {
 
     return (
       <ExplorerContainer>
-
         <Route url={this.state.url} click={this.changeRoot} />
-        <Explorer> <div class="fileitems">{files} </div></Explorer>
+        <Explorer>
+          {" "}
+          <div class="fileitems">{files} </div>
+        </Explorer>
       </ExplorerContainer>
     );
   }

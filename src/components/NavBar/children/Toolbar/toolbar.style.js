@@ -6,7 +6,7 @@ export const Item = styled.li`
 export const Separator = styled.div`
   width: 1px;
   height: 50px;
-  background-color: var(--greyblue);
+  background-color: var(--light-blue-grey);
   transform: rotateZ(25deg);
   margin: auto 1em;
 `;

@@ -25,7 +25,6 @@ export const Img = styled.img`
   max-width: 38px;
   max-height: 38px;
   border-radius: 100px;
-  border: solid 1px #0a3675;
 `;
 
 export const LoadingImage = styled(ImageContainer)`
@@ -37,8 +36,6 @@ export const UserName = styled.span`
   display: inline-block;
   margin-left: 10px;
 `;
-
-
 
 let beforeContext;
 

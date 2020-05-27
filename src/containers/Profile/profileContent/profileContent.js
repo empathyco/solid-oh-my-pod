@@ -2,8 +2,8 @@ import React, { Component, Fragment } from "react";
 import { ldflexService } from "@services";
 import { data } from "@solid/query-ldflex";
 import auth from "solid-auth-client";
-import { UserInformation } from "../../../components";
-import { WithImage, ButtonWithImage } from "../../../components/Utils";
+import { UserInformation, LoaderService } from "components";
+import { WithImage, ButtonWithImage } from "components/Utils";
 import {
   Content,
   InputText,
@@ -34,11 +34,12 @@ class ProfileContent extends Component {
   }
 
   async componentDidMount() {
+    LoaderService.nowLoading();
     this.originalFields = await this.getData();
     // Set updated to false
     this.originalFields.updated = false;
     this.setState(this.originalFields);
-    console.log("original", this.originalFields);
+    LoaderService.completeLoad();
   }
 
   async getData() {
@@ -55,7 +56,6 @@ class ProfileContent extends Component {
         <ButtonWithImage
           icon="id-card"
           label={t("profile.card")}
-          
         ></ButtonWithImage>
       </CardLink>
     );

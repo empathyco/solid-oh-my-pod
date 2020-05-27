@@ -1,31 +1,27 @@
-import React, { Fragment } from "react";
-import { ldflexService, Provider } from "@services";
-import {
-  FriendList,
-  Friend,
-  FriendInfo,
-  FriendListWrapper,
-  HeaderFriend,
-  FriendCardTop,
-  FriendCountDisplay,
-  FormattedFiendNameWrapper,
-  Content,
-} from "./friendlist.style";
-import { CenterContainer } from "@util-components";
-import { ContainerHeader } from "../../components";
-import { UserInformation } from "../../components";
-
-//import {   } from "/i18n";
-import { useTranslation } from "react-i18next";
-
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import { ImageWrapper } from "../Welcome/welcome.style";
+import { ldflexService, Provider } from "@services";
+import React, { Fragment } from "react";
+//import {   } from "/i18n";
+import { useTranslation } from "react-i18next";
+import {
+  ContainerHeader,
+  LoaderService,
+  UserInformation,
+} from "../../components";
 import ButtonWithImage from "../../components/Utils/ButtonWithImage/buttonWithImage";
-import { findByTestId } from "react-testing-library";
+import {
+  Content,
+  FormattedFiendNameWrapper,
+  Friend,
+  FriendCountDisplay,
+  FriendInfo,
+  FriendList,
+  FriendListWrapper,
+} from "./friendlist.style";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 export default class FriendListComponent extends React.Component {
@@ -143,11 +139,13 @@ export default class FriendListComponent extends React.Component {
   }
 
   async componentDidMount() {
+    LoaderService.nowLoading();
     const friends = await this.getFriends();
     const webId = await ldflexService.getWebId();
     const accountName = await ldflexService.getProfileName();
-    console.log("ACCOUNT NAME", accountName);
+
     this.setState({ friends: friends, webId: webId, title: accountName });
+    LoaderService.completeLoad();
   }
 
   getAddFriendDialog() {
