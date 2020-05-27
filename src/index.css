@@ -7,6 +7,48 @@ body,
   padding: 0;
 }
 
+article{
+  padding: 1.5em;
+  background-color: #ebebeb;
+
+}
+.ebx-empathy-x__main{
+  padding: 1em;
+}
+.ebx-empathy-x__header{
+  padding: 1.5em;
+}
+
+aside{
+  padding: 0.5em;
+ }
+.ebx-search-box
+{
+  padding: 1em;
+ background-color: #ebebeb;
+ }
+.ebx-close {
+  padding: 1em;
+  font-weight: 900;
+  color: #000000;
+  background-color: #ff000066 !important;
+  width: 2em;
+  height: 5em
+
+}
+
+.ebx-result-title
+{
+  color: #52b7c7;
+  font-weight: lighter;
+  font-size: 1em !important
+}
+.ebx-empathize-panel{
+  padding: 1em;
+  padding-left: 2em;
+  color: red;
+  align-content: center;
+}
 * {
   box-sizing: border-box;
 }

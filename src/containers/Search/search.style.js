@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ShopWrapper = styled.div`
+export const SearchWrapper = styled.div`
   .logos{
   
       animation-duration: 4s;
@@ -72,6 +72,7 @@ export const ShopWrapper = styled.div`
  p{
       font-family: "Montserrat", sans-serif !important;
       }
+      
 
  `;
 

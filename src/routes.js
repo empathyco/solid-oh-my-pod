@@ -42,8 +42,8 @@ const privateRoutes = [
     component: VocabularyComponent
   },
   {
-     id:'shop',
-    path:'/shop',
+     id:'search',
+    path:'/search',
     component: ShopComponent
    }
 

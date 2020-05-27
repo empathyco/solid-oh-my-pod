@@ -27,10 +27,10 @@ export const NavigationItems = [
     to: '/fileexplorer'
   },
   {
-    id: 'shop',
-    icon: 'img/icon/things.svg',
-    label: 'Shop',
-    to: '/shop'
+    id: 'search',
+    icon: 'img/icon/searchicon.svg',
+    label: 'Search',
+    to: '/search'
   }
 
 

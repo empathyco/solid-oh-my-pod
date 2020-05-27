@@ -94,7 +94,7 @@ const Profile = ({ webId }) => {
               <ShexFormBuilder
                 {...{
                   documentUri: webId,
-                  shexUri: 'https://shexshapes.inrupt.net/public/userprofile.shex',
+                  shexUri: 'https://shexshapes.inrupt.net/public/shapes/userprofile.shex',
                   theme: {
                     form: 'shexForm',
                     shexPanel: 'shexPanel',

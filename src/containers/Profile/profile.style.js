@@ -129,7 +129,7 @@ export const ShexForm = styled.div`
   }
 
   & .shexPanel {
-     border:none
+     border:none !important;
       padding: 12px;
     position: relative;
     

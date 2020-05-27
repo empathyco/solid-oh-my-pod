@@ -10,6 +10,18 @@ export const PageNotFoundWrapper = styled.section`
   .notcontent{
   display:flex;
   justify-content: center;
+ 
+   animation-duration: 3.5s;
+   animation-name: bop;
+       @keyframes bop {
+      from {       
+      opacity: 0.001;  
+      }
+      
+      to {    
+      opacity: 0.01;       
+      }
+      }
   }
  
  
@@ -19,6 +31,7 @@ export const PageNotFoundWrapper = styled.section`
   background-position: 50% 50%; 
   width: 100%;
   vertical-align:middle;
+  background-attachment: fixed;
  
    
 `;
@@ -35,12 +48,13 @@ img{
       animation-duration: 2s;
        animation-name: slide;
        animation-timing-function: cubic-bezier(0.42, -0.49, 0, 2.5);
-      
+       animation-delay: 0.75s;
+
       
       
       @keyframes slide {
       from {
-      margin-top:-10em;
+      margin-top:-20em;
       
       opacity: 0.01;
       
@@ -50,8 +64,7 @@ img{
       to {
       margin-top: 0em;
       
-      opacity: 1;
-       
+      opacity: 1; 
       }
       }
  }
@@ -117,7 +130,7 @@ export const OhGirl = styled.section`
   line-height: 0;
    margin: 0px 15px;
    img{
-         animation-delay: 0.25s;
+         animation-delay: 0.001s;
 
   
  width:100%;
@@ -132,7 +145,7 @@ export const MyBoy = styled.section`
    margin: 0px 15px;
 img{
   width:100%;
-      animation-delay: 1s;
+      animation-delay: 0.3s;
 
  }
     `;
@@ -143,7 +156,7 @@ export const PodGirl = styled.section`
 
  img{
   width:100%;
-  animation-delay: 1.5s;
+  animation-delay: 0.75s;
 
  }
   

@@ -6,6 +6,6 @@ import Profile from './Profile';
 import FriendListComponent from './FriendList';
 import FileExplorerComponent from './FileExplorer';
  import VocabularyComponent from './Vocabulary';
-import ShopComponent from './Shop';
+import ShopComponent from './Search';
 export { Login,ShopComponent,VocabularyComponent, Register, RegistrationSuccess, PageNotFound, Welcome, Profile, FriendListComponent, FileExplorerComponent};
 

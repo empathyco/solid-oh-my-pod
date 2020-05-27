@@ -3,10 +3,10 @@ import { fileExplorerService } from "@services";
 import * as contextf from 'json/context.txt';
 
 import CenterContainer from "../../components/Utils/CenterContainer";
-import {ShopWrapper, BoySearch, GirlSearch}  from "./shop.style";
+import {SearchWrapper, BoySearch, GirlSearch}  from "./search.style";
 
 
-export default class ShopComponent extends React.Component {
+export default class SearchComponent extends React.Component {
 
   constructor()
   {
@@ -38,15 +38,13 @@ export default class ShopComponent extends React.Component {
          eventCallbacks: {
            click: function(data) {
              console.log('[CLIENT_EVENT]', '[CLICK]', data);
+             shop.writeinPOD(data)          
+
            },
            query: function(data) {
              console.log('[CLIENT_EVENT]', '[QUERY]', data);
                shop.writeinPOD(data)          
-           },
-           add2cart: function(data) {
-             console.log('[CLIENT_EVENT]', '[ADD2CART]', data);
-            
-           }
+           } 
          }
          
        });
@@ -55,16 +53,7 @@ export default class ShopComponent extends React.Component {
      this.div.appendChild(script2);
 
    }
- /* async writeinPOD(data)
-  {
-    //let contentjson = JSON.stringify(data.default);
-    let contentjson = JSON.stringify(data);
-    console.log('calling function');
 
-    console.log(contentjson);
-
-   // await fileExplorerService.writejsoninpod(contentjson);
-  }*/
 
     logFileText = async file => {
     let response = await fetch(file)
@@ -92,7 +81,7 @@ export default class ShopComponent extends React.Component {
 
   render(){
   return (
-    <ShopWrapper>
+    <SearchWrapper>
 
     <CenterContainer>
       <div class="logos">
@@ -113,7 +102,7 @@ export default class ShopComponent extends React.Component {
         </div>
       </div>
     </CenterContainer>
-    </ShopWrapper>
+    </SearchWrapper>
   );
   }
 
