@@ -1,3 +1,4 @@
+import { DeleteButton } from "./deleteButton";
 import OMPButton from "./mainButtons";
 
-export default OMPButton;
+export { OMPButton, DeleteButton };

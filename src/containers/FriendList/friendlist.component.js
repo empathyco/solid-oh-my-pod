@@ -4,6 +4,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { ldflexService, Provider } from "@services";
+import { DeleteButton } from "components/Utils";
 import React, { Fragment } from "react";
 //import {   } from "/i18n";
 import { useTranslation } from "react-i18next";
@@ -244,11 +245,9 @@ export default class FriendListComponent extends React.Component {
                   }${friend.role || ""}`}
                 </p>
 
-                <button
+                <DeleteButton tooltip={t("friendlist.deletefriend")}
                   onClick={async () => await this.deletefriend(friend.url, t)}
-                >
-                  {t("friendlist.deletefriend")}
-                </button>
+                ></DeleteButton>
               </FriendInfo>
             </Friend>
           );

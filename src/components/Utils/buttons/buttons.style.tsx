@@ -42,3 +42,19 @@ export const GeneralButton = styled.button`
     color: white !important;
   }
 `;
+
+export const Delete = styled.button`
+  margin: 0 !important;
+  width: 16px;
+  height: 16px;
+  font-size: 9px;
+  padding: 0 !important;
+  border-radius: 100px !important;
+  background-color: var(--light-blue-grey);
+  color: white !important;
+  font-weight: bolder !important;
+
+  &:hover {
+    background-color: var(--error) !important;
+  }
+`;

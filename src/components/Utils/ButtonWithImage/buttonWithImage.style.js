@@ -12,5 +12,5 @@ export const Button = styled.button`
   flex-wrap: nowrap !important;
   padding: 0 1em !important;
   align-content: center;
-  margin: auto;
+  margin: 10px auto;
 `;
