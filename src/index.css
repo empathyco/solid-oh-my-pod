@@ -18,6 +18,17 @@ body,
   --pale-blue: #e2e6e7;
   --greyblue: #53b9c9;
   --white: #f4f4f4;
+  --dark-grey-blue: #243d48;
+  --light-mustard: #fdcb5b;
+  --dusty-purple: #8b6391;
+  --dark-peach: #e67962;
+  --darkish-pink: #d44a6f;
+  --pale-teal: #80c0a1;
+  --light-grey-blue: #a6b0b5;
+  --cloudy-blue: #bbc3c6;
+  --bluish-grey: #7b8c93;
+  --cool-grey: #929fa5;
+  --slate: #4f656e;
 }
 
 * {
