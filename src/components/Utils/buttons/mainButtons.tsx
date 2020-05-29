@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Component } from "react";
-import { GeneralButton } from "./buttons.style";
+import { GeneralButton, TextButton } from "./buttons.style";
 
 type Props = {
   label: string;
@@ -18,11 +17,38 @@ const OMPButton = (props: Props) => {
       style={style}
       className={color ? color + " omp-button" : "main omp-button"}
       onClick={action}
-      disabled={disabled ? disabled : false}
+      disabled={disabled}
     >
       {label}
     </GeneralButton>
   );
 };
 
-export default OMPButton;
+type TextButtonProps = {
+  label: string;
+  color: "main" | "error" | "success" | "info";
+  style?: any;
+  action?: () => void;
+  disabled?: boolean;
+  className?: string;
+  children?: JSX.Element;
+};
+
+const TextButtonComponent = (props: TextButtonProps) => {
+  return (
+    <TextButton
+      onClick={props.action ? props.action : undefined}
+      className={
+        (props.color ? props.color : "main") +
+        (props.className ? props.className : "")
+      }
+      style={props.style}
+      disabled={props.disabled}
+    >
+      {props.children}
+      <p>{props.label}</p>
+    </TextButton>
+  );
+};
+
+export { OMPButton, TextButtonComponent as TextButton };

@@ -1,22 +1,17 @@
-import React, { Component, Fragment } from "react";
 import { ldflexService } from "@services";
-import { data } from "@solid/query-ldflex";
-import auth from "solid-auth-client";
-import { UserInformation, LoaderService } from "components";
-import { WithImage, ButtonWithImage } from "components/Utils";
+import { LoaderService, UserInformation } from "components";
+import { ButtonWithImage, TextButton } from "components/Utils";
+import React, { Component, Fragment } from "react";
 import {
+  CardLink,
   Content,
-  InputText,
   FormSection,
+  InputText,
   Label,
+  NotesButtons,
   ProfileName,
   TextArea,
-  NotesButtons,
   TextAreaSection,
-  GoCard,
-  ClearButton,
-  CardLink,
-  SaveButtonm,
 } from "./profileContent.style";
 
 class ProfileContent extends Component {
@@ -54,6 +49,7 @@ class ProfileContent extends Component {
       <CardLink href={`${this.state.url}me`} style={{ textDecoration: "none" }}>
         {" "}
         <ButtonWithImage
+          style={{ margin: "auto" }}
           icon="id-card"
           label={t("profile.card")}
         ></ButtonWithImage>
@@ -81,6 +77,7 @@ class ProfileContent extends Component {
     await ldflexService.updateProfileData(this.state);
     this.setState({ title: this.state.fn });
 
+    //TODO this should be a non intrusive toast
     alert("updated");
   };
 
@@ -179,13 +176,12 @@ class ProfileContent extends Component {
           onChange={this.handleFieldChange}
         />
 
-        <SaveButtonm
-          type="button"
+        <TextButton
+          style={{ marginLeft: "auto", marginRight: "-9px" }}
           disabled={!this.state.updated}
-          onClick={this.handleSave}
-        >
-          {t("profile.save")}
-        </SaveButtonm>
+          label={t("profile.save")}
+          action={this.handleSave}
+        ></TextButton>
       </Fragment>
     );
   }
@@ -198,10 +194,21 @@ class ProfileContent extends Component {
         <Label>{t("profile.notes")}</Label>
         <TextArea value={note} onChange={this.handleNoteChange}></TextArea>
         <NotesButtons>
-          <button onClick={this.updateNote}>{t("profile.updateNote")}</button>
+          <TextButton
+            style={{ marginLeft: "auto" }}
+            label={t("profile.updateNote")}
+            action={this.updateNote}
+          ></TextButton>
+          <TextButton
+            style={{ marginLeft: "auto", marginRight: "-9px" }}
+            label={t("profile.clear")}
+            action={this.clearNote}
+          ></TextButton>
+
+          {/* <button onClick={this.updateNote}>{t("profile.updateNote")}</button>
           <button onClick={this.clearNote} style={{ paddingRight: "0px" }}>
             {t("profile.clear")}
-          </button>
+          </button> */}
         </NotesButtons>
       </Fragment>
     );

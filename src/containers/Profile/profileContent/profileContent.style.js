@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { media } from "../../../utils";
-
 export const InputText = styled.input`
   background-color: transparent;
   margin-bottom: 2em;
@@ -23,6 +21,7 @@ export const Label = styled.label`
 `;
 
 export const CardLink = styled.a`
+  text-align: center;
   display: block;
   margin-bottom: 50px;
 `;

@@ -1,19 +1,17 @@
-import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { ldflexService, Provider } from "@services";
-import { DeleteButton } from "components/Utils";
+import { ToasterService } from "components";
+import { DeleteButton, TextButton } from "components/Utils";
 import React, { Fragment } from "react";
-//import {   } from "/i18n";
-import { useTranslation } from "react-i18next";
 import {
   ContainerHeader,
   LoaderService,
   UserInformation,
 } from "../../components";
-import ButtonWithImage from "../../components/Utils/ButtonWithImage/buttonWithImage";
+import ButtonWithImage from "../../components/Utils/buttons/ButtonWithImage/buttonWithImage";
 import {
   Content,
   FormattedFiendNameWrapper,
@@ -41,7 +39,7 @@ export default class FriendListComponent extends React.Component {
     this.myChangeHandler = this.myChangeHandler.bind(this);
     this.mySubmitHandler = this.mySubmitHandler.bind(this);
     this.handleChangeSelector = this.handleChangeSelector.bind(this);
-    this.handleSubmitProvider = this.handleSubmitProvider.bind(this);
+
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.addFriend = this.addFriend.bind(this);
@@ -49,11 +47,6 @@ export default class FriendListComponent extends React.Component {
 
   async handleChangeSelector(event) {
     this.setState({ platformValue: event.target.value });
-  }
-  async handleSubmitProvider(event) {
-    let t = useTranslation();
-    alert(t("friendlist.adding") + this.state.platformValue);
-    event.preventDefault();
   }
 
   async handleOpen() {
@@ -82,14 +75,25 @@ export default class FriendListComponent extends React.Component {
     let name = (await "https://") + this.state.friendid + ".";
     let username = name.toString().concat(provider.toString());
     if (/\s/.test(username)) {
-      alert(t("friendlist.nameerror"));
+      ToasterService.addPopUpToast({
+        buttonLabel: "OKAY :(",
+        onButtonClick: () => {},
+        subtitle: t("friendlist.nameerror.description"),
+        title: t("friendlist.nameerror.title"),
+        type: "error",
+      });
     } else {
       let exits = await this.validateURI(username);
       console.log(exits);
 
       if (exits.toString() !== "200") {
-        console.log("friend uri doesnt exist");
-        alert(t("friendlist.urierror"));
+        ToasterService.addPopUpToast({
+          buttonLabel: t("friendlist.notfounderror.button"),
+          onButtonClick: () => {},
+          subtitle: t("friendlist.notfounderror.description"),
+          title: t("friendlist.notfounderror.title"),
+          type: "error",
+        });
       } else {
         if (window.confirm(t("friendlist.adding") + username)) {
           await ldflexService.addFriend(username);
@@ -99,10 +103,11 @@ export default class FriendListComponent extends React.Component {
           await this.setState({
             friends: [...this.state.friends, friendData],
           });
+          this.setState({ friendid: "" });
+          this.handleClose();
         }
       }
     }
-    this.handleClose();
   }
 
   async myChangeHandler(event) {
@@ -181,12 +186,16 @@ export default class FriendListComponent extends React.Component {
           <input type="text" onChange={this.myChangeHandler} />
         </DialogContent>
         <DialogActions>
-          <Button onClick={async () => await this.addFriend(t)} color="primary">
-            {t("friendlist.adding")}
-          </Button>
-          <Button onClick={this.handleClose} color="primary" type="button">
-            {t("friendlist.close")}
-          </Button>
+          <TextButton
+            disabled={this.state.friendid.trim() === ""}
+            label={t("friendlist.adding")}
+            action={async () => await this.addFriend(t)}
+          ></TextButton>
+
+          <TextButton
+            label={t("friendlist.close")}
+            action={this.handleClose}
+          ></TextButton>
         </DialogActions>
       </Dialog>
     );
@@ -245,7 +254,8 @@ export default class FriendListComponent extends React.Component {
                   }${friend.role || ""}`}
                 </p>
 
-                <DeleteButton tooltip={t("friendlist.deletefriend")}
+                <DeleteButton
+                  tooltip={t("friendlist.deletefriend")}
                   onClick={async () => await this.deletefriend(friend.url, t)}
                 ></DeleteButton>
               </FriendInfo>
@@ -276,6 +286,7 @@ export default class FriendListComponent extends React.Component {
         {this.getFriendCountDisplay()}
         <ButtonWithImage
           {...{
+            style: { margin: "0 auto" },
             onClick: handleOpen,
             icon: "/img/icon/icon-add.svg",
             label: t("friendlist.addFriend"),

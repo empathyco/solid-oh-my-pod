@@ -1,6 +1,10 @@
 import Badge from "./Badge";
-import { DeleteButton, OMPButton } from "./buttons";
-import ButtonWithImage from "./ButtonWithImage";
+import {
+  ButtonWithImage,
+  DeleteButton,
+  OMPButton,
+  TextButton,
+} from "./buttons";
 import CenterContainer from "./CenterContainer";
 import ConfirmationDialog from "./ConfirmationDialog";
 import Dropdown from "./Dropdown";
@@ -35,4 +39,5 @@ export {
   ButtonWithImage,
   OMPButton,
   DeleteButton,
+  TextButton,
 };

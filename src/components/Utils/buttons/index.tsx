@@ -1,4 +1,5 @@
+import ButtonWithImage from "./ButtonWithImage";
 import { DeleteButton } from "./deleteButton";
-import OMPButton from "./mainButtons";
+import { OMPButton, TextButton } from "./mainButtons";
 
-export { OMPButton, DeleteButton };
+export { OMPButton, DeleteButton, ButtonWithImage, TextButton };

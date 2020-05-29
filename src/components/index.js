@@ -8,6 +8,7 @@ import ImageProfile from "./ImageProfile";
 import { LoaderComponent, LoaderService } from "./loader";
 import ProviderLogin from "./Login";
 import NavBar from "./NavBar";
+import {ToasterService} from "./toaster";
 import UserInformation from "./UserInformation";
 
 export {
@@ -23,4 +24,5 @@ export {
   LoaderService,
   LoaderComponent,
   FAQComponent,
+  ToasterService,
 };

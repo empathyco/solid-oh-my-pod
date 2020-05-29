@@ -1,9 +1,8 @@
 import * as React from "react";
 import { Component } from "react";
-import ToasterService from "./toasterService";
-import { PopUp } from "./toasterService";
-import { ToasterPopUpScreen, ToasterPopUp } from "./toaster.style";
-import OMPButton from "../Utils/buttons/mainButtons";
+import { OMPButton } from "../Utils/buttons/mainButtons";
+import { ToasterPopUp, ToasterPopUpScreen } from "./toaster.style";
+import ToasterService, { PopUp } from "./toasterService";
 
 type Props = {};
 type State = {
@@ -17,8 +16,6 @@ export default class ToasterComponent extends Component<Props, State> {
     this.popUp = React.createRef();
     ToasterService.subscribePopUp(this.updateState);
   }
-
- 
 
   updateState = (state: State) => {
     this.setState(state);

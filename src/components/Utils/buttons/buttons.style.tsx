@@ -58,3 +58,30 @@ export const Delete = styled.button`
     background-color: var(--error) !important;
   }
 `;
+
+export const TextButton = styled.button`
+  width: fit-content;
+  p {
+    margin: auto;
+  }
+  * {
+    display: inline;
+    font-weight: bolder;
+  }
+
+  :active {
+    background-color: inherit !important;
+  }
+  &.error * {
+    color: var(--error) !important;
+  }
+  &.main * {
+    color: var(--main) !important;
+  }
+  &.success * {
+    color: var(--success) !important;
+  }
+  &.info * {
+    color: var(--info) !important;
+  }
+`;

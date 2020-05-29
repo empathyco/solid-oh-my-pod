@@ -14,7 +14,7 @@ export const ToasterPopUpScreen = styled.div`
 
 export const ToasterPopUp = styled.div`
   width: 328px;
-  height: 328px;
+  min-height: 328px;
 
   position: absolute;
   align-self: center;
@@ -41,8 +41,9 @@ export const ToasterPopUp = styled.div`
       margin-top: 42px;
     }
     h3 {
-      margin: auto;
-      margin-top: 20px;
+      text-align: center;
+      margin: 20px auto;
+
       color: white;
     }
   }
@@ -50,8 +51,11 @@ export const ToasterPopUp = styled.div`
   .body {
     background-color: white;
     padding: 0px 10px;
+    padding-top: 10px;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
+
     .description {
       text-align: center;
       margin-bottom: 0;

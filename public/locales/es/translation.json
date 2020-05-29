@@ -22,7 +22,15 @@
     "yourFriends": "Tus AMIGOS",
     "mplatform": "La plataforma escogida es: ",
     "selectp": "Elegir proveedor",
-    "nameerror": "El nombre no debería contener espacios",
+    "nameerror": {
+      "title": "Nombre inválido",
+      "description": "El nombre es inálido"
+    },
+    "notfounderror": {
+      "title": "Oh My POD!",
+      "description": "Vaya! Parece que no hemos encontrado a tu amigo :(",
+      "button": "inténtalo de nuevo"
+    },
     "urierror": "URI no valida ",
     "adding": "Agregar Amigo ",
     "deletefriend": "Eliminar amigo ",

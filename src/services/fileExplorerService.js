@@ -1,6 +1,6 @@
+import data from "@solid/query-ldflex";
 import auth from "solid-auth-client";
 import SolidFileClient from "solid-file-client";
-import data from "@solid/query-ldflex";
 import Cache from "./Cache";
 
 const cache = new Cache();
@@ -13,7 +13,7 @@ const patterns = {
   image: /\.(jpe?g|gif|bmp|png|svg|tiff?)$/i,
   media: /\.(mp3|ogg|wav|mp4|webm)$/i,
   video: /\.(mp4|webm|ogg)$/i,
-  extractable: /\.(zip)$/i
+  extractable: /\.(zip)$/i,
 };
 
 const getSession = async () => {
@@ -32,7 +32,7 @@ export const getRoot = async () => {
   return `${await me["solid:account"]}`;
 };
 
-const checkFileType = file => {
+const checkFileType = (file) => {
   return patterns.editable.test(file.name)
     ? "editable"
     : patterns.image.test(file.name)
@@ -44,7 +44,7 @@ const checkFileType = file => {
     : "unknownType";
 };
 
-export const getFolderContent = async folderUrl => {
+export const getFolderContent = async (folderUrl) => {
   if (cache.contains(folderUrl)) return cache.get(folderUrl);
 
   let folderContent = await fc.readFolder(folderUrl);
@@ -54,7 +54,7 @@ export const getFolderContent = async folderUrl => {
   return cache.add(folderUrl, folderContent);
 };
 
-export const readFile = async fileUrl => {
+export const readFile = async (fileUrl) => {
   if (fileCache.contains(fileUrl)) return fileCache.get(fileUrl);
 
   let fileContent = await fc.readFile(fileUrl);
@@ -78,7 +78,7 @@ export const createFolder = async (path, folderName) => {
     console.log("Invalid folder name");
   } else {
     return await fc.createFolder(buildFolderUrl(path, folderName), {
-      merge: SolidFileClient.MERGE.KEEP_TARGET
+      merge: SolidFileClient.MERGE.KEEP_TARGET,
     });
   }
 };
@@ -129,7 +129,7 @@ export const copyItems = async (path, destination, fileNames) => {
   } else {
     let items = await getFolderContent(path);
     items = items.filter(({ name }) => fileNames.include(name));
-    items.map(item =>
+    items.map((item) =>
       item.type === "folder"
         ? fc.copyFolder(
             buildFolderUrl(path, item.name),
@@ -138,7 +138,7 @@ export const copyItems = async (path, destination, fileNames) => {
               withAcl: false,
               withMeta: true,
               createPath: true,
-              merge: SolidFileClient.Merge.KEEP_SOURCE
+              merge: SolidFileClient.Merge.KEEP_SOURCE,
             }
           )
         : fc.copyFile(
@@ -148,7 +148,7 @@ export const copyItems = async (path, destination, fileNames) => {
               withAcl: false,
               withMeta: true,
               createPath: true,
-              merge: SolidFileClient.Merge.REPLACE
+              merge: SolidFileClient.Merge.REPLACE,
             })
           )
     );
@@ -165,21 +165,17 @@ export const uploadFiles = async (path, fileList) => {
     }
   }
 };
-export const writejsoninpod=  async (jsoncontent,filename) => {
-
+export const writejsoninpod = async (jsoncontent, filename) => {
   try {
+    let rootfolder =
+      (await getRoot()) + "/private/ohmypodsd/" + filename + ".json";
+    console.log("created folder" + rootfolder.toString());
 
-    let rootfolder =  await getRoot()+'/private/ohmypodsd/'+filename+ '.json'
-     console.log('created folder'+ rootfolder.toString());
-
-   await fc.createFile( rootfolder, jsoncontent, "text/json" )
-    console.log('search data writen in pod');
-
-
-  }catch (e) {
-    console.log(e, e.message)
+    await fc.createFile(rootfolder, jsoncontent, "text/json");
+    console.log("search data writen in pod");
+  } catch (e) {
+    console.log(e, e.message);
   }
-
 };
 export const updateFile = async (path, fileName, content, contentType) => {
   let oldContent = await fc.readFile(buildFileUrl(path, fileName));
@@ -194,9 +190,9 @@ export const updateFile = async (path, fileName, content, contentType) => {
   }
 };
 
-export const promptDownload= (file,contentType, fileName) => {
+export const promptDownload = (file, contentType, fileName) => {
   file = readFile(file);
-  file = new Blob([file],{type: contentType});
+  file = new Blob([file], { type: contentType });
   if (window.navigator.msSaveOrOpenBlob)
     // IE10+
     window.navigator.msSaveOrOpenBlob(file, fileName);
@@ -213,7 +209,7 @@ export const promptDownload= (file,contentType, fileName) => {
       window.URL.revokeObjectURL(url);
     }, 0);
   }
-}
+};
 
 const buildFolderUrl = (path, folderName) => {
   return buildFileUrl(path, folderName).concat("/");
