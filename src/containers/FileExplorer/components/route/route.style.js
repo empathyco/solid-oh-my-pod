@@ -21,6 +21,19 @@ export const RoutePart = styled.span`
   font-weight: bold;
    margin: 3px 0px;
   cursor: pointer;
+  &:hover {
+         opacity: 0.25;
+
+  }
+
+  &.active {
+          opacity: 0.75;
+          text-decoration: underline;
+  }
+  &.visited {
+         text-decoration: underline;
+
+  }
 `;
 
 export const RouteIcon = styled(FontAwesomeIcon)`

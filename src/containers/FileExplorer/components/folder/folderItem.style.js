@@ -15,7 +15,11 @@ export const FolderMenuTrigger = styled.div`
   }
 
   &.active {
-          opacity: 0.25;
+          opacity: 0.75;
+          text-decoration: underline;
+  }
+  &.visited {
+         text-decoration: underline;
 
   }
   img{

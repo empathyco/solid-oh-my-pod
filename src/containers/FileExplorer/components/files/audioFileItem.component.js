@@ -50,7 +50,7 @@ export default function AudioFile(props) {
       >
         <DialogTitle id="form-dialog-display-media">{name}</DialogTitle>
         <DialogContent>
-          <Plyr type="audio" url={path} iconUrl="./vendor/plyr/plyr.svg" />
+          <Plyr type="audio" url={path} alt="play" />
         </DialogContent>
         <DialogActions>
           <Button

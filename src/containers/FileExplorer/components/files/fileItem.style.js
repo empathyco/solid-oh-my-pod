@@ -10,18 +10,26 @@ export const FileMenuTrigger = styled.div`
   justify-content: center;
   align-items: center;
   &:hover {
-      opacity: 0.25;
-   
+         opacity: 0.25;
+
   }
 
   &.active {
-          opacity: 0.25;
+          opacity: 0.75;
+          text-decoration: underline;
+  }
+  &.visited {
+         text-decoration: underline;
 
   }
-
   img {
     justify-self: center;
     align-self: center;
+  }
+  .plyr__control 
+  {
+    background-color: red !important;
+    color: green !important;
   }
 `;
 

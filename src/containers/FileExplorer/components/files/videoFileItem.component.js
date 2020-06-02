@@ -48,7 +48,7 @@ export default function VideoFile(props) {
       >
         <DialogTitle id="form-dialog-display-media">{name}</DialogTitle>
         <DialogContent>
-          <Plyr type="video" url={path} iconUrl="./vendor/plyr/plyr.svg" />
+          <Plyr type="video" url={path} alt="play" />
         </DialogContent>
         <DialogActions>
         <Button

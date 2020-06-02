@@ -73,6 +73,10 @@ export const SearchWrapper = styled.div`
       font-family: "Montserrat", sans-serif !important;
       }
       
+ button img
+ { 
+  width: 75%;
+ }
 
  `;
 
