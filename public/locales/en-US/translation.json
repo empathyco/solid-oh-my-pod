@@ -21,6 +21,7 @@
 
   },
   "friendlist": {
+    "title": "Your FRIENDS",
     "mplatform":"The platform chosen is: ",
     "selectp": "Select provider",
     "nameerror": "Name should not contain spaces",
@@ -117,6 +118,7 @@
     }
   },
   "profile": {
+    "title": "Your PROFILE",
     "successCallback": "Pod updated successfully",
     "successTitle": "Success",
     "errorCallback": "Error submitting form",
@@ -150,52 +152,8 @@
 
 
   },
-  "game": {
-    "title": "Tic Tac Toe",
-    "createGamePrompt": "Enter an Opponent and a Game ID",
-    "createGame": "Create Game",
-    "createGameSuccess": "Game created successfully",
-    "resetGameForm": "Reset",
-    "idLabel": "Game ID",
-    "opponentWebIDLabel": "Opponent WebID",
-    "nogames": "No game were found",
-    "invitationAccept": "has invited you to play a game of TicTacToe. Would you like to play?",
-    "invitationTemplate": "<0><0><0>{{- name}}</0> has invited you to play a game of TicTacToe.</0><1>Would you like to play?</1></0>",
-    "invitationAcceptText": "Accept",
-    "invitationDeclineText": "Decline",
-    "deleteConfirmation": "Delete game?",
-    "playingAgainst": "Playing Against:",
-    "token": "Your token:",
-    "tieMsg": "It's a tie",
-    "winnerMsg": "You are the winner!!",
-    "loserMsg": "Better luck next time",
-    "winnerObj": "Winner",
-    "notYourTurn": "Not your turn, please wait for your opponent to play",
-    "status": "Game Status:",
-    "created": "Created",
-    "confirmDelete": "Confirm Delete",
-    "deleteLabel": "Delete",
-    "playLabel": "Play",
-    "yourGames": "Your Games",
-    "otherGames": "Other Games",
-    "errorTitle": "Error",
-    "opponentMissing": "Cannot create game as no Opponent WebID was entered.",
-    "dataError": {
-      "message": "Game data could not be saved, data.ttl was not found",
-      "link": {
-        "label": "Learn More",
-        "href": "https://solidsdk.inrupt.net/public/general/en/data-file-not-found.html"
-      }
-    },
-    "createFolder": {
-      "message": "Error creating game data folder",
-      "link": {
-        "label": "Learn More",
-        "href": "link url"
-      }
-    },
-    "myself": "You cannot play against yourself",
-    "alreadyExists": "file already exists in the Pod. "
+  "search": {
+    "searchtitle": "Your search data will be stored in YOUR pod"
   },
   "noInboxOpponent": {
     "message": "Your opponent does not have an inbox in their Pod",

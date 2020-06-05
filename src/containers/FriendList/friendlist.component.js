@@ -229,7 +229,7 @@ export default class FriendListComponent extends React.Component {
           )}
         </HeaderFriend>
         <h3>
-          Your friends
+          {t('friendlist.title')}
         </h3>
       </FriendCardTop>
     );
@@ -271,7 +271,7 @@ export default class FriendListComponent extends React.Component {
         <CenterContainer>
         {friendsList}
           <div  className="iconaddfriend" >
-            <img src="/img/icon/icon-add.svg" alt="add a friend" onClick={this.handleOpen}></img>
+            <img src="/img/icon/icon-add.svg" alt={t('friendlist.adding')} title={t('friendlist.adding')} onClick={this.handleOpen}></img>
 
           </div>
         </CenterContainer>

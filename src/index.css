@@ -5,12 +5,17 @@ body,
   width: 100%;
   margin: 0;
   padding: 0;
+  font-family: "Montserrat", sans-serif;
+
 }
 
 article{
-  padding: 1.5em;
-  background-color: #ebebeb;
+  padding: 0.25em;
+  background-color: transparent;
 
+}
+.ebx-result{
+  border: 0.25px solid #cadce3 !important;
 }
 .ebx-empathy-x__main{
   padding: 1em;
@@ -20,34 +25,168 @@ article{
 }
 
 aside{
-  padding: 0.5em;
+  padding: 0em 1em 0em 3em;
  }
+
+
+.ebx-empathy-x__header{
+  margin-top: 8em !important;
+  padding-left: 8em !important;
+  padding-right: 8em !important;
+
+}
 .ebx-search-box
 {
   padding: 1em;
- background-color: #ebebeb;
+
+  background: transparent;
+  overflow: visible;
+  height: 48px;
+  border-bottom: 1px solid #7b8c93;
+  width: calc(100% - 88px);
+  position: relative;
+  text-align: left;
+  display: none;
  }
 .ebx-close {
   padding: 1em;
-  font-weight: 900;
+}
+
+.ebx-close .ebx-cross{
+  width: 54px !important;
+  height: 54px !important;
   color: #000000;
-  background-color: #ff000066 !important;
-  width: 2em;
-  height: 5em
+  position: absolute;
+  top: 9.5em;
+  right: 2em;
 
 }
 
+.ebx-empathy-x input{
+  object-fit: contain;
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 30px !important;
+
+  line-height: 1.27 !important;
+  letter-spacing: normal;
+  color: #2c4653;
+}
 .ebx-result-title
 {
-  color: #52b7c7;
-  font-weight: lighter;
-  font-size: 1em !important
+  color: #7b8c93;
+  font-size: 15px !important;
+  font-weight: 100 !important;
+  line-height: 50px !important;
+  width: px;
+  overflow:hidden;
+  display:inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
 }
 .ebx-empathize-panel{
-  padding: 1em;
-  padding-left: 2em;
-  color: red;
-  align-content: center;
+    padding: 1em;
+    padding-left: 2em;
+    align-content: center;
+    font-family: "Montserrat", sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.39;
+    letter-spacing: normal;
+    color: #2c4653 !important;
+    border: none !important;
+
+ }
+.ebx-empathize-panel ul{
+   padding: 1em;
+}
+.ebx-empathize-panel li{
+    font-family: "Montserrat", sans-serif !important;
+    text-transform: uppercase;
+    color: #666 !important;
+}
+.ebx-search-box__input
+{
+  font-family: "Montserrat", sans-serif !important;
+
+  line-height: 1.27 !important;
+  letter-spacing: normal;
+  color: #213642 !important;
+}
+.ebx-search-box__input div{
+  background-color: red !important;
+  color: green !important;
+}
+
+.ebx-search-box__input .ebx-search-box__input-suggestion
+{
+  font-weight: 500 !important;
+}
+.ebx-search-box__input .ebx-search-box__input-query
+{
+  font-weight: 100 !important;
+  color: #5a889d !important;
+}
+.ebx-result-price{
+  color: #7b8c93;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 2;
+}
+
+.ebx-result-link{
+  padding: 0.5em;
+}
+
+.ebx-side-panel__header .ebx-event-button{
+
+
+  padding: 0.25em;
+  border: 0.5px solid #dae0e6 !important;
+  border-radius: 20px !important;
+  color: #dae0e6;
+}
+
+.ebx-facet__title
+{
+  border-bottom: 2px solid #dae0e6 !important;
+  color: #7b8c93;
+  font-size: 24px !important;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif !important;
+
+}
+.ebx-filter__label{
+  font-family: "Montserrat", sans-serif !important;
+  font-size: 18px !important;
+  color: #b1c2c9;
+
+}
+
+.ebx-search-icon{
+  display:none !important;
+}
+.ebx-search-box__clear-button{
+  display: none;
+}
+.ebx-facet__filters{
+  padding-top: 0.75em; 
+}
+.ebx-filter__checkbox-icon {
+  display: none !important;
+}
+.ebx-results-number{
+  line-height: 70px;
+}
+.ebx-columns-picker{
+  padding: 2em 4em 1em 2em;
+
+}
+.ebx-dropdown{
+  padding: 2em 20em 1em 1em;
+
 }
 * {
   box-sizing: border-box;
@@ -207,6 +346,4 @@ button:active{
   background-color: #25354a !important;
   color: white !important;
 }
-.ebx-empathy-x__header{
-  margin-top: 5em !important;
-}
+

@@ -22,6 +22,7 @@
 
   },
   "friendlist": {
+    "title": "Your FRIENDS",
     "mplatform":"La plataforma escogida es: ",
     "selectp": "Elegir proveedor",
     "nameerror": "El nombre no debería contener espacios",
@@ -117,6 +118,7 @@
     }
   },
   "profile": {
+    "title": "Tu PERFIL",
     "successCallback": "Pod actualizado satisfactoriamente",
     "successTitle": "Éxito",
     "errorCallback": "Ha ocurrido un error al enviar el formulario",
@@ -149,51 +151,8 @@
     "select": "Seleccionar"
 
   },
-  "game": {
-    "title": "Tres en Línea",
-    "createGamePrompt": "Ingresa un oponente y un ID para el juego",
-    "createGame": "Crear Juego",
-    "createGameSuccess": "Juego creado satisfactoriamente",
-    "resetGameForm": "Limpiar",
-    "idLabel": "ID del Juego",
-    "opponentWebIDLabel": "WebID del Oponente",
-    "nogames": "No se han encontrado juegos",
-    "invitationTemplate": "<0><0><0>{{- name}}</0> te ha invitado a un juego de Tres en Linea.</0><1>Quieres aceptar el juego?</1></0>",
-    "invitationAcceptText": "Aceptar",
-    "invitationDeclineText": "Rechazar",
-    "deleteConfirmation": "Eliminar juego?",
-    "playingAgainst": "Jugando contra:",
-    "token": "Tu token:",
-    "tieMsg": "Es un empate",
-    "winnerMsg": "Eres el ganador!!",
-    "loserMsg": "Mejor suerte la próxima",
-    "winnerObj": "Ganador",
-    "notYourTurn": "No es tu turno, por favor espera a que tu rivla juegue",
-    "status": "Estado del juego:",
-    "created": "Creado:",
-    "confirmDelete": "Confirmar Eliminar",
-    "deleteLabel": "Eliminar",
-    "playLabel": "Jugar",
-    "yourGames": "Tus juegos",
-    "otherGames": "Otros juegos",
-    "errorTitle": "Error",
-    "opponentMissing": "No se puede crear el juego porque no se ingresó ningún WebID del oponente.",
-    "dataError": {
-      "message": "Los datos del juego no pudieros ser salvados, data.ttl no fue encontrado",
-      "link": {
-        "label": "Saber más",
-        "href": "https://solidsdk.inrupt.net/public/general/en/data-file-not-found.html"
-      }
-    },
-    "createFolder": {
-      "message": "Error al crear el folder del juego",
-      "link": {
-        "label": "Saber más",
-        "href": "url link"
-      }
-    },
-    "myself": "No puedes jugar contra ti mismo",
-    "alreadyExists": " archivo o carpeta ya existe en su pod."
+  "search": {
+    "searchtitle": "Tus datos de búsqueda serán almacenados en TU pod"
   },
   "noInboxOpponent": {
     "message": "No se encontró un inbox para su oponente",

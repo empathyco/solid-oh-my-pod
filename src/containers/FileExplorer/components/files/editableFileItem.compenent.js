@@ -31,7 +31,19 @@ export default function EditableFile(props) {
   const handleOpen = async () => {
     try {
       const cont = await fileExplorerService.readFile(path);
-      await setContent(cont);
+      //await setContent(cont);
+      if(path.includes('ohmypodsd'))
+      {
+        converttotable(cont);
+
+      }
+      else {
+        //await setContent(cont);
+      }
+      console.log('!!!contenttextarea');
+      //console.log(cont);
+      console.log(path);
+
     } catch (error) {
       console.log("something went wrong when fetching file content");
     }
@@ -43,6 +55,36 @@ export default function EditableFile(props) {
     setOpen(false);
   };
 
+  const  converttotable = async  ( cont) => {
+    console.log('TABLE!!');
+
+    let jsonc = JSON.parse(cont);
+    //let cols = Headers(jsonc);
+    let keys = Object.keys(jsonc);
+    let  values = Object.values(jsonc);
+    console.log(keys);
+
+    console.log(values);
+
+
+
+    let table = document.createElement('table');
+    for (let i = 1; i < keys.length; i++) {
+      table.insertRow();
+      let newCell = table.rows[table.rows.length - 1].insertCell();
+      newCell.textContent = keys[i];
+      let rowCell = table.rows[table.rows.length - 1].insertCell();
+
+      rowCell.textContent = values[i];
+
+
+    }
+      console.log(table);
+      // this.div.appendChild(table);
+
+
+  }
+
   const handleCloseEdit = async () => {
     try {
       const cont = await fileExplorerService.readFile(path);
@@ -53,22 +95,7 @@ export default function EditableFile(props) {
     setEdit(false);
   };
 
-  // const handleContext = event => {
-  //   event.preventDefault();
-  //   let x = 0;
-  //   let y = 0;
 
-  //   if (event.nativeEvent instanceof MouseEvent) {
-  //     x = event.nativeEvent.clientX;
-  //     y = event.nativeEvent.clientY;
-  //   } else if (event.nativeEvent instanceof TouchEvent) {
-  //     x = event.nativeEvent.touches[0].pageX;
-  //     y = event.nativeEvent.touches[0].pageY;
-  //   }
-  //   setContextX(x);
-  //   setContextY(y);
-  //   setContext(true);
-  // };
 
   const handleSave = () => {
     fileExplorerService.updateFile(folder, name, content, type);
@@ -114,6 +141,7 @@ export default function EditableFile(props) {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">{name}</DialogTitle>
+        <div className="tablejson"></div>
         <DialogContent>
           {edit === true ? (
             <TextareaAutosize

@@ -4,6 +4,7 @@ import * as contextf from 'json/context.txt';
 
 import CenterContainer from "../../components/Utils/CenterContainer";
 import {SearchWrapper, BoySearch, GirlSearch}  from "./search.style";
+import { useTranslation } from "react-i18next";
 
 
 export default class SearchComponent extends React.Component {
@@ -69,18 +70,27 @@ export default class SearchComponent extends React.Component {
 
     let context = await this.logFileText(contextf);
 
-    let contentjson = context + content + '}';
+    let contentjson = context + content ;
 
     let d = new Date();
     let title = data.session +'-'+ d.getTime();
 
-    await fileExplorerService.writejsoninpod(contentjson,title);
+   await fileExplorerService.writejsoninpod(contentjson,title);
 
     }
 
 
   render(){
-  return (
+    const { t } = this.props;
+    const searchdiv = (
+      <div ref={el => (this.div = el)}>
+        <p>
+          <button className="open" title="open search" alt="open search"><img src="/img/icon/search.svg"></img></button>
+        </p>
+        <p> {t('search.searchtitle')}</p>
+      </div>
+    );
+    return (
     <SearchWrapper>
 
     <CenterContainer>
@@ -90,10 +100,7 @@ export default class SearchComponent extends React.Component {
         <img src="/img/girlsearch.svg" alt="Girl search"></img>
       </GirlSearch>
       </div>
-       <div ref={el => (this.div = el)}>
-         <p> <button class="open"   ><img src="/img/icon/search.svg"></img></button> </p>
-         <p>Your search information will be saved in your pod</p>
-       </div>
+        {searchdiv}
 
         <div>
       <BoySearch>

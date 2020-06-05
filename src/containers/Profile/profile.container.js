@@ -66,7 +66,7 @@ const Profile = ({ webId }) => {
                 }}
               />
               <Title>
-              <h2>Your PROFILE</h2>
+              <h2>{t('profile.title')}</h2>
               </Title>
             </Header>
 
@@ -140,7 +140,7 @@ const Profile = ({ webId }) => {
                 })}
               </select>
 
-              <p> <button onClick={ handleSubmit}>{t('profile.select')}</button> </p></Submitdelete>
+              <p> <button title={t('profile.select')} onClick={ handleSubmit}>{t('profile.select')}</button> </p></Submitdelete>
 
           </Fragment>
 

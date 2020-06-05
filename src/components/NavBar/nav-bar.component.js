@@ -113,7 +113,7 @@ const NavBar = (props) => {
       <NavSection className="header-wrap">
         <div className="logo-block">
           <MyLink to="/welcome">
-            <MyLogo>          <img className="podlogo" src="/img/pod_logo.svg" alt="ohmypod!" />
+            <MyLogo>          <img className="podlogo" src="/img/pod_logo.svg" title="ohmypod!" alt="ohmypod!" />
             </MyLogo>
           </MyLink>
         </div>
