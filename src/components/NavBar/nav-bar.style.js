@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 export const LogoBlock = styled.div`
   background-color: #f4f4f4 !important;
@@ -25,7 +25,6 @@ export const NavSection = styled.section`
         background: transparent !important;
       }
 
-     
       .active {
         background: white !important;
         &:before {
@@ -33,11 +32,10 @@ export const NavSection = styled.section`
           position: absolute;
 
           left: calc(1em - 2px);
-          bottom: 0;
-          height: 1px;
-          width: calc(100% - 2em);
-          border-bottom: 2px solid var(--greyblue);
+          bottom: -2px;
 
+          width: calc(100% - 2em);
+          border-bottom: 4px solid var(--greyblue);
         }
 
         &.mobile-link::before {
