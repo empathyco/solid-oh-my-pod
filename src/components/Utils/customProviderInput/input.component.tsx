@@ -1,17 +1,22 @@
 import React, { Component } from "react";
+import { WithTranslation } from "react-i18next";
 
-export default class CustomProviderInput extends Component {
-  constructor(props) {
+interface Props extends WithTranslation {
+  customValueSetter: (value: string) => void;
+}
+type State = { value: string };
+export default class CustomProviderInput extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
-    this.handleChange = this.handleChange.bind(this);
     this.state = { value: "" };
   }
-  handleChange(event) {
+  handleChange = (event) => {
     this.props.customValueSetter(event.target.value);
     this.setState({ value: event.target.value });
-  }
+  };
 
   render() {
+
     const { t } = this.props;
     return (
       <div>

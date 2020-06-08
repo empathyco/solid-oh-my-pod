@@ -1,23 +1,14 @@
 /* eslint-disable constructor-super */
+import { FAQComponent } from "@components";
 import React from "react";
 import { useTranslation } from "react-i18next";
-import ProviderLogin from "../../components/Login";
-import {
-  LoginWrapper,
-  LoginPanel,
-  PanelBody,
-  AllLoginWrapper,
-  MyLink
-} from "./login.style";
-import { CenterContainer } from "@util-components";
+import { LoginWrapper } from "./login.style";
 
 const LoginComponent = () => {
   const { t } = useTranslation();
   return (
-    <AllLoginWrapper data-testid="title">
-      <LoginWrapper data-testid="login-wrapper">
-
-        <CenterContainer data-testid="title">
+    <LoginWrapper data-testid="login-wrapper">
+      {/* <CenterContainer data-testid="title">
           <img className="podlogo" src="/img/pod_logo.svg" alt="Empathy" />
 
           <LoginPanel className="login-panel">
@@ -47,10 +38,9 @@ const LoginComponent = () => {
               <MyLink to="/register">{t("login.signUp")}</MyLink>
             </PanelBody>
           </LoginPanel>
-        </CenterContainer>
-      </LoginWrapper>
-
-    </AllLoginWrapper>
+        </CenterContainer> */}
+      <FAQComponent isLogin></FAQComponent>
+    </LoginWrapper>
   );
 };
 

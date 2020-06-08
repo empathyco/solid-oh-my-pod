@@ -3,8 +3,9 @@ import { Component } from "react";
 import AboutPage from "./aboutPage";
 import { FAQ, PageNavigation, PageNavigationItem } from "./faq.style";
 import FAQPage from "./faqPage";
+import SignInPage from "./signInPage";
 
-type Props = {};
+type Props = { isLogin: boolean };
 type State = {
   selectedPage: number;
   rightComponent: JSX.Element | undefined;
@@ -16,16 +17,32 @@ export default class FAQComponent extends Component<Props, State> {
     bgColor: string;
   }[];
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
-    this.initPages();
+    this.initPages(props.isLogin);
     this.state = { selectedPage: 0, rightComponent: undefined };
   }
 
-  initPages() {
+  initPages(isLogin: boolean) {
+    let loginPages = [
+      {
+        sectionName: "SIGN IN",
+        component: (
+          <SignInPage
+            renderRightComponent={this.renderRightComponent}
+            highlightColor="var(--greyblue)"
+            renderPage={this.renderPage}
+          ></SignInPage>
+        ),
+        bgColor: "var(--greyblue)",
+      },
+      {
+        sectionName: "SIGN UP",
+        component: <h1>Section 2</h1>,
+        bgColor: "var(--dark-peach)",
+      },
+    ];
     this.pages = [
-      // { sectionName: "SIGN IN", component: <h1>Section 1</h1> },
-      // { sectionName: "SIGN UP", component: <h1>Section 2</h1> },
       {
         sectionName: "FAQ",
         component: (
@@ -47,20 +64,22 @@ export default class FAQComponent extends Component<Props, State> {
         bgColor: "var(--dark-peach)",
       },
     ];
+    if (isLogin) this.pages = [...loginPages, ...this.pages];
   }
 
-  renderPage(pageIndex: number) {
+  renderPage = (pageIndex: number) => {
     this.setState({
       selectedPage: pageIndex,
       rightComponent: undefined,
     });
-  }
+  };
 
   renderSectionNavigation() {
     return (
       <PageNavigation>
         {this.pages.map((page, index) => (
           <PageNavigationItem
+            key={index}
             className={this.state.selectedPage === index ? "active" : ""}
             onClick={() => this.renderPage(index)}
           >

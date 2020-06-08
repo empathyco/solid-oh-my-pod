@@ -8,15 +8,15 @@ export const FAQ = styled.article`
 
   margin: auto;
   margin-top: 20px;
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
 
   background-color: white;
   z-index: 6000;
-  box-shadow: 0 0 7px 0 var(--pale-blue);
+  box-shadow: 0 9px 20px 0 rgba(13, 33, 50, 0.29);
 
   & > div {
-    width: 500px;
+    width: 600px;
     height: 600px;
   }
 
@@ -27,6 +27,8 @@ export const FAQ = styled.article`
 
   .right {
     position: relative;
+    display: flex;
+    flex-direction: column;
     .closeButton {
       position: absolute;
       top: 20px;
@@ -52,8 +54,12 @@ export const PageNavigationItem = styled.div`
   }
   h3 {
     font-size: 16px;
+    font-weight: 600;
     display: inline;
+    font-stretch: normal;
+    font-style: normal;
     color: var(--white);
+    letter-spacing: 3.73px;
   }
 `;
 

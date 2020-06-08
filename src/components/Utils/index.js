@@ -7,6 +7,7 @@ import {
 } from "./buttons";
 import CenterContainer from "./CenterContainer";
 import ConfirmationDialog from "./ConfirmationDialog";
+import CustomProviderInput from "./customProviderInput/index";
 import Dropdown from "./Dropdown";
 import ImageBackground from "./ImageBackground";
 import InfoImageBackground from "./InfoImageBackground";
@@ -15,6 +16,7 @@ import Labeled from "./Labeled";
 import LanguageDropdown from "./LanguageDropdown";
 import Loader from "./Loader";
 import Panel from "./Panel";
+import ProviderSelector from "./providerSelector";
 import RadioButton from "./Radiobutton";
 import Select from "./Select";
 import ToasterNotification from "./ToasterNotification";
@@ -40,4 +42,6 @@ export {
   OMPButton,
   DeleteButton,
   TextButton,
+  ProviderSelector,
+  CustomProviderInput,
 };
