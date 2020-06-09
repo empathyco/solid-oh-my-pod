@@ -1,11 +1,17 @@
 import * as React from "react";
 import { Component } from "react";
 import AboutPage from "./aboutPage";
-import { FAQ, PageNavigation, PageNavigationItem } from "./faq.style";
+import {
+  FAQ,
+  PageNavigation,
+  PageNavigationItem,
+  PoweredByEmpathy,
+} from "./faq.style";
 import FAQPage from "./faqPage";
 import SignInPage from "./signInPage";
+import SignUpPage from "./signUpPage";
 
-type Props = { isLogin: boolean };
+type Props = { isLogin: boolean; about: boolean };
 type State = {
   selectedPage: number;
   rightComponent: JSX.Element | undefined;
@@ -38,7 +44,13 @@ export default class FAQComponent extends Component<Props, State> {
       },
       {
         sectionName: "SIGN UP",
-        component: <h1>Section 2</h1>,
+        component: (
+          <SignUpPage
+            renderRightComponent={this.renderRightComponent}
+            highlightColor="var(--dark-peach)"
+            renderPage={this.renderPage}
+          ></SignUpPage>
+        ),
         bgColor: "var(--dark-peach)",
       },
     ];
@@ -58,10 +70,10 @@ export default class FAQComponent extends Component<Props, State> {
         component: (
           <AboutPage
             renderRightComponent={this.renderRightComponent}
-            highlightColor="var(--dark-peach)"
+            highlightColor="var(--pale-teal)"
           ></AboutPage>
         ),
-        bgColor: "var(--dark-peach)",
+        bgColor: "var(--pale-teal)",
       },
     ];
     if (isLogin) this.pages = [...loginPages, ...this.pages];
@@ -94,9 +106,6 @@ export default class FAQComponent extends Component<Props, State> {
     this.setState({ rightComponent: component });
   };
 
-  closeRightComponent = () => {
-    this.setState({ rightComponent: undefined });
-  };
   render() {
     if (this.pages) {
       const leftComponent = this.pages[this.state.selectedPage].component;
@@ -107,18 +116,14 @@ export default class FAQComponent extends Component<Props, State> {
           <div className="left" style={{ backgroundColor: color }}>
             {this.renderSectionNavigation()}
             {leftComponent}
+            <PoweredByEmpathy>
+              <img
+                src="/img/faq/powered_by_empathy.svg"
+                alt="powered by Empathy"
+              />
+            </PoweredByEmpathy>
           </div>
-          {rightComponent && (
-            <div className="right">
-              <div
-                className="closeButton"
-                onClick={() => this.closeRightComponent()}
-              >
-                X
-              </div>
-              {rightComponent}
-            </div>
-          )}
+          {rightComponent && <div className="right">{rightComponent}</div>}
         </FAQ>
       );
     } else return <React.Fragment></React.Fragment>;

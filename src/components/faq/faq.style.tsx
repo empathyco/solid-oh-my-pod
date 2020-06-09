@@ -7,7 +7,7 @@ export const FAQ = styled.article`
   transform: translate(-50%, -50%); */
 
   margin: auto;
-  margin-top: 20px;
+
   display: inline-flex;
   flex-direction: row;
 
@@ -23,6 +23,7 @@ export const FAQ = styled.article`
   .left {
     background-color: var(--error);
     padding: 20px;
+    position: relative;
   }
 
   .right {
@@ -53,7 +54,7 @@ export const PageNavigationItem = styled.div`
     border-bottom: 3px solid var(--white);
   }
   h3 {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     display: inline;
     font-stretch: normal;
@@ -65,4 +66,13 @@ export const PageNavigationItem = styled.div`
 
 export const PageNavigation = styled.div`
   border-bottom: 1px solid var(--white);
+`;
+export const PoweredByEmpathy = styled.div`
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+
+  img {
+    height: 12px;
+  }
 `;

@@ -1,13 +1,20 @@
 import { ProviderSelector, TextButton } from "components/Utils";
 import React, { Component, Fragment } from "react";
-import Provider from "services/provider";
+import { Provider } from "services";
 import auth from "solid-auth-client";
 import { SolidError } from "utils";
 import {
+  Container,
   CreateAccountMessage,
   ErrorMessage,
+  Girl,
+  Note1,
+  Note2,
   ProviderSigin,
+  Shape,
+  Title,
 } from "./signIn.page.style";
+
 type Props = {
   renderRightComponent: (component: JSX.Element) => void;
   highlightColor: string;
@@ -42,15 +49,6 @@ export default class SignInPage extends Component<Props, State> {
     this.renderRightComponent();
   }
 
-  isWebIdValid = (webId) => {
-    const regex = new RegExp(
-      // eslint-disable-next-line no-useless-escape
-      /((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/,
-      "i"
-    );
-    return regex.test(webId);
-  };
-
   goLogin = async () => {
     try {
       const { selectedProvider } = this.state;
@@ -61,7 +59,7 @@ export default class SignInPage extends Component<Props, State> {
         throw new SolidError(this.errorsText[errorMessage], errorMessage);
       }
 
-      if (!this.isWebIdValid(selectedProvider)) {
+      if (!Provider.isWebIdValid(selectedProvider)) {
         throw new SolidError(this.errorsText.webIdNotValid, "webIdNotValid");
       }
 
@@ -127,9 +125,14 @@ export default class SignInPage extends Component<Props, State> {
 
   render() {
     return (
-      <Fragment>
-        <h1>OgMyPod!</h1>
-      </Fragment>
+      <Container>
+        <Title src="/img/faq/ohmypod-white.svg" alt="title"></Title>
+        <h3 className="subtitle">Hey, friend!</h3>
+        <Shape src="/img/faq/shape1.svg" alt="shape"></Shape>
+        <Girl src="/img/faq/girl1.svg" alt="girl"></Girl>
+        <Note1 src="/img/faq/note1.svg" alt="note1"></Note1>
+        <Note2 src="/img/faq/note2.svg" alt="note2"></Note2>
+      </Container>
     );
   }
 }

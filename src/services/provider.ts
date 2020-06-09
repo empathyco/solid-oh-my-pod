@@ -8,6 +8,14 @@ export default class Provider {
       return prov.baseURL === value;
     })[0];
   }
+  static isWebIdValid(webId:string) {
+    const regex = new RegExp(
+      // eslint-disable-next-line no-useless-escape
+      /((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)/,
+      "i"
+    );
+    return regex.test(webId);
+  }
   static getIdentityProviders() {
     return [
       {

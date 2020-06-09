@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Component, Fragment } from "react";
 import { Question } from "../question/question.component";
-import { QuestionAnswer, QuestionList, QuestionTitle } from "./faq.page.style";
+import { QuestionAnswer, QuestionList, QuestionTitle, Container, Shape, Girl, QuestionMark } from "./faq.page.style";
 type Props = {
   renderRightComponent: (component: JSX.Element) => void;
   highlightColor: string;
@@ -25,7 +25,7 @@ export default class FAQPage extends Component<Props> {
   }
   render() {
     return (
-      <Fragment>
+      <Container>
         <QuestionList>
           {questions.map((question, index) => (
             <QuestionTitle onClick={() => this.onQuestionClick(index)}>
@@ -33,7 +33,10 @@ export default class FAQPage extends Component<Props> {
             </QuestionTitle>
           ))}
         </QuestionList>
-      </Fragment>
+        <Shape src="/img/faq/shape2.svg" alt="shape"></Shape>
+        <Girl src="/img/faq/girl2.svg" alt="girl"></Girl>
+        <QuestionMark src="/img/faq/question-mark.svg" alt="note1"></QuestionMark>
+      </Container>
     );
   }
 }
