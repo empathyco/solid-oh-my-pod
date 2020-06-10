@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const LoginWrapper = styled.div`
+  padding-bottom: 50px;
+
   background: url("/img/empathylines.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,5 +11,5 @@ export const LoginWrapper = styled.div`
   justify-content: center;
 
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 `;

@@ -4,12 +4,14 @@ export const Container = styled.div`
   width: 100%;
   height: 100%;
   .subtitle {
+    position: relative;
     margin-left: 50px;
     color: white;
     max-width: 200px;
     font-size: 3em;
     white-space: normal;
     font-weight: lighter;
+    z-index: 100;
   }
 `;
 export const ProviderSigin = styled.div`

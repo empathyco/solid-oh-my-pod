@@ -1,16 +1,11 @@
 import styled from "styled-components";
 export const FAQ = styled.article`
-  //This is temporary
-  /* position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); */
-
   margin: auto;
 
   display: inline-flex;
   flex-direction: row;
-
+  flex-wrap: wrap;
+  justify-content: center;
   background-color: white;
   z-index: 6000;
   box-shadow: 0 9px 20px 0 rgba(13, 33, 50, 0.29);
@@ -18,6 +13,18 @@ export const FAQ = styled.article`
   & > div {
     width: 600px;
     height: 600px;
+  }
+
+  @media (max-width: 1200px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 600px) {
+    display: flex;
+    box-shadow: none;
+    & > div {
+      width: 100vw;
+    }
   }
 
   .left {
@@ -46,7 +53,7 @@ export const FAQ = styled.article`
 
 export const PageNavigationItem = styled.div`
   display: inline-block;
-  margin-right: 40px;
+
   padding-bottom: 20px;
   margin-bottom: -2px;
   cursor: pointer;
@@ -65,7 +72,10 @@ export const PageNavigationItem = styled.div`
 `;
 
 export const PageNavigation = styled.div`
+  display: flex;
+  flex-direction: row;
   border-bottom: 1px solid var(--white);
+  justify-content: space-around;
 `;
 export const PoweredByEmpathy = styled.div`
   position: absolute;

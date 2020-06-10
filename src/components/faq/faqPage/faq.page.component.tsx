@@ -1,7 +1,15 @@
 import * as React from "react";
-import { Component, Fragment } from "react";
-import { Question } from "../question/question.component";
-import { QuestionAnswer, QuestionList, QuestionTitle, Container, Shape, Girl, QuestionMark } from "./faq.page.style";
+import { Component } from "react";
+import {
+  Container,
+  Girl,
+  QuestionAnswer,
+  QuestionList,
+  QuestionMark,
+  QuestionTitle,
+  Shape,
+} from "./faq.page.style";
+
 type Props = {
   renderRightComponent: (component: JSX.Element) => void;
   highlightColor: string;
@@ -28,20 +36,26 @@ export default class FAQPage extends Component<Props> {
       <Container>
         <QuestionList>
           {questions.map((question, index) => (
-            <QuestionTitle onClick={() => this.onQuestionClick(index)}>
+            <QuestionTitle
+              key={index}
+              onClick={() => this.onQuestionClick(index)}
+            >
               {question.title}
             </QuestionTitle>
           ))}
         </QuestionList>
         <Shape src="/img/faq/shape2.svg" alt="shape"></Shape>
         <Girl src="/img/faq/girl2.svg" alt="girl"></Girl>
-        <QuestionMark src="/img/faq/question-mark.svg" alt="note1"></QuestionMark>
+        <QuestionMark
+          src="/img/faq/question-mark.svg"
+          alt="note1"
+        ></QuestionMark>
       </Container>
     );
   }
 }
 
-const questions: Question[] = [
+const questions = [
   {
     title: "What is a provider?",
     content: (

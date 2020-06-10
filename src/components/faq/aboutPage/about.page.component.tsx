@@ -32,7 +32,10 @@ export default class AboutPage extends Component<Props> {
       <Fragment>
         <QuestionList>
           {questions.map((question, index) => (
-            <QuestionTitle onClick={() => this.onQuestionClick(index)}>
+            <QuestionTitle
+              key={index}
+              onClick={() => this.onQuestionClick(index)}
+            >
               {question.title}
             </QuestionTitle>
           ))}

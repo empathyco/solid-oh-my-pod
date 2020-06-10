@@ -127,9 +127,11 @@ export default class SignInPage extends Component<Props, State> {
     return (
       <Container>
         <Title src="/img/faq/ohmypod-white.svg" alt="title"></Title>
-        <h3 className="subtitle">Hey, friend!</h3>
+        <div>
+          <h3 className="subtitle">Hey, friend!</h3>
+          <Girl src="/img/faq/girl1.svg" alt="girl"></Girl>
+        </div>
         <Shape src="/img/faq/shape1.svg" alt="shape"></Shape>
-        <Girl src="/img/faq/girl1.svg" alt="girl"></Girl>
         <Note1 src="/img/faq/note1.svg" alt="note1"></Note1>
         <Note2 src="/img/faq/note2.svg" alt="note2"></Note2>
       </Container>
