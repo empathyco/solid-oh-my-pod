@@ -1,3 +1,4 @@
+import { FileFactory, FolderModel } from "@containers/FileExplorer/models";
 import data from "@solid/query-ldflex";
 import auth from "solid-auth-client";
 import SolidFileClient from "solid-file-client";
@@ -44,14 +45,29 @@ const checkFileType = (file) => {
     : "unknownType";
 };
 
-export const getFolderContent = async (folderUrl) => {
+export const loadFolder = async (folderUrl): Promise<FolderModel> => {
   if (cache.contains(folderUrl)) return cache.get(folderUrl);
 
   let folderContent = await fc.readFolder(folderUrl);
-  for (let file of folderContent.files) {
-    file.ctype = checkFileType(file);
+
+  const { name, parent, type } = folderContent;
+
+  let folder = new FolderModel(type, name, parent, folderUrl);
+
+  //load subfolders
+  for (let subFolder of folderContent.folders) {
+    const { name, parent, type, url } = subFolder;
+    folder.content.push(new FolderModel(type, name, parent, url));
   }
-  return cache.add(folderUrl, folderContent);
+
+  //load files
+
+  for (let file of folderContent.files) {
+    const { name, parent, type, url } = file;
+
+    folder.content.push(FileFactory.buildFileModel(type, name, parent, url));
+  }
+  return cache.add(folderUrl, folder);
 };
 
 export const readFile = async (fileUrl) => {
@@ -127,7 +143,7 @@ export const copyItems = async (path, destination, fileNames) => {
   if (!fileNames.length) {
     console.log("No items to copy");
   } else {
-    let items = await getFolderContent(path);
+    let items = await loadFolder(path);
     items = items.filter(({ name }) => fileNames.include(name));
     items.map((item) =>
       item.type === "folder"

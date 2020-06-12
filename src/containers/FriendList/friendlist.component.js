@@ -64,7 +64,7 @@ export default class FriendListComponent extends React.Component {
   async validateURI(url) {
     let num;
     await fetch(url).then((res) => {
-      console.log(res.status);
+
       num = res.status;
     });
     return num;
@@ -84,7 +84,7 @@ export default class FriendListComponent extends React.Component {
       });
     } else {
       let exits = await this.validateURI(username);
-      console.log(exits);
+
 
       if (exits.toString() !== "200") {
         ToasterService.addPopUpToast({
@@ -122,10 +122,10 @@ export default class FriendListComponent extends React.Component {
   async deletefriend(profile, t) {
     if (window.confirm(t("friendlist.deleteq") + profile + " ?")) {
       let index = 0;
-      console.log(this.state.friends);
+
       for (var i = 0; i < this.state.friends.length; i++) {
-        console.log(this.state.friends[i].value);
-        console.log(profile);
+
+
         if (this.state.friends[i].url === profile) {
           index = i;
           break;
@@ -136,7 +136,7 @@ export default class FriendListComponent extends React.Component {
       let newFriends = this.state.friends;
 
       newFriends.splice(index, 1);
-      console.log(newFriends);
+
       await this.setState({
         friends: newFriends,
       });

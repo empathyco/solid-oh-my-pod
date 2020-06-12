@@ -17,13 +17,25 @@
     "noUnusedLocals": false /* Report errors on unused locals. */,
     "strict": false /* Enable all strict type-checking options. */,
     "outDir": "dist" /* Redirect output structure to the directory. */,
-    "baseUrl": "src" /* Base directory to resolve non-absolute module names. */,
+    "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
     "typeRoots": [
       "./types",
       "node_modules/@types"
     ] /* List of folders to include type definitions from. */,
     "strictNullChecks": true /* Enable strict null checks. */,
-    "allowJs": true /* Allow javascript files to be compiled. */
+    "allowJs": true /* Allow javascript files to be compiled. */,
+    "paths": {
+      "@components/*": ["components/*"],
+      "@containers/*": ["containers/*"],
+      "@util-components/*": ["components/Utils/*"],
+      "@services/*": ["services/*"],
+      "@layouts/*": ["layouts/*"],
+      "@contexts/*": ["contexts/*"],
+      "@hocs/*": ["hocs/*"],
+      "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"],
+      "@constants/*": ["constants/*"]
+    }
   },
   "exclude": ["dist", "node_modules"]
 }

@@ -84,7 +84,7 @@ export default class Profile extends React.Component {
 
     const { t } = this.props;
 
-    console.log("webId", webId);
+
     return (
       <ProfileWrapper data-testid="profile-component">
         {webId && (
@@ -92,8 +92,6 @@ export default class Profile extends React.Component {
             <main>
               <ContainerHeader
                 {...{
-                  webId,
-                  defaultProfilePhoto,
                   title: t("profile.yourProfile"),
                 }}
               ></ContainerHeader>

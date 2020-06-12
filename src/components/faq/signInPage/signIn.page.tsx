@@ -63,7 +63,7 @@ export default class SignInPage extends Component<Props, State> {
         throw new SolidError(this.errorsText.webIdNotValid, "webIdNotValid");
       }
 
-      console.log("LLEGA AQUI");
+
       await auth.login(selectedProvider, {
         callbackUri,
         storage: localStorage,

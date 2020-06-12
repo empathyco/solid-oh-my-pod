@@ -16,13 +16,16 @@
     "cancel": "Cancel",
     "download": "Download",
     "viewing": "Viewing file",
-    "close": "Close"
+    "close": "Close",
+    "search": "SEARCH",
+    "home": "my pod",
+    "title": "Your FILES"
   },
   "friendlist": {
-    "yourFriends":"Your FRIENDS",
-    "friends":"Friends",
-    "addFriend":"Add friend",
-    "unknownName":"Unknown name",
+    "yourFriends": "Your FRIENDS",
+    "friends": "Friends",
+    "addFriend": "Add friend",
+    "unknownName": "Unknown name",
     "mplatform": "The platform chosen is: ",
     "selectp": "Select provider",
     "nameerror": {

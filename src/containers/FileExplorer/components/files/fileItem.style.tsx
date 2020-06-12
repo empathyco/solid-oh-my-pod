@@ -2,26 +2,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
 export const FileMenuTrigger = styled.div`
-  margin: 0px 5px;
-  border-radius: 10px;
+  width: 300px;
+  height: 60px;
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 55px auto;
   font-family: "Lato", sans-serif;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: 35px;
   &:hover {
-      opacity: 0.25;
-   
+    opacity: 0.25;
+    cursor: pointer;
   }
 
   &.active {
-          opacity: 0.25;
-
+    opacity: 0.25;
   }
 
   img {
-    justify-self: center;
+    justify-self: left;
     align-self: center;
+    width: 40px;
+    height: 40px;
   }
 `;
 
@@ -32,8 +32,8 @@ export const AwesomeIcon = styled(FontAwesomeIcon)`
 
 export const FileInfo = styled.div`
   h2 {
-    font-size: 24px;
-    font-wieght: bold;
+    font-size: 16px;
+
     text-overflow: ellipsis;
     white-space: initial;
     overflow: hidden;
@@ -49,17 +49,6 @@ export const FileInfo = styled.div`
   user-select: none;
 `;
 
-export const CustomContext = styled.div`
-  position: absolute;
-  top: ${props => props.y || 0};
-  left: ${props => props.x || 0};
-  display: flex;
-  flex-direction: column;
-`;
 
-export const CustomContextOption = styled.div`
-  display: grid;
-  grid-template-columns: 20% 80%;
-  font-family: "Lato", sans-serif;
-  font-size: 12px;
-`;
+
+

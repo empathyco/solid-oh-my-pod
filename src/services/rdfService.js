@@ -1,5 +1,5 @@
-import auth from "solid-auth-client";
 import * as rdf from "rdflib";
+import auth from "solid-auth-client";
 
 //Declaration of namespaces
 const VCARD = rdf.Namespace("http://www.w3.org/2006/vcard/ns#");
@@ -81,7 +81,7 @@ export const getAddress = () => {
       locality: getValueFromVcard("locality", linkedUri),
       country_name: getValueFromVcard("country-name", linkedUri),
       region: getValueFromVcard("region", linkedUri),
-      street: getValueFromVcard("street-address", linkedUri)
+      street: getValueFromVcard("street-address", linkedUri),
     };
   }
 
@@ -120,14 +120,14 @@ export const getProfile = async () => {
   try {
     await fetcher.load(session.webId);
 
-     return {
+    return {
       fn: await getProfileField("fn"),
       company: await getProfileField("organization-name"),
       phone: getPhone(),
       role: await getProfileField("role"),
       image: await getProfileField("hasPhoto"),
       address: getAddress(),
-      email: getEmail()
+      email: getEmail(),
     };
   } catch (error) {
     console.log(`Error fetching data: ${error}`);
@@ -154,7 +154,7 @@ export const getValueFromNamespace = (node, namespace, webId) => {
 //  |   |   |   |   |   |   |
 //  v   v   v   v   v   v   v
 
-export const getProfileField = async field => {
+export const getProfileField = async (field) => {
   return await getField(session.webId, field, VCARD);
 };
 
@@ -169,7 +169,7 @@ export const getField = async (webId, field, namespace) => {
     let id = await store.sym(webId);
     await fetcher.load(id.doc(), {
       force: true,
-      clearPreviousData: true
+      clearPreviousData: true,
     });
     let element = store.any(id, namespace(field));
     if (element !== undefined) {
@@ -189,34 +189,30 @@ export const getField = async (webId, field, namespace) => {
  * @param namespace Name space to which the field belongs.
  */
 export const getFieldArray = async (webId, field, namespace) => {
-try {
-  const id = await store.sym(webId);
-  await fetcher.load(id.doc(), {
-    force: true,
-    clearPreviousData: true
-  });
-  return store.each(id, namespace(field));
-}
-catch(error)
-  {
+  try {
+    const id = await store.sym(webId);
+    await fetcher.load(id.doc(), {
+      force: true,
+      clearPreviousData: true,
+    });
+    return store.each(id, namespace(field));
+  } catch (error) {
     console.log(`Error fetching data: ${error}`);
   }
 };
 
 export const getFieldArrayNoerror = async (webId, field, namespace) => {
-
   const id = await store.sym(webId);
   await fetcher.load(id.doc(), {
     force: true,
-    clearPreviousData: true
+    clearPreviousData: true,
   });
   return store.each(id, namespace(field));
-
 };
 
-export const getFriendData = async webId => {
+export const getFriendData = async (webId) => {
   try {
-   // console.log("Profile loaded: " + (await getField(webId, "fn", VCARD)));
+    // console.log("Profile loaded: " + (await getField(webId, "fn", VCARD)));
     return {
       fn: await getField(webId, "fn", VCARD),
       company: await getField(webId, "organization-name", VCARD),
@@ -224,32 +220,30 @@ export const getFriendData = async webId => {
       role: await getField(webId, "role", VCARD),
       image: await getField(webId, "hasPhoto", VCARD),
       address: await getFriendAddress(webId),
-      email: await getFriendEmail(webId)
+      email: await getFriendEmail(webId),
     };
   } catch (error) {
-    return 'error'
+    return "error";
     console.log(`Error fetching getFriendData: ${error}`);
   }
 };
 
-
-
-export const getChatData = async chatUrl => {
+export const getChatData = async (chatUrl) => {
   try {
-   // console.log("Chat loaded: " + (await getField(chatUrl, "name", SCHEMA)));
+    // console.log("Chat loaded: " + (await getField(chatUrl, "name", SCHEMA)));
     return {
       id: await getField(chatUrl, "identifier", SCHEMA),
       name: await getField(chatUrl, "name", SCHEMA),
       administrators: await getFieldArray(chatUrl, "author", SCHEMA),
       users: await getFieldArray(chatUrl, "contributor", SCHEMA),
-      picture: await getField(chatUrl, "image", SCHEMA)
+      picture: await getField(chatUrl, "image", SCHEMA),
     };
   } catch (error) {
     console.log(`Error fetching data : ${error}`);
   }
 };
 
-export const getMessageData = async messageUrl => {
+export const getMessageData = async (messageUrl) => {
   try {
     const identifier = await getField(messageUrl, "identifier", SCHEMA);
     console.log(`Message loaded: ${identifier}`);
@@ -259,14 +253,14 @@ export const getMessageData = async messageUrl => {
       bundleId: identifier.split("/")[1],
       message: await getField(messageUrl, "text", SCHEMA),
       sender: await getField(messageUrl, "sender", SCHEMA),
-      date: await getField(messageUrl, "dateSent", SCHEMA)
+      date: await getField(messageUrl, "dateSent", SCHEMA),
     };
   } catch (error) {
     console.log(`Error fetching data: ${error}`);
   }
 };
 
-export const requestIsCha = async webId => {
+export const requestIsCha = async (webId) => {
   try {
     const file = await getFieldArray(webId, "type", RDF);
     return file.includes(SCHEMA("Conversation"));
@@ -276,9 +270,9 @@ export const requestIsCha = async webId => {
 };
 
 // Function to get email. This returns only the first email, which is temporary
-export const getFriendEmail = async webId => {
+export const getFriendEmail = async (webId) => {
   const linkedUri = await getFieldArray(webId, "hasEmail", VCARD);
-  for(var i = 0; i< linkedUri.length; i++) {
+  for (var i = 0; i < linkedUri.length; i++) {
     const mail = await getField(linkedUri[i], "value", VCARD);
     if (mail !== undefined) {
       return mail.split("mailto:")[1];
@@ -289,12 +283,12 @@ export const getFriendEmail = async webId => {
 };
 
 // Function to get phone number. This returns only the first phone number, which is temporary. It also ignores the type.
-export const getFriendPhone = async webId => {
+export const getFriendPhone = async (webId) => {
   const linkedUri = await getField(webId, "hasTelephone", VCARD);
-  //console.log(linkedUri);
+
   if (linkedUri) {
     const mail = await getField(linkedUri, "value", VCARD);
-    console.log(mail);
+
     const phone = mail.split("tel:")[1];
     return phone;
   }
@@ -302,15 +296,15 @@ export const getFriendPhone = async webId => {
   return "";
 };
 
-export const getFriendAddress = async webId => {
+export const getFriendAddress = async (webId) => {
   const linkedUri = await getField(webId, "hasAddress", VCARD);
-  //console.log(linkedUri);
+
   if (linkedUri) {
     return {
       locality: await getField(linkedUri, "locality", VCARD),
       country_name: await getField(linkedUri, "country-name", VCARD),
       region: await getField(linkedUri, "region", VCARD),
-      street: await getField(linkedUri, "street-address", VCARD)
+      street: await getField(linkedUri, "street-address", VCARD),
     };
   }
 
@@ -321,8 +315,7 @@ export const getFriendAddress = async webId => {
  * This method is used for adding a new friend from your solid profile
  * @param webId WebId of the friend to add.
  */
-export const addFriend = async webId => {
- // console.log(webId);
+export const addFriend = async (webId) => {
   let myId = await getWebId();
   const me = rdf.sym(myId);
   const friend = rdf.sym(webId);
@@ -341,7 +334,7 @@ export const addFriend = async webId => {
  * This method is used to remove a friend from your solid profile.
  * @param webId webId of the friend to remove
  */
-export const removeFriend = async webId => {
+export const removeFriend = async (webId) => {
   let myId = await getWebId();
   const me = rdf.sym(myId);
   const friend = rdf.sym(webId);
@@ -360,17 +353,15 @@ export const getContacts = async () => {
   let contacts;
   contacts = await getFieldArray(webId, "knows", FOAF);
 
-
   let friends = [];
-  for(var i = 0; i<contacts.length;i++){
-     let friendData = await getFriendData(contacts[i].value);
-     try {
-       friendData.url = contacts[i].value;
-     }
-     catch (error) {
-       console.log(`Error fetching data: ${error}`);
-     }
-     friends.push(friendData);
+  for (var i = 0; i < contacts.length; i++) {
+    let friendData = await getFriendData(contacts[i].value);
+    try {
+      friendData.url = contacts[i].value;
+    } catch (error) {
+      console.log(`Error fetching data: ${error}`);
+    }
+    friends.push(friendData);
   }
   return friends;
 };
@@ -385,25 +376,23 @@ export const getUserName = async () => {
   let webId = await getWebId();
   return getField(webId, "fn", VCARD);
 };
-export const getAUserName = async webId => {
+export const getAUserName = async (webId) => {
   let myId = await getWebId();
-   const friend = rdf.sym(webId);
+  const friend = rdf.sym(webId);
   return getField(friend, "fn", VCARD);
 };
 
-export const validateURI = async webId => {
-  try{
+export const validateURI = async (webId) => {
+  try {
     return {
-    Person: await getFieldArrayNoerror(webId, "a", FOAF),
-
-  };
-}catch (error) {
-  return 'error'
-  console.log(`Error fetching data validating uri: ${error}`);
-}
+      Person: await getFieldArrayNoerror(webId, "a", FOAF),
+    };
+  } catch (error) {
+    return "error";
+    console.log(`Error fetching data validating uri: ${error}`);
+  }
 };
 export const getProfilePicture = async () => {
   let webId = await getWebId();
   return getField(webId, "hasPhoto", VCARD);
 };
-

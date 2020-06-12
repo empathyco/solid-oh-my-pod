@@ -50,15 +50,15 @@ export class WelcomeComponent extends Component {
 
     const name = nameLd && nameLd.value.trim().length > 0 ? nameLd.value : webId.toString();
     const imageLd = await user.vcard_hasPhoto;
-    console.log(imageLd.value)
+
 
     let image;
     if (imageLd && imageLd.value) {
-      console.log("tiene foto")
+
       image = imageLd.value;
       hasImage = true;
     } else {
-      console.log("no tiene foto")
+
       hasImage = false;
       image = defaultProfilePhoto;
     }
@@ -96,7 +96,7 @@ export class WelcomeComponent extends Component {
   render() {
     const { name, image, isLoading } = this.state;
     const { webId } = this.props;
-    console.log(this.state)
+
     return (
       <WelcomePageContent {...{ name, image, isLoading, webId, updatePhoto: this.updatePhoto }} />
     );

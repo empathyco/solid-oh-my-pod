@@ -1,21 +1,25 @@
-import React, { useState } from "react";
-import { FileMenuTrigger, FileInfo } from "./fileItem.style";
-import {fileExplorerService} from "@services";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Plyr from "react-plyr";
-import "plyr/dist/plyr.css";
+import { UnknownFileModel } from "containers/FileExplorer/models/UnknownFileModel";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { fileExplorerService } from "services";
+import { FileInfo, FileMenuTrigger } from "./fileItem.style";
 
-export default function VideoFile(props) {
-  let clas = props.highlight;
-  let name = props.file.name;
+type Props = {
+  file: UnknownFileModel;
+  highlight: boolean;
+  onClickHandler: () => void;
+};
+export default function UnknownFile(props: Props) {
+  let style = props.highlight ? "active" : "";
+  let name =
+    props.file.name + (props.file.extension ? "." + props.file.extension : "");
   let path = props.file.url;
   let type = props.file.type;
-  let click = props.click;
+  let click = props.onClickHandler;
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
 
@@ -29,13 +33,18 @@ export default function VideoFile(props) {
 
   return (
     <FileMenuTrigger
-      className={clas}
+      className={style}
       id={path}
       onClick={click}
       onDoubleClick={handleOpen}
       // id={`${name.concat("_context_menu")}`}
     >
-      <img src="/img/icon/icon-files-video.svg" size="2x" className="imgfile" alt="video" id={path}/>
+      <img
+        src="/img/icon/icon-files-unknown.svg"
+        className="imgfile"
+        alt="uknown file"
+        id={path}
+      />
 
       <FileInfo id={path}>
         <h2 id={path}>{name}</h2>
@@ -44,21 +53,20 @@ export default function VideoFile(props) {
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-display-media"
-        fullScreen
+        // fullWidth={true}
+        // maxWidth={"lg"}
       >
         <DialogTitle id="form-dialog-display-media">{name}</DialogTitle>
-        <DialogContent>
-          <Plyr type="video" url={path} iconUrl="./vendor/plyr/plyr.svg" />
-        </DialogContent>
+        {/* <DialogContent>{name}</DialogContent> */}
         <DialogActions>
-        <Button
+          <Button
             onClick={() => fileExplorerService.promptDownload(path, type, name)}
             color="primary"
           >
-          { t('fileexplorer.download')}
-        </Button>
+            {t("fileexplorer.download")}
+          </Button>
           <Button onClick={handleClose} color="primary" type="button">
-            { t('fileexplorer.close')}
+            {t("fileexplorer.close")}
           </Button>
         </DialogActions>
       </Dialog>

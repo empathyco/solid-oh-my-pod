@@ -8,7 +8,7 @@ export const ImageProfileWrapper = styled.div`
   background-size: cover;
   overflow: hidden;
   border-radius: 360px !important;
-  border: solid 3px #f4f4f4;
+  border: solid 6px #f4f4f4;
   img {
     width: 100%;
     height: 100%;

@@ -105,7 +105,7 @@ class ProfileContent extends Component {
   };
   updateNote = async (e) => {
     const value = this.state.note;
-    console.log(value);
+
     await ldflexService.saveNote(value);
     alert("Saved");
   };
@@ -123,7 +123,7 @@ class ProfileContent extends Component {
     newState[fieldName] = newValue;
     newState.updated = true;
     this.setState(newState);
-    console.log(newState);
+
   };
 
   getFields() {

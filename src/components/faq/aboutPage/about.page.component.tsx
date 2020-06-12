@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Component, Fragment } from "react";
-import { Question } from "../question/question.component";
 import {
   QuestionAnswer,
   QuestionList,
   QuestionTitle,
 } from "./about.page.style";
+
 type Props = {
   renderRightComponent: (component: JSX.Element) => void;
   highlightColor: string;
@@ -45,7 +45,7 @@ export default class AboutPage extends Component<Props> {
   }
 }
 
-const questions: Question[] = [
+const questions = [
   {
     title: "Who is developping this project?",
     content: (

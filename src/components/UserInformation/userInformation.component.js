@@ -24,7 +24,7 @@ class UserInformation extends Component {
 
   async componentDidMount() {
     const webId = await ldflexService.getWebId();
-    console.log("WEBID RECIVIDO", webId);
+
     this.setState({ webId: webId });
   }
   componentWillReceiveProps({ title, children }) {

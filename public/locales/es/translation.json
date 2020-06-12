@@ -16,7 +16,10 @@
     "cancel": "Cancelar",
     "download": "Descargar",
     "viewing": "Viendo archivo",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "search": "BÚSQUEDA",
+    "home": "Mi pod",
+    "title": "Tus ARCHIVOS"
   },
   "friendlist": {
     "yourFriends": "Tus AMIGOS",

@@ -1,22 +1,26 @@
-import React, { useState } from "react";
-import { FileMenuTrigger, FileInfo } from "./fileItem.style";
-import { fileExplorerService } from "@services";
-
+import { ImageFileModel } from "@containers/FileExplorer/models";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { fileExplorerService } from "services";
+import { FileInfo, FileMenuTrigger } from "./fileItem.style";
 
+type Props = {
+  file: ImageFileModel;
+  highlight: boolean;
+  onClickHandler: () => void;
+};
 export default function ImageFile(props) {
-  let clas = props.highlight;
-  let name = props.file.name;
+  let style = props.highlight ? "active" : "";
+  let name = props.file.name +"."+ props.file.extension;
   let path = props.file.url;
-
   let type = props.file.type;
-
-  let click = props.click;
+  let parent = props.file.parent;
+  let click = props.onClickHandler;
   const { t } = useTranslation();
 
   const [open, setOpen] = useState(false);
@@ -54,7 +58,7 @@ export default function ImageFile(props) {
 
   return (
     <FileMenuTrigger
-      className={clas}
+      className={style}
       id={path}
       onClick={click}
       onDoubleClick={handleOpen}
@@ -63,7 +67,6 @@ export default function ImageFile(props) {
     >
       <img
         src="/img/icon/icon-files-pic.svg"
-        size="2x"
         className="imgfile"
         alt="folder"
         id={path}

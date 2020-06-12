@@ -14,12 +14,12 @@ type Props = {
   className?: string;
 };
 const ButtonWithImage = (props: Props) => {
-  console.log("PROOOOPS", props);
+
   let newStyle = {
     ...props.style,
     ...{ display: "flex", alignContent: "center" },
   };
-  console.log("STYLE", newStyle);
+
   return (
     <TextButton
       action={props.onClick}

@@ -4,7 +4,7 @@ import PageNotFound from "./PageNotFound";
 import Welcome from "./Welcome";
 import Profile from "./Profile";
 import FriendListComponent from "./FriendList";
-import FileExplorerComponent from "./FileExplorer";
+import FileExplorerContainer from "./FileExplorer";
 import VocabularyComponent from "./Vocabulary";
 import ShopComponent from "./Shop";
 export {
@@ -17,5 +17,5 @@ export {
   Welcome,
   Profile,
   FriendListComponent,
-  FileExplorerComponent,
+  FileExplorerContainer,
 };

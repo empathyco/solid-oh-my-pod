@@ -16,7 +16,10 @@
     "cancel": "Cancel",
     "download": "Download",
     "viewing": "Viewing file",
-    "close": "Close"
+    "close": "Close",
+    "search": "SEARCH",
+    "home": "my pod",
+    "title": "Your FILES"
   },
   "friendlist": {
     "yourFriends": "Your FRIENDS",
