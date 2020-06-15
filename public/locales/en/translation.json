@@ -18,6 +18,58 @@
     "viewing": "Viewing file",
     "close": "Close"
   },
+  "v1": {
+    "instance": "The instance id for empathy search API",
+    "sink": "Represents the type of event it can be a query or a click\n\n ",
+    "data": "Represents the search data collected\n\n ",
+    "ip": "Represents the ip address from the query",
+    "endpoint": "Represents the endpoint used in the search\n\n",
+    "service": " Represents the service used in the search\n\n",
+    "productid": "Product ID to track ",
+    "host": "SERP host referrer url\n\n",
+    "usera": "The user agent.\n\n",
+    "timestamp": "The time the query was performed\n\n",
+    "q": "The query for the request\n\n",
+    "totalhits": "Number of total results for these search terms.\n\n",
+    "session": "Current user's session id.\n\n",
+    "page": "Page number the user has requested.\n\n",
+    "user": "The user used on this request.\n\n",
+    "filters": "Represents the filters used in the query.\n\n",
+    "catalog": "Tracking catalog for this query.\n\n",
+    "scope": "Tracking scope for this query.\n\n",
+    "lang": "The language of the query.\n\n",
+    "extraf": "Extra fields.\n\n",
+    "usert": "Specifies is the user who made the request is either new, recurrent, or ignored.\n\n",
+    "origin": {
+      "title": "Type of search performed, these are the possible values:\n\n",
+      "default": "default : common search without help of any feature.\n\n",
+      "variables": " empathize_category, empathize_term, empathize_reference, empathize_recommendations, empathize_next_queries, empathize_trending: search using empathize",
+      "linked": "linked : redirected searches",
+      "partial": "partial : new search with origin in a suggestion in a non results query",
+      "next": "next_query, next_query_grid : search by selecting a next_query",
+      "related": "related_tag : search by selecting a related tag",
+      "history": "history: search by selecting a term in the history",
+      "spellcheck": "spellcheck: search with spellcheck"
+
+    },
+    "position": "Product position\n\n",
+    "spellcheck": "Represents whether the query has come via spellcheck or not.\n\n",
+    "filtered": "Represents whether the query has been filtered or not.\n\n",
+    "con": "Represents whether the query has been through the contextualize method.\n\n",
+    "cone": "Represents whether the user has contextualized enabled.\n\n",
+    "cona": "Represents whether the query has applied the contextualize method.\n\n",
+    "revenue": "Numeric value of the product revenue/price\n\n",
+    "currency": "Currency code for the revenue amount. Must be a valid ISO 4217 currency code.\n\n",
+    "trans": "Arbitrary identifier to link all checkout events that correspond to a unique transaction - typically a UUID, the important thing is for it to be unique and consistent for transactions.\n\n",
+    "catid": "The category that has been clicked to filter by.\n\n",
+    "title": "Link title of the query.\n\n",
+    "url": "Query url\n\n",
+    "topclicked": "The top clicked values of the query\n\n",
+    "synonymize": "Represents whether synonymize is activated.\n\n",
+    "boosted": "Represents whether synonymize is activated.\n\n",
+    "boostedid": "Manual boost Id, required for default boosts. "
+
+  },
   "friendlist": {
     "title": "Your FRIENDS",
     "mplatform":"The platform chosen is: ",
@@ -68,12 +120,10 @@
       "es": "Español (Spanish)"
     },
     "notifications": {
-      "global": "Global",
-      "tictactoe": "TicTacToe Game",
       "noinbox": "Global inbox not found. Please create one and try again.",
       "fetchingError": "Error fetching notifications from Pod"
     },
-    "tictactoe": "Game"
+    "search": "Search"
   },
   "footer": {
     "version": "Version"
@@ -146,7 +196,7 @@
 
   },
   "search": {
-    "searchtitle": "Your search data will be stored in YOUR pod"
+    "searchtitle": "Your search data will be stored in your pod"
   },
   "noInboxOpponent": {
     "message": "Your opponent does not have an inbox in their Pod",

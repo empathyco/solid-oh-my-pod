@@ -19,7 +19,8 @@ export default class FileExplorerComponent extends Component {
       folder: [],
       // route: [],
       previousRoute: "",
-      selectedResource: null
+      selectedResource: null,
+      tb:[]
     };
     this.changeRoot = this.changeRoot.bind(this);
     this.handleClick = this.handleClick.bind(this);

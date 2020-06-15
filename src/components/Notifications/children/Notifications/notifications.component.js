@@ -3,7 +3,6 @@ import { CSSTransition } from 'react-transition-group';
 import { useNotification, useLiveUpdate } from '@inrupt/solid-react-components';
 import { NotificationsWrapper } from './notifications.style';
 import { Bell, NotificationsPanel } from '../index';
-import { useOnClickOutside } from '@hooks';
 
 let oldTimestamp;
 
@@ -38,7 +37,6 @@ const Notifications = ({ webId, inbox }: Props) => {
    * @type {*|string}
    */
   const currentTimestamp = timestamp && timestamp.toString();
-  useOnClickOutside(ref, () => setIsOpen(false));
 
   /**
    * Fetch notifications from inbox

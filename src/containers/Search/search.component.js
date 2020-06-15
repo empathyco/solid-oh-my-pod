@@ -1,10 +1,9 @@
 import React from "react";
 import { fileExplorerService } from "@services";
-import * as contextf from 'json/context.txt';
+import * as contextf from 'contexts/context.txt';
 
 import CenterContainer from "../../components/Utils/CenterContainer";
 import {SearchWrapper, BoySearch, GirlSearch}  from "./search.style";
-import { useTranslation } from "react-i18next";
 
 
 export default class SearchComponent extends React.Component {
@@ -85,7 +84,7 @@ export default class SearchComponent extends React.Component {
     const searchdiv = (
       <div ref={el => (this.div = el)}>
         <p>
-          <button className="open" title="open search" alt="open search"><img src="/img/icon/search.svg"></img></button>
+          <button className="open" title="open search" alt="open search"><img alt="open search" src="/img/icon/search.svg"></img></button>
         </p>
         <p> {t('search.searchtitle')}</p>
       </div>

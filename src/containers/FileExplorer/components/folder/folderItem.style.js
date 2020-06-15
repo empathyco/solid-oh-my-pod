@@ -6,7 +6,7 @@ export const FolderMenuTrigger = styled.div`
   border-radius: 5%;
   display: grid;
   grid-template-columns: 30% 70%;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif !important;
   justify-content: center;
   align-items: center;
   &:hover {
@@ -38,6 +38,8 @@ export const FolderInfo = styled.div`
     font-size: 24px;
     white-space: initial !important;
     overflow: hidden;
+      font-family: "Montserrat", sans-serif !important;
+
       
   }
   h3 {

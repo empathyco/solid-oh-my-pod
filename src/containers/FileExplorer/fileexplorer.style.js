@@ -10,6 +10,8 @@ export const ExplorerContainer = styled.div`
    justify-content: center;
   align-items: center;
    align-self:center;
+   
+    
 `;
 
 export const Explorer = styled.div`

@@ -29,7 +29,7 @@ export const NavigationItems = [
   {
     id: 'search',
     icon: 'img/icon/searchicon.svg',
-    label: 'Search',
+    label: 'navBar.search',
     to: '/search'
   }
 
