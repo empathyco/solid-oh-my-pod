@@ -91,7 +91,10 @@ export const createFolder = async (path, folderName) => {
   if (!(folderName || "").trim()) {
     console.log("Invalid folder name");
   } else {
-    return await fc.createFolder(buildFolderUrl(path, folderName), {
+    folderName = folderName.trim().replace(/\s/g, "_");
+    let folderUrl = buildFolderUrl(path, folderName);
+    console.log("FOLDER URL", folderUrl);
+    return await fc.createFolder(folderUrl, {
       merge: SolidFileClient.MERGE.KEEP_TARGET,
     });
   }
@@ -230,11 +233,7 @@ export const createTextFile = async (
   url: string,
   content: string
 ) => {
-  console.log("fileName", fileName);
-  fileName = fileName.trim();
-  console.log("trim", fileName);
-  fileName = fileName.replace(/\s/g, "_");
-  console.log("replace", fileName);
+  fileName = fileName.trim().replace(/\s/g, "_");
 
   try {
     await fc.createFile(url + "/" + fileName, content, "text/plain");

@@ -22,7 +22,10 @@ type State = {
   previousRoute: string;
   selectedResource: ExplorerItem | null;
   searchInputValue: string;
-  isCreateFilePopUpOpen: boolean;
+  createItemPopUpOpen: {
+    createHandler: (any) => void;
+    type: "folder" | "file";
+  } | null;
 };
 export default class FileExplorerComponent extends Component<Props, State> {
   constructor(props: Props) {
@@ -33,7 +36,7 @@ export default class FileExplorerComponent extends Component<Props, State> {
       previousRoute: "",
       selectedResource: null,
       searchInputValue: "",
-      isCreateFilePopUpOpen: false,
+      createItemPopUpOpen: null,
     };
   }
 
@@ -86,16 +89,47 @@ export default class FileExplorerComponent extends Component<Props, State> {
   };
 
   handleCreateNewFile = () => {
-    this.setState({ isCreateFilePopUpOpen: true });
+    this.setState({
+      createItemPopUpOpen: { createHandler: this.createFile, type: "file" },
+    });
+  };
+  handleCreateFolder = () => {
+    this.setState({
+      createItemPopUpOpen: { createHandler: this.createFolder, type: "folder" },
+    });
   };
 
   closePopUp = () => {
-    this.setState({ isCreateFilePopUpOpen: false });
+    this.setState({ createItemPopUpOpen: null });
   };
 
-  createFile = async (event) => {
+  createFolder = async (event) => {
     let name = event.target.elements[0].value;
 
+    this.closePopUp();
+    try {
+      await fileExplorerService.createFolder(this.state.url, name);
+      ToasterService.addPopUpToast({
+        buttonLabel: "Yay",
+        onButtonClick: () => {},
+        subtitle: "",
+        title: "Folder created",
+        type: "success",
+      });
+      this.refreshFolder();
+    } catch (e) {
+      ToasterService.addPopUpToast({
+        buttonLabel: "ok",
+        onButtonClick: () => {},
+        subtitle: "",
+        title: "Folder could not be created :(",
+        type: "error",
+      });
+    }
+  };
+  createFile = async (event) => {
+    let name = event.target.elements[0].value;
+    console.log("HEEEY");
     this.closePopUp();
     try {
       await fileExplorerService.createTextFile(name, this.state.url, "");
@@ -148,6 +182,15 @@ export default class FileExplorerComponent extends Component<Props, State> {
               useCustomIcon: true,
             }}
           ></ButtonWithImage>
+          <ButtonWithImage
+            {...{
+              style: { margin: "0 auto" },
+              onClick: this.handleCreateFolder,
+              icon: "/img/icon/add.svg",
+              label: "CREATE FOLDER",
+              useCustomIcon: true,
+            }}
+          ></ButtonWithImage>
         </UserInformation>
         <FileExplorer className="file-explorer">
           <SearchBarComponent
@@ -165,10 +208,17 @@ export default class FileExplorerComponent extends Component<Props, State> {
           </Explorer>
         </FileExplorer>
 
-        {this.state.isCreateFilePopUpOpen && (
+        {this.state.createItemPopUpOpen && (
           <CreafileBackground>
-            <form className="createFilePopUp" onSubmit={this.createFile}>
-              <h2>Give a name for the file</h2>
+            <form
+              className="createFilePopUp"
+              onSubmit={this.state.createItemPopUpOpen.createHandler}
+            >
+              {this.state.createItemPopUpOpen.type === "file" ? (
+                <h2>Give a name for the file</h2>
+              ) : (
+                <h2>Give a name for the folder</h2>
+              )}
               <input type="text" id="fileName" name="fileName" autoFocus />
               <div className="popUpButtons">
                 <OMPButton
@@ -184,7 +234,7 @@ export default class FileExplorerComponent extends Component<Props, State> {
                     type: "submit",
                     action: () => {},
                     color: "main",
-                    label: "Create file",
+                    label: `Create ${this.state.createItemPopUpOpen.type}`,
                   }}
                 ></OMPButton>
               </div>
