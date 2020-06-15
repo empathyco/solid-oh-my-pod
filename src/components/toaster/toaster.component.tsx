@@ -66,7 +66,7 @@ export default class ToasterComponent extends Component<Props, State> {
         ) : (
           undefined
         )}
-        ;
+        
       </React.Fragment>
     );
   }

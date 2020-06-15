@@ -5,15 +5,17 @@ type Props = {
   label: string;
   color: "main" | "error" | "success" | "info";
   style?: any;
-  action: () => void;
+  action: (any?: any) => void;
   disabled?: boolean;
   className?: string;
+  type?: "button" | "submit" | "reset" | undefined;
 };
 const OMPButton = (props: Props) => {
-  const { label, color, style, action, disabled } = props;
+  const { label, color, style, action, disabled, type } = props;
 
   return (
     <GeneralButton
+      type={type}
       style={style}
       className={color ? color + " omp-button" : "main omp-button"}
       onClick={action}

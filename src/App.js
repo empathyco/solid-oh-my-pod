@@ -25,6 +25,7 @@ const App = () => (
         <Routes />
         <ToasterComponent ></ToasterComponent>
         <LoaderComponent></LoaderComponent>
+
         <Toaster
           {...{
             autoClose: 3000,

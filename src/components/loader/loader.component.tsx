@@ -1,7 +1,6 @@
 import * as React from "react";
-import { LoaderService } from "./loaderService";
-import isLoading from "hocs/isLoading";
 import { LoaderScreen, LoaderWrapper } from "./loader.style";
+import { LoaderService } from "./loaderService";
 
 type Props = {};
 type State = { isLoading: boolean };
@@ -21,6 +20,7 @@ export default class LoaderComponent extends React.Component<Props, State> {
 
     return (
       <React.Fragment>
+
         {isLoading ? (
           <LoaderScreen>
             <LoaderWrapper>

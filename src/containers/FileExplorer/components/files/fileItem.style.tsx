@@ -8,6 +8,7 @@ export const FileMenuTrigger = styled.div`
   grid-template-columns: 55px auto;
   font-family: "Lato", sans-serif;
   margin-bottom: 35px;
+  overflow: hidden;
   &:hover {
     opacity: 0.25;
     cursor: pointer;
@@ -31,6 +32,8 @@ export const AwesomeIcon = styled(FontAwesomeIcon)`
 `;
 
 export const FileInfo = styled.div`
+overflow: hidden;
+padding-right: 20px;
   h2 {
     font-size: 16px;
 

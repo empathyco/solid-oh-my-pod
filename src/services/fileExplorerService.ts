@@ -46,8 +46,6 @@ const checkFileType = (file) => {
 };
 
 export const loadFolder = async (folderUrl): Promise<FolderModel> => {
-  if (cache.contains(folderUrl)) return cache.get(folderUrl);
-
   let folderContent = await fc.readFolder(folderUrl);
 
   const { name, parent, type } = folderContent;
@@ -67,7 +65,7 @@ export const loadFolder = async (folderUrl): Promise<FolderModel> => {
 
     folder.content.push(FileFactory.buildFileModel(type, name, parent, url));
   }
-  return cache.add(folderUrl, folder);
+  return folder;
 };
 
 export const readFile = async (fileUrl) => {
@@ -224,6 +222,25 @@ export const promptDownload = (file, contentType, fileName) => {
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
     }, 0);
+  }
+};
+
+export const createTextFile = async (
+  fileName: string,
+  url: string,
+  content: string
+) => {
+  console.log("fileName", fileName);
+  fileName = fileName.trim();
+  console.log("trim", fileName);
+  fileName = fileName.replace(/\s/g, "_");
+  console.log("replace", fileName);
+
+  try {
+    await fc.createFile(url + "/" + fileName, content, "text/plain");
+    console.log("file created");
+  } catch (e) {
+    throw e;
   }
 };
 
