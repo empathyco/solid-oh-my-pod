@@ -40,14 +40,11 @@ export default function VideoFile(props) {
       id={path}
       onClick={click}
       onDoubleClick={handleOpen}
+      tabIndex="0"
+
       // id={`${name.concat("_context_menu")}`}
     >
-      <img
-        src="/img/icon/icon-files-video.svg"
-        className="imgfile"
-        alt="video"
-        id={path}
-      />
+      <img src="/img/icon/icon-files-video.svg"   className="imgfile" title={path} alt={path} id={path}/>
 
       <FileInfo id={path}>
         <h2 id={path}>{name}</h2>
@@ -60,7 +57,7 @@ export default function VideoFile(props) {
       >
         <DialogTitle id="form-dialog-display-media">{name}</DialogTitle>
         <DialogContent>
-          <Plyr type="video" url={path} iconUrl="./vendor/plyr/plyr.svg" />
+          <Plyr type="video" url={path} alt="play" />
         </DialogContent>
         <DialogActions>
           <Button

@@ -1,12 +1,12 @@
 import React from "react";
 import { fileExplorerService } from "@services";
-import * as contextf from 'json/context.txt';
+import * as contextf from 'contexts/context.txt';
 
 import CenterContainer from "../../components/Utils/CenterContainer";
-import {ShopWrapper}  from "./shop.style";
+import {SearchWrapper, BoySearch, GirlSearch}  from "./search.style";
 
 
-export default class ShopComponent extends React.Component {
+export default class SearchComponent extends React.Component {
 
   constructor()
   {
@@ -38,15 +38,13 @@ export default class ShopComponent extends React.Component {
          eventCallbacks: {
            click: function(data) {
              console.log('[CLIENT_EVENT]', '[CLICK]', data);
+             shop.writeinPOD(data)          
+
            },
            query: function(data) {
              console.log('[CLIENT_EVENT]', '[QUERY]', data);
                shop.writeinPOD(data)          
-           },
-           add2cart: function(data) {
-             console.log('[CLIENT_EVENT]', '[ADD2CART]', data);
-            
-           }
+           } 
          }
          
        });
@@ -55,16 +53,7 @@ export default class ShopComponent extends React.Component {
      this.div.appendChild(script2);
 
    }
- /* async writeinPOD(data)
-  {
-    //let contentjson = JSON.stringify(data.default);
-    let contentjson = JSON.stringify(data);
-    console.log('calling function');
 
-    console.log(contentjson);
-
-   // await fileExplorerService.writejsoninpod(contentjson);
-  }*/
 
     logFileText = async file => {
     let response = await fetch(file)
@@ -80,28 +69,46 @@ export default class ShopComponent extends React.Component {
 
     let context = await this.logFileText(contextf);
 
-    let contentjson = context + content + '}';
+    let contentjson = context + content ;
 
     let d = new Date();
     let title = data.session +'-'+ d.getTime();
 
-    await fileExplorerService.writejsoninpod(contentjson,title);
+   await fileExplorerService.writejsoninpod(contentjson,title);
 
     }
 
 
   render(){
-  return (
-    <ShopWrapper>
+    const { t } = this.props;
+    const searchdiv = (
+      <div ref={el => (this.div = el)}>
+        <p>
+          <button className="open" title="open search" alt="open search"><img alt="open search" src="/img/icon/search.svg"></img></button>
+        </p>
+        <p> {t('search.searchtitle')}</p>
+      </div>
+    );
+    return (
+    <SearchWrapper>
+
     <CenterContainer>
-   <div ref={el => (this.div = el)}>
+      <div class="logos">
+        <div>
+      <GirlSearch>
+        <img src="/img/girlsearch.svg" alt="Girl search"></img>
+      </GirlSearch>
+      </div>
+        {searchdiv}
 
-      <p> <button class="open"  >call empathysearch</button> </p>
-
-
-   </div>
+        <div>
+      <BoySearch>
+        <img src="/img/boysearch.svg" alt="Boy search"></img>
+      </BoySearch>
+        </div>
+      </div>
     </CenterContainer>
-    </ShopWrapper>
+    </SearchWrapper>
   );
   }
 

@@ -1,15 +1,16 @@
-import Login from "./Login";
-import Register, { RegistrationSuccess } from "./Register";
+import Login from './Login';
+
+ import Register, { RegistrationSuccess } from "./Register";
 import PageNotFound from "./PageNotFound";
 import Welcome from "./Welcome";
 import Profile from "./Profile";
 import FriendListComponent from "./FriendList";
 import FileExplorerContainer from "./FileExplorer";
 import VocabularyComponent from "./Vocabulary";
-import ShopComponent from "./Shop";
+import SearchComponent from "./Search";
 export {
   Login,
-  ShopComponent,
+  SearchComponent,
   VocabularyComponent,
   Register,
   RegistrationSuccess,

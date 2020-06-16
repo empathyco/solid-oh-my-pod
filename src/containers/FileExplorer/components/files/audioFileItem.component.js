@@ -34,9 +34,11 @@ export default function AudioFile(props) {
       id={path}
       onClick={click}
       onDoubleClick={handleOpen}
+      tabIndex="0"
+
       // id={`${name.concat("_context_menu")}`}
     >
-      <img src="/img/icon/icon-files-video.svg" size="2x" className="imgfile" alt="folder" id={path}/>
+      <img src="/img/icon/icon-files-video.svg" size="2x" className="imgfile" title={path} alt={path}  id={path}/>
 
       <FileInfo id={path}>
         <h2 id={path}>{name}</h2>
@@ -50,7 +52,7 @@ export default function AudioFile(props) {
       >
         <DialogTitle id="form-dialog-display-media">{name}</DialogTitle>
         <DialogContent>
-          <Plyr type="audio" url={path} iconUrl="./vendor/plyr/plyr.svg" />
+          <Plyr type="audio" url={path} alt="play" />
         </DialogContent>
         <DialogActions>
           <Button

@@ -16,10 +16,13 @@ export const ProviderItemStyle = styled.label`
   transition: all 0.2s ease-in;
   justify-content: space-between;
   padding: 0 8px;
-  font-family: "Raleway", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
   font-size: 24px;
   color: #083575;
+  
+   background: rgba(95, 154, 213, 0.09);
+   margin: 2px  ;
 
   .checked {
     display: none;
@@ -47,10 +50,8 @@ export const ProviderItemStyle = styled.label`
 
 export const Item = styled.li`
   list-style: none;
-  padding: 10px 0;
-  margin: 0;
-
-  & input[type="radio"] {
+   margin: 0;
+   & input[type="radio"] {
     display: none;
 
     &:checked {

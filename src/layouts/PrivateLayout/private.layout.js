@@ -1,10 +1,9 @@
 import React, { useCallback, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import {
+ import {
   withAuthorization,
-  AppPermission,
-  AccessControlList,
+  //AppPermission,
+  //AccessControlList,
 } from "@inrupt/solid-react-components";
 import { AuthNavBar, Footer } from "@components";
 import styled from "styled-components";
@@ -26,8 +25,7 @@ const Content = styled.div`
 `;
 
 const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
-  const { t } = useTranslation();
-  /**
+   /**
    * SDK app will need all the permissions by the user pod so
    * we check these permissions to work without any issues.
    */
@@ -35,12 +33,12 @@ const PrivateLayout = ({ routes, webId, location, history, ...rest }) => {
     /**
      * Get permissions from trustedApp.
      */
-    const userApp = await AppPermission.checkPermissions(webId);
+    //const userApp = await AppPermission.checkPermissions(webId);
     /**
      * Get modes permissions from solid-react-components
      */
-    const permissions = AccessControlList.MODES;
-    const { APPEND, READ, WRITE, CONTROL } = permissions;
+   // const permissions = AccessControlList.MODES;
+   // const { APPEND, READ, WRITE, CONTROL } = permissions;
   }, [webId]);
 
   useEffect(() => {

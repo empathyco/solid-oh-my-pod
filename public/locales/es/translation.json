@@ -32,9 +32,60 @@
     "fileCreated": "Archivo creado",
     "fileNOTCreated": "No se ha podido crear el archivo :("
   },
+  "v1": {
+    "instance": "La instancia del API",
+    "sink": "Representa el tipo de evento puede ser un click o una query ",
+    "data": "Representa los datos de búsqueda recogidos",
+    "ip": "Representa la dirección ip de la query",
+    "endpoint": "Representa el endpoint usado en la búsqueda",
+    "service": "Representa el servicio usado en la búsqueda",
+    "productid": "Representa el id del producto a realizar el seguimiento",
+    "host": "Representa el host SERP url",
+    "usera": "Representa el agente de usuario",
+    "timestamp": "Representa la hora en la cual se realizo la query",
+    "q": "El contenido de la query",
+    "totalhits": "El número total de resultados de los términos de la búsqueda",
+    "session": "La sesión del actual usuario",
+    "page": "El número de la página que ha solicitado el usuario",
+    "user": "El usuario que ha realizado la solicitud.",
+    "filters": "Los filtros usados en la query",
+    "catalog": "El catálogo usado en la query",
+    "scope": "El ámbito de la query",
+    "lang": "El lenguaje de la query",
+    "extraf": "Campos extra",
+    "usert": "El tipo de usuario que ha realizado la solicitud puede ser nuevo, recurrente o ignorado",
+    "origin": {
+    "title": "El tipo de búsqueda realizada. Estos son los posibles valores:",
+    "default": "default : una búsqueda común sin ningún tipo de ayuda extra",
+    "variables": " empathize_category, empathize_term, empathize_reference, empathize_recommendations, empathize_next_queries, empathize_trending: búqueda usando empathized",
+    "linked": "linked : búsqueda redirigida",
+    "partial": "partial : una nueva búsqueda originado de las recomendaciones de los pop-up",
+    "next": "next_query, next_query_grid : una búsqueda realizada mediante la funcionalidad de siguiente query",
+    "related": "related_tag : búsqueda realizada mediante tags relacionados",
+    "history": "history: búsqueda realizada mediante articulos del historial",
+    "spellcheck": "spellcheck: búsqueda con correción ortográfica"
+  },
+    "position": "Posición del producto.",
+    "spellcheck": "Representa si la query ha usado correción otrográfica.",
+    "filtered": "Representa si la query ha sido filtrada.",
+    "con": "Representa si a la query se le ha aplicado el método contextualize",
+    "cone": "Representa si el usario tiene el método contextualize activado",
+    "cona": "Representa si la query ha aplicado el método contextualize",
+    "revenue": "El valor númerico del precio de los productos.",
+    "currency": "El código de la moneda aplicada al precio. Este código debe ser válido bajo ISO 4217",
+    "trans": "Identificación arbitriaria que correspondo a una transacción única. Típicamente es un UUID.",
+    "catid": "La categoría bajo la cual se ha filtrado la query",
+    "title": "El titulo del link de la query",
+    "url": "La url de la query",
+    "topclicked": "Los valores destacados de la query",
+    "synonymize": "Representa si el método synonymize ha sido activado",
+    "boosted": "El descriptor boost. Se usa 'default' para filtros manuales",
+    "boostedid": "El id para los boost."
+
+  },
   "friendlist": {
-    "yourFriends": "Tus AMIGOS",
-    "mplatform": "La plataforma escogida es: ",
+    "title": "Tus AMIGOS",
+    "mplatform":"La plataforma escogida es: ",
     "selectp": "Elegir proveedor",
     "nameerror": {
       "title": "Nombre inválido",
@@ -96,11 +147,9 @@
     },
     "notifications": {
       "global": "Global",
-      "tictactoe": "Gato",
-      "noinbox": "No se encontró ningún inbox en su POD, debes tener al menos uno para jugar.",
-      "fetchingError": "Error en las notificaciones"
+       "fetchingError": "Error en las notificaciones"
     },
-    "tictactoe": "Juego"
+    "search": "Buscar"
   },
   "footer": {
     "version": "Versión"
@@ -108,7 +157,7 @@
   "notFound": {
     "title": "Página no encontrada",
     "content": "Puede existir un problema con la dirección buscada. Por favor verifiquela e intente de nuevo. O la página que buscaste ha sido movida o eliminada",
-    "redirectButton": "Llevarme a la página principal"
+    "redirectButton": "Llevame a casa"
   },
   "welcome": {
     "welcome": "Bienvenido",
@@ -139,6 +188,7 @@
     }
   },
   "profile": {
+    "title": "Tu PERFIL",
     "successCallback": "Pod actualizado satisfactoriamente",
     "successTitle": "Éxito",
     "errorCallback": "Ha ocurrido un error al enviar el formulario",
@@ -182,51 +232,8 @@
     "clear": "Borrar nota",
     "card": "POD"
   },
-  "game": {
-    "title": "Tres en Línea",
-    "createGamePrompt": "Ingresa un oponente y un ID para el juego",
-    "createGame": "Crear Juego",
-    "createGameSuccess": "Juego creado satisfactoriamente",
-    "resetGameForm": "Limpiar",
-    "idLabel": "ID del Juego",
-    "opponentWebIDLabel": "WebID del Oponente",
-    "nogames": "No se han encontrado juegos",
-    "invitationTemplate": "<0><0><0>{{- name}}</0> te ha invitado a un juego de Tres en Linea.</0><1>Quieres aceptar el juego?</1></0>",
-    "invitationAcceptText": "Aceptar",
-    "invitationDeclineText": "Rechazar",
-    "deleteConfirmation": "Eliminar juego?",
-    "playingAgainst": "Jugando contra:",
-    "token": "Tu token:",
-    "tieMsg": "Es un empate",
-    "winnerMsg": "Eres el ganador!!",
-    "loserMsg": "Mejor suerte la próxima",
-    "winnerObj": "Ganador",
-    "notYourTurn": "No es tu turno, por favor espera a que tu rivla juegue",
-    "status": "Estado del juego:",
-    "created": "Creado:",
-    "confirmDelete": "Confirmar Eliminar",
-    "deleteLabel": "Eliminar",
-    "playLabel": "Jugar",
-    "yourGames": "Tus juegos",
-    "otherGames": "Otros juegos",
-    "errorTitle": "Error",
-    "opponentMissing": "No se puede crear el juego porque no se ingresó ningún WebID del oponente.",
-    "dataError": {
-      "message": "Los datos del juego no pudieros ser salvados, data.ttl no fue encontrado",
-      "link": {
-        "label": "Saber más",
-        "href": "https://solidsdk.inrupt.net/public/general/en/data-file-not-found.html"
-      }
-    },
-    "createFolder": {
-      "message": "Error al crear el folder del juego",
-      "link": {
-        "label": "Saber más",
-        "href": "url link"
-      }
-    },
-    "myself": "No puedes jugar contra ti mismo",
-    "alreadyExists": " archivo o carpeta ya existe en su pod."
+  "search": {
+    "searchtitle": "Tus datos de búsqueda serán almacenados en tu pod"
   },
   "noInboxOpponent": {
     "message": "No se encontró un inbox para su oponente",
@@ -236,7 +243,7 @@
     }
   },
   "noInboxUser": {
-    "message": "You do not have a inbox, please go to your POD and create one.",
+    "message": "No tienes un buzón. Vaya a su pod y cree uno.",
     "link": {
       "label": "Conozca más",
       "href": "https://solidsdk.inrupt.net/public/general/es/missing-global-inbox.html"

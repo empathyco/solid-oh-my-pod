@@ -29,7 +29,7 @@ export const WelcomeCard = styled.div`
   flex-direction: row !important;
   padding: 50px 0 !important; //temporary fix to a style guide bug
 
-font-family: Montserrat;
+font-family: "Montserrat", sans-serif !important;
   font-size: 50px;
   font-weight: 300;
   font-stretch: normal;
@@ -56,7 +56,7 @@ export const WelcomeCardTop = styled.div`
   flex-direction: row !important;
   padding: 15px 0 !important; //temporary fix to a style guide bug
 
-font-family: Montserrat;
+font-family: "Montserrat", sans-serif !important;
   font-size: 50px;
   font-weight: 300;
   font-stretch: normal;
@@ -77,7 +77,7 @@ font-family: Montserrat;
   
   }
    h3{
-    font-family: Montserrat, sans-serif;
+font-family: "Montserrat", sans-serif !important;
     font-size: 50px;
     font-weight: 300;
     font-stretch: normal;

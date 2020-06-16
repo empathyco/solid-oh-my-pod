@@ -99,8 +99,13 @@ export const ShexForm = styled.div`
   }
 
   & .shexPanel {
+<<<<<<< HEAD
     border: none;
     padding: 12px;
+=======
+     border:none !important;
+      padding: 12px;
+>>>>>>> search
     position: relative;
   }
 

@@ -33,6 +33,9 @@ class ProfileContent extends Component {
     this.originalFields = await this.getData();
     // Set updated to false
     this.originalFields.updated = false;
+    console.log(this.originalFields)
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!")
+
     this.setState(this.originalFields);
     LoaderService.completeLoad();
   }

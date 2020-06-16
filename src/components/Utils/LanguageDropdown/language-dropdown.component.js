@@ -15,7 +15,8 @@ const languages = {
     id: "en-US",
     icon: "us",
   },
-};
+
+}
 
 class LanguageDropdown extends Component {
   constructor() {
@@ -39,25 +40,21 @@ class LanguageDropdown extends Component {
     const { language } = this.state;
     const profileOpts = [
       {
-        label: t("navBar.languages.en"),
-        onClick: () => this.onLanguageSelect("en"),
-        icon: "us",
-        customIcon: true,
+        label: t('navBar.languages.en'),
+        onClick: () => this.onLanguageSelect('en'),
+
+        customIcon: true
       },
       {
-        label: t("navBar.languages.es"),
-        onClick: () => this.onLanguageSelect("es"),
-        icon: "es",
-        customIcon: true,
-      },
+        label: t('navBar.languages.es'),
+        onClick: () => this.onLanguageSelect('es'),
+
+        customIcon: true
+      }
     ];
     return (
       <Dropdown actions={profileOpts} hover>
-        <div
-          className={`flag-icon flag-icon-${
-            language && languages[language] ? languages[language].icon : "us"
-          }`}
-        />
+        {language}
       </Dropdown>
     );
   }

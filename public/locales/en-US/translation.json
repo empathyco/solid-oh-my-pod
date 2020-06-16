@@ -16,28 +16,63 @@
     "cancel": "Cancel",
     "download": "Download",
     "viewing": "Viewing file",
-    "close": "Close",
-    "search": "SEARCH",
-    "home": "my pod",
-    "title": "Your FILES",
-    "nameForFile": "Give a name for the file",
-    "nameForFolder": "Give a name for the folder",
-    "create": "Create",
-    "file": "file",
-    "folder": "folder",
-    "createFile": "CREATE FILE",
-    "createFolder": "CREATE FOLDER",
-    "folderCreated": "Folder created",
-    "folderNOTCreated": "Folder could not be created :(",
-    "fileCreated": "File created",
-    "fileNOTCreated": "File could not be created :("
+    "close": "Close"
   },
+  "v1": {
+    "instance": "The instance id for empathy search API",
+    "sink": "Represents the type of event it can be a query or a click\n\n ",
+    "data": "Represents the search data collected\n\n ",
+    "ip": "Represents the ip address from the query",
+    "endpoint": "Represents the endpoint used in the search\n\n",
+    "service": " Represents the service used in the search\n\n",
+    "productid": "Product ID to track ",
+    "host": "SERP host referrer url\n\n",
+    "usera": "The user agent.\n\n",
+    "timestamp": "The time the query was performed\n\n",
+    "q": "The query for the request\n\n",
+    "totalhits": "Number of total results for these search terms.\n\n",
+    "session": "Current user's session id.\n\n",
+    "page": "Page number the user has requested.\n\n",
+    "user": "The user used on this request.\n\n",
+    "filters": "Represents the filters used in the query.\n\n",
+    "catalog": "Tracking catalog for this query.\n\n",
+    "scope": "Tracking scope for this query.\n\n",
+    "lang": "The language of the query.\n\n",
+    "extraf": "Extra fields.\n\n",
+    "usert": "Specifies is the user who made the request is either new, recurrent, or ignored.\n\n",
+    "origin": {
+      "title": "Type of search performed, these are the possible values:\n\n",
+      "default": "default : common search without help of any feature.\n\n",
+      "variables": " empathize_category, empathize_term, empathize_reference, empathize_recommendations, empathize_next_queries, empathize_trending: search using empathize",
+      "linked": "linked : redirected searches",
+      "partial": "partial : new search with origin in a suggestion in a non results query",
+      "next": "next_query, next_query_grid : search by selecting a next_query",
+      "related": "related_tag : search by selecting a related tag",
+      "history": "history: search by selecting a term in the history",
+      "spellcheck": "spellcheck: search with spellcheck"
+
+    },
+    "position": "Product position\n\n",
+    "spellcheck": "Represents whether the query has come via spellcheck or not.\n\n",
+    "filtered": "Represents whether the query has been filtered or not.\n\n",
+    "con": "Represents whether the query has been through the contextualize method.\n\n",
+    "cone": "Represents whether the user has contextualized enabled.\n\n",
+    "cona": "Represents whether the query has applied the contextualize method.\n\n",
+    "revenue": "Numeric value of the product revenue/price\n\n",
+    "currency": "Currency code for the revenue amount. Must be a valid ISO 4217 currency code.\n\n",
+    "trans": "Arbitrary identifier to link all checkout events that correspond to a unique transaction - typically a UUID, the important thing is for it to be unique and consistent for transactions.\n\n",
+    "catid": "The category that has been clicked to filter by.\n\n",
+    "title": "Link title of the query.\n\n",
+    "url": "Query url\n\n",
+    "topclicked": "The top clicked values of the query\n\n",
+    "synonymize": "Represents whether synonymize is activated.\n\n",
+    "boosted": "Represents whether synonymize is activated.\n\n",
+    "boostedid": "Manual boost Id, required for default boosts. "
+
+  },s
   "friendlist": {
-    "yourFriends": "Your FRIENDS",
-    "friends": "Friends",
-    "addFriend": "Add friend",
-    "unknownName": "Unknown name",
-    "mplatform": "The platform chosen is: ",
+    "title": "Your FRIENDS",
+    "mplatform":"The platform chosen is: ",
     "selectp": "Select provider",
     "nameerror": {
       "title": "Invalid name",
@@ -94,11 +129,10 @@
     },
     "notifications": {
       "global": "Global",
-      "tictactoe": "TicTacToe Game",
-      "noinbox": "Global inbox not found. Please create one and try again.",
+       "noinbox": "Global inbox not found. Please create one and try again.",
       "fetchingError": "Error fetching notifications from Pod"
     },
-    "tictactoe": "Game"
+    "search": "search"
   },
   "footer": {
     "version": "Version"
@@ -106,7 +140,7 @@
   "notFound": {
     "title": "Page not found",
     "content": "There may be an error in the URL entered into your web browser. Please check the URL and try again. Or the page you're looking for has been moved or deleted",
-    "redirectButton": "Take me back to the welcome page"
+    "redirectButton": "Go back home"
   },
   "welcome": {
     "welcome": "Welcome",
@@ -137,18 +171,7 @@
     }
   },
   "profile": {
-    "card": "POD",
-    "yourProfile": "Your PROFILE",
-    "name": "Name",
-    "email": "Email",
-    "phone": "Phone",
-    "role": "Role",
-    "company": "Company",
-    "save": "Save changes",
-    "deletePodMessage": "Click the button to delete your POD",
-    "notes": "More information",
-    "updateNote": "Update note",
-    "clear": "Clear note",
+    "title": "Your PROFILE",
     "successCallback": "Pod updated successfully",
     "successTitle": "Success",
     "errorCallback": "Error submitting form",
@@ -180,52 +203,8 @@
     "deletePod": "Delete this POD",
     "select": "Select"
   },
-  "game": {
-    "title": "Tic Tac Toe",
-    "createGamePrompt": "Enter an Opponent and a Game ID",
-    "createGame": "Create Game",
-    "createGameSuccess": "Game created successfully",
-    "resetGameForm": "Reset",
-    "idLabel": "Game ID",
-    "opponentWebIDLabel": "Opponent WebID",
-    "nogames": "No game were found",
-    "invitationAccept": "has invited you to play a game of TicTacToe. Would you like to play?",
-    "invitationTemplate": "<0><0><0>{{- name}}</0> has invited you to play a game of TicTacToe.</0><1>Would you like to play?</1></0>",
-    "invitationAcceptText": "Accept",
-    "invitationDeclineText": "Decline",
-    "deleteConfirmation": "Delete game?",
-    "playingAgainst": "Playing Against:",
-    "token": "Your token:",
-    "tieMsg": "It's a tie",
-    "winnerMsg": "You are the winner!!",
-    "loserMsg": "Better luck next time",
-    "winnerObj": "Winner",
-    "notYourTurn": "Not your turn, please wait for your opponent to play",
-    "status": "Game Status:",
-    "created": "Created",
-    "confirmDelete": "Confirm Delete",
-    "deleteLabel": "Delete",
-    "playLabel": "Play",
-    "yourGames": "Your Games",
-    "otherGames": "Other Games",
-    "errorTitle": "Error",
-    "opponentMissing": "Cannot create game as no Opponent WebID was entered.",
-    "dataError": {
-      "message": "Game data could not be saved, data.ttl was not found",
-      "link": {
-        "label": "Learn More",
-        "href": "https://solidsdk.inrupt.net/public/general/en/data-file-not-found.html"
-      }
-    },
-    "createFolder": {
-      "message": "Error creating game data folder",
-      "link": {
-        "label": "Learn More",
-        "href": "link url"
-      }
-    },
-    "myself": "You cannot play against yourself",
-    "alreadyExists": "file already exists in the Pod. "
+  "search": {
+    "searchtitle": "Your search data will be stored in your pod"
   },
   "noInboxOpponent": {
     "message": "Your opponent does not have an inbox in their Pod",

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Redirect, Switch } from "react-router-dom";
-import { FileExplorerContainer, FriendListComponent, Login, PageNotFound, Profile, Register, RegistrationSuccess, ShopComponent, VocabularyComponent, Welcome } from "./containers";
+import { FileExplorerContainer, FriendListComponent, Login, PageNotFound, Profile, Register, RegistrationSuccess, SearchComponent, VocabularyComponent, Welcome } from "./containers";
 import { NotLoggedInLayout, PrivateLayout, PublicLayout } from "./layouts";
 
 
@@ -31,9 +31,9 @@ const privateRoutes = [
     component: VocabularyComponent,
   },
   {
-    id: "shop",
-    path: "/shop",
-    component: ShopComponent,
+    id: "search",
+    path: "/search",
+    component: SearchComponent,
   },
 ];
 

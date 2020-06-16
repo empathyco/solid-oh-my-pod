@@ -1,16 +1,20 @@
-import { EditableFileModel } from "@containers/FileExplorer/models";
-import Button from "@material-ui/core/Button";
+import React, { useState } from "react";
+import {
+  FileMenuTrigger,
+  FileInfo,
+  FileTitle, TableFile, TableContainer
+} from "./fileItem.style";
+ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import { LoaderService } from "components/";
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
+ import { useTranslation } from "react-i18next";
 import { fileExplorerService } from "services";
-import { FileInfo, FileMenuTrigger } from "./fileItem.style";
-
+import { EditableFileModel } from "@containers/FileExplorer/models";
+ 
 type Props = {
   file: EditableFileModel;
   highlight: boolean;
@@ -26,28 +30,55 @@ export default function EditableFile(props: Props) {
   const [open, setOpen] = useState(false);
   const { t } = useTranslation();
 
-  // const [context, setContext] = useState(false);
-  // const [contextX, setContextX] = useState(0);
-  // const [contextY, setContextY] = useState(0);
+
   const [edit, setEdit] = useState(false);
   const [content, setContent] = useState("");
+   const [tble, setTable] = useState([]);
 
-  const handleOpen = async () => {
+   const handleOpen = async () => {
     try {
       LoaderService.nowLoading();
       const cont = await fileExplorerService.readFile(path);
-      await setContent(cont);
+
+        if( path.includes('.json') && path.includes('ohmypodsd'))
+        {
+         await converttotable(cont);
+        }
+        await setContent(cont);
+        console.log(path);
+
+
     } catch (error) {
-      console.log("something went wrong when fetching file content");
+      console.log("something went wrong when fetching file ");
     }
     await setOpen(true);
     LoaderService.completeLoad();
     // setContext(false);
+
   };
 
   const handleCloseNoEdit = () => {
     setOpen(false);
   };
+
+  const  converttotable = async  ( cont ) => {
+
+    let jsonc = JSON.parse(cont);
+
+    delete jsonc['@context'];
+
+    let keys = Object.keys(jsonc);
+    let values = Object.values(jsonc);
+
+     let tb = [
+
+       keys,
+       values
+    ];
+    await setTable(tb);
+    console.log("table formed" );
+
+   }
 
   const handleCloseEdit = async () => {
     try {
@@ -59,22 +90,7 @@ export default function EditableFile(props: Props) {
     setEdit(false);
   };
 
-  // const handleContext = event => {
-  //   event.preventDefault();
-  //   let x = 0;
-  //   let y = 0;
 
-  //   if (event.nativeEvent instanceof MouseEvent) {
-  //     x = event.nativeEvent.clientX;
-  //     y = event.nativeEvent.clientY;
-  //   } else if (event.nativeEvent instanceof TouchEvent) {
-  //     x = event.nativeEvent.touches[0].pageX;
-  //     y = event.nativeEvent.touches[0].pageY;
-  //   }
-  //   setContextX(x);
-  //   setContextY(y);
-  //   setContext(true);
-  // };
 
   const handleSave = () => {
     fileExplorerService.updateFile(parent, name, content, type);
@@ -89,31 +105,31 @@ export default function EditableFile(props: Props) {
     setEdit(true);
   };
 
-  // const contextMenu = (
-  //   <CustomContext x={contextX} y={contextY}>
-  //     <CustomContextOption>
-  //       <AwesomeIcon icon={faDownload} />
-  //       <span onClick={() => fileExplorerService.promptDownload(path,type, name)}>
-  //         Download
-  //       </span>
-  //     </CustomContextOption>
-  //   </CustomContext>
-  // );
+  const renderTable = () => {
+    console.log(tble );
+    console.log("loop" );
 
-  return (
+    return tble.map((row, index)=>{
+      return <tr key={index}><RenderRow key={index} data={row} keys={tble}/></tr>
+   })
+  }
+    const RenderRow = (values) =>{
+    console.log(values);
+      return values.data.map((key, index)=>{
+        return <td key={key}>{key.toString()}</td>
+      })
+    }
+
+   return (
     <FileMenuTrigger
       className={style}
       id={path}
       onClick={click}
       onDoubleClick={handleOpen}
-      // onContextMenu={handleContext}
+      tabIndex="0"
+
     >
-      <img
-        src="/img/icon/icon-files-text.svg"
-        className="imgfile"
-        alt="folder"
-        id={path}
-      />
+      <img src="/img/icon/icon-files-text.svg"  className="imgfile" title={path} alt={path}  id={path}/>
 
       <FileInfo id={path}>
         <h2 id={path}>{name}</h2>
@@ -124,17 +140,21 @@ export default function EditableFile(props: Props) {
         onClose={handleCloseNoEdit}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">{name}</DialogTitle>
+        <FileTitle id="form-dialog-title">{name}</FileTitle>
+
+
         <DialogContent>
-          {edit === true ? (
-            <TextareaAutosize
-              aria-label="maximum height"
-              value={content}
-              onChange={handleChange}
-            />
-          ) : (
-            <TextareaAutosize aria-label="maximum height" value={content} />
-          )}
+          <TableContainer> <TableFile className="tablejson"
+          > <tbody>{ renderTable()}</tbody></TableFile> </TableContainer>
+           {edit === true ? (
+               <TextareaAutosize
+                 aria-label="maximum height"
+                 value={content}
+                 onChange={handleChange}
+               />
+           ) : (
+             <TextareaAutosize aria-label="maximum height" value={content} />
+           )}
         </DialogContent>
         <DialogActions>
           {edit === false ? (
@@ -164,4 +184,5 @@ export default function EditableFile(props: Props) {
       {/* {context === true ? contextMenu : null} */}
     </FileMenuTrigger>
   );
-}
+
+ }

@@ -62,14 +62,15 @@ export default function ImageFile(props) {
       id={path}
       onClick={click}
       onDoubleClick={handleOpen}
+      tabIndex="0"
+
       // onContextMenu={handleContext}
       // id={`${name.concat("_context_menu")}`}
     >
       <img
         src="/img/icon/icon-files-pic.svg"
-        className="imgfile"
-        alt="folder"
-        id={path}
+          className="imgfile" title={path} alt={path} id={path}
+
       />
 
       <FileInfo id={path}>
