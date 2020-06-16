@@ -22,6 +22,13 @@ export const FolderMenuTrigger = styled.div`
          text-decoration: underline;
 
   }
+  &.focus {
+         text-decoration: underline;
+          border: 1px  rgba(145,194,250,0.8);
+            outline-color: rgba(145,194,250,0.8);
+
+  }
+ 
   img{
    align-self: center;
   justify-self: center;

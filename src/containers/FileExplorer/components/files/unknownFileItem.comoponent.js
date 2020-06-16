@@ -30,9 +30,11 @@ export default function UnknownFile(props) {
       id={path}
       onClick={click}
       onDoubleClick={handleOpen}
+      tabIndex="0"
+
       // id={`${name.concat("_context_menu")}`}
     >
-      <img src="/img/icon/icon-files-unknown.svg" size="2x" className="imgfile" alt="uknown file" id={ path}/>
+      <img src="/img/icon/icon-files-unknown.svg" size="2x"  className="imgfile" title={path} alt={path}  id={ path}/>
 
       <FileInfo id={path}>
         <h2 id={path}>{name}</h2>

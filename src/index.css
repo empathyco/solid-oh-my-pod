@@ -358,6 +358,10 @@ button:hover {
   border: 1px solid  #DAE0E6 !important;
   color: #25354a !important;
 }
+button:focus {
+  border: 1px solid   rgba(145,194,250,0.8)  !important;
+  background-color: #25354a !important;
+}
 button:active{
   border: 1px solid  #DAE0E6 !important;
   background-color: #25354a !important;

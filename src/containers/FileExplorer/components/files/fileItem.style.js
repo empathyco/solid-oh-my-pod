@@ -22,6 +22,11 @@ export const FileMenuTrigger = styled.div`
          text-decoration: underline;
 
   }
+  &.focus {
+         text-decoration: underline;
+          border-color: 1px  rgba(145,194,250,0.8) !important;
+  }
+ 
   img {
     justify-self: center;
     align-self: center;

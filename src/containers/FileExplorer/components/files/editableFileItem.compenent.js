@@ -116,8 +116,10 @@ import DialogContent from "@material-ui/core/DialogContent";
       id={path}
       onClick={click}
       onDoubleClick={handleOpen}
-     >
-      <img src="/img/icon/icon-files-text.svg" size="2x" className="imgfile" alt="folder" id={path}/>
+      tabIndex="0"
+
+    >
+      <img src="/img/icon/icon-files-text.svg" size="2x" className="imgfile" title={path} alt={path}  id={path}/>
 
       <FileInfo id={path}>
         <h2 id={path}>{name}</h2>
