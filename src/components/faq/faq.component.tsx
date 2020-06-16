@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Component } from "react";
-import AboutPage from "./aboutPage";
 import {
   FAQ,
   PageNavigation,
@@ -65,21 +64,23 @@ export default class FAQComponent extends Component<Props, State> {
         ),
         bgColor: "var(--darkish-pink)",
       },
-      {
-        sectionName: "ABOUT",
-        component: (
-          <AboutPage
-            renderRightComponent={this.renderRightComponent}
-            highlightColor="var(--pale-teal)"
-          ></AboutPage>
-        ),
-        bgColor: "var(--pale-teal)",
-      },
+      // {
+      //   sectionName: "ABOUT",
+      //   component: (
+      //     <AboutPage
+      //       renderRightComponent={this.renderRightComponent}
+      //       highlightColor="var(--pale-teal)"
+      //     ></AboutPage>
+      //   ),
+      //   bgColor: "var(--pale-teal)",
+      // },
     ];
     if (isLogin) this.pages = [...loginPages, ...this.pages];
   }
 
   renderPage = (pageIndex: number) => {
+    console.log("rendering");
+    if (this.state.selectedPage === pageIndex) return;
     this.setState({
       selectedPage: pageIndex,
       rightComponent: undefined,

@@ -5,7 +5,7 @@ export const QuestionList = styled.ul`
 `;
 
 export const QuestionTitle = styled.li`
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   color: white;
   font-size: 18px;
   cursor: pointer;

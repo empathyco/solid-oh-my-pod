@@ -19,7 +19,18 @@
     "close": "Close",
     "search": "SEARCH",
     "home": "my pod",
-    "title": "Your FILES"
+    "title": "Your FILES",
+    "nameForFile": "Give a name for the file",
+    "nameForFolder": "Give a name for the folder",
+    "create": "Create",
+    "file": "file",
+    "folder": "folder",
+    "createFile": "CREATE FILE",
+    "createFolder": "CREATE FOLDER",
+    "folderCreated": "Folder created",
+    "folderNOTCreated": "Folder could not be created :(",
+    "fileCreated": "File created",
+    "fileNOTCreated": "File could not be created :("
   },
   "friendlist": {
     "yourFriends": "Your FRIENDS",

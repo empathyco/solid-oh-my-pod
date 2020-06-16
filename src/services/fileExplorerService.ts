@@ -144,13 +144,13 @@ export const copyItems = async (path, destination, fileNames) => {
   if (!fileNames.length) {
     console.log("No items to copy");
   } else {
-    let items = await loadFolder(path);
-    items = items.filter(({ name }) => fileNames.include(name));
+    let items = (await loadFolder(path)).content;
+    items = items.filter(({ fullName }) => fileNames.include(name));
     items.map((item) =>
       item.type === "folder"
         ? fc.copyFolder(
-            buildFolderUrl(path, item.name),
-            buildFolderUrl(destination, item.name),
+            buildFolderUrl(path, item.fullName),
+            buildFolderUrl(destination, item.fullName),
             {
               withAcl: false,
               withMeta: true,
@@ -159,8 +159,8 @@ export const copyItems = async (path, destination, fileNames) => {
             }
           )
         : fc.copyFile(
-            (buildFileUrl(path, item.name),
-            buildFileUrl(destination, item.name),
+            (buildFileUrl(path, item.fullName),
+            buildFileUrl(destination, item.fullName),
             {
               withAcl: false,
               withMeta: true,

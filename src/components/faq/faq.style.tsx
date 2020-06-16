@@ -53,7 +53,7 @@ export const FAQ = styled.article`
 
 export const PageNavigationItem = styled.div`
   display: inline-block;
-
+  margin-right: 20px;
   padding-bottom: 20px;
   margin-bottom: -2px;
   cursor: pointer;
@@ -75,7 +75,7 @@ export const PageNavigation = styled.div`
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid var(--white);
-  justify-content: space-around;
+  justify-content: flex-start;
 `;
 export const PoweredByEmpathy = styled.div`
   position: absolute;

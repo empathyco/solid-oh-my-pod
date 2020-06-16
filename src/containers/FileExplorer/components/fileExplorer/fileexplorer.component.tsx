@@ -105,7 +105,7 @@ export default class FileExplorerComponent extends Component<Props, State> {
 
   createFolder = async (event) => {
     let name = event.target.elements[0].value;
-
+    const { t } = this.props;
     this.closePopUp();
     try {
       await fileExplorerService.createFolder(this.state.url, name);
@@ -113,7 +113,7 @@ export default class FileExplorerComponent extends Component<Props, State> {
         buttonLabel: "Yay",
         onButtonClick: () => {},
         subtitle: "",
-        title: "Folder created",
+        title: t("fileexplorer.folderCreated"),
         type: "success",
       });
       this.refreshFolder();
@@ -122,14 +122,14 @@ export default class FileExplorerComponent extends Component<Props, State> {
         buttonLabel: "ok",
         onButtonClick: () => {},
         subtitle: "",
-        title: "Folder could not be created :(",
+        title: t("fileexplorer.folderNOTCreated"),
         type: "error",
       });
     }
   };
   createFile = async (event) => {
     let name = event.target.elements[0].value;
-    console.log("HEEEY");
+    const { t } = this.props;
     this.closePopUp();
     try {
       await fileExplorerService.createTextFile(name, this.state.url, "");
@@ -137,7 +137,7 @@ export default class FileExplorerComponent extends Component<Props, State> {
         buttonLabel: "Yay",
         onButtonClick: () => {},
         subtitle: "",
-        title: "File created",
+        title: t("fileexplorer.fileCreated"),
         type: "success",
       });
       this.refreshFolder();
@@ -146,7 +146,7 @@ export default class FileExplorerComponent extends Component<Props, State> {
         buttonLabel: "ok",
         onButtonClick: () => {},
         subtitle: "",
-        title: "File could not be created :(",
+        title: t("fileexplorer.fileNOTCreated"),
         type: "error",
       });
     }
@@ -178,7 +178,7 @@ export default class FileExplorerComponent extends Component<Props, State> {
               style: { margin: "0 auto" },
               onClick: this.handleCreateNewFile,
               icon: "/img/icon/add.svg",
-              label: "CREATE FILE",
+              label: t("fileexplorer.createFile"),
               useCustomIcon: true,
             }}
           ></ButtonWithImage>
@@ -187,7 +187,7 @@ export default class FileExplorerComponent extends Component<Props, State> {
               style: { margin: "0 auto" },
               onClick: this.handleCreateFolder,
               icon: "/img/icon/add.svg",
-              label: "CREATE FOLDER",
+              label: t("fileexplorer.createFolder"),
               useCustomIcon: true,
             }}
           ></ButtonWithImage>
@@ -215,9 +215,9 @@ export default class FileExplorerComponent extends Component<Props, State> {
               onSubmit={this.state.createItemPopUpOpen.createHandler}
             >
               {this.state.createItemPopUpOpen.type === "file" ? (
-                <h2>Give a name for the file</h2>
+                <h2>{t("fileexplorer.nameForFile")}</h2>
               ) : (
-                <h2>Give a name for the folder</h2>
+                <h2>{t("fileexplorer.nameForFolder")}</h2>
               )}
               <input type="text" id="fileName" name="fileName" autoFocus />
               <div className="popUpButtons">
@@ -226,7 +226,7 @@ export default class FileExplorerComponent extends Component<Props, State> {
                     type: "button",
                     action: this.closePopUp,
                     color: "error",
-                    label: "cancel",
+                    label: t("fileexplorer.cancel"),
                   }}
                 ></OMPButton>
                 <OMPButton
@@ -234,7 +234,9 @@ export default class FileExplorerComponent extends Component<Props, State> {
                     type: "submit",
                     action: () => {},
                     color: "main",
-                    label: `Create ${this.state.createItemPopUpOpen.type}`,
+                    label: `${t("fileexplorer.create")} ${t(
+                      "fileexplorer." + this.state.createItemPopUpOpen.type
+                    )}`,
                   }}
                 ></OMPButton>
               </div>

@@ -19,7 +19,18 @@
     "close": "Cerrar",
     "search": "BÚSQUEDA",
     "home": "Mi pod",
-    "title": "Tus ARCHIVOS"
+    "title": "Tus ARCHIVOS",
+    "nameForFile": "Da un nombre al archivo",
+    "nameForFolder": "Da un nombre a la carpeta",
+    "create": "Crear",
+    "file": "archivo",
+    "folder": "carpeta",
+    "createFile": "CREAR ARCHIVO",
+    "createFolder": "CREAR CARPETA",
+    "folderCreated": "Carpeta creada",
+    "folderNOTCreated": "La carpeta no se ha podido crear :(",
+    "fileCreated": "Archivo creado",
+    "fileNOTCreated": "No se ha podido crear el archivo :("
   },
   "friendlist": {
     "yourFriends": "Tus AMIGOS",
