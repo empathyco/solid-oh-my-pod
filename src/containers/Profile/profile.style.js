@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 import { media } from "../../utils";
 
 export const ProfileWrapper = styled.section`
@@ -183,6 +182,11 @@ export const Submitdelete = styled.section`
   justify-content: right;
   padding: 1em;
   max-width: 60em !important;
+  div {
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const RemovePodBtn = styled.button`

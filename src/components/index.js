@@ -1,11 +1,14 @@
-import ErrorBoundary from "./ErrorBoundary";
-import GlobalError from "./GlobalError";
-import NavBar from "./NavBar";
 import AuthNavBar from "./AuthNavBar";
-import ImageProfile from "./ImageProfile";
-import Footer from "./Footer";
-import ProviderLogin from "./Login";
 import ContainerHeader from "./ContainerHeader";
+import ErrorBoundary from "./ErrorBoundary";
+import FAQComponent from "./faq";
+import Footer from "./Footer";
+import GlobalError from "./GlobalError";
+import ImageProfile from "./ImageProfile";
+import { LoaderComponent, LoaderService } from "./loader";
+import ProviderLogin from "./Login";
+import NavBar from "./NavBar";
+import {ToasterService} from "./toaster";
 import UserInformation from "./UserInformation";
 
 export {
@@ -18,4 +21,8 @@ export {
   ImageProfile,
   Footer,
   UserInformation,
+  LoaderService,
+  LoaderComponent,
+  FAQComponent,
+  ToasterService,
 };

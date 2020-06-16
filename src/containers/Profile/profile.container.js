@@ -1,25 +1,16 @@
+import { errorToaster, successToaster } from "@utils";
+import { TextButton } from "components/Utils";
 import React, { Fragment } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ShexFormBuilder } from "@inrupt/solid-react-components";
-import { successToaster, errorToaster } from "@utils";
-import Provider from "../../services/provider";
 import auth from "solid-auth-client";
-
+import { ContainerHeader } from "../../components";
+import Provider from "../../services/provider";
 import {
-  Header,
   ProfileContainer,
   ProfileWrapper,
-  ShexForm,
-  AutoSaveNotification,
-  WebId,
   SectionProfile as ProfileFooter,
-  Title,
   Submitdelete,
-  RemovePodBtn,
-  HeaderContainer,
 } from "./profile.style";
 import ProfileContent from "./profileContent";
-import { ContainerHeader } from "../../components";
 
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
 
@@ -72,21 +63,17 @@ export default class Profile extends React.Component {
         {/* Show delete btn if we know the delete url */}
         {this.state.deleteUrl ? (
           <Submitdelete>
-            {" "}
             <div>
-              {" "}
               <br></br>
-              <p>{t("profile.deletePodMessage")}:</p>{" "}
+              <p>{t("profile.deletePodMessage")}:</p>
+
+              <TextButton
+                style={{ margin: "auto" }}
+                action={this.goDeletURL}
+                color="error"
+                label={t("profile.deletePod")}
+              ></TextButton>
             </div>
-            <p>
-              {" "}
-              <RemovePodBtn
-                className=" ids-button-stroke "
-                onClick={this.goDeletURL}
-              >
-                {t("profile.deletePod")}
-              </RemovePodBtn>{" "}
-            </p>
           </Submitdelete>
         ) : null}
       </Fragment>
@@ -97,7 +84,7 @@ export default class Profile extends React.Component {
 
     const { t } = this.props;
 
-    console.log("webId", webId);
+
     return (
       <ProfileWrapper data-testid="profile-component">
         {webId && (
@@ -105,8 +92,6 @@ export default class Profile extends React.Component {
             <main>
               <ContainerHeader
                 {...{
-                  webId,
-                  defaultProfilePhoto,
                   title: t("profile.yourProfile"),
                 }}
               ></ContainerHeader>

@@ -16,13 +16,35 @@
     "cancel": "Cancelar",
     "download": "Descargar",
     "viewing": "Viendo archivo",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "search": "BÚSQUEDA",
+    "home": "Mi pod",
+    "title": "Tus ARCHIVOS",
+    "nameForFile": "Da un nombre al archivo",
+    "nameForFolder": "Da un nombre a la carpeta",
+    "create": "Crear",
+    "file": "archivo",
+    "folder": "carpeta",
+    "createFile": "CREAR ARCHIVO",
+    "createFolder": "CREAR CARPETA",
+    "folderCreated": "Carpeta creada",
+    "folderNOTCreated": "La carpeta no se ha podido crear :(",
+    "fileCreated": "Archivo creado",
+    "fileNOTCreated": "No se ha podido crear el archivo :("
   },
   "friendlist": {
     "yourFriends": "Tus AMIGOS",
     "mplatform": "La plataforma escogida es: ",
     "selectp": "Elegir proveedor",
-    "nameerror": "El nombre no debería contener espacios",
+    "nameerror": {
+      "title": "Nombre inválido",
+      "description": "El nombre es inálido"
+    },
+    "notfounderror": {
+      "title": "Oh My POD!",
+      "description": "Vaya! Parece que no hemos encontrado a tu amigo :(",
+      "button": "inténtalo de nuevo"
+    },
     "urierror": "URI no valida ",
     "adding": "Agregar Amigo ",
     "deletefriend": "Eliminar amigo ",

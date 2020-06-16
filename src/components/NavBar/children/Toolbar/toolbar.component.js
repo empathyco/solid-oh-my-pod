@@ -1,7 +1,5 @@
 import React from "react";
-import { Item } from "./toolbar.style";
-
-
+import { Item, Separator } from "./toolbar.style";
 
 /**
  * Checks if the components needs to rerender or not based on inbox changes
@@ -32,6 +30,7 @@ const areEqual = (prevProps, nextProps) => {
 const Toolbar = React.memo(
   ({ toolbar, open, customClass }) => (
     <nav className="nav nav__toolbar">
+      <Separator></Separator>
       <ul>
         {toolbar &&
           toolbar.map(({ component: Component, props }, i) => (

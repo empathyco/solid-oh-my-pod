@@ -1,10 +1,10 @@
 import React, { Component } from "react";
+import { Header, Title } from "./containerHeader.style";
 
-import { Title, Header } from "./containerHeader.style";
 class ContainerHeader extends Component {
   /**
    *
-   * @param {webId,defaultProfilePhoto,title} props
+   * @param {title} props
    */
   constructor(props) {
     super(props);

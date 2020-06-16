@@ -4,6 +4,10 @@ import Image from "./Image";
 
 import { ProfileName, Section, ImageContainer } from "./userInformation.style";
 import { ldflexService } from "../../services";
+import { OMPButton } from "components/Utils";
+import { faHourglass } from "@fortawesome/free-solid-svg-icons";
+import { LoaderService } from "../loader";
+
 class UserInformation extends Component {
   /**
    *
@@ -15,11 +19,12 @@ class UserInformation extends Component {
       title: props.title,
       chindren: props.chindren,
     };
+    this.counter = 0;
   }
 
   async componentDidMount() {
     const webId = await ldflexService.getWebId();
-    console.log("WEBID RECIVIDO", webId);
+
     this.setState({ webId: webId });
   }
   componentWillReceiveProps({ title, children }) {
@@ -43,8 +48,10 @@ class UserInformation extends Component {
       return;
     }
   }
+
   render() {
     const { webId } = this.state;
+
     return (
       <Section>
         <ImageContainer>
@@ -56,6 +63,7 @@ class UserInformation extends Component {
         </ImageContainer>
 
         {this.getProfileName()}
+
         {this.state.children}
       </Section>
     );

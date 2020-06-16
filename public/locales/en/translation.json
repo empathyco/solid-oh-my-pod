@@ -16,7 +16,21 @@
     "cancel": "Cancel",
     "download": "Download",
     "viewing": "Viewing file",
-    "close": "Close"
+    "close": "Close",
+    "search": "SEARCH",
+    "home": "my pod",
+    "title": "Your FILES",
+    "nameForFile": "Give a name for the file",
+    "nameForFolder": "Give a name for the folder",
+    "create": "Create",
+    "file": "file",
+    "folder": "folder",
+    "createFile": "CREATE FILE",
+    "createFolder": "CREATE FOLDER",
+    "folderCreated": "Folder created",
+    "folderNOTCreated": "Folder could not be created :(",
+    "fileCreated": "File created",
+    "fileNOTCreated": "File could not be created :("
   },
   "friendlist": {
     "yourFriends": "Your FRIENDS",
@@ -25,7 +39,15 @@
     "unknownName": "Unknown name",
     "mplatform": "The platform chosen is: ",
     "selectp": "Select provider",
-    "nameerror": "Name should not contain spaces",
+    "nameerror": {
+      "title": "Invalid name",
+      "description": "Name is invalid"
+    },
+    "notfounderror": {
+      "title": "Oh My POD!",
+      "description": "Oh! Seems we didn't find your friend :(",
+      "button": "Try it again"
+    },
     "urierror": "URI not valid",
     "adding": "Add Friend ",
     "deletefriend": "Delete friend",

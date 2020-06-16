@@ -149,11 +149,11 @@ export const addFriend = async (friendId) => {
 
 export const removeFriend = async (friendId) => {
   let me = data[await getWebId()];
-  console.log(me);
+
   let friend = data[friendId.concat("me")];
-  console.log(friend);
+
   let friends = me["foaf:knows"];
-  console.log(friends);
+
   await friends.delete(friend);
   cache.remove(friendId);
 };

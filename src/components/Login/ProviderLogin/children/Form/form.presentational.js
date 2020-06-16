@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ProviderSelect from "../../../ProviderSelect";
-import CustomProviderInput from "../customProviderInput";
+import CustomProviderInput from "../../../../Utils/customProviderInput";
 
 const LoginFormWrapper = styled.div`
   button {

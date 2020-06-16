@@ -1,6 +1,5 @@
+import { CenterContainer, Panel } from "@util-components";
 import styled from "styled-components";
-import { Panel } from "@util-components";
-import { CenterContainer } from "@util-components";
 
 export const RegisterWrapper = styled.section`
   h1 {
@@ -31,7 +30,7 @@ export const PanelHeader = styled.div`
   h2 {
     position: relative;
     padding: 0;
-     
+
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 0.75px;
@@ -56,24 +55,22 @@ export const PanelBody = styled.div`
   width: 453px;
   height: 50px;
   font-family: Montserrat, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: 3px;
-    text-align: center;
-    color: #243d48;
-    
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 3px;
+  text-align: center;
+  color: #243d48;
+
   a {
-     font-weight: bold;
-     display: block;
-     
+    font-weight: bold;
+    display: block;
+
     text-align: center;
     text-decoration: none;
     margin: 50px 0;
-    
-    
 
     &:link {
       text-decoration: none;
@@ -99,7 +96,7 @@ export const PanelBody = styled.div`
 
   ul {
     font-family: Montserrat, sans-serif;
-    font-size: 1em;    
+    font-size: 1em;
     color: #666;
   }
 `;
@@ -126,7 +123,7 @@ export const Actions = styled.div`
     box-sizing: border-box;
     
     font-size: 1em;
-    display: inline-block
+    display: inline-block;
 
     font-family: Montserrat-SemiBold, sans-serif;
     
