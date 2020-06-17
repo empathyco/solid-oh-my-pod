@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const FAQ = styled.article`
   margin: auto;
-
+  padding: 0;
   display: inline-flex;
   flex-direction: row;
   flex-wrap: wrap;
