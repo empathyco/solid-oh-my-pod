@@ -55,16 +55,16 @@
     "extraf": "Campos extra",
     "usert": "El tipo de usuario que ha realizado la solicitud puede ser nuevo, recurrente o ignorado",
     "origin": {
-    "title": "El tipo de búsqueda realizada. Estos son los posibles valores:",
-    "default": "default : una búsqueda común sin ningún tipo de ayuda extra",
-    "variables": " empathize_category, empathize_term, empathize_reference, empathize_recommendations, empathize_next_queries, empathize_trending: búqueda usando empathized",
-    "linked": "linked : búsqueda redirigida",
-    "partial": "partial : una nueva búsqueda originado de las recomendaciones de los pop-up",
-    "next": "next_query, next_query_grid : una búsqueda realizada mediante la funcionalidad de siguiente query",
-    "related": "related_tag : búsqueda realizada mediante tags relacionados",
-    "history": "history: búsqueda realizada mediante articulos del historial",
-    "spellcheck": "spellcheck: búsqueda con correción ortográfica"
-  },
+      "title": "El tipo de búsqueda realizada. Estos son los posibles valores:",
+      "default": "default : una búsqueda común sin ningún tipo de ayuda extra",
+      "variables": " empathize_category, empathize_term, empathize_reference, empathize_recommendations, empathize_next_queries, empathize_trending: búqueda usando empathized",
+      "linked": "linked : búsqueda redirigida",
+      "partial": "partial : una nueva búsqueda originado de las recomendaciones de los pop-up",
+      "next": "next_query, next_query_grid : una búsqueda realizada mediante la funcionalidad de siguiente query",
+      "related": "related_tag : búsqueda realizada mediante tags relacionados",
+      "history": "history: búsqueda realizada mediante articulos del historial",
+      "spellcheck": "spellcheck: búsqueda con correción ortográfica"
+    },
     "position": "Posición del producto.",
     "spellcheck": "Representa si la query ha usado correción otrográfica.",
     "filtered": "Representa si la query ha sido filtrada.",
@@ -81,11 +81,10 @@
     "synonymize": "Representa si el método synonymize ha sido activado",
     "boosted": "El descriptor boost. Se usa 'default' para filtros manuales",
     "boostedid": "El id para los boost."
-
   },
   "friendlist": {
-    "title": "Tus AMIGOS",
-    "mplatform":"La plataforma escogida es: ",
+    "yourFriends": "Tus AMIGOS",
+    "mplatform": "La plataforma escogida es: ",
     "selectp": "Elegir proveedor",
     "nameerror": {
       "title": "Nombre inválido",
@@ -147,7 +146,7 @@
     },
     "notifications": {
       "global": "Global",
-       "fetchingError": "Error en las notificaciones"
+      "fetchingError": "Error en las notificaciones"
     },
     "search": "Buscar"
   },

@@ -64,7 +64,6 @@
       "related": "related_tag : search by selecting a related tag",
       "history": "history: search by selecting a term in the history",
       "spellcheck": "spellcheck: search with spellcheck"
-
     },
     "position": "Product position\n\n",
     "spellcheck": "Represents whether the query has come via spellcheck or not.\n\n",
@@ -82,11 +81,10 @@
     "synonymize": "Represents whether synonymize is activated.\n\n",
     "boosted": "Represents whether synonymize is activated.\n\n",
     "boostedid": "Manual boost Id, required for default boosts. "
-
   },
   "friendlist": {
     "title": "Your FRIENDS",
-    "mplatform":"The platform chosen is: ",
+    "mplatform": "The platform chosen is: ",
     "selectp": "Select provider",
     "nameerror": {
       "title": "Invalid name",
@@ -199,6 +197,7 @@
     "uploadingText": "Uploading",
     "updateSuccess": "Profile was updated successfully",
     "nameRequired": "Name is required",
+    "yourProfile": "Your PROFILE",
     "errors": {
       "default": "Something is wrong, please try again...",
       "406": "Please ensure the form is valid",
@@ -213,8 +212,18 @@
     "minMxNumberExclusive": "Error: Min and max value should be ",
     "minMaxString": "Error: Min and max should be ",
     "defaultError": "Error: Field value has wrong format",
-    "deletePod": "Delete this POD",
-    "select": "Select"
+    "deletePodMessage": "Click the button to be redirected to delete this pod",
+    "select": "Select",
+    "name": "Name",
+    "role": "Role",
+    "company": "Comapny",
+    "email": "Email",
+    "phone": "Phone",
+    "save": "Save changes",
+    "notes": "More information",
+    "updateNote": "Save note",
+    "clear": "Clear note",
+    "card": "POD"
   },
   "search": {
     "searchtitle": "Your search data will be stored in your pod"
