@@ -123,17 +123,3 @@ export const TableContainer = styled.div`
 
 `;
 
-export const CustomContext = styled.div`
-  position: absolute;
-  top: ${props => props.y || 0};
-  left: ${props => props.x || 0};
-  display: flex;
-  flex-direction: column;
-`;
-
-export const CustomContextOption = styled.div`
-  display: grid;
-  grid-template-columns: 20% 80%;
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
-`;

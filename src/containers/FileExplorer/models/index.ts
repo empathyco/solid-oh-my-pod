@@ -7,11 +7,11 @@ import { UnknownFileModel } from "./UnknownFileModel";
 import { VideoFileModel } from "./VideoFileModel";
 
 export {
-  ExplorerItem,
+  ExplorerItem ,
   FolderModel,
   EditableFileModel,
   FileFactory,
   ImageFileModel,
   UnknownFileModel,
-  VideoFileModel,
+  VideoFileModel
 };

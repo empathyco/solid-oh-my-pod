@@ -54,7 +54,7 @@ export default class File extends Component {
     return (
       <FileMenuTrigger
 
-        tabIndex="0"
+        tabIndex={0}
 
         className={this.state.isSelected ? "active" : ""}
         id={`${this.name.concat("_context_menu")}`}
