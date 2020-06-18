@@ -1,14 +1,12 @@
 import React, { useEffect, useState, Fragment } from "react";
-import { Link } from "react-router-dom";
+
 import {
   Navigation,
   Toolbar,
   HamburgerButton,
-  MobileNavigation
+  MobileNavigation,
 } from "./children";
-import styled from "styled-components";
-
-
+import { MyLink, MyLogo, NavSection,LogoBlock } from "./nav-bar.style";
 
 const NavBar = (props) => {
   const { navigation, toolbar, sticky, t } = props;
@@ -38,7 +36,9 @@ const NavBar = (props) => {
   };
 
   const getUserProfileOptions = () => {
-    const profile = toolbar ? toolbar.filter(bar => bar.id !== "language") : [];
+    const profile = toolbar
+      ? toolbar.filter((bar) => bar.id !== "language")
+      : [];
     setProfileOption(profile);
   };
 
@@ -54,56 +54,6 @@ const NavBar = (props) => {
     setOpenMobile(!isOpenMobile);
   };
 
-  const MyLogo = styled.p`
-     
-    max-width: 5em;
-    font-weight: bold;
-    text-decoration: none;
-    background: white;
-  `;
-
-  const NavSection = styled.section`
-     
- 
- 
-  ul {
-  
-    li{
-      a:hover,a:active, button:hover, button:active{
-        background: rgb(196, 230, 237) !important;
-      }
-      .active{
-      background: #f4f4f4 !important;
-      }
-    }
-  
- }
-
-  `;
-
-  const MyLink = styled(Link)`
-    font-family: "Montserrat", sans-serif;
-    font-weight: bold;
-    font-size: 34px;
-    background: white;
-    &:link {
-      text-decoration: none;
-      color: #083575;
-    }
-    &:visited {
-      text-decoration: none;
-      color: #083575;
-    }
-    &:hover {
-      text-decoration: none;
-      color: #083575;
-    }
-    &:active {
-      text-decoration: none;
-      color: #083575;
-    }
-  `;
-
   return (
     <header
       role="navigation"
@@ -111,12 +61,12 @@ const NavBar = (props) => {
       ref={componentElement}
     >
       <NavSection className="header-wrap">
-        <div className="logo-block">
+        <LogoBlock className="logo-block">
           <MyLink to="/welcome">
-            <MyLogo>          <img className="podlogo" src="/img/pod_logo.svg" alt="ohmypod!" />
+            <MyLogo>          <img className="podlogo" src="/img/pod_logo.svg" title="ohmypod!" alt="ohmypod!" />
             </MyLogo>
           </MyLink>
-        </div>
+        </LogoBlock>
 
         {isOpenMobile ? (
           <MobileNavigation
@@ -126,7 +76,7 @@ const NavBar = (props) => {
             toggleMobileMenu={toggleMobileMenu}
             t={t}
           >
-            <Navigation navigation={navigation} />
+            <Navigation navigation={navigation} isMobile />
             <Toolbar toolbar={profileOptions} open customClass="profile-list" />
           </MobileNavigation>
         ) : (
@@ -142,7 +92,7 @@ const NavBar = (props) => {
 };
 
 NavBar.defaultProps = {
-  sticky: true
+  sticky: true,
 };
 
 export default NavBar;

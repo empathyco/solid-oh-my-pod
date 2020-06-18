@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import Routes from './routes';
+import Routes from './routes.jsx';
 import theme from './utils/theme';
 import 'react-toastify/dist/ReactToastify.css';
 import 'flag-icon-css/css/flag-icon.min.css';
@@ -13,6 +13,8 @@ import 'normalize.css';
 import './index.css';
 import '@inrupt/solid-style-guide';
 import { Toaster } from './App.styled';
+import { ToasterComponent } from './components/toaster';
+import {LoaderComponent} from "./components/loader"
 
 library.add(fas);
 library.add(faGithub);
@@ -21,6 +23,9 @@ const App = () => (
     <ThemeProvider theme={theme}>
       <Fragment>
         <Routes />
+        <ToasterComponent ></ToasterComponent>
+        <LoaderComponent></LoaderComponent>
+
         <Toaster
           {...{
             autoClose: 3000,

@@ -2,19 +2,14 @@ import React, { useState, useEffect } from 'react';
 import ReactModal from 'react-modal';
 import { Content, Actions, AcceptBtn, DeclineBtn } from './confirmation-dialog.style';
 
-type Props = {
-  onAccept: Function,
-  onDecline: Function,
-  options: Object,
-  parentSelector?: String
-};
+
 
 /**
  * Check if we are running test to avoid issue with React Modal
  */
 if (process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#root');
 
-const ConfirmationDialog = ({ onAccept, onDecline, options, parentSelector }: Props) => {
+const ConfirmationDialog = ({ onAccept, onDecline, options, parentSelector }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { message, messageComponent: MessageComponent, acceptText, declineText } = options;

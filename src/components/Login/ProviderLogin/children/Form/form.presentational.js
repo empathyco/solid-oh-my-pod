@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ProviderSelect from "../../../ProviderSelect";
-import CustomProviderInput from "../customProviderInput";
+import CustomProviderInput from "../../../../Utils/customProviderInput";
 
 const LoginFormWrapper = styled.div`
   button {
@@ -45,6 +45,7 @@ const LoginForm = (props) => {
     theme,
   } = props;
 
+  const { t } = props;
   const [customValue, setCustomValue] = useState("");
   const [customProviderSelected, setCustomProvider] = useState(false);
   const onProviderSelect = ($event) => {
@@ -69,7 +70,7 @@ const LoginForm = (props) => {
             onChange: onProviderSelect,
             options: providers.concat({
               custom: true,
-              label: "I want to introduce another provider",
+              label: t("login.customProvider"),
               image: "",
               value: "",
               description:

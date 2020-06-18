@@ -1,19 +1,14 @@
-import React, { Component } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import enhanceWithClickOutside from 'react-click-outside';
-import { DropdownContainer, DropdownMain, DropdownItemContainer, Item } from './dropdown.style';
+import React, { Component } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import enhanceWithClickOutside from "react-click-outside";
+import {
+  DropdownContainer,
+  DropdownMain,
+  DropdownItemContainer,
+  Item,
+} from "./dropdown.style";
 
-type Props = {
-  actions: Array<Object>,
-  children: React.Node,
-  className: String,
-  open: boolean,
-  hover?: Boolean
-};
-
-type State = { open: Boolean };
-
-class Dropdown extends Component<Props, State> {
+class Dropdown extends Component {
   constructor(props) {
     super(props);
     this.state = { open: false };
@@ -21,14 +16,14 @@ class Dropdown extends Component<Props, State> {
 
   toggleOpen = () => {
     const { open } = this.props;
-    if (!open) this.setState(prevProps => ({ open: !prevProps.open }));
+    if (!open) this.setState((prevProps) => ({ open: !prevProps.open }));
   };
 
   handleClickOutside() {
     this.setState({ open: false });
   }
 
-  renderIcon = (action: Object) =>
+  renderIcon = (action) =>
     action.customIcon ? (
       <div className={`flag-icon flag-icon-${action.icon}`} />
     ) : (
@@ -70,7 +65,7 @@ class Dropdown extends Component<Props, State> {
 }
 
 Dropdown.defaultProps = {
-  hover: false
+  hover: false,
 };
 
 export default enhanceWithClickOutside(Dropdown);

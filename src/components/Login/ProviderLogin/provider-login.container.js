@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-import auth from "solid-auth-client";
-// In-house Components
-import LoginForm from "./children/Form";
 // Utils
 import { SolidError } from "@utils";
-
+import React, { Component } from "react";
+import auth from "solid-auth-client";
 import { Provider } from "../../../services/index";
+// In-house Components
+import LoginForm from "./children/Form";
 
 export default class LoginComponent extends Component {
   constructor(props) {
@@ -57,7 +56,6 @@ export default class LoginComponent extends Component {
       const { idp, withWebId } = this.state;
       const { callbackUri, errorsText } = this.props;
 
-
       if (!idp) {
         const errorMessage = withWebId ? "emptyWebId" : "emptyProvider";
         // @TODO: better error handling will be here
@@ -95,7 +93,6 @@ export default class LoginComponent extends Component {
       }
       this.setState({ error });
     }
-
   };
 
   onProviderSelect = ($event) => {

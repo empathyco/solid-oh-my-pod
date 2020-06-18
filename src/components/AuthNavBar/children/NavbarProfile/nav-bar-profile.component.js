@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { UpdateContext } from '@inrupt/solid-react-components';
-import { Dropdown } from '@util-components';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { UpdateContext } from "@inrupt/solid-react-components";
+import { Dropdown } from "@util-components";
 
-import auth from 'solid-auth-client';
-import data from '@solid/query-ldflex';
-import { errorToaster } from '@utils';
-import { ProfileOptions } from '@constants/navigation';
+import auth from "solid-auth-client";
+import data from "@solid/query-ldflex";
+import { errorToaster } from "@utils";
+import { ProfileOptions } from "@constants/navigation";
 
 export const ImageContainer = styled.div`
   width: 42px;
@@ -14,14 +14,17 @@ export const ImageContainer = styled.div`
   border-radius: 50%;
   background-size: cover;
   overflow: hidden;
-  visibility: ${({ show }) => (show ? 'visible' : 'hidden')};
-  display: ${({ show }) => (show ? 'block' : 'none')};
+  visibility: ${({ show }) => (show ? "visible" : "hidden")};
+  display: ${({ show }) => (show ? "block" : "none")};
 `;
 
 export const Img = styled.img`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  max-width: 38px;
+  max-height: 38px;
+  border-radius: 100px;
 `;
 
 export const LoadingImage = styled(ImageContainer)`
@@ -34,24 +37,16 @@ export const UserName = styled.span`
   margin-left: 10px;
 `;
 
-type Props = {
-  history: Object,
-  t: Function,
-  open: Boolean,
-  customClass: String,
-  webId: String
-};
-
 let beforeContext;
 
-class NavBarProfile extends Component<Props> {
+class NavBarProfile extends Component {
   constructor(props) {
     super(props);
-    this.state = { image: '/img/icon/empty-profile.svg' };
+    this.state = { image: "/img/icon/empty-profile.svg" };
   }
 
   state = {
-    imageLoaded: false
+    imageLoaded: false,
   };
 
   componentDidMount() {
@@ -74,7 +69,7 @@ class NavBarProfile extends Component<Props> {
   }
 
   // eslint-disable-next-line react/destructuring-assignment
-  profileRedirect = () => this.props.history.push('/profile');
+  profileRedirect = () => this.props.history.push("/profile");
 
   onImageLoaded = async () => this.setState({ imageLoaded: true });
 
@@ -82,11 +77,11 @@ class NavBarProfile extends Component<Props> {
     try {
       await auth.logout();
       // Remove localStorage
-      localStorage.removeItem('solid-auth-client');
+      localStorage.removeItem("solid-auth-client");
       // Redirect to login page
-      window.location = '/login';
+      window.location = "/login";
     } catch (error) {
-      errorToaster(error.message, 'Error');
+      errorToaster(error.message, "Error");
     }
   };
 
@@ -104,7 +99,7 @@ class NavBarProfile extends Component<Props> {
       const image = userImage ? userImage.value : defaultimage;
       this.setState({ image });
     } catch (error) {
-      errorToaster(error.message, 'Error');
+      errorToaster(error.message, "Error");
     }
   };
 
@@ -112,10 +107,10 @@ class NavBarProfile extends Component<Props> {
     const { t, open, customClass } = this.props;
     const { imageLoaded, image } = this.state;
 
-    const profileOpts = ProfileOptions.map(item => ({
+    const profileOpts = ProfileOptions.map((item) => ({
       ...item,
       label: t(item.label),
-      onClick: this[item.onClick]
+      onClick: this[item.onClick],
     }));
 
     return image ? (
@@ -126,7 +121,12 @@ class NavBarProfile extends Component<Props> {
         hover
       >
         <ImageContainer show={imageLoaded}>
-          <Img show={imageLoaded} src={image} alt="profile" onLoad={this.onImageLoaded} />
+          <Img
+            show={imageLoaded}
+            src={image}
+            alt="profile"
+            onLoad={this.onImageLoaded}
+          />
         </ImageContainer>
         {!imageLoaded && <LoadingImage show />}
       </Dropdown>

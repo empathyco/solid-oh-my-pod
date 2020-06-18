@@ -2,12 +2,9 @@ import React from 'react';
 
 import { PanelWrapper } from './panel.style';
 
-type Props = {
-  children: React.Node,
-  className: String
-};
 
-const Panel = ({ children, className }: Props) => (
+
+const Panel = ({ children, className }) => (
   <PanelWrapper className={className}>{children}</PanelWrapper>
 );
 

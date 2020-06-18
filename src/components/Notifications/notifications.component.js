@@ -2,15 +2,12 @@ import React from 'react';
 import { LiveUpdate } from '@inrupt/solid-react-components';
 import { Notifications } from './children';
 
-type Props = {
-  webId: string,
-  inboxes: Array<string>
-};
+
 /**
  * Notification container
  * @type {{compare, $$typeof, type}}
  */
-const Notification = React.memo(({ webId, inbox }: Props) => {
+const Notification = React.memo(({ webId, inbox }) => {
   /**
    * get inbox path to subscribe on LiveUpdate component
    */

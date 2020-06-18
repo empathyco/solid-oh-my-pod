@@ -8,6 +8,7 @@ import {
   faFile,
   faFileAudio
 } from "@fortawesome/free-solid-svg-icons";
+import { FolderMenuTrigger } from "../folder/folderItem.style";
 
 export default class File extends Component {
   constructor(props, state) {
@@ -41,7 +42,7 @@ export default class File extends Component {
     let fileIcon = null;
 
     if (this.isVideo()) {
-      fileIcon = <img src="/img/icon/icon-files-video.svg" size="2x" className="imgfile" alt="video" />;
+      fileIcon = <img src="/img/icon/icon-files-video.svg" size="2x"  className="imgfile" alt="video" />;
     } else if (this.isImage()) {
       fileIcon = <img src="/img/icon/icon-files-pic.svg" size="2x" className="imgfile" alt="image" />;
     } else if (this.isMedia()) {
@@ -52,9 +53,13 @@ export default class File extends Component {
 
     return (
       <FileMenuTrigger
+
+        tabIndex="0"
+
         className={this.state.isSelected ? "active" : ""}
         id={`${this.name.concat("_context_menu")}`}
         onClick={() => this.handleClick()}
+
       >
         {fileIcon}
         <FileInfo>

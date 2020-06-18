@@ -2,11 +2,7 @@ import React, { Fragment } from 'react';
 import NotificationItem from '../NotificationItem';
 import { List, NoNotifications } from './notification-list.style';
 
-type Props = {
-  notifications: Array,
-  markAsRead: Function,
-  deleteNotification: Function
-};
+
 /**
  * Show notification list
  * @param notifications
@@ -15,7 +11,7 @@ type Props = {
  * @returns {*}
  * @constructor
  */
-const NotificationList = ({ notifications, markAsRead, deleteNotification }: Props) => (
+const NotificationList = ({ notifications, markAsRead, deleteNotification }) => (
   <Fragment>
     {notifications && notifications.length > 0 ? (
       <List>
