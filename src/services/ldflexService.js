@@ -69,9 +69,9 @@ export const getProfileData = async () => {
       userData.phones.push(value.split(":")[1]);
     }
   }
-  userData.company = await me["vcard:organization-name"];
-  userData.role = await me["vcard:role"];
-  userData.note = await me["vcard:note"];
+  userData.company = `${await me["vcard:organization-name"]}`;
+  userData.role = `${await me["vcard:role"]}`;
+  userData.note = `${await me["vcard:note"]}`;
 
   return userData;
 };
@@ -135,8 +135,8 @@ export const getFriendData = async (webId) => {
       break;
     }
   }
-  friendData.company = await friend["vcard:organization-name"];
-  friendData.role = await friend["vcard:role"];
+  friendData.company = await `${friend["vcard:organization-name"]}`;
+  friendData.role = await `${friend["vcard:role"]}`;
   return friendData;
 };
 

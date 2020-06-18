@@ -35,8 +35,7 @@ class ProfileContent extends Component {
     this.originalFields.updated = false;
     console.log(this.originalFields)
     console.log("!!!!!!!!!!!!!!!!!!!!!!!")
-
-    this.setState(this.originalFields);
+     this.setState(this.originalFields );
     LoaderService.completeLoad();
   }
 
