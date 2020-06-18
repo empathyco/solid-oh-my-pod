@@ -1,6 +1,5 @@
+import { CenterContainer, Panel } from "@util-components";
 import styled from "styled-components";
-import { Panel } from "@util-components";
-import { CenterContainer } from "@util-components";
 
 export const RegisterWrapper = styled.section`
   h1 {
@@ -8,6 +7,10 @@ export const RegisterWrapper = styled.section`
     font-weight: bold;
     font-size: 55px;
     color: #083575;
+  }
+  
+  .btn-solid{
+  background-color: blue;
   }
 `;
 
@@ -31,21 +34,22 @@ export const PanelHeader = styled.div`
   h2 {
     position: relative;
     padding: 0;
-     
+<<<<<<< HEAD
+
     font-size: 20px;
+=======
+      text-decoration: underline
+>>>>>>> search
     font-weight: bold;
-    letter-spacing: 0.75px;
-    line-height: 24px;
+     line-height: 24px;
     text-align: center;
     margin: 0;
     font-family: Montserrat, sans-serif;
-    font-size: 16px;
-    font-weight: 600;
+     
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
-    letter-spacing: 3px;
-    text-align: center;
+     text-align: center;
     color: #243d48;
   }
 `;
@@ -56,40 +60,54 @@ export const PanelBody = styled.div`
   width: 453px;
   height: 50px;
   font-family: Montserrat, sans-serif;
+<<<<<<< HEAD
+  font-size: 16px;
+  font-weight: 600;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 3px;
+  text-align: center;
+  color: #243d48;
+
+  a {
+    font-weight: bold;
+    display: block;
+
+    text-align: center;
+    text-decoration: none;
+    margin: 50px 0;
+=======
     font-size: 16px;
     font-weight: 600;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
-    letter-spacing: 3px;
+     
     text-align: center;
     color: #243d48;
     
   a {
      font-weight: bold;
      display: block;
-     
+     text-decoration: underline
     text-align: center;
-    text-decoration: none;
-    margin: 50px 0;
+     margin: 50px 0;
     
     
+>>>>>>> search
 
     &:link {
-      text-decoration: none;
-      color: #083575;
+       color: #083575;
     }
     &:visited {
-      text-decoration: none;
-      color: #083575;
+       color: #083575;
     }
     &:hover {
-      text-decoration: none;
-      color: #083575;
+       color: #083575;
     }
     &:active {
-      text-decoration: none;
-      color: #083575;
+       color: #083575;
     }
   }
 
@@ -99,7 +117,7 @@ export const PanelBody = styled.div`
 
   ul {
     font-family: Montserrat, sans-serif;
-    font-size: 1em;    
+    font-size: 1em;
     color: #666;
   }
 `;
@@ -126,11 +144,11 @@ export const Actions = styled.div`
     box-sizing: border-box;
     
     font-size: 1em;
-    display: inline-block
+    display: inline-block;
 
     font-family: Montserrat-SemiBold, sans-serif;
     
-    background-color: #243d48;
+    background-color: #243d48 !important;
     color: white; 
     font-weight: bold;
     

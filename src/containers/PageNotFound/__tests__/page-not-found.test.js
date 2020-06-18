@@ -17,7 +17,7 @@ describe('Page Not Found', () => {
   });
 
   test('includes link to homepage', () => {
-    const idsLink = document.querySelector('.ids-link');
+    const idsLink = document.querySelector('.notcontent');
 
     expect(idsLink).toBeTruthy();
   });

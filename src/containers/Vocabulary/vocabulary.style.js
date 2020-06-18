@@ -2,15 +2,17 @@ import styled from 'styled-components';
 
 export const VocabularyWrapper = styled.section`
   width: 100%;
-  background: rgb(250,182,193);
-  background: linear-gradient(30deg, rgba(250,182,193,0.92) 0%, rgba(191,255,251,0.93) 71%);
-  background-repeat: repeat;
-  padding: 50px 0;
+  background: #f4f4f4;;
+   padding: 50px 0;
+   font-family: "Montserrat", sans-serif !important;
+
 
   h3 {
     color: #666666;
     span {
       font-weight: bold;
+      font-family: "Montserrat", sans-serif !important;
+
     }
     a {
       font-size: 1.9rem;
@@ -43,15 +45,17 @@ export const VocabularyCard = styled.div`
 
 export const VocabularyItem = styled.section`
   width: 100%;
-   
-  padding: 50px 0;
-   text-align: center;
+   font-family: "Montserrat", sans-serif !important;
+
+    text-align: center;
 
   h1 {
     text-transform: uppercase;
     text-align: center;
     font-size: 1rem;
     color: #666666;
+    font-family: "Montserrat", sans-serif !important;
+
     span {
       font-weight: bold;
     }

@@ -1,19 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import { NavBar } from "@components";
-import { RegistrationPage,MyCenterContainer } from './registration-success.style';
+import {
+  RegistrationPage,
+  MyCenterContainer,
+} from "./registration-success.style";
 
-type Props = {
-  history: Object
-};
-
-type State = {
-  timeLeft: number
-};
-class RegistrationSuccess extends Component<Props, State> {
+class RegistrationSuccess extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      timeLeft: 15
+      timeLeft: 15,
     };
   }
 
@@ -28,13 +24,13 @@ class RegistrationSuccess extends Component<Props, State> {
   redirect = async () => {
     const { history } = this.props;
     await clearInterval(this.interval);
-    history.push('/login');
+    history.push("/login");
   };
 
   countDown = () => {
     const { timeLeft } = this.state;
     if (timeLeft === 0) this.redirect();
-    this.setState(prevState => ({ timeLeft: prevState.timeLeft - 1 }));
+    this.setState((prevState) => ({ timeLeft: prevState.timeLeft - 1 }));
   };
 
   render() {
@@ -44,7 +40,9 @@ class RegistrationSuccess extends Component<Props, State> {
         <MyCenterContainer>
           <h1>Success! Welcome to the decentralized web.</h1>
           <img src="/img/rocket.svg" alt="rocket" className="rocket" />
-          <span>We have emailed you more information about your new Solid Identity</span>
+          <span>
+            We have emailed you more information about your new Solid Identity
+          </span>
           <span>We will redirect you to your POD in {timeLeft} seconds...</span>
         </MyCenterContainer>
       </RegistrationPage>
