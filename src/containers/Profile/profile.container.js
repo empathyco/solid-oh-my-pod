@@ -12,7 +12,7 @@ import {
 } from "./profile.style";
 import ProfileContent from "./profileContent";
 
-const defaultProfilePhoto = "/img/icon/empty-profile.svg";
+
 
 export default class Profile extends React.Component {
   constructor(props) {

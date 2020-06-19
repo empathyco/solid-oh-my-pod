@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import media from "../../utils";
 
 export const HeaderFriend = styled.div`
   transform: translateY(40px);
