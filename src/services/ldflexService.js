@@ -1,8 +1,7 @@
+import { namedNode } from "@rdfjs/data-model";
 import data from "@solid/query-ldflex";
 import auth from "solid-auth-client";
 import Cache from "./Cache";
-import { namedNode, mail } from "@rdfjs/data-model";
-import context from "@solid/context";
 const cache = new Cache();
 
 const getSession = async () => {

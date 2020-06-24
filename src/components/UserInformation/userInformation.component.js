@@ -1,12 +1,7 @@
 import React, { Component } from "react";
-import { Fragment } from "react";
-import Image from "./Image";
-
-import { ProfileName, Section, ImageContainer } from "./userInformation.style";
 import { ldflexService } from "../../services";
-import { OMPButton } from "components/Utils";
-import { faHourglass } from "@fortawesome/free-solid-svg-icons";
-import { LoaderService } from "../loader";
+import Image from "./Image";
+import { ImageContainer, ProfileName, Section } from "./userInformation.style";
 
 class UserInformation extends Component {
   /**
