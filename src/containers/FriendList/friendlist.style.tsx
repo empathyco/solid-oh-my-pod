@@ -194,3 +194,44 @@ export const FriendCountDisplay = styled.div`
     margin-bottom: 20px;
   }
 `;
+
+export const AddFriendDialogBackground = styled.div`
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  .createFilePopUp {
+    background-color: white;
+    padding: 20px;
+    min-width: 400px;
+    margin: auto;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: slideup 0.5s;
+    @keyframes slideup {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+    .popUpButtons {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-around;
+      & > * {
+        margin: auto;
+        margin-top: 20px;
+      }
+    }
+  }
+`;

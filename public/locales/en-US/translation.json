@@ -68,14 +68,16 @@
     "boosted": "Represents whether synonymize is activated.\n\n",
     "boostedid": "Manual boost Id, required for default boosts. "
   },
-
   "friendlist": {
+    "cancel": "cancel",
     "yourFriends": "Your FRIENDS",
     "mplatform": "The platform chosen is: ",
     "selectp": "Select provider",
-     "nameerror": {
+    "friendAdded": "Friend added",
+    "friendRemoved": "Friend removed",
+    "nameerror": {
       "title": "Invalid name",
-      "description": "Name is invalid"
+      "description": "URI is invalid"
     },
     "notfounderror": {
       "title": "Oh My POD!",
@@ -180,6 +182,9 @@
     "errorTitle": "Error",
     "saveBtn": "Save",
     "resetBtn": "Reset",
+    "updated": "Profile data updated",
+    "noteUpdated": "Note updated",
+    "noteCleared": "Note cleared",
     "addBtn": "+ Add new ",
     "deleteBtn": "Remove",
     "dropdownDefaultText": "- Select -",

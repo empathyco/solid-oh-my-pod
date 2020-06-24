@@ -1,11 +1,8 @@
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { ldflexService, Provider } from "@services";
 import { ToasterService } from "components";
-import { DeleteButton, TextButton } from "components/Utils";
+import { DeleteButton, OMPButton } from "components/Utils";
 import React, { Fragment } from "react";
+import { WithTranslation } from "react-i18next";
+import { ldflexService } from "services";
 import {
   ContainerHeader,
   LoaderService,
@@ -13,6 +10,7 @@ import {
 } from "../../components";
 import ButtonWithImage from "../../components/Utils/buttons/ButtonWithImage/buttonWithImage";
 import {
+  AddFriendDialogBackground,
   Content,
   FormattedFiendNameWrapper,
   Friend,
@@ -22,59 +20,62 @@ import {
   FriendListWrapper,
 } from "./friendlist.style";
 
+interface Props extends WithTranslation {}
+type State = {
+  openFriendDialog: boolean;
+  friends: any[];
+  webId: string;
+  friendid: string;
+  pimage: string;
+};
 const defaultProfilePhoto = "/img/icon/empty-profile.svg";
-export default class FriendListComponent extends React.Component {
-  constructor() {
-    super();
+export default class FriendListComponent extends React.Component<Props, State> {
+  defaultImage: string;
+  constructor(props: Props) {
+    super(props);
     this.defaultImage = "/img/icon/empty-profile.svg";
 
     this.state = {
       friends: [],
       webId: "",
       friendid: "",
-      platformValue: Provider.getIdentityProviders()[0].card,
-      open: false,
+
+      openFriendDialog: false,
       pimage: this.defaultImage,
     };
     this.myChangeHandler = this.myChangeHandler.bind(this);
-    this.mySubmitHandler = this.mySubmitHandler.bind(this);
-    this.handleChangeSelector = this.handleChangeSelector.bind(this);
 
-    this.handleOpen = this.handleOpen.bind(this);
-    this.handleClose = this.handleClose.bind(this);
     this.addFriend = this.addFriend.bind(this);
   }
 
-  async handleChangeSelector(event) {
-    this.setState({ platformValue: event.target.value });
-  }
+  handleOpen = () => {
+    this.setState({ openFriendDialog: true });
+  };
 
-  async handleOpen() {
-    this.setState({ open: true });
-  }
+  handleClose = () => {
+    this.setState({ openFriendDialog: false });
+  };
 
-  async handleClose() {
-    this.setState({ open: false });
-  }
-
-  async mySubmitHandler(event) {
-    event.target.reset();
-    event.preventDefault();
-  }
   async validateURI(url) {
     let num;
     await fetch(url).then((res) => {
-
       num = res.status;
     });
     return num;
   }
 
-  async addFriend(t) {
-    let provider = await this.state.platformValue;
-    let name = (await "https://") + this.state.friendid + ".";
-    let username = name.toString().concat(provider.toString());
-    if (/\s/.test(username)) {
+  async addFriend(event) {
+    const { t } = this.props;
+    let username: string = event.target.elements[0].value;
+    event.preventDefault();
+
+    console.log(username);
+    const regex = new RegExp(
+      // eslint-disable-next-line no-useless-escape
+      /((https?:\/\/)?(?:localhost|[\w-]+(?:\.[\w-]+)+)(:\d+)?(\/\S*)?)(me)/,
+      "i"
+    );
+    if (!regex.test(username)) {
       ToasterService.addPopUpToast({
         buttonLabel: "OKAY :(",
         onButtonClick: () => {},
@@ -83,10 +84,9 @@ export default class FriendListComponent extends React.Component {
         type: "error",
       });
     } else {
-      let exits = await this.validateURI(username);
-
-
-      if (exits.toString() !== "200") {
+      let exists = await this.validateURI(username);
+      console.log("exists", exists);
+      if (exists.toString() !== "200") {
         ToasterService.addPopUpToast({
           buttonLabel: t("friendlist.notfounderror.button"),
           onButtonClick: () => {},
@@ -95,17 +95,35 @@ export default class FriendListComponent extends React.Component {
           type: "error",
         });
       } else {
-        if (window.confirm(t("friendlist.adding") + username)) {
-          await ldflexService.addFriend(username);
-          console.log("friend added succesfully");
-
-          let friendData = await ldflexService.getFriendData(username);
-          await this.setState({
-            friends: [...this.state.friends, friendData],
+        if (
+          username.includes(this.state.webId) ||
+          this.state.friends.find((friend) => username.includes(friend.url))
+        ) {
+          ToasterService.addPopUpToast({
+            buttonLabel: t("friendlist.notfounderror.button"),
+            onButtonClick: () => {},
+            subtitle: t("friendlist.notfounderror.description"),
+            title: t("friendlist.notfounderror.title"),
+            type: "error",
           });
-          this.setState({ friendid: "" });
-          this.handleClose();
+          return;
         }
+        await ldflexService.addFriend(username);
+        console.log("friend added succesfully");
+
+        let friendData = await ldflexService.getFriendData(username);
+        await this.setState({
+          friends: [...this.state.friends, friendData],
+        });
+        this.setState({ friendid: "" });
+        this.handleClose();
+        ToasterService.addPopUpToast({
+          buttonLabel: "OK",
+          onButtonClick: () => {},
+          subtitle: "",
+          title: t("friendlist.friendAdded"),
+          type: "success",
+        });
       }
     }
   }
@@ -120,12 +138,10 @@ export default class FriendListComponent extends React.Component {
   }
 
   async deletefriend(profile, t) {
-    if (window.confirm(t("friendlist.deleteq") + profile + " ?")) {
+    
       let index = 0;
 
       for (var i = 0; i < this.state.friends.length; i++) {
-
-
         if (this.state.friends[i].url === profile) {
           index = i;
           break;
@@ -140,64 +156,55 @@ export default class FriendListComponent extends React.Component {
       await this.setState({
         friends: newFriends,
       });
+      ToasterService.addPopUpToast({
+        buttonLabel: "OK",
+        onButtonClick: () => {},
+        subtitle: "",
+        title: t("friendlist.friendRemoved"),
+        type: "success",
+      });
       // await this.forceUpdate();
-    }
+    
   }
 
   async componentDidMount() {
     LoaderService.nowLoading();
     const friends = await this.getFriends();
     const webId = await ldflexService.getWebId();
-    const accountName = await ldflexService.getProfileName();
-
-    this.setState({ friends: friends, webId: webId, title: accountName });
+    this.setState({ friends: friends, webId: webId });
     LoaderService.completeLoad();
   }
 
   getAddFriendDialog() {
     const { t } = this.props;
     return (
-      <Dialog
-        open={this.state.open}
-        onClose={this.handleClose}
-        aria-labelledby="form-dialog-display-media"
-        // fullWidth={true}
-        // maxWidth={"lg"}
-      >
-        <DialogTitle id="form-dialog-display-media">
-          {" "}
-          {t("friendlist.adding")}
-        </DialogTitle>
-        <DialogContent>
-          <h2> {t("friendlist.selectp")}</h2>
-          <select
-            value={this.state.platformValue}
-            onChange={this.handleChangeSelector}
-          >
-            {Provider.getIdentityProviders().map((e, key) => {
-              return (
-                <option key={key} value={e.card}>
-                  {e.label}
-                </option>
-              );
-            })}
-          </select>
-          <h2>{t("friendlist.insertid")}</h2>
-          <input type="text" onChange={this.myChangeHandler} />
-        </DialogContent>
-        <DialogActions>
-          <TextButton
-            disabled={this.state.friendid.trim() === ""}
-            label={t("friendlist.adding")}
-            action={async () => await this.addFriend(t)}
-          ></TextButton>
+      this.state.openFriendDialog && (
+        <AddFriendDialogBackground>
+          <form className="createFilePopUp" onSubmit={this.addFriend}>
+            <h2>{t("friendlist.addFriend")}</h2>
 
-          <TextButton
-            label={t("friendlist.close")}
-            action={this.handleClose}
-          ></TextButton>
-        </DialogActions>
-      </Dialog>
+            <input type="text" id="fileName" name="fileName" autoFocus />
+            <div className="popUpButtons">
+              <OMPButton
+                {...{
+                  type: "button",
+                  action: this.handleClose,
+                  color: "error",
+                  label: t("friendlist.cancel"),
+                }}
+              ></OMPButton>
+              <OMPButton
+                {...{
+                  type: "submit",
+                  action: () => {},
+                  color: "main",
+                  label: t("friendlist.addFriend"),
+                }}
+              ></OMPButton>
+            </div>
+          </form>
+        </AddFriendDialogBackground>
+      )
     );
   }
 
@@ -239,6 +246,9 @@ export default class FriendListComponent extends React.Component {
     return (
       <FriendList>
         {this.state.friends.map((friend) => {
+          if (friend.image === "undefined") friend.image = undefined;
+          if (friend.company === "undefined") friend.company = undefined;
+          if (friend.role === "undefined") friend.role = undefined;
           return (
             <Friend key={friend.url}>
               <img src={friend.image || this.defaultImage} alt="friend" />
@@ -278,11 +288,10 @@ export default class FriendListComponent extends React.Component {
     );
   }
   getUserInformation() {
-    const { title } = this.state;
     const { t } = this.props;
     const handleOpen = this.handleOpen;
     return (
-      <UserInformation {...{ title }}>
+      <UserInformation>
         {this.getFriendCountDisplay()}
         <ButtonWithImage
           {...{
