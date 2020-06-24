@@ -83,7 +83,7 @@
     "boostedid": "Manual boost Id, required for default boosts. "
   },
   "friendlist": {
-    "title": "Your FRIENDS",
+    "yourFriends": "Your FRIENDS",
     "mplatform": "The platform chosen is: ",
     "selectp": "Select provider",
     "nameerror": {
@@ -100,7 +100,10 @@
     "deletefriend": "Delete friend",
     "insertid": "Enter friend ID",
     "close": "Close",
-    "deleteq": "Are you sure you wanna delete friend "
+    "deleteq": "Are you sure you wanna delete friend ",
+    "unknownName": "Unknown Name",
+    "friends": "Friends",
+    "addFriend": "Add friend"
   },
   "login": {
     "title": "Hi! Welcome to Solid.",
