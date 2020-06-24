@@ -18,7 +18,7 @@ const Footer = (props) => {
               {t("footer.version")}
               {""}{" "}
               <span className="build-value">
-                {process.env.REACT_APP_VERSION}
+                 1.0.1
               </span>
             </li>
           </ul>
