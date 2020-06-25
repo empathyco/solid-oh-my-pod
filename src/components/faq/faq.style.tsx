@@ -1,5 +1,6 @@
 import styled from "styled-components";
 export const FAQ = styled.article`
+  position: relative;
   margin: auto;
   padding: 0;
   display: inline-flex;
@@ -85,4 +86,20 @@ export const PoweredByEmpathy = styled.div`
   img {
     height: 12px;
   }
+`;
+
+export const CloseButton = styled.span`
+  cursor: pointer;
+  border-radius: 100px;
+  color: var(--error);
+  background-color: white;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;

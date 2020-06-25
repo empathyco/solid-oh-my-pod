@@ -138,33 +138,31 @@ export default class FriendListComponent extends React.Component<Props, State> {
   }
 
   async deletefriend(profile, t) {
-    
-      let index = 0;
+    let index = 0;
 
-      for (var i = 0; i < this.state.friends.length; i++) {
-        if (this.state.friends[i].url === profile) {
-          index = i;
-          break;
-        }
+    for (var i = 0; i < this.state.friends.length; i++) {
+      if (this.state.friends[i].url === profile) {
+        index = i;
+        break;
       }
-      await ldflexService.removeFriend(profile);
+    }
+    await ldflexService.removeFriend(profile);
 
-      let newFriends = this.state.friends;
+    let newFriends = this.state.friends;
 
-      newFriends.splice(index, 1);
+    newFriends.splice(index, 1);
 
-      await this.setState({
-        friends: newFriends,
-      });
-      ToasterService.addPopUpToast({
-        buttonLabel: "OK",
-        onButtonClick: () => {},
-        subtitle: "",
-        title: t("friendlist.friendRemoved"),
-        type: "success",
-      });
-      // await this.forceUpdate();
-    
+    await this.setState({
+      friends: newFriends,
+    });
+    ToasterService.addPopUpToast({
+      buttonLabel: "OK",
+      onButtonClick: () => {},
+      subtitle: "",
+      title: t("friendlist.friendRemoved"),
+      type: "success",
+    });
+    // await this.forceUpdate();
   }
 
   async componentDidMount() {
@@ -183,7 +181,13 @@ export default class FriendListComponent extends React.Component<Props, State> {
           <form className="createFilePopUp" onSubmit={this.addFriend}>
             <h2>{t("friendlist.addFriend")}</h2>
 
-            <input type="text" id="fileName" name="fileName" autoFocus />
+            <input
+              type="text"
+              id="fileName"
+              name="fileName"
+              autoFocus
+              placeholder="https://tim.solid/profile/card#me"
+            />
             <div className="popUpButtons">
               <OMPButton
                 {...{
