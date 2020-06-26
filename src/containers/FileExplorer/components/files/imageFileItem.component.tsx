@@ -62,7 +62,7 @@ export default function ImageFile(props) {
       id={path}
       onClick={click}
       onDoubleClick={handleOpen}
-      tabIndex="0"
+      tabIndex={0}
 
       // onContextMenu={handleContext}
       // id={`${name.concat("_context_menu")}`}

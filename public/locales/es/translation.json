@@ -83,12 +83,15 @@
     "boostedid": "El id para los boost."
   },
   "friendlist": {
+    "cancel":"cancelar",
     "yourFriends": "Tus AMIGOS",
     "mplatform": "La plataforma escogida es: ",
     "selectp": "Elegir proveedor",
+    "friendAdded":"Amigo añadido",
+    "friendRemoved":"Amigo eliminado",
     "nameerror": {
       "title": "Nombre inválido",
-      "description": "El nombre es inálido"
+      "description": "La URI es inválida"
     },
     "notfounderror": {
       "title": "Oh My POD!",
@@ -194,6 +197,9 @@
     "errorTitle": "Error",
     "yourProfile": "Tu PERFIL",
     "saveBtn": "Guardar",
+    "updated": "Datos de perfil actualizados",
+    "noteUpdated":"Nota actualizada",
+    "noteCleared":"Nota borrada",
     "resetBtn": "Limpiar",
     "addBtn": "+ Agregar ",
     "deleteBtn": "Eliminar",

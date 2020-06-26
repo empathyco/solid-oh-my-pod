@@ -1,5 +1,5 @@
 import { ldflexService } from "@services";
-import { LoaderService, UserInformation } from "components";
+import { LoaderService, ToasterService, UserInformation } from "components";
 import { ButtonWithImage, TextButton } from "components/Utils";
 import React, { Component, Fragment } from "react";
 import {
@@ -33,9 +33,9 @@ class ProfileContent extends Component {
     this.originalFields = await this.getData();
     // Set updated to false
     this.originalFields.updated = false;
-    console.log(this.originalFields)
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!")
-     this.setState(this.originalFields );
+    console.log(this.originalFields);
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!");
+    this.setState(this.originalFields);
     LoaderService.completeLoad();
   }
 
@@ -79,8 +79,12 @@ class ProfileContent extends Component {
     await ldflexService.updateProfileData(this.state);
     this.setState({ title: this.state.fn });
 
-    //TODO this should be a non intrusive toast
-    alert("updated");
+    ToasterService.addPopUpToast({
+      buttonLabel: "ok",
+      onButtonClick: () => {},
+      title: this.props.t("profile.updated"),
+      type: "success",
+    });
   };
 
   handlePhoneChange = (e) => {
@@ -109,13 +113,23 @@ class ProfileContent extends Component {
     const value = this.state.note;
 
     await ldflexService.saveNote(value);
-    alert("Saved");
+    ToasterService.addPopUpToast({
+      buttonLabel: "ok",
+      onButtonClick: () => {},
+      title: this.props.t("profile.noteUpdated"),
+      type: "success",
+    });
   };
   clearNote = async (e) => {
     const value = "";
     this.setState({ note: value });
     await ldflexService.saveNote(value);
-    alert("Saved");
+    ToasterService.addPopUpToast({
+      buttonLabel: "ok",
+      onButtonClick: () => {},
+      title: this.props.t("profile.noteCleared"),
+      type: "success",
+    });
   };
 
   handleFieldChange = (e) => {
@@ -125,7 +139,6 @@ class ProfileContent extends Component {
     newState[fieldName] = newValue;
     newState.updated = true;
     this.setState(newState);
-
   };
 
   getFields() {

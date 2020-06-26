@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-import { media } from "../../utils";
 export const Title = styled.section`
   align-items: right;
   justify-content: right;

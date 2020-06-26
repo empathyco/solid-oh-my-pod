@@ -69,12 +69,15 @@
     "boostedid": "Manual boost Id, required for default boosts. "
   },
   "friendlist": {
-    "title": "Your FRIENDS",
+    "cancel": "cancel",
+    "yourFriends": "Your FRIENDS",
     "mplatform": "The platform chosen is: ",
     "selectp": "Select provider",
+    "friendAdded": "Friend added",
+    "friendRemoved": "Friend removed",
     "nameerror": {
       "title": "Invalid name",
-      "description": "Name is invalid"
+      "description": "URI is invalid"
     },
     "notfounderror": {
       "title": "Oh My POD!",
@@ -86,7 +89,10 @@
     "deletefriend": "Delete friend",
     "insertid": "Enter friend ID",
     "close": "Close",
-    "deleteq": "Are you sure you wanna delete friend "
+    "deleteq": "Are you sure you wanna delete friend ",
+    "unknownName": "Unknown Name",
+    "friends": "Friends",
+    "addFriend": "Add friend"
   },
   "login": {
     "title": "Hi! Welcome to Solid.",
@@ -176,6 +182,9 @@
     "errorTitle": "Error",
     "saveBtn": "Save",
     "resetBtn": "Reset",
+    "updated": "Profile data updated",
+    "noteUpdated": "Note updated",
+    "noteCleared": "Note cleared",
     "addBtn": "+ Add new ",
     "deleteBtn": "Remove",
     "dropdownDefaultText": "- Select -",

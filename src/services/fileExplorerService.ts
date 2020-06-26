@@ -197,9 +197,9 @@ export const writejsoninpod = async (jsoncontent, filename) => {
 export const updateFile = async (path, fileName, content, contentType) => {
   let oldContent = await fc.readFile(buildFileUrl(path, fileName));
   if (oldContent !== content) {
-    alert(
-      "File content has changed since last edit, cannot update content, please reopen file."
-    );
+    // alert(
+    //   "File content has changed since last edit, cannot update content, please reopen file."
+    // );
   } else {
     cache.remove(path);
     fileCache.remove(buildFileUrl(path, fileName));

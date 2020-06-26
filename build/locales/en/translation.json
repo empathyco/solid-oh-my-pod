@@ -10,9 +10,105 @@
     "success": "Success",
     "error": "Error"
   },
+  "fileexplorer": {
+    "edit": "Edit",
+    "save": "Save",
+    "cancel": "Cancel",
+    "download": "Download",
+    "viewing": "Viewing file",
+    "close": "Close",
+    "search": "SEARCH",
+    "home": "my pod",
+    "title": "Your FILES",
+    "nameForFile": "Give a name for the file",
+    "nameForFolder": "Give a name for the folder",
+    "create": "Create",
+    "file": "file",
+    "folder": "folder",
+    "createFile": "CREATE FILE",
+    "createFolder": "CREATE FOLDER",
+    "folderCreated": "Folder created",
+    "folderNOTCreated": "Folder could not be created :(",
+    "fileCreated": "File created",
+    "fileNOTCreated": "File could not be created :("
+  },
+  "v1": {
+    "instance": "The instance id for empathy search API",
+    "sink": "Represents the type of event it can be a query or a click\n\n ",
+    "data": "Represents the search data collected\n\n ",
+    "ip": "Represents the ip address from the query",
+    "endpoint": "Represents the endpoint used in the search\n\n",
+    "service": " Represents the service used in the search\n\n",
+    "productid": "Product ID to track ",
+    "host": "SERP host referrer url\n\n",
+    "usera": "The user agent.\n\n",
+    "timestamp": "The time the query was performed\n\n",
+    "q": "The query for the request\n\n",
+    "totalhits": "Number of total results for these search terms.\n\n",
+    "session": "Current user's session id.\n\n",
+    "page": "Page number the user has requested.\n\n",
+    "user": "The user used on this request.\n\n",
+    "filters": "Represents the filters used in the query.\n\n",
+    "catalog": "Tracking catalog for this query.\n\n",
+    "scope": "Tracking scope for this query.\n\n",
+    "lang": "The language of the query.\n\n",
+    "extraf": "Extra fields.\n\n",
+    "usert": "Specifies is the user who made the request is either new, recurrent, or ignored.\n\n",
+    "origin": {
+      "title": "Type of search performed, these are the possible values:\n\n",
+      "default": "default : common search without help of any feature.\n\n",
+      "variables": " empathize_category, empathize_term, empathize_reference, empathize_recommendations, empathize_next_queries, empathize_trending: search using empathize",
+      "linked": "linked : redirected searches",
+      "partial": "partial : new search with origin in a suggestion in a non results query",
+      "next": "next_query, next_query_grid : search by selecting a next_query",
+      "related": "related_tag : search by selecting a related tag",
+      "history": "history: search by selecting a term in the history",
+      "spellcheck": "spellcheck: search with spellcheck"
+    },
+    "position": "Product position\n\n",
+    "spellcheck": "Represents whether the query has come via spellcheck or not.\n\n",
+    "filtered": "Represents whether the query has been filtered or not.\n\n",
+    "con": "Represents whether the query has been through the contextualize method.\n\n",
+    "cone": "Represents whether the user has contextualized enabled.\n\n",
+    "cona": "Represents whether the query has applied the contextualize method.\n\n",
+    "revenue": "Numeric value of the product revenue/price\n\n",
+    "currency": "Currency code for the revenue amount. Must be a valid ISO 4217 currency code.\n\n",
+    "trans": "Arbitrary identifier to link all checkout events that correspond to a unique transaction - typically a UUID, the important thing is for it to be unique and consistent for transactions.\n\n",
+    "catid": "The category that has been clicked to filter by.\n\n",
+    "title": "Link title of the query.\n\n",
+    "url": "Query url\n\n",
+    "topclicked": "The top clicked values of the query\n\n",
+    "synonymize": "Represents whether synonymize is activated.\n\n",
+    "boosted": "Represents whether synonymize is activated.\n\n",
+    "boostedid": "Manual boost Id, required for default boosts. "
+  },
+  "friendlist": {
+    "yourFriends": "Your FRIENDS",
+    "mplatform": "The platform chosen is: ",
+    "selectp": "Select provider",
+    "nameerror": {
+      "title": "Invalid name",
+      "description": "Name is invalid"
+    },
+    "notfounderror": {
+      "title": "Oh My POD!",
+      "description": "Oh! Seems we didn't find your friend :(",
+      "button": "Try it again"
+    },
+    "urierror": "URI not valid",
+    "adding": "Add Friend ",
+    "deletefriend": "Delete friend",
+    "insertid": "Enter friend ID",
+    "close": "Close",
+    "deleteq": "Are you sure you wanna delete friend ",
+    "unknownName": "Unknown Name",
+    "friends": "Friends",
+    "addFriend": "Add friend"
+  },
   "login": {
     "title": "Hi! Welcome to Solid.",
     "loginTitle": "Log in",
+    "signUp": "Sign up",
     "register": "Register for a solid identity",
     "solidHelp": "What is a Solid Identity?",
     "providerPlaceholder": "Select ID Provider",
@@ -39,18 +135,18 @@
     "welcome": "Welcome",
     "logOut": "Log out",
     "profile": "Profile",
+    "friends": "Friends",
+    "myfiles": "My Files",
     "changeLanguage": "Change Language",
     "languages": {
       "en": "English (English)",
       "es": "Español (Spanish)"
     },
     "notifications": {
-      "global": "Global",
-      "tictactoe": "TicTacToe Game",
       "noinbox": "Global inbox not found. Please create one and try again.",
       "fetchingError": "Error fetching notifications from Pod"
     },
-    "tictactoe": "Game"
+    "search": "Search"
   },
   "footer": {
     "version": "Version"
@@ -58,21 +154,21 @@
   "notFound": {
     "title": "Page not found",
     "content": "There may be an error in the URL entered into your web browser. Please check the URL and try again. Or the page you're looking for has been moved or deleted",
-    "redirectButton": "Take me back to the welcome page"
+    "redirectButton": "Go back home"
   },
   "welcome": {
     "welcome": "Welcome",
     "doneMessage": "All done ?",
-    "title": "<0>This application is being developed to try to improve the user experience so it is easier and clearier for a user to interact with its POD.</1></0>",
-    "description": "<0>The <1>application</1>  is being developed by Astrid Gamoneda Arruñada and Iván Prieto Labrador, from the WESO research group, in colaboration whit empathy.co, a company from northern Spain, established in Gijón, but with international transcendence. The main objectives of this application are the following:</0>",
-    "libraryList": "<0><0><0> Improve user experience </0> for the moment, interacting with a POD is complex and difficult if you're not used to the computer science world. We're trying to make it easier to the users to manage the data they want to store in their POd, because the first step to gain users, is making their life easier.</0><1><0>Improve security and privacy</0> With the actual way to manage the POD, there are some critical security flaws, for example, granting access to a user so he can deny you access to your own POD, this should not be allowed.</1><1>Starting point to build a prototype of a search engine based on the SOLID platfrom/principles.</1></0>",
+    "title": "<0>This application is being developed to improve the user experience so it is easier and clearer for each user to interact with its POD.</1></0>",
+    "description": "<0>The application  is being developed by Astrid Gamoneda Arruñada, from the WESO research group, in collaboration with  <1> empathy.co </1>, the eCommerce Search behind top world brands as Kroger, Carrefour or the Inditex Group. The main objectives of this application are the following:</0>",
+    "libraryList": "<0><0><0> Improve user experience </0> for the moment, interacting with a POD is complex and difficult if you're not used to the computer science world. We're trying to make it easier for the users to manage the data they want to store in their POD, because the first step to gain users, is to make their life easier.</0><1><0>Improve security and privacy:</0> With the actual way to manage the POD, there are some critical security flaws, for example, granting access to a user so he can deny you access to your own POD, this should not be allowed.</1><1>Build the starting point: a prototype of a search engine based on the SOLID platfrom/principles.</1></0>",
     "fairUsageTitle": "Fair Usage",
     "fairUsageText": "The Solid and inrupt logos included in the Generator are for the purposes of example and attribution. We expect application developers will fork the design system and customize to include your own brand in your Solid application projects, or override the example theme in your application code.",
     "fairUsageExamples": "<0><0> If your application is Solid compatible, you can use the Solid logo to indicate that. If not, please don’t misrepresent yourself by using the Solid logo.</0><1>Please don't use the inrupt name as a part of your company name, website name, domain name, service name, or app name. Don't use our logo as your own or modify it to fit into your own logo.</1><2>If you’d like, you may use the inrupt logo to indicate that your application is powered by inrupt’s SDK, but please make sure the context is clear to the user. Your own logo should always be larger than inrupt’s logo, for example.</2></0>",
     "fairUsageSummary": "In general, please apply common sense and honesty to your use of Solid or inrupt logos. Don’t use either to imply a partnership or official endorsement where none exists.",
     "contactUsTitle": "Contact Us",
     "contactUsText": "<0>If you have additional questions about the use of the Solid React SDK by inrupt, the Application Generator, or inrupt’s brand, please contact <1>support@inrupt.com<1>.</0>",
-    "evolvingMessage": "<0> The application is continuously evolving, and changing different aspects, as could be the user interface, or adding and editing functionalities of it.</0>",
+    "evolvingMessage": "<0> The application is continuously evolving: Different aspects are changing, such as the user interface, and application functionalities are being added and edited.</0>",
     "implementing": "This application is being built with the ReactJs framework, using different libraries to communicate with the PODs. All the relevant technical information will be shared in the future in the documentation of the application.",
     "version010": "<0><0><0>Internationalization</0> best practices, with application session language selection.</0><0>Ability to update your profile image on the Welcome page.</0> </0>",
     "version030": "<0><0>Implementing the ability to view and edit your <1>User Profile</1></0><1>Including an Application Footer that displays the build number and links to resources.</1><2>Addressing several minor issues based on user feedback.</2></0>",
@@ -89,6 +185,7 @@
     }
   },
   "profile": {
+    "title": "Your PROFILE",
     "successCallback": "Pod updated successfully",
     "successTitle": "Success",
     "errorCallback": "Error submitting form",
@@ -103,6 +200,7 @@
     "uploadingText": "Uploading",
     "updateSuccess": "Profile was updated successfully",
     "nameRequired": "Name is required",
+    "yourProfile": "Your PROFILE",
     "errors": {
       "default": "Something is wrong, please try again...",
       "406": "Please ensure the form is valid",
@@ -116,53 +214,22 @@
     "minMxNumberInclusive": "Error: Min and max should be ",
     "minMxNumberExclusive": "Error: Min and max value should be ",
     "minMaxString": "Error: Min and max should be ",
-    "defaultError": "Error: Field value has wrong format"
+    "defaultError": "Error: Field value has wrong format",
+    "deletePodMessage": "Click the button to be redirected to delete this pod",
+    "select": "Select",
+    "name": "Name",
+    "role": "Role",
+    "company": "Comapny",
+    "email": "Email",
+    "phone": "Phone",
+    "save": "Save changes",
+    "notes": "More information",
+    "updateNote": "Save note",
+    "clear": "Clear note",
+    "card": "POD"
   },
-  "game": {
-    "title": "Tic Tac Toe",
-    "createGamePrompt": "Enter an Opponent and a Game ID",
-    "createGame": "Create Game",
-    "createGameSuccess": "Game created successfully",
-    "resetGameForm": "Reset",
-    "idLabel": "Game ID",
-    "opponentWebIDLabel": "Opponent WebID",
-    "nogames": "No game were found",
-    "invitationTemplate": "<0><0><0>{{- name}}</0> has invited you to play a game of TicTacToe.</0><1>Would you like to play?</1></0>",
-    "invitationAcceptText": "Accept",
-    "invitationDeclineText": "Decline",
-    "deleteConfirmation": "Delete game?",
-    "playingAgainst": "Playing Against:",
-    "token": "Your token:",
-    "tieMsg": "It's a tie",
-    "winnerMsg": "You are the winner!!",
-    "loserMsg": "Better luck next time",
-    "winnerObj": "Winner",
-    "notYourTurn": "Not your turn, please wait for your opponent to play",
-    "status": "Game Status:",
-    "created": "Created",
-    "confirmDelete": "Confirm Delete",
-    "deleteLabel": "Delete",
-    "playLabel": "Play",
-    "yourGames": "Your Games",
-    "otherGames": "Other Games",
-    "errorTitle": "Error",
-    "opponentMissing": "Cannot create game as no Opponent WebID was entered.",
-    "dataError": {
-      "message": "Game data could not be saved, data.ttl was not found",
-      "link": {
-        "label": "Learn More",
-        "href": "https://solidsdk.inrupt.net/public/general/en/data-file-not-found.html"
-      }
-    },
-    "createFolder": {
-      "message": "Error creating game data folder",
-      "link": {
-        "label": "Learn More",
-        "href": "link url"
-      }
-    },
-    "myself": "You cannot play against yourself",
-    "alreadyExists": "file already exists in the Pod. "
+  "search": {
+    "searchtitle": "Your search data will be stored in your pod"
   },
   "noInboxOpponent": {
     "message": "Your opponent does not have an inbox in their Pod",

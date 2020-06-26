@@ -56,6 +56,7 @@ export const Delete = styled.button`
 
   &:hover {
     background-color: var(--error) !important;
+    color: white !important;
   }
 `;
 

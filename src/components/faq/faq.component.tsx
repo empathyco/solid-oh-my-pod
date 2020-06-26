@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Component } from "react";
 import {
+  CloseButton,
   FAQ,
   PageNavigation,
   PageNavigationItem,
@@ -10,7 +11,7 @@ import FAQPage from "./faqPage";
 import SignInPage from "./signInPage";
 import SignUpPage from "./signUpPage";
 
-type Props = { isLogin: boolean; about: boolean };
+type Props = { isLogin: boolean; about: boolean; closeButton?: () => void };
 type State = {
   selectedPage: number;
   rightComponent: JSX.Element | undefined;
@@ -125,6 +126,9 @@ export default class FAQComponent extends Component<Props, State> {
             </PoweredByEmpathy>
           </div>
           {rightComponent && <div className="right">{rightComponent}</div>}
+          {this.props.closeButton && (
+            <CloseButton onClick={this.props.closeButton}>X</CloseButton>
+          )}
         </FAQ>
       );
     } else return <React.Fragment></React.Fragment>;

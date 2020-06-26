@@ -33,7 +33,7 @@ export default function EditableFile(props: Props) {
 
   const [edit, setEdit] = useState(false);
   const [content, setContent] = useState("");
-   const [tble, setTable] = useState([]);
+   const [tble, setTable] = useState( [] as any[]);
 
    const handleOpen = async () => {
     try {
@@ -69,8 +69,8 @@ export default function EditableFile(props: Props) {
 
     let keys = Object.keys(jsonc);
     let values = Object.values(jsonc);
-
-     let tb = [
+      let tb:any[] =  [];
+       tb = [
 
        keys,
        values
@@ -126,7 +126,7 @@ export default function EditableFile(props: Props) {
       id={path}
       onClick={click}
       onDoubleClick={handleOpen}
-      tabIndex="0"
+      tabIndex={0}
 
     >
       <img src="/img/icon/icon-files-text.svg"  className="imgfile" title={path} alt={path}  id={path}/>

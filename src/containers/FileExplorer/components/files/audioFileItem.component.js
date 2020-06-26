@@ -34,7 +34,7 @@ export default function AudioFile(props) {
       id={path}
       onClick={click}
       onDoubleClick={handleOpen}
-      tabIndex="0"
+      tabIndex={0}
 
       // id={`${name.concat("_context_menu")}`}
     >
