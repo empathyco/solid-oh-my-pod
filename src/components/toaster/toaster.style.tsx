@@ -131,16 +131,69 @@ export const ToasterPopUp = styled.div`
     }
   }
 
-  @keyframes fadeout-up {
+  @keyframes slideup {
     from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
       opacity: 1;
       transform: translateY(0px);
     }
-    to {
-      opacity: 0;
-      transform: translateY(-50px);
+  }
+`;
+
+export const ConfirmationScreen = styled.div`
+  position: fixed;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background-color: #ffffffad;
+  z-index: 10000;
+  top: 0px;
+  left: 0px;
+  justify-content: center;
+
+  .confirmationPopUp {
+    background-color: white;
+    width: 328px;
+    min-height: 328px;
+    position: absolute;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 7px 0 var(--pale-blue);
+    border: solid 1px var(--pale-blue);
+    .head {
+      padding: 20px;
+      background-color: var(--info);
+      h3 {
+        color: white;
+        text-align: center;
+      }
+    }
+    .body {
+      flex-grow: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: auto;
+      }
     }
   }
+
+  .open {
+    animation: slidedown 0.5s;
+  }
+  .close {
+    animation: fadeout-up 0.5s;
+  }
+
   @keyframes slidedown {
     from {
       opacity: 0;
@@ -151,14 +204,15 @@ export const ToasterPopUp = styled.div`
       transform: translateY(0px);
     }
   }
-  @keyframes slideup {
+
+  @keyframes fadeout-up {
     from {
-      opacity: 0;
-      transform: translateY(50px);
-    }
-    to {
       opacity: 1;
       transform: translateY(0px);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-50px);
     }
   }
 `;

@@ -1,26 +1,46 @@
 import * as React from "react";
 import { Component } from "react";
 import { OMPButton } from "../Utils/buttons/mainButtons";
-import { ToasterPopUp, ToasterPopUpScreen } from "./toaster.style";
-import ToasterService, { PopUp } from "./toasterService";
+import {
+  ConfirmationScreen,
+  ToasterPopUp,
+  ToasterPopUpScreen,
+} from "./toaster.style";
+import ToasterService, { Confirmation, PopUp } from "./toasterService";
 
 type Props = {};
 type State = {
   popUp: PopUp | undefined;
+  confirmationDialog: Confirmation | undefined;
 };
 export default class ToasterComponent extends Component<Props, State> {
   popUp: React.RefObject<HTMLDivElement>;
+
   constructor(props: Props) {
     super(props);
-    this.state = { popUp: undefined };
+    this.state = { popUp: undefined, confirmationDialog: undefined };
     this.popUp = React.createRef();
-    ToasterService.subscribePopUp(this.updateState);
+
+    ToasterService.subscribePopUp(this.updateState, this.updateConfirmation);
   }
 
   updateState = (state: State) => {
     this.setState(state);
   };
+  updateConfirmation = (confirmation: Confirmation) => {
+    this.setState({ confirmationDialog: confirmation });
+  };
 
+  handleConfirmationAction(value: boolean) {
+    if (this.popUp.current && this.state.confirmationDialog) {
+      this.popUp.current.classList.add("close");
+    }
+    setTimeout(() => {
+      this.setState({ confirmationDialog: undefined });
+    }, 500);
+
+    ToasterService.resolvePromise(value);
+  }
   popUpAction = () => {
     if (this.state.popUp) this.state.popUp.onButtonClick();
 
@@ -35,11 +55,11 @@ export default class ToasterComponent extends Component<Props, State> {
   };
 
   render() {
-    const { popUp } = this.state;
+    const { popUp, confirmationDialog } = this.state;
 
     return (
       <React.Fragment>
-        {popUp ? (
+        {popUp && (
           <ToasterPopUpScreen>
             <ToasterPopUp ref={this.popUp} className={popUp.type}>
               <div className={"header " + popUp.type}>
@@ -63,10 +83,37 @@ export default class ToasterComponent extends Component<Props, State> {
               </div>
             </ToasterPopUp>
           </ToasterPopUpScreen>
-        ) : (
-          undefined
         )}
-        
+        {confirmationDialog && (
+          <ConfirmationScreen className="confirmation">
+            <div className="confirmationPopUp open" ref={this.popUp}>
+              <div className="head">
+                <h3>{confirmationDialog.title}</h3>
+              </div>
+
+              <div className="body">
+                <div className="description">
+                  <p>{confirmationDialog.subtitle}</p>
+                </div>
+
+                <div className="buttons">
+                  <OMPButton
+                    className="popup-button"
+                    action={() => this.handleConfirmationAction(false)}
+                    color="error"
+                    label={confirmationDialog.cancelLabel}
+                  ></OMPButton>
+                  <OMPButton
+                    className="popup-button"
+                    action={() => this.handleConfirmationAction(true)}
+                    color="success"
+                    label={confirmationDialog.accepLabel}
+                  ></OMPButton>
+                </div>
+              </div>
+            </div>
+          </ConfirmationScreen>
+        )}
       </React.Fragment>
     );
   }

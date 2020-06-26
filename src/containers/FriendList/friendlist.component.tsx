@@ -139,6 +139,13 @@ export default class FriendListComponent extends React.Component<Props, State> {
 
   async deletefriend(profile, t) {
     let index = 0;
+    let confirm = await ToasterService.showConfirmationPopUp({
+      accepLabel: t("friendlist.remove"),
+      cancelLabel: t("friendlist.cancel"),
+      subtitle: "",
+      title: t("friendlist.confirmationMessage"),
+    });
+    if (!confirm) return;
 
     for (var i = 0; i < this.state.friends.length; i++) {
       if (this.state.friends[i].url === profile) {

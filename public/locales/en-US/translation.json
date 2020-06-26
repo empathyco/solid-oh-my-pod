@@ -69,6 +69,8 @@
     "boostedid": "Manual boost Id, required for default boosts. "
   },
   "friendlist": {
+    "remove":"remove",
+    "confirmationMessage":"Are your sure you want to stop beeing friends?  :(",
     "cancel": "cancel",
     "yourFriends": "Your FRIENDS",
     "mplatform": "The platform chosen is: ",
