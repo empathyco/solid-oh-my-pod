@@ -3,14 +3,25 @@ import styled from 'styled-components';
 /**
  * A styled-component for the 404 Page layout
  */
+export const Back = styled.div`
+
+background-image: url('/img/greyshape.svg');
+  background-repeat: no-repeat; 
+  background-position: 50% 50%; 
+  width: 100%;
+  vertical-align:middle;
+  background-attachment: fixed;
+`;
 export const PageNotFoundWrapper = styled.section`
   display: block;
   align: center;
-  
+   
+ 
+ 
   .notcontent{
   display:flex;
   justify-content: center;
- 
+     padding-bottom: 52%;
    animation-duration: 3.5s;
    animation-name: bop;
        @keyframes bop {
@@ -25,14 +36,7 @@ export const PageNotFoundWrapper = styled.section`
   }
  
  
- 
- background-image: url('/img/greyshape.svg');
-  background-repeat: no-repeat; 
-  background-position: 50% 50%; 
-  width: 100%;
-  vertical-align:middle;
-  background-attachment: fixed;
- 
+
    
 `;
 export const OhmyPodlogo = styled.section`

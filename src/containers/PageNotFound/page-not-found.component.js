@@ -2,7 +2,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import {OhGirl,MyBoy, PodGirl,PageNotFoundWrapper,OhmyPodlogo, PageNotFoundContent } from './page-not-found.style';
+import {Back,OhGirl,MyBoy, PodGirl,PageNotFoundWrapper,OhmyPodlogo, PageNotFoundContent } from './page-not-found.style';
 
 /**
  * A React component page that is displayed when there's no valid route. Users can click the button
@@ -42,6 +42,7 @@ import {OhGirl,MyBoy, PodGirl,PageNotFoundWrapper,OhmyPodlogo, PageNotFoundConte
 const PageNotFound = () => {
   const { t } = useTranslation();
   return (
+    <Back>
      <PageNotFoundWrapper>
        <div>
          <OhmyPodlogo>
@@ -70,6 +71,7 @@ const PageNotFound = () => {
          </PageNotFoundContent>
        </div>
      </PageNotFoundWrapper>
+    </Back>
 
   );
 };

@@ -3,7 +3,7 @@ import { fileExplorerService } from "@services";
 import * as contextf from 'contexts/context.txt';
 
 import CenterContainer from "../../components/Utils/CenterContainer";
-import {SearchWrapper, BoySearch, GirlSearch}  from "./search.style";
+import {SearchWrapper,SearchContainer, BoySearch, GirlSearch}  from "./search.style";
 
 
 export default class SearchComponent extends React.Component {
@@ -92,7 +92,7 @@ export default class SearchComponent extends React.Component {
     return (
     <SearchWrapper>
 
-    <CenterContainer>
+    <SearchContainer >
       <div class="logos">
         <div>
       <GirlSearch>
@@ -107,7 +107,7 @@ export default class SearchComponent extends React.Component {
       </BoySearch>
         </div>
       </div>
-    </CenterContainer>
+    </SearchContainer>
     </SearchWrapper>
   );
   }

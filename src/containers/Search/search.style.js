@@ -36,6 +36,7 @@ export const SearchWrapper = styled.div`
   .logos {
     display: grid;
     grid-gap: 1rem;
+    text-align:center;
   }
   @media (min-width: 800px) {
     .logos {
@@ -58,11 +59,14 @@ export const SearchWrapper = styled.div`
 
   p {
     font-family: "Montserrat", sans-serif !important;
+    font-weight: 500;
+
+    color: #75869b;
   }
 
   button img {
     width: 75%;
-  }
+   }
 `;
 
 export const GirlSearch = styled.div`
@@ -79,3 +83,9 @@ export const BoySearch = styled.div`
 
   vertical-align: middle;
 `;
+
+export const SearchContainer = styled.div`
+  display: flex;
+    margin:auto;
+    justify-content: center;
+  `;
