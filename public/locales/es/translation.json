@@ -11,6 +11,9 @@
     "error": "Error"
   },
   "fileexplorer": {
+    "uploadFile":"Subir archivo",
+    "filesUploaded":"archivo/s subido/s",
+    "errorUploading":"Se ha producido un error al subir los archivos",
     "edit": "Editar",
     "save": "Guardar",
     "cancel": "Cancelar",

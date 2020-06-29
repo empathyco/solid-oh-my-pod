@@ -11,6 +11,9 @@
     "error": "Error"
   },
   "fileexplorer": {
+    "uploadFile":"Upload file",
+    "filesUploaded":"file/s uploaded",
+    "errorUploading":"Error uploading files",
     "edit": "Edit",
     "save": "Save",
     "cancel": "Cancel",

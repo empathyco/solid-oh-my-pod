@@ -11,6 +11,9 @@
     "error": "Error"
   },
   "fileexplorer": {
+    "uploadFile": "Upload file",
+    "filesUploaded": "file/s uploaded",
+    "errorUploading": "Error uploading files",
     "edit": "Edit",
     "save": "Save",
     "cancel": "Cancel",
@@ -69,8 +72,8 @@
     "boostedid": "Manual boost Id, required for default boosts. "
   },
   "friendlist": {
-    "remove":"remove",
-    "confirmationMessage":"Are your sure you want to stop beeing friends?  :(",
+    "remove": "remove",
+    "confirmationMessage": "Are your sure you want to stop beeing friends?  :(",
     "cancel": "cancel",
     "yourFriends": "Your FRIENDS",
     "mplatform": "The platform chosen is: ",
