@@ -16,7 +16,7 @@
     "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
     "noUnusedLocals": false /* Report errors on unused locals. */,
     "strict": false /* Enable all strict type-checking options. */,
-    "outDir": "dist" /* Redirect output structure to the directory. */,
+    "outDir": "build" /* Redirect output structure to the directory. */,
     "baseUrl": "./src" /* Base directory to resolve non-absolute module names. */,
     "isolatedModules": true,
     "typeRoots": [
@@ -38,5 +38,5 @@
       "@constants/*": ["constants/*"]
     }
   },
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["build", "node_modules"]
 }

@@ -27,7 +27,8 @@ class UserInformation extends Component {
   }
 
   getProfileName() {
-    const name = this.state.title;
+    let name = this.state.title;
+    if (name === "undefined") name = undefined;
     if (name) {
       let splitted = "";
       if (name) splitted = name.split(" ");

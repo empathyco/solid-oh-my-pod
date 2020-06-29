@@ -33,8 +33,7 @@ class ProfileContent extends Component {
     this.originalFields = await this.getData();
     // Set updated to false
     this.originalFields.updated = false;
-    console.log(this.originalFields);
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!");
+
     this.setState(this.originalFields);
     LoaderService.completeLoad();
   }
@@ -143,6 +142,10 @@ class ProfileContent extends Component {
 
   getFields() {
     let { fn, role, company, emails, phones } = this.state;
+    if (role === "undefined") role = undefined;
+    if (company === "undefined") company = undefined;
+    if (fn === "undefined") fn = undefined;
+
     const { t } = this.props;
 
     return (
@@ -202,7 +205,8 @@ class ProfileContent extends Component {
   }
 
   getNotesSection() {
-    const { note } = this.state;
+    let { note } = this.state;
+    if (note === "undefined") note = undefined;
     const { t } = this.props;
     return (
       <Fragment>
