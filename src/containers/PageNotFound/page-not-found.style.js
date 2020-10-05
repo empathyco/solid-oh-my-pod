@@ -30,12 +30,10 @@ export const PageNotFoundWrapper = styled.section`
       }
       
       to {    
-      opacity: 0.01;       
+      opacity: 0.02;       
       }
       }
   }
- 
- 
 
    
 `;
