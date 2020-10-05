@@ -2,7 +2,6 @@ import React from "react";
 import { fileExplorerService } from "@services";
 import * as contextf from 'contexts/context.txt';
 
-import CenterContainer from "../../components/Utils/CenterContainer";
 import {SearchWrapper,SearchContainer, BoySearch, GirlSearch}  from "./search.style";
 
 
