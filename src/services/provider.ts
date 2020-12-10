@@ -29,17 +29,7 @@ export default class Provider {
         card: "inrupt.net/profile/card#me",
         delete: "https://inrupt.net/account/delete",
       },
-      {
-        id: "solid-community",
-        custom: false,
-        label: "Solid Community",
-        image: "./img/Solid.png",
-        baseURL: "https://solid.community",
-        value: "https://solid.community",
-        registerLink: "https://solid.community/register",
-        card: "solid.community/profile/card#me",
-        delete: "https://solid.community/account/delete",
-      },
+
       {
         id: "solid-web-prototype",
         custom: false,
@@ -48,16 +38,7 @@ export default class Provider {
         baseURL: "https://solidweb.org",
         value: "https://solidweb.org",
         registerLink: "https://solidweb.org/register",
-      },
-      {
-        id: "solid-authing-prototype",
-        custom: false,
-        label: "Solid Authing Prototype",
-        image: "/img/Solid.png",
-        baseURL: "https://solid.authing.cn",
-        value: "https://solid.authing.cn",
-        registerLink: "https://solid.authing.cn/register",
-      },
+      }
     ];
   }
 }

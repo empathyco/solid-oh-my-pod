@@ -73,7 +73,7 @@
   },
   "friendlist": {
     "remove": "remove",
-    "confirmationMessage": "Are your sure you want to stop beeing friends?  :(",
+    "confirmationMessage": "Are your sure you want to stop being friends?  :(",
     "cancel": "cancel",
     "yourFriends": "Your FRIENDS",
     "mplatform": "The platform chosen is: ",
@@ -217,12 +217,12 @@
     "deletePodMessage": "Click the button to be redirected to delete this pod",
     "name": "Name",
     "role": "Role",
-    "company": "Comapny",
+    "company": "Company",
     "email": "Email",
     "phone": "Phone",
     "save": "Save changes",
     "notes": "More information",
-    "updateNote": "Save note",
+    "updateNote": "Save note ",
     "clear": "Clear note",
     "card": "POD"
   },

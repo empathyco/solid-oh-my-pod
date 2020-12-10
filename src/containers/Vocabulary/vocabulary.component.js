@@ -46,7 +46,7 @@ export default class VocabularyComponent extends React.Component {
             <p>{t('v1.usera')}</p>
 
           </VocabularyItem>
-          <VocabularyItem id="timestamp"> <h1>timestamp </h1>
+          <VocabularyItem id="timestamp"> <h1>Timestamp </h1>
             <p>{t('v1.timestamp')}</p>
           </VocabularyItem>
           <VocabularyItem id="q"> <h1> Query</h1>

@@ -96,7 +96,7 @@
       "description": "Uri is invalid"
     },
     "remove": "remove",
-    "confirmationMessage": "Are your sure you want to stop beeing friends?  :(",
+    "confirmationMessage": "Are your sure you want to stop being friends?  :(",
     "cancel": "cancel",
     "notfounderror": {
       "title": "Oh My POD!",
@@ -125,6 +125,8 @@
     "formButtonText": "Log In",
     "btnTxtWebId": "Log In with WebId",
     "btnTxtProvider": "Log In with Provider",
+    "customProvider": "Custom provider",
+    "customProviderLabel": "Introduce the url of the custom provider",
     "errors": {
       "unknown": "Something is wrong, please try again...",
       "webIdNotValid": "WeibID is not valid",
@@ -230,7 +232,7 @@
     "select": "Select",
     "name": "Name",
     "role": "Role",
-    "company": "Comapny",
+    "company": "Company",
     "email": "Email",
     "phone": "Phone",
     "save": "Save changes",
